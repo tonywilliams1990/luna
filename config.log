@@ -1,0 +1,3 @@
+file /home/tony/Desktop/luna/SConstruct,line 50:
+	Configure(confdir = .sconf_temp)
+

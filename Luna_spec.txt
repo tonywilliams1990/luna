@@ -1,0 +1,62 @@
+************************************ Luna **************************************
+Luna aims to be a header-only library of numerical routines written in C++.
+
+*** Basic specification ***
+1. Simple build process - a library is built for use with examples (tests).
+2. Library header files should be easy to read and well documented (Doxygen).
+3. Code should be kept minimal and simple (try and keep functions short).
+4. Library should be easy to download and use (minimal number of dependencies).
+5. Code will comply to the C++11 standard.
+6. Error checking is important (messages should be helpful).
+7. All examples should be well documented with maths specified well.
+8. Native implementation of methods that doesn't depend on external libraries.
+9. The Eigen library will also be used for performance improvements.
+10. Code should use parallelisation wherever applicable to improve performance.
+
+***** Class list *****
+--- Core ---
+1.  Error - error handling and reports                                        []
+2.  Vector - a generic vector class for use with numeric types                []
+3.  Timer - a simple timer class for timing methods                           []
+4.  Matrix - a generic matrix class (including linear algebra methods)        []
+5.  Mesh1D - a one-dimensional mesh class (including numerical integration)   []
+6.  Mesh2D - a two-dimensional mesh class                                     []
+7.  Random - random number generation                                         []
+8.  Functions - special mathematical functions not contained in std library   []
+9.  Polynomials - a class for solving and evaluating polynomials              []
+10. Newton - a Newton's method iteration class                                []
+11. Residual - a class for defining residual objects (used with Newton)       []
+12. Arclength - arc length continuation class                                 []
+13. Interpolate - interpolation methods for 1D and 2D mesh objects (utility)  []
+
+--- Sparse ---
+1. SparseVector - a sparse vector class                                       []
+2. SparseMatrix - a sparse matrix class (including sparse linear algebra)     []
+3. BandedMatrix - a banded matrix class (including banded solver)             []
+
+--- Eigenvalue ---
+1. Eigensystem - a class for solving linear eigensystems                      []
+2. SparseEigensystem - a class for solving sparse linear eigensystems         []
+
+--- ODE ---
+1. ODE_BVP - ODE boundary value problem solver class                          []
+2. ODE_IVP - ODE intial value problem solver class                            []
+3. Equation - class for specifying the ODE equation                           []
+
+--- PDE ---
+1. PDE_IBVP - PDE initial boundary value problem class                        []
+2. Poisson - a class for solving Poisson problems                             []
+
+--- Automatic-differentiation ---
+1. Dual - a class defining dual numbers                                       []
+2. Dual_math - a class for math functions for use with dual numbers           []
+3. Autodiff - a class for automatic-differentiation                           []
+
+
+***** Examples *****
+Examples should be used both to test the functionality of the code and
+demonstrate how the code should be used.
+
+1. Vector_algebra - test Vector and Error (range check) +,-,*,/,dot,norms 
+2. Linear_system - test Vector, Matrix, Timer and Error classes
+3. Integration - test Mesh1D and Mesh2D classes
