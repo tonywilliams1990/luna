@@ -15,7 +15,7 @@ Luna aims to be a header-only library of numerical routines written in C++.
 
 ***** Class list *****
 --- Core ---
-1.  Error - error handling and reports                                        []
+1.  Error - error handling and reports                                       [x]
 2.  Vector - a generic vector class for use with numeric types                []
 3.  Timer - a simple timer class for timing methods                           []
 4.  Matrix - a generic matrix class (including linear algebra methods)        []

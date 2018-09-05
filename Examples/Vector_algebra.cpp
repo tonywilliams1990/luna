@@ -15,7 +15,6 @@ int main()
   throw Error( "This is an error!" );
 
 
-
-	cout << "FINISHED" << endl;
+  cout << "FINISHED" << endl;
 
 }
