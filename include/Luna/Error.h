@@ -1,6 +1,5 @@
-/*
-  Error.h - Defines a class for simple error handling.
-*/
+/// \file Error.h
+/// Defines a class for simple error handling.
 
 #ifndef ERROR_H
 #define ERROR_H
@@ -12,7 +11,7 @@
 namespace Luna
 {
 
-  /// A generic runtime exception
+  /// A generic runtime error
   class Error : public std::runtime_error
   {
   public:
