@@ -5,10 +5,12 @@
 #define VECTOR_H
 
 #include <iostream>
+#include <iomanip>
 #include <vector>
 #include <fstream>
 #include <algorithm>
 #include <functional>
+#include <numeric>
 
 #include "Error.h"
 
@@ -142,7 +144,7 @@ namespace Luna
     /// \param new_elem New element to be appended to the end of the Vector
     void push_back( const T& new_elem );
 
-    /// TODO Remove the last element in the Vector 
+    /// TODO Remove the last element in the Vector
 
     /// Resize the Vector
     /// \param size New size of the Vector
@@ -161,53 +163,130 @@ namespace Luna
     void swap( const std::size_t& i, const std::size_t& j );
 
     /// Reverse the order of the elements
+    void reverse();
 
     /// Assign new contents to the Vector
-
-    /// Insert new elements into the Vector
+    /// \param n The number of elements to assign
+    /// \param elem The element to be assigned
+    void assign( const std::size_t n, const T elem );
 
     /// Real part of the elements of the Vector
+    /// \return Vector of real parts of the elements
+    Vector<double> real() const;
 
     /// Conjugate of the elements of the Vector
+    /// \return Vector of conjugates of the elements
+    Vector<T> conjugate() const;
 
     /// Create a linearly spaced Vector (of doubles) with n elements
+    /// \param a Start value
+    /// \param b End value
+    /// \param n Number of elements
+    void linspace( const double& a, const double& b, const std::size_t& n );
 
-    /// Create a nonuniform Vector using a power law with exponent p (p=1 ->linear)
+    /// Create a nonuniform Vector using a power law with exponent p (1->linear)
+    void powspace( const double& a, const double& b,
+                   const std::size_t& n, const double& p);
 
     /// Product of the elements in the Vector (from index start to end)
+    /// \param start Start index
+    /// \param end End index
+    /// \return Product of the elements in the Vector
+    T product( const std::size_t& start, const std::size_t& end );
+
+    // Product of the elements in the Vector
+    /// \return Product of the elements in the Vector
+    T product();
 
     /// Sum of the elements in the Vector (from index start to end)
+    /// \param start Start index
+    /// \param end End index
+    /// \return Sum of the elements in the Vector
+    T sum( const std::size_t& start, const std::size_t& end );
 
-    /// Return the dot product of two Vectors v.dot(w)
+    /// Sum of the elements in the Vector
+    /// \return Sum of the elements in the Vector
+    T sum();
+
+    /// Dot product of two Vectors v.dot(w)
+    /// \param w The Vector to be dotted with
+    /// \return The dot product of two vectors
+    T dot( const Vector<T>& w );
 
     /// Output the Vector to a file
+    /// \param filename The name of the file to output the Vector to
+    /// \param precision The precision of the elements to be stored
+    void output( std::string filename, int precision = 12 );
 
     /// Read the Vector from a file
+    /// \param filename The name of the file to read the Vector from
+    /// \param precision The precision of the elements to be read in
+    void read( std::string filename, int precision = 12 );
 
     /// Maximum element
+    /// \return The maximum element in the Vector
+    T max();
 
     /// Minimum element
+    /// \return The minimum element in the Vector
+    T min();
 
     /// Maximum element index
+    /// \return The index of the largest element (first index if more than one)
+    std::size_t max_index();
 
     /// Minimum element index
+    /// \return The index of the smallest element (first index if more than one)
+    std::size_t min_index();
 
+    /// Square all the elements in the Vector
+    /// \return Vector of squares of the elements
+    Vector<T> square() const;
 
+    /// Raise all the elements in the Vector to the power p
+    /// \param p The exponent to raise each of the elements to
+    /// \return Vector of the elements raised to the power p
+    Vector<T> power( const double& p ) const;
 
     /* ----- Norms ----- */
 
     /// L1 norm: sum of absolute values
+    /// \return The L1 norm of the Vector
+    double norm_1() const;
 
     /// L2 norm: square root of the sum of the squares
+    /// \return The L2 norm of the Vector
+    double norm_2() const;
 
     /// Lp norm: p-th root of the sum of the absolute values to the power p
+    /// \param p The exponent for the p-norm
+    /// \return The Lp norm of the Vector
+    double norm_p( const double& p ) const;
 
     /// Inf norm: largest absolute value element (p -> infinity)
+    /// \return The infinity norm of the Vector
+    double norm_inf() const;
 
     /* ----- Iterators ----- */
 
+    /// Pass through the std::vector begin iterator
+    /// \return An iterator pointing to the first element in the Vector
 
+    //TODO \return statements for all other iterators 
 
+    /// Pass through the std::vector begin reverse iterator
+
+    /// Pass through the std::vector begin constant iterator
+
+    /// Pass through the std::vector begin constant reverse iterator
+
+    /// Pass through the std::vector end iterator
+
+    /// Pass through the std::vector end reverse iterator
+
+    /// Pass through the std::vector end constant iterator
+
+    /// Pass through the std::vector end constant reverse iterator
 
   }; // End of class Vector
 
@@ -425,6 +504,225 @@ namespace Luna
     if ( j<0 || size()<=j )	{ throw Error( "swap method Vector range error" );}
     if ( i == j ) { return; }
     std::swap<T>( VECTOR[ i ], VECTOR[ j ] );
+  }
+
+  template <typename T>
+  inline void Vector<T>::reverse()
+  {
+    std::reverse( VECTOR.begin(), VECTOR.end() );
+  }
+
+  template <typename T>
+  inline void Vector<T>::assign( const std::size_t n, const T elem )
+  {
+    VECTOR.assign( n, elem );
+  }
+
+  template <typename T>
+  inline Vector<double> Vector<T>::real() const
+  {
+    Vector<double> real_part( size() );
+    for (size_t i=0; i < size(); ++i)
+    {
+      real_part[ i ] = std::real( VECTOR[ i ] ) ;
+    }
+    return real_part;
+  }
+
+  template <typename T>
+  inline Vector<T> Vector<T>::conjugate() const
+  {
+     Vector<T> conjugate( *this );
+     for (size_t i=0; i < size(); ++i)
+     {
+       conjugate.VECTOR[ i ] = std::conj( VECTOR[ i ] ) ;
+     }
+     return conjugate;
+  }
+
+  template <>
+	inline void Vector<double>::linspace( const double& a, const double& b,
+                                        const std::size_t& n )
+	{
+		VECTOR.resize( n );
+		const double h = ( b - a ) / (n - 1)  ;
+		for ( std::size_t i=0; i < n; ++i )
+		{
+			VECTOR[ i ] = a + h * i;
+		}
+	}
+
+  template <>
+  inline void Vector<double>::powspace( const double& a, const double& b,
+                                     const std::size_t& n, const double& p)
+  {
+    VECTOR.resize( n );
+    for ( std::size_t i = 0; i < n; ++i )
+    {
+      VECTOR[ i ] = a + ( b - a ) * std::pow( ( double )i / ( n - 1 ), p );
+    }
+  }
+
+  template <typename T>
+  inline T Vector<T>::product( const std::size_t& start,
+                               const std::size_t& end )
+  {
+    if ( start > end )	{ throw Error( "Vector product: start > end" );}
+    if ( start<0 || size()<=start )	{
+      throw Error( "Vector product method range error" );}
+    if ( end<0 || size()<=end )	{
+      throw Error( "Vector product method range error" );}
+    T prod( VECTOR[ start ] );
+    for ( std::size_t i=start+1; i<=end; ++i )
+    {
+      prod *= VECTOR[ i ];
+    }
+    return prod;
+  }
+
+  template <typename T>
+  inline T Vector<T>::product()
+  {
+    return this->product( 0, size() - 1 );
+  }
+
+  template <typename T>
+  inline T Vector<T>::sum( const std::size_t& start, const std::size_t& end )
+  {
+    if ( start > end )	{ throw Error( "Vector sum: start > end" );}
+    if ( start<0 || size()<=start )	{
+      throw Error( "Vector sum method range error" );}
+    if ( end<0 || size()<=end )	{
+      throw Error( "Vector sum method range error" );}
+    T Sum( VECTOR[ start ] );
+    for ( std::size_t i=start+1; i<=end; ++i )
+    {
+      Sum += VECTOR[ i ];
+    }
+    return Sum;
+  }
+
+  template <typename T>
+  inline T Vector<T>::sum()
+  {
+    return this->sum( 0, size() - 1 );
+  }
+
+  template <typename T>
+  inline T Vector<T>::dot( const Vector<T>& w )
+  {
+    if ( size() != w.size() )	{ throw Error( "Vector dot product: size error" );}
+    T init( 0.0 );
+    return std::inner_product ( VECTOR.cbegin(), VECTOR.cend(),
+                     w.VECTOR.begin(), init );
+  }
+
+  template <typename T>
+  inline void Vector<T>::output( std::string filename, int precision )
+  {
+    std::ofstream out;
+    out.open( filename.c_str() );
+    out.precision( precision );
+    out.setf( std::ios::showpoint );
+    out.setf( std::ios::showpos );
+    out.setf( std::ios::scientific );
+    for ( std::size_t i = 0; i < size(); ++i )
+    {
+      out << VECTOR[ i ] << std::endl;
+    }
+  }
+
+  template <typename T>
+  inline void Vector<T>::read( std::string filename, int precision )
+  {
+    std::ifstream inFile;
+		inFile.open( filename.c_str() );
+		inFile.precision( precision );
+		inFile.setf( std::ios::showpoint );
+		inFile.setf( std::ios::showpos );
+		inFile.setf( std::ios::scientific );
+		if (!inFile) { throw Error( "Vector.read() unable to open file" ); }
+    VECTOR.resize( 0 );
+    T val;
+    while ( inFile >> val )
+    {
+      VECTOR.push_back( val );
+    }
+    inFile.close();
+  }
+
+  template <typename T>
+  inline T Vector<T>::max()
+  {
+    return VECTOR[ this-> max_index() ];
+  }
+
+  template <typename T>
+  inline T Vector<T>::min()
+  {
+    return VECTOR[ this-> min_index() ];
+  }
+
+  template <typename T>
+  inline std::size_t Vector<T>::max_index()
+  {
+    return std::distance( VECTOR.begin(),
+                           std::max_element( VECTOR.begin(), VECTOR.end() ) );
+  }
+
+  template <typename T>
+  inline std::size_t Vector<T>::min_index()
+  {
+    return std::distance( VECTOR.begin(),
+                           std::min_element( VECTOR.begin(), VECTOR.end() ) );
+  }
+
+  template <typename T>
+  inline Vector<T> Vector<T>::square() const
+  {
+    Vector<T> square;
+    for (size_t i=0; i < size(); ++i)
+    {
+      square.VECTOR.push_back( VECTOR[ i ] * VECTOR[ i ] );
+    }
+    return square;
+  }
+
+  template <typename T>
+  inline Vector<T> Vector<T>::power( const double& p ) const
+  {
+    Vector<T> power;
+    for (size_t i=0; i < size(); ++i)
+    {
+      power.VECTOR.push_back( std::pow( VECTOR[ i ], p ) );
+    }
+    return power;
+  }
+
+  /* ----- Norms ----- */
+
+  template <typename T>
+  inline double Vector<T>::norm_1() const
+  {
+    return ( this->abs() ).sum();
+  }
+
+  template <typename T>
+  inline double Vector<T>::norm_2() const
+  {
+    return std::sqrt( ( this->abs() ).square().sum() );
+  }
+
+  template <typename T>
+  inline double Vector<T>::norm_p( const double& p ) const
+  {
+    return std::pow( ( this->abs() ).power( p ).sum(), 1.0 / p );
+  }
+
+  template <typename T>
+  inline double Vector<T>::norm_inf() const
+  {
+    return ( this->abs() ).max();
   }
 
 }  // End of namespace Luna
