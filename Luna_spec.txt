@@ -16,7 +16,7 @@ Luna aims to be a header-only library of numerical routines written in C++.
 ***** Class list *****
 --- Core ---
 1.  Error - error handling and reports                                       [x]
-2.  Vector - a generic vector class for use with numeric types                []
+2.  Vector - a generic vector class for use with numeric types               [x]
 3.  Timer - a simple timer class for timing methods                           []
 4.  Matrix - a generic matrix class (including linear algebra methods)        []
 5.  Mesh1D - a one-dimensional mesh class (including numerical integration)   []
@@ -52,11 +52,16 @@ Luna aims to be a header-only library of numerical routines written in C++.
 2. Dual_math - a class for math functions for use with dual numbers           []
 3. Autodiff - a class for automatic-differentiation                           []
 
+--- Quaternions ---
+1. Quaternion - a class defining quaternions				      []
+
 
 ***** Examples *****
 Examples should be used both to test the functionality of the code and
-demonstrate how the code should be used.
+demonstrate how the code can be used.
 
-1. Vector_algebra - test Vector and Error (range check) +,-,*,/,dot,norms 
-2. Linear_system - test Vector, Matrix, Timer and Error classes
-3. Integration - test Mesh1D and Mesh2D classes
+1. Vector_algebra - test Vector and Error (range check) +,-,*,/,dot,norms     []
+2. Linear_system - test Vector, Matrix, Timer and Error classes               []
+3. Integration - test Mesh1D and Mesh2D classes                               []
+4. Random_number - test Random						      []
+...

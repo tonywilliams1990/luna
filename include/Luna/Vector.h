@@ -144,7 +144,12 @@ namespace Luna
     /// \param new_elem New element to be appended to the end of the Vector
     void push_back( const T& new_elem );
 
-    /// TODO Remove the last element in the Vector
+    /// Remove the last element in the Vector
+    void pop_back();
+
+    /// Returns whether the Vector is empty
+    /// \return true if the Vector is size 0 and false otherwise
+    bool empty() const;
 
     /// Resize the Vector
     /// \param size New size of the Vector
@@ -185,6 +190,10 @@ namespace Luna
     void linspace( const double& a, const double& b, const std::size_t& n );
 
     /// Create a nonuniform Vector using a power law with exponent p (1->linear)
+    /// \param a Start value
+    /// \param b End value
+    /// \param n Number of elements
+    /// \param p Exponent
     void powspace( const double& a, const double& b,
                    const std::size_t& n, const double& p);
 
@@ -269,24 +278,67 @@ namespace Luna
 
     /* ----- Iterators ----- */
 
-    /// Pass through the std::vector begin iterator
-    /// \return An iterator pointing to the first element in the Vector
+    //template <typename Type>
+    typedef typename std::vector<T>::iterator iter;
+    typedef typename std::vector<T>::const_iterator citer;
+    typedef typename std::vector<T>::reverse_iterator riter;
+    typedef typename std::vector<T>::const_reverse_iterator criter;
 
-    //TODO \return statements for all other iterators 
+    /// Pass through the std::vector begin iterator
+    /// \return An iterator pointing to the first element
+    iter begin()
+    {
+      return VECTOR.begin();
+    }
 
     /// Pass through the std::vector begin reverse iterator
+    /// \return A reverse iterator pointing to the last element
+    riter rbegin()
+    {
+      return VECTOR.rbegin();
+    }
 
     /// Pass through the std::vector begin constant iterator
+    /// \return A constant iterator pointing to the first element
+    citer begin() const
+    {
+      return VECTOR.begin();
+    }
 
     /// Pass through the std::vector begin constant reverse iterator
+    /// \return A constant reverse iterator pointing to the last element
+    criter rbegin() const
+    {
+      return VECTOR.rbegin();
+    }
 
     /// Pass through the std::vector end iterator
+    /// \return An iterator referring to the past-the-end element
+    iter end()
+    {
+      return VECTOR.end();
+    }
 
     /// Pass through the std::vector end reverse iterator
+    /// \return A reverse iterator pointing to the element before the first
+    riter rend()
+    {
+      return VECTOR.rend();
+    }
 
     /// Pass through the std::vector end constant iterator
+    /// \return A constant iterator referring to the past-the-end element
+    citer end() const
+    {
+      return VECTOR.end();
+    }
 
     /// Pass through the std::vector end constant reverse iterator
+    /// \return A constant reverse iterator pointing to the element before the first
+    criter rend() const
+    {
+      return VECTOR.rend();
+    }
 
   }; // End of class Vector
 
@@ -472,6 +524,18 @@ namespace Luna
   inline void Vector<T>::push_back( const T& new_elem )
   {
     VECTOR.push_back( new_elem );
+  }
+
+  template <typename T>
+  inline void Vector<T>::pop_back()
+  {
+    VECTOR.pop_back();
+  }
+
+  template <typename T>
+  inline bool Vector<T>::empty() const
+  {
+    return VECTOR.empty();
   }
 
   template <typename T>
