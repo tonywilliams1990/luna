@@ -17,17 +17,16 @@ Luna aims to be a header-only library of numerical routines written in C++.
 --- Core ---
 1.  Error - error handling and reports                                       [x]
 2.  Vector - a generic vector class for use with numeric types               [x]
-3.  Timer - a simple timer class for timing methods                           []
+3.  Timer - a simple timer class for timing methods                          [x]
 4.  Matrix - a generic matrix class (including linear algebra methods)        []
 5.  Mesh1D - a one-dimensional mesh class (including numerical integration)   []
 6.  Mesh2D - a two-dimensional mesh class                                     []
-7.  Random - random number generation                                         []
-8.  Functions - special mathematical functions not contained in std library   []
-9.  Polynomials - a class for solving and evaluating polynomials              []
-10. Newton - a Newton's method iteration class                                []
-11. Residual - a class for defining residual objects (used with Newton)       []
-12. Arclength - arc length continuation class                                 []
-13. Interpolate - interpolation methods for 1D and 2D mesh objects (utility)  []
+7.  Functions - special mathematical functions not contained in std library   []
+8.  Polynomials - a class for solving and evaluating polynomials              []
+9. Newton - a Newton's method iteration class                                []
+10. Residual - a class for defining residual objects (used with Newton)       []
+11. Arclength - arc length continuation class                                 []
+12. Interpolate - interpolation methods for 1D and 2D mesh objects (utility)  []
 
 --- Sparse ---
 1. SparseVector - a sparse vector class                                       []
@@ -60,8 +59,8 @@ Luna aims to be a header-only library of numerical routines written in C++.
 Examples should be used both to test the functionality of the code and
 demonstrate how the code can be used.
 
-1. Vector_algebra - test Vector and Error (range check) +,-,*,/,dot,norms     []
+1. Vector_algebra - test Vector and Error (range check) +,-,*,/,dot,norms    [x]
 2. Linear_system - test Vector, Matrix, Timer and Error classes               []
 3. Integration - test Mesh1D and Mesh2D classes                               []
-4. Random_number - test Random						      []
-...
+
+

@@ -30,14 +30,14 @@ namespace Luna
   /// A Vector class for use with double and std::complex<double>
   class Vector
   {
-    private:
+  private:
     std::vector<T> VECTOR;            // Data storage encapsulates std::vector
 
     protected:
     friend class Matrix<T>;			      // Friend class can access VECTOR directly
     friend class SparseMatrix<T>;	    // Friend class can access VECTOR directly
 
-    public:
+  public:
 
     /// Constructor for an empty Vector of unspecified size
     Vector(){}
@@ -448,7 +448,8 @@ namespace Luna
     Vector<T> temp( *this );
     std::transform ( temp.VECTOR.cbegin(), temp.VECTOR.cend(),
                      temp.VECTOR.begin(),
-                     std::bind1st( std::multiplies<T>(), scalar ) );
+                     std::bind( std::multiplies<T>(),
+                                std::placeholders::_1, scalar ) );
     return temp;
   }
 
@@ -458,7 +459,8 @@ namespace Luna
     Vector<T> temp( *this );
     std::transform ( temp.VECTOR.cbegin(), temp.VECTOR.cend(),
                      temp.VECTOR.begin(),
-                     std::bind2nd( std::divides<T>(), scalar ) );
+                     std::bind( std::divides<T>(),
+                                std::placeholders::_1, scalar ) );
     return temp;
   }
 
@@ -492,7 +494,8 @@ namespace Luna
   inline Vector<T>& Vector<T>::operator*=( const T& scalar )
   {
     std::transform ( VECTOR.cbegin(), VECTOR.cend(), VECTOR.begin(),
-                     std::bind1st( std::multiplies<T>(), scalar ) );
+                     std::bind( std::multiplies<T>(),
+                                std::placeholders::_1, scalar ) );
     return *this;
   }
 
@@ -500,7 +503,8 @@ namespace Luna
   inline Vector<T>& Vector<T>::operator/=( const T& scalar )
   {
     std::transform ( VECTOR.cbegin(), VECTOR.cend(), VECTOR.begin(),
-                     std::bind2nd( std::divides<T>(), scalar ) );
+                     std::bind( std::divides<T>(),
+                                std::placeholders::_1, scalar ) );
     return *this;
   }
 
@@ -508,7 +512,7 @@ namespace Luna
   inline Vector<T>& Vector<T>::operator+=( const T& add )
   {
     std::transform ( VECTOR.cbegin(), VECTOR.cend(), VECTOR.begin(),
-                     std::bind1st( std::plus<T>(), add ) );
+                     std::bind( std::plus<T>(), std::placeholders::_1, add ) );
     return *this;
   }
 
