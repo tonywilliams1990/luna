@@ -67,9 +67,12 @@ namespace Luna
 
     /// Indexing operator ( read only )
     /// \param i Index
+    /// \return A constant reference to the element located at the given index
     const T& operator[] ( const std::size_t& i ) const;
 
     /// Indexing operator ( read / write )
+    /// \param i Index
+    /// \return A reference to the element located at the given index
     T& operator[] ( const std::size_t& i );
 
     /// Copy assignment
@@ -105,9 +108,9 @@ namespace Luna
     }
 
     /// Scalar division
-    /// \param scalar The scalar to divide the Vector by
-    /// \return The Vector divided by the scalar
-    Vector<T> operator/( const T& scalar ) const;
+    /// \param scalar The divisor to divide the Vector by
+    /// \return The Vector divided by the divisor
+    Vector<T> operator/( const T& divisor ) const;
 
     /// Addition assignment
     /// \param v_plus The Vector to be added
@@ -125,14 +128,19 @@ namespace Luna
     Vector<T>& operator*=( const T& scalar );
 
     /// Scalar division assigment
-    /// \param scalar The scalar to divide the Vector by
-    /// \return A reference to the Vector after division by a scalar
-    Vector<T>& operator/=( const T& scalar );
+    /// \param scalar The divisor to divide the Vector by
+    /// \return A reference to the Vector after division by a divisor
+    Vector<T>& operator/=( const T& divisor );
 
-    /// Addition assignment ( add a constant to all elements )
+    /// Constant addition assignment
     /// \param add The constant to be added to each element
     /// \return A reference to the Vector after addition by a constant
     Vector<T>& operator+=( const T& add );
+
+    /// Constant subtraction assignment
+    /// \param minus The constant to be subtracted from each element
+    /// \return A reference to the Vector after subtraction by a constant
+    Vector<T>& operator-=( const T& minus );
 
     /* ----- Methods ----- */
 
@@ -154,6 +162,10 @@ namespace Luna
     /// Resize the Vector
     /// \param size New size of the Vector
     void resize( const std::size_t& size );
+
+    /// Request a change in capacity
+    /// \param size Minimum capacity for the Vector
+    void reserve( const std::size_t& size );
 
     /// Clear all the elements from the Vector
     void clear();
@@ -366,7 +378,8 @@ namespace Luna
   {
     for (std::size_t i = 0; i < vec.VECTOR.size(); ++i )
     {
-      os << vec.VECTOR[ i ] << " ";
+      os << std::setw( 6 ) << std::setprecision( 2 ) << std::fixed
+         << vec.VECTOR[ i ] << " ";
     }
     return os;
   }
@@ -454,13 +467,13 @@ namespace Luna
   }
 
   template <typename T>
-  inline Vector<T> Vector<T>::operator/( const T& scalar ) const
+  inline Vector<T> Vector<T>::operator/( const T& divisor ) const
   {
     Vector<T> temp( *this );
     std::transform ( temp.VECTOR.cbegin(), temp.VECTOR.cend(),
                      temp.VECTOR.begin(),
                      std::bind( std::divides<T>(),
-                                std::placeholders::_1, scalar ) );
+                                std::placeholders::_1, divisor ) );
     return temp;
   }
 
@@ -500,11 +513,11 @@ namespace Luna
   }
 
   template <typename T>
-  inline Vector<T>& Vector<T>::operator/=( const T& scalar )
+  inline Vector<T>& Vector<T>::operator/=( const T& divisor )
   {
     std::transform ( VECTOR.cbegin(), VECTOR.cend(), VECTOR.begin(),
                      std::bind( std::divides<T>(),
-                                std::placeholders::_1, scalar ) );
+                                std::placeholders::_1, divisor ) );
     return *this;
   }
 
@@ -513,6 +526,14 @@ namespace Luna
   {
     std::transform ( VECTOR.cbegin(), VECTOR.cend(), VECTOR.begin(),
                      std::bind( std::plus<T>(), std::placeholders::_1, add ) );
+    return *this;
+  }
+
+  template <typename T>
+  inline Vector<T>& Vector<T>::operator-=( const T& minus )
+  {
+    std::transform ( VECTOR.cbegin(), VECTOR.cend(), VECTOR.begin(),
+                     std::bind( std::minus<T>(), std::placeholders::_1, minus ));
     return *this;
   }
 
@@ -546,6 +567,12 @@ namespace Luna
   inline void Vector<T>::resize( const std::size_t& size )
   {
     VECTOR.resize( size );
+  }
+
+  template <typename T>
+  inline void Vector<T>::reserve( const std::size_t& size )
+  {
+    VECTOR.reserve( size );
   }
 
   template <typename T>
