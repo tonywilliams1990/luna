@@ -50,9 +50,25 @@ int main()
   Matrix< std::complex<double> > D( 4, 3, 1.0 );
   //D( 1, 2 ) = -7.0;
   D.random();
+  //D.fill_tridiag( -1.0, -7.2, 2.3 );
+  D.swap_rows( 0, 1 );
   cout << "  * D = " << D << endl;
-  D.transpose_in_place();
-  cout << "  * D^T = " << D << endl;
+  //D.transpose_in_place();
+  //cout << "  * D^T = " << D << endl;
+  cout << "  * D.conjugate() = " << D.conjugate() << endl;
+  cout << "  * D.conjugate_transpose() = " << D.conjugate_transpose() << endl;
+
+  vec = C.get_row( 0 );
+  cout << "  * C.get_row( 0 ) = " << vec << endl;
+
+  D.resize( 2, 2 );
+  cout << "  * D = " << D << endl;
+
+  cout << "  * C.norm_1() = " << C.norm_1() << endl;
+  cout << "  * C.norm_inf() = " << C.norm_inf() << endl;
+  cout << "  * C.norm_p( 3.14 ) = " << C.norm_p( 3.14 ) << endl;
+  cout << "  * C.norm_frob() = " << C.norm_frob() << endl;
+  cout << "  * C.norm_max() = " << C.norm_max() << endl;
 
   cout << "--- FINISHED ---" << endl;
 }

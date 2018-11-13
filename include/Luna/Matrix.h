@@ -26,6 +26,70 @@ namespace Luna
     std::size_t ROWS;					          // Number of rows
     std::size_t COLS;					          // Number of columns
 
+    template <typename Type>
+    struct scale_vector
+    {
+      scale_vector( const Type& scalar )
+      {
+        SCALAR = scalar;
+      }
+
+      Vector<Type> operator() ( Vector<Type> vec )
+      {
+        return vec * SCALAR;
+      }
+
+      Type SCALAR;
+    };
+
+    template <typename Type>
+    struct div_vector
+    {
+      div_vector( const Type& divisor )
+      {
+        DIV = divisor;
+      }
+
+      Vector<Type> operator() ( Vector<Type> vec )
+      {
+        return vec / DIV;
+      }
+
+      Type DIV;
+    };
+
+    template <typename Type>
+    struct add_vector
+    {
+      add_vector( const Type& add )
+      {
+        ADD = add;
+      }
+
+      Vector<Type> operator() ( Vector<Type> vec )
+      {
+        return vec += ADD;
+      }
+
+      Type ADD;
+    };
+
+    template <typename Type>
+    struct minus_vector
+    {
+      minus_vector( const Type& minus )
+      {
+        MINUS = minus;
+      }
+
+      Vector<Type> operator() ( Vector<Type> vec )
+      {
+        return vec -= MINUS;
+      }
+
+      Type MINUS;
+    };
+
   public:
 
     /// Constructor for an empty Matrix of unspecified size
@@ -138,8 +202,8 @@ namespace Luna
     Vector<T>& operator[] ( const std::size_t& i );
 
     /// Matrix multiplication
-    /// \param B The matrix which is to be multiplied
-    /// \return The result matrix A * B
+    /// \param B The Matrix which is to be multiplied
+    /// \return The result Matrix A * B
     Matrix<T> operator*( Matrix<T>& B );
 
     /// Matrix Vector multiplication
@@ -151,8 +215,8 @@ namespace Luna
     /* ----- Methods ----- */
 
     /// Matrix multiplication
-    /// \param B The matrix which is to be multiplied
-    /// \return The result matrix A * B
+    /// \param B The Matrix which is to be multiplied
+    /// \return The result Matrix A * B
     Matrix<T> multiply( Matrix<T>& B );
 
     /// Matrix Vector multiplication
@@ -174,50 +238,104 @@ namespace Luna
     /// \return The number of elements in the Matrix
     std::size_t numel() const;
 
-    /// Set a row of the matrix using a Vector
-    /// \param i The row index
+    /// Set a row of the Matrix using a Vector
+    /// \param row The row index
     /// \param vec The Vector used to replace the specified row
     void set_row( const std::size_t& row, Vector<T>& vec );
 
-    /// Set a column of the matrix using a Vector
+    /// Set a column of the Matrix using a Vector
     /// \param col The column index
     /// \param vec The Vector used to replace the specified column
     void set_col( const std::size_t& col, const Vector<T>& vec );
 
-    //TODO get_row ( wrap [] operator )
+    /// Get a row of the Matrix as a Vector ( wrap [] operator )
+    /// \param row The row index
+    /// \return A Vector of the row of the Matrix
+    Vector<T> get_row( const std::size_t& row );
 
-    /// Get a column of the matrix as a Vector
+    /// Get a column of the Matrix as a Vector
     /// \param col The column index
     /// \return A Vector of the column of the Matrix
     Vector<T> get_col( const std::size_t& col );
 
     /// Return the transpose of the Matrix
     /// \return The transpose of the Matrix
-    Matrix<T> transpose();
+    Matrix<T> transpose() const;
 
-    /// Replace the current matrix with its transpose
+    /// Replace the current Matrix with its transpose
     void transpose_in_place();
 
-    //TODO adjoint ???
+    /// Take the complex conjugate of each element of the Matrix
+    /// \return The complex conjugate Matrix
+    Matrix<T> conjugate() const;
 
-    //TODO conjugate
+    /// Transpose of the Matrix along with the complex conjugate of each entry
+    /// \return The conjugate transpose Matrix
+    Matrix<T> conjugate_transpose() const;
 
-    //TODO conjugate transpose
+    /// Resize the Matrix while (empty entries are appended if necessary)
+    /// \param rows The number of rows in the Matrix
+    /// \param cols The number of columns in the Matrix
+    void resize( const std::size_t& rows, const std::size_t& cols );
 
-    //TODO resize
+    /// Swap two rows of the Matrix
+    /// \param i The index of the first row
+    /// \param j The index of the second row
+    void swap_rows( const std::size_t& i, const std::size_t& j );
 
-    //TODO swap_rows
+    /// Fill the Matrix with specified elements
+    /// \param elem The element to fill the Matrix with
+    void fill( const T& elem );
 
-    //TODO fill, fill_diag, fill_band, fill_tridiag
+    /// Fill the leading diagonal of the Matrix with specified elements
+    /// \param elem The element to fill the leading diagonal with
+    void fill_diag( const T& elem );
 
-    /// Fill the matrix with random elements (between 0 and 1)
+    /// Fill a diagonal band of the Matrix
+    /// \param offset The offset from the leading diagonal (+ above, - below)
+    /// \param elem The element to fill the diagonal band with
+    void fill_band( const std::size_t& offset, const T& elem );
+
+    /// Fill the main three diagonals of the Matrix
+    /// \param lower The element to fill the lower band
+    /// \param diag The element to fill the main diagonal
+    /// \param upper The element to fill the upper band
+    void fill_tridiag( const T& lower, const T& diag, const T& upper );
+
+    /// Fill the Matrix with random elements (between -1 and 1)
     void random();
 
     /* ----- Norms ----- */
 
+    /// The Matrix one-norm
+    /// \return The maximum absolute column sum of the Matrix
+    double norm_1() const;
+
+    /// The Matrix infinity-norm
+    /// \return The maximum absolute row sum of the Matrix
+    double norm_inf() const;
+
+    /// The Matrix p-norm (p=2 is Frobenius, p=inf is max norm)
+    /// \param p The exponent for the p-norm
+    /// \return The entrywise p-norm of the Matrix
+    double norm_p( const double& p ) const;
+
+    /// The Matrix Frobenius norm
+    /// \return The Frobenius norm of the Matrix
+    double norm_frob() const;
+
+    /// The Matrix max-norm
+    /// \return The entrywise max-norm of the Matrix
+    double norm_max() const;
+
     /* ----- Determinant ----- */
 
+    //TODO
+
     /* ---- Solve linear systems ----- */
+
+    //TODO solve_basic, solve_parallel, solve -> string to choose method
+    //TODO Vector and Matrix versions of each 
 
 
   };	// End of class Matrix
@@ -228,7 +346,7 @@ namespace Luna
   {
     const Vector<T> row( cols, elem );
     MATRIX.reserve( rows );
-    for ( std::size_t i=0; i < rows; ++i )
+    for ( std::size_t i = 0; i < rows; ++i )
     {
       MATRIX.push_back( row );
     }
@@ -330,22 +448,6 @@ namespace Luna
   }
 
   template <typename T>
-  struct scale_vector
-  {
-    scale_vector( const T& scalar )
-    {
-      SCALAR = scalar;
-    }
-
-    Vector<T> operator() ( Vector<T> vec )
-    {
-      return vec * SCALAR;
-    }
-
-    T SCALAR;
-  };
-
-  template <typename T>
   inline Matrix<T> Matrix<T>::operator*( const T& scalar ) const
   {
     Matrix<T> temp( *this );
@@ -353,22 +455,6 @@ namespace Luna
                      temp.MATRIX.begin(), scale_vector<T>( scalar ) );
     return temp;
   }
-
-  template <typename T>
-  struct div_vector
-  {
-    div_vector( const T& divisor )
-    {
-      DIV = divisor;
-    }
-
-    Vector<T> operator() ( Vector<T> vec )
-    {
-      return vec / DIV;
-    }
-
-    T DIV;
-  };
 
   template <typename T>
   inline Matrix<T> Matrix<T>::operator/( const T& divisor ) const
@@ -423,44 +509,12 @@ namespace Luna
   }
 
   template <typename T>
-  struct add_vector
-  {
-    add_vector( const T& add )
-    {
-      ADD = add;
-    }
-
-    Vector<T> operator() ( Vector<T> vec )
-    {
-      return vec += ADD;
-    }
-
-    T ADD;
-  };
-
-  template <typename T>
   inline Matrix<T>& Matrix<T>::operator+=( const T& add )
   {
     std::transform ( MATRIX.begin(), MATRIX.end(),  MATRIX.begin(),
                      add_vector<T>( add ) );
     return *this;
   }
-
-  template <typename T>
-  struct minus_vector
-  {
-    minus_vector( const T& minus )
-    {
-      MINUS = minus;
-    }
-
-    Vector<T> operator() ( Vector<T> vec )
-    {
-      return vec -= MINUS;
-    }
-
-    T MINUS;
-  };
 
   template <typename T>
   inline Matrix<T>& Matrix<T>::operator-=( const T& minus )
@@ -575,6 +629,14 @@ namespace Luna
   }
 
   template <typename T>
+  inline Vector<T> Matrix<T>::get_row( const std::size_t& row )
+  {
+    Vector<T> temp;
+    temp = MATRIX[ row ];
+    return temp;
+  }
+
+  template <typename T>
   inline Vector<T> Matrix<T>::get_col( const std::size_t& col )
   {
     Vector<T> temp( ROWS, 0.0 );
@@ -585,9 +647,8 @@ namespace Luna
     return temp;
   }
 
-
   template <typename T>
-  inline Matrix<T> Matrix<T>::transpose()
+  inline Matrix<T> Matrix<T>::transpose() const
   {
     Matrix<T> temp( *this );
     temp.transpose_in_place();
@@ -626,6 +687,110 @@ namespace Luna
     }
   }
 
+  template <typename T>
+  inline Matrix<T> Matrix<T>::conjugate() const
+  {
+     Matrix<T> temp( *this );
+     for ( std::size_t i = 0; i < ROWS; ++i )
+     {
+       temp.MATRIX[ i ] = temp.MATRIX[ i ].conjugate();
+     }
+     return temp;
+  }
+
+  template <typename T>
+  inline Matrix<T> Matrix<T>::conjugate_transpose() const
+  {
+    Matrix<T> temp( *this );
+    temp.transpose_in_place();
+    return temp.conjugate();
+  }
+
+  template <typename T>
+  inline void Matrix<T>::resize( const std::size_t& rows,
+                                 const std::size_t& cols )
+  {
+    Matrix<T> temp( *this );
+    MATRIX.clear();
+    // Create an empty Matrix
+    const Vector<T> row( cols, 0 );
+    MATRIX.reserve( rows );
+    for ( std::size_t i = 0; i < rows; ++i )
+    {
+      MATRIX.push_back( row );
+    }
+    // Refill the Matrix using old values
+    for ( std::size_t i = 0; i < rows; ++i )
+    {
+      for ( std::size_t j = 0; j < cols; ++j )
+      {
+        if ( i<ROWS && j<COLS )
+        {
+          MATRIX[ i ][ j ] = temp.MATRIX[ i ][ j ];
+        }
+      }
+    }
+    ROWS = rows;
+    COLS = cols;
+  }
+
+  template <typename T>
+  inline void Matrix<T>::swap_rows( const std::size_t& i, const std::size_t& j )
+  {
+    if ( i < 0 || ROWS <= i )
+    {
+      throw Error( "Matrix swap row range error in first index" );
+    }
+    if ( j < 0 || ROWS <= j )
+    {
+      throw Error( "Matrix swap row range error in second index" );
+    }
+    std::swap< Vector<T> > ( MATRIX[ i ], MATRIX[ j ] );
+  }
+
+  template <typename T>
+  inline void Matrix<T>::fill( const T& elem )
+  {
+    for ( std::size_t i = 0; i < ROWS; ++i )
+    {
+      for ( std::size_t j = 0; j < COLS; ++j )
+      {
+        MATRIX[ i ][ j ] = elem;
+      }
+    }
+  }
+
+  template <typename T>
+  inline void Matrix<T>::fill_diag( const T& elem )
+  {
+    std::size_t N( ROWS );
+    if ( COLS < ROWS ) { N = COLS; }
+    for ( std::size_t i = 0; i < N ; ++i )
+    {
+      MATRIX[ i ][ i ] = elem;
+    }
+  }
+
+  template <typename T>
+  inline void Matrix<T>::fill_band( const std::size_t& offset, const T& elem )
+  {
+    for ( std::size_t row = 0; row < ROWS; ++row )
+    {
+        if ( ( row + offset < COLS ) && ( row + offset >= 0 ) )
+        {
+            MATRIX[ row ][ row + offset ] = elem;
+        }
+    }
+  }
+
+  template <typename T>
+  inline void Matrix<T>::fill_tridiag( const T& lower, const T& diag,
+                                       const T& upper )
+  {
+    fill_band( -1, lower );
+    fill_diag( diag );
+    fill_band( 1, upper );
+  }
 
   template <>
   inline void Matrix<double>::random()
@@ -636,8 +801,8 @@ namespace Luna
     uint64_t timeSeed = start.time_since_epoch().count();
     std::seed_seq ss{uint32_t(timeSeed & 0xffffffff), uint32_t(timeSeed>>32)};
     rng.seed(ss);
-    // initialize a uniform distribution between 0 and 1
-    std::uniform_real_distribution<double> unif(0, 1);
+    // initialize a uniform distribution between -1 and 1
+    std::uniform_real_distribution<double> unif(-1, 1);
     for ( std::size_t i = 0; i < ROWS; ++i )
     {
       for ( std::size_t j = 0; j < COLS; ++j )
@@ -657,8 +822,8 @@ namespace Luna
     uint64_t timeSeed = start.time_since_epoch().count();
     std::seed_seq ss{uint32_t(timeSeed & 0xffffffff), uint32_t(timeSeed>>32)};
     rng.seed(ss);
-    // initialize a uniform distribution between 0 and 1
-    std::uniform_real_distribution<double> unif(0, 1);
+    // initialize a uniform distribution between -1 and 1
+    std::uniform_real_distribution<double> unif(-1, 1);
     for ( std::size_t i = 0; i < ROWS; ++i )
     {
       for ( std::size_t j = 0; j < COLS; ++j )
@@ -668,6 +833,74 @@ namespace Luna
         MATRIX[ i ][ j ] = std::complex<double> ( real, imag );
       }
     }
+  }
+
+  /* ----- Norms ----- */
+
+  template <typename T>
+  inline double Matrix<T>::norm_1() const
+  {
+    double max( 0.0 );
+    for ( std::size_t j = 0; j < COLS; ++j )
+    {
+        double sum( 0.0 );
+        for ( std::size_t i = 0; i < ROWS; ++i )
+        {
+            sum += std::abs( MATRIX[ i ][ j ] );
+        }
+        max = std::max( max, sum );
+    }
+    return max;
+  }
+
+  template <typename T>
+  inline double Matrix<T>::norm_inf() const
+  {
+    double max( 0.0 );
+    for ( std::size_t i = 0; i < ROWS; ++i )
+    {
+        double sum( 0.0 );
+        for ( std::size_t j = 0; j < COLS; ++j )
+        {
+            sum += std::abs( MATRIX[ i ][ j ] );
+        }
+        max = std::max( max, sum );
+    }
+    return max;
+  }
+
+  template <typename T>
+  inline double Matrix<T>::norm_p( const double& p ) const
+  {
+    double sum( 0.0 );
+    for ( std::size_t i = 0; i < ROWS; ++i )
+    {
+        for ( std::size_t j = 0; j < COLS; ++j )
+        {
+            sum += std::pow( std::abs( MATRIX[ i ][ j ] ), p );
+        }
+    }
+    return std::pow( sum , 1.0/p );
+  }
+
+  template <typename T>
+  inline double Matrix<T>::norm_frob() const
+  {
+    return this->norm_p( 2.0 );
+  }
+
+  template <typename T>
+  inline double Matrix<T>::norm_max() const
+  {
+    double max( 0.0 );
+    for ( std::size_t i = 0; i < ROWS; ++i )
+    {
+        for ( std::size_t j = 0; j < COLS; ++j )
+        {
+            max = std::max( max, std::abs( MATRIX[ i ][ j ] ) );
+        }
+    }
+    return max;
   }
 
 }  // End of namespace Luna

@@ -14,7 +14,7 @@ for root, dirs, files in os.walk( '.' ):
       if ( '~' not in fqn ) and ( '#' not in fqn ):
         rec_src.append( fqn )
 
-# Sort the source files for the hell of it
+# Sort the source files
 rec_src.sort()
 
 # Loop through sources
