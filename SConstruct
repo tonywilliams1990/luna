@@ -4,7 +4,8 @@ import glob
 
 
 # compiler
-c_comp = 'g++'
+#c_comp = 'g++'
+c_comp = 'mpic++'
 
 # library names
 Luna_lib = 'Luna'

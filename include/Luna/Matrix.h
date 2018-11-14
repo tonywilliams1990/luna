@@ -8,6 +8,7 @@
 #include <vector>
 #include <random>
 #include <chrono>
+#include <mpi.h>
 
 #include "Error.h"
 #include "Vector.h"
@@ -89,6 +90,15 @@ namespace Luna
 
       Type MINUS;
     };
+
+    std::size_t max_abs_in_column( std::size_t col, std::size_t start_row );
+
+    void backsolve( Vector<T>& x );
+
+    void Gauss_with_pivot( Vector<T>& x );
+
+    void Gauss_with_pivot( Matrix<T>& X );
+
 
   public:
 
@@ -332,11 +342,25 @@ namespace Luna
 
     //TODO
 
-    /* ---- Solve linear systems ----- */
+    /* ----- Solve linear systems ----- */
 
-    //TODO solve_basic, solve_parallel, solve -> string to choose method
-    //TODO Vector and Matrix versions of each 
+    //TODO solve_parallel, solve -> string to choose method
+    //TODO Vector and Matrix versions of each
 
+    /// Solve the system of equations Ax=b where x and b are Vectors
+    /// \param b The right-hand side Vector of the system of equations
+    /// \return The solution Vector
+    Vector<T> solve_basic( const Vector<T>& b );
+
+    /// Solve the system of equation AX=B where X and B are Matrices
+    /// \param B The right-hand side Matrix of the system of equations
+    /// \return The solution Matrix (each column is a solution Vector)
+    Matrix<T> solve_basic( const Matrix<T>& B );
+
+    /// Solve the system of equations Ax=b in parallel where x and b are Vectors
+    /// \param b The right-hand side Vector of the system of equations
+    /// \return The solution Vector
+    Vector<T> solve_parallel( const Vector<T>& b );
 
   };	// End of class Matrix
 
@@ -902,6 +926,151 @@ namespace Luna
     }
     return max;
   }
+
+  /* ----- Solve linear systems ----- */
+
+  template <typename T>
+  inline Vector<T> Matrix<T>::solve_basic( const Vector<T>& b )
+  {
+    if ( ROWS != b.size() )
+    {
+      throw Error( "solve_basic error: ROWS != b.size() " );
+    }
+    if ( ROWS != COLS )
+    {
+      throw Error( "solve_basic error: Matrix is not square.");
+    }
+    Matrix<T> A( *this );
+    Vector<T> x( b );
+    A.Gauss_with_pivot( x );
+    A.backsolve( x );
+    return x;
+  }
+
+  template <typename T>
+  inline Matrix<T> Matrix<T>::solve_basic( const Matrix<T>& B )
+  {
+    if ( ROWS != B.rows() )
+    {
+      throw Error( "solve_basic error: ROWS != B.rows() " );
+    }
+    if ( ROWS != COLS )
+    {
+      throw Error( "solve_basic error: Matrix is not square.");
+    }
+    Matrix<T> A( *this );
+    Matrix<T> X( B );
+    A.Gauss_with_pivot( X );
+
+    Vector<T> x( ROWS );
+
+    for ( std::size_t j = 0; j < B.COLS; ++j )
+    {
+      x = X.get_col( j );
+      A.backsolve( x );
+      X.set_col( j, x );
+    }
+
+    return X;
+  }
+
+  template <typename T>
+  inline Vector<T> Matrix<T>::solve_parallel( const Vector<T>& b )
+  {
+    if ( ROWS != b.size() )
+    {
+      throw Error( "solve_parallel error: ROWS != b.size() " );
+    }
+    if ( ROWS != COLS )
+    {
+      throw Error( "solve_parallel error: Matrix is not square.");
+    }
+    Matrix<T> A( *this );
+    Vector<T> x( b );
+
+    //TODO
+
+
+    return x;
+  }
+
+
+
+  /* ----- Private ----- */
+
+  template <typename T>
+  inline std::size_t Matrix<T>::max_abs_in_column( std::size_t col,
+                                                   std::size_t start_row )
+  {
+    std::size_t max_index = 0;
+    double max = -1.0e+10;
+
+    for ( std::size_t i = start_row; i < ROWS; i++ ){
+      if ( max < std::abs( MATRIX[ i ][ col ] ) ){
+        max = std::abs( MATRIX[ i ][ col ] );
+        max_index = i;
+      }
+    }
+    return max_index;
+  }
+
+  template <typename T>
+  inline void Matrix<T>::backsolve( Vector<T>& x )
+  {
+    x[ ROWS - 1 ] = x[ ROWS - 1 ] / MATRIX[ ROWS - 1 ][ ROWS - 1 ];
+
+    for ( std::size_t n = 2; n < ROWS + 1; ++n )
+    {
+      for ( std::size_t j = ROWS - n + 1; j < ROWS; ++j )
+      {
+        x[ ROWS - n ] -= MATRIX[ ROWS - n ][ j ] * x[ j ];
+      }
+      x[ ROWS - n ] = x[ ROWS - n ] / MATRIX[ ROWS - n ][ ROWS - n ];
+    }
+  }
+
+  template <typename T>
+  inline void Matrix<T>::Gauss_with_pivot( Vector<T>& x )
+  {
+    std::size_t k, pivot;
+    for ( k = 0; k < ROWS - 1; ++k )
+    {
+      pivot = this->max_abs_in_column( k, k );
+      this->swap_rows( pivot, k );
+      x.swap( pivot, k );
+      for ( std::size_t i = k + 1; i < ROWS; ++i )
+      {
+        T elem = MATRIX[ i ][ k ] / MATRIX[ k ][ k ];
+        for ( std::size_t j = k; j < ROWS; ++j )
+        {
+          MATRIX[ i ][ j ] -= elem * MATRIX[ k ][ j ];
+        }
+        x[ i ] -= elem * x[ k ];
+      }
+    }
+  }
+
+  template <typename T>
+  inline void Matrix<T>::Gauss_with_pivot( Matrix<T>& X )
+  {
+    std::size_t k, pivot;
+    for ( k = 0; k < ROWS - 1; ++k )
+    {
+      pivot = this->max_abs_in_column( k, k );
+      this->swap_rows( pivot, k );
+      X.swap_rows( pivot, k );
+      for ( std::size_t i = k + 1; i < ROWS; ++i )
+      {
+        T elem = MATRIX[ i ][ k ] / MATRIX[ k ][ k ];
+        for ( std::size_t j = k; j < ROWS; ++j )
+        {
+          MATRIX[ i ][ j ] -= elem * MATRIX[ k ][ j ];
+        }
+        X.MATRIX[ i ] -= elem * X.MATRIX[ k ];
+      }
+    }
+  }
+
 
 }  // End of namespace Luna
 

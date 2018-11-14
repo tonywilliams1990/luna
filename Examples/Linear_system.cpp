@@ -7,68 +7,77 @@
 using namespace std;
 using namespace Luna;
 
-int main()
+int main(int argc, char ** argv)
 {
-  cout << "----- Linear system -----" << endl;
+  cout << "---------------- Linear system ----------------" << endl;
 
-  Matrix<double> A( 3, 3, 1.0 );
-  Matrix<double> B( A );
-  Matrix<double> C;
+  Matrix<double> A( 3, 3, 0.0 );
+  Vector<double> b( 3, 0.0 );
+  Vector<double> x;
 
-  A( 0, 1 ) = 2.0; A( 0, 2 ) = -3.0; A( 2, 1 ) = 7.0;
-  B( 1, 1 ) = 5.5; B( 2, 2 ) = 8.0; B( 2, 1 ) = 8.0;
+  cout << "  * Solve the linear system Ax=b for x where" << endl;
 
+  A( 0, 0 ) = 1.0; A( 0, 1 ) = 1.0; A( 0, 2 ) =   1.0;
+  A( 1, 0 ) = 0.0; A( 1, 1 ) = 2.0; A( 1, 2 ) =   5.0;
+  A( 2, 0 ) = 2.0; A( 2, 1 ) = 5.0; A( 2, 2 ) = - 1.0;
   cout << "  * A = " << A << endl;
+
+  b[ 0 ] = 6.0; b[ 1 ] = - 4.0; b[ 2 ] = 27.0;
+  cout << "  * b^T = " << b << endl;
+  cout << "  * gives the solution vector " << endl;
+
+  x = A.solve_basic( b );
+  cout << "  * x^T = " << x << endl;
+
+  cout << "-----------------------------------------------" << endl;
+
+  cout << "  * Solve the complex linear system CX=B for X " << endl;
+  cout << "  * where C, X and B are complex matrices. " << endl;
+
+  Matrix< std::complex<double> > C( 2, 2, 0.0 );
+  Matrix< std::complex<double> > B( 2, 3, 0.0 );
+  Matrix< std::complex<double> > X( 2, 3, 0.0 );
+
+  C.random();
+  cout << "  * C = " << C << endl;
+
+  B.random();
   cout << "  * B = " << B << endl;
 
-  cout << "  * A.rows() = " << A.rows() << endl;
-  cout << "  * A.cols() = " << A.cols() << endl;
-  cout << "  * A.numel() = " << A.numel() << endl;
+  cout << "  * gives the solution matrix " << endl;
+  X = C.solve_basic( B );
+  cout << "  * X = " << X << endl;
 
-  C = A * 2;
-  C -= A;
-  C -= 2;
-  cout << "  * C = " << C << endl;
+  cout << "  * This solution may easily be checked i.e. " << endl;
+  cout << "  * CX - B = " << C * X - B << endl;
 
-  Vector<double> row( 3, 3.14 );
-  C.set_row( 2, row );
-  cout << "  * C = " << C << endl;
+  cout << "-----------------------------------------------" << endl;
 
-  C = A * B;
-  cout << "  * C = A * B = " << C << endl;
+  cout << "  * In theory we may solve systems of any size" << endl;
+  cout << "  * but in practice this can be time consuming. " << endl;
 
-  Vector<double> vec;
-  vec = C.get_col( 0 );
+  Timer timer;
+  double time_in_ms;
+  std::size_t N( 16 );
 
-  vec = A * row;
-  cout << "  * x = " << row << endl;
-  cout << "  * b = A * x = " << vec << endl;
+  cout << "  * For example: " << endl;
 
-  //C.transpose_in_place();
-  cout << "  * C^T = " << C.transpose() << endl;
+  for ( std::size_t i = 0; i < 7; ++i )
+  {
+    Matrix<double> D( N, N, 0.0 );
+    D.random();
+    x.resize( N );
+    Vector<double> y( N, 1.0 );
 
-  Matrix< std::complex<double> > D( 4, 3, 1.0 );
-  //D( 1, 2 ) = -7.0;
-  D.random();
-  //D.fill_tridiag( -1.0, -7.2, 2.3 );
-  D.swap_rows( 0, 1 );
-  cout << "  * D = " << D << endl;
-  //D.transpose_in_place();
-  //cout << "  * D^T = " << D << endl;
-  cout << "  * D.conjugate() = " << D.conjugate() << endl;
-  cout << "  * D.conjugate_transpose() = " << D.conjugate_transpose() << endl;
+    timer.start();
+    x = D.solve_basic( y );
+    time_in_ms = timer.get_time();
+    timer.stop();
 
-  vec = C.get_row( 0 );
-  cout << "  * C.get_row( 0 ) = " << vec << endl;
+    cout << "  * solving a " << N << "x" << N << " system takes "
+         << time_in_ms << " ms. " << endl;
+    N *= 2;
+  }
 
-  D.resize( 2, 2 );
-  cout << "  * D = " << D << endl;
-
-  cout << "  * C.norm_1() = " << C.norm_1() << endl;
-  cout << "  * C.norm_inf() = " << C.norm_inf() << endl;
-  cout << "  * C.norm_p( 3.14 ) = " << C.norm_p( 3.14 ) << endl;
-  cout << "  * C.norm_frob() = " << C.norm_frob() << endl;
-  cout << "  * C.norm_max() = " << C.norm_max() << endl;
-
-  cout << "--- FINISHED ---" << endl;
+  cout << "------------------ FINISHED ------------------" << endl;
 }
