@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <chrono>
 #include <thread>
+#include <omp.h>
 
 // Core
 #include "Error.h"

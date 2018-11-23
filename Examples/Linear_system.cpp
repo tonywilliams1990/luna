@@ -59,12 +59,13 @@ int main(int argc, char ** argv)
   Timer timer;
   double time_in_ms;
   std::size_t N( 16 );
+  Matrix<double> D( N, N, 0.0 );
 
   cout << "  * For example: " << endl;
 
-  for ( std::size_t i = 0; i < 7; ++i )
+  for ( std::size_t i = 0; i < 8; ++i )
   {
-    Matrix<double> D( N, N, 0.0 );
+    D.resize( N, N );
     D.random();
     x.resize( N );
     Vector<double> y( N, 1.0 );
@@ -78,6 +79,21 @@ int main(int argc, char ** argv)
          << time_in_ms << " ms. " << endl;
     N *= 2;
   }
+
+  cout << "-----------------------------------------------" << endl;
+
+  /*N /= 2;
+  D.resize( N, N );
+  D.random();
+  Vector<double> y( N, 1.0 );
+  timer.start();
+  x = D.solve_parallel( y, 1 );
+  time_in_ms = timer.get_time();
+  timer.stop();
+
+  cout << "  * Solving a " << N << "x" << N << " system in parallel takes "
+       << time_in_ms << " ms. " << endl;*/
+
 
   cout << "------------------ FINISHED ------------------" << endl;
 }

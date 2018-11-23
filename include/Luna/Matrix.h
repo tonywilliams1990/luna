@@ -8,7 +8,8 @@
 #include <vector>
 #include <random>
 #include <chrono>
-#include <mpi.h>
+//#include <mpi.h>
+#include <omp.h>
 
 #include "Error.h"
 #include "Vector.h"
@@ -98,6 +99,12 @@ namespace Luna
     void Gauss_with_pivot( Vector<T>& x );
 
     void Gauss_with_pivot( Matrix<T>& X );
+
+    void Gauss_with_pivot_parallel( Vector<T>& x, std::size_t threads );
+
+    void partial_pivot( Vector<T>& x, std::size_t k );
+
+    void partial_pivot( Matrix<T>& X, std::size_t k );
 
 
   public:
@@ -359,8 +366,9 @@ namespace Luna
 
     /// Solve the system of equations Ax=b in parallel where x and b are Vectors
     /// \param b The right-hand side Vector of the system of equations
+    /// \param threads The requested number of threads to use in the computation
     /// \return The solution Vector
-    Vector<T> solve_parallel( const Vector<T>& b );
+    Vector<T> solve_parallel( const Vector<T>& b, std::size_t threads );
 
   };	// End of class Matrix
 
@@ -975,7 +983,8 @@ namespace Luna
   }
 
   template <typename T>
-  inline Vector<T> Matrix<T>::solve_parallel( const Vector<T>& b )
+  inline Vector<T> Matrix<T>::solve_parallel( const Vector<T>& b,
+                                              std::size_t threads )
   {
     if ( ROWS != b.size() )
     {
@@ -988,7 +997,8 @@ namespace Luna
     Matrix<T> A( *this );
     Vector<T> x( b );
 
-    //TODO
+    A.Gauss_with_pivot_parallel( x, threads );
+    A.backsolve( x );
 
 
     return x;
@@ -1032,12 +1042,10 @@ namespace Luna
   template <typename T>
   inline void Matrix<T>::Gauss_with_pivot( Vector<T>& x )
   {
-    std::size_t k, pivot;
+    std::size_t k;
     for ( k = 0; k < ROWS - 1; ++k )
     {
-      pivot = this->max_abs_in_column( k, k );
-      this->swap_rows( pivot, k );
-      x.swap( pivot, k );
+      this->partial_pivot( x, k );
       for ( std::size_t i = k + 1; i < ROWS; ++i )
       {
         T elem = MATRIX[ i ][ k ] / MATRIX[ k ][ k ];
@@ -1053,12 +1061,10 @@ namespace Luna
   template <typename T>
   inline void Matrix<T>::Gauss_with_pivot( Matrix<T>& X )
   {
-    std::size_t k, pivot;
+    std::size_t k;
     for ( k = 0; k < ROWS - 1; ++k )
     {
-      pivot = this->max_abs_in_column( k, k );
-      this->swap_rows( pivot, k );
-      X.swap_rows( pivot, k );
+      this->partial_pivot( X, k );
       for ( std::size_t i = k + 1; i < ROWS; ++i )
       {
         T elem = MATRIX[ i ][ k ] / MATRIX[ k ][ k ];
@@ -1069,6 +1075,59 @@ namespace Luna
         X.MATRIX[ i ] -= elem * X.MATRIX[ k ];
       }
     }
+  }
+
+  template <typename T>
+  inline void Matrix<T>::Gauss_with_pivot_parallel( Vector<T>& x,
+                                                    std::size_t threads )
+  {
+    std::size_t i, j;
+    T elem;
+
+    //omp_set_nested(1);
+    omp_set_num_threads( threads );
+    for ( std::size_t k = 0; k < ROWS - 1; ++k )
+    {
+      this->partial_pivot( x, k );
+
+      // for the vectoriser
+      /*for( i = k + 1; i < ROWS; i++ )
+      {
+        MATRIX[ i ][ k ] /= MATRIX[ k ][ k ];
+      }*/
+
+      #pragma omp parallel for shared( MATRIX, ROWS, x, k ) private( i, j, elem ) schedule(static, 64)
+      for ( i = k + 1; i < ROWS; ++i )
+      {
+        elem = MATRIX[ i ][ k ] / MATRIX[ k ][ k ];
+        //elem = MATRIX[ i ][ k ];
+
+        for ( j = k; j < ROWS; ++j )
+        {
+          MATRIX[ i ][ j ] -= elem * MATRIX[ k ][ j ];
+        }
+        x[ i ] -= elem * x[ k ];
+      }
+    }
+
+  }
+
+  template <typename T>
+  inline void Matrix<T>::partial_pivot( Vector<T>& x, std::size_t k )
+  {
+    std::size_t pivot;
+    pivot = this->max_abs_in_column( k, k );
+    this->swap_rows( pivot, k );
+    x.swap( pivot, k );
+  }
+
+  template <typename T>
+  inline void Matrix<T>::partial_pivot( Matrix<T>& X, std::size_t k )
+  {
+    std::size_t pivot;
+    pivot = this->max_abs_in_column( k, k );
+    this->swap_rows( pivot, k );
+    X.swap_rows( pivot, k );
   }
 
 

@@ -4,8 +4,8 @@ import glob
 
 
 # compiler
-#c_comp = 'g++'
-c_comp = 'mpic++'
+c_comp = 'g++'
+#c_comp = 'mpic++'
 
 # library names
 Luna_lib = 'Luna'
@@ -30,9 +30,9 @@ libdir_str = topdir + '/lib '
 libs_str   = Luna_lib + ' '
 preproc    = ''
 #opts = ' -O2 -std=c++14 -Wall -Wextra '
-opts = ' -O2 -std=c++11'
+opts = ' -O2 -std=c++11 -fopenmp '
 #opts = ' -O3 -std=c++11'# -fopenmp'
-link_flags = ' '
+link_flags = ' -fopenmp '
 
 # Set the rpath for the linker to find petsc/slepc-3
 rpath = []
