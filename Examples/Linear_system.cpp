@@ -63,7 +63,7 @@ int main(int argc, char ** argv)
 
   cout << "  * For example: " << endl;
 
-  for ( std::size_t i = 0; i < 8; ++i )
+  for ( std::size_t i = 0; i < 7; ++i )
   {
     D.resize( N, N );
     D.random();
@@ -81,19 +81,32 @@ int main(int argc, char ** argv)
   }
 
   cout << "-----------------------------------------------" << endl;
+  cout << "  * Calculate the LU decomposition of a 3x3  " << endl;
+  cout << "  * matrix with partial pivoting ( PA = LU )." << endl;
+  A( 0, 0 ) = 2.0; A( 0, 1 ) =   4.0; A( 0, 2 ) =  1.0;
+  A( 1, 0 ) = 4.0; A( 1, 1 ) = -10.0; A( 1, 2 ) =  2.0;
+  A( 2, 0 ) = 1.0; A( 2, 1 ) =   2.0; A( 2, 2 ) =  4.0;
+  N = 3;
+  cout << "  * A = " << A << endl;
 
-  /*N /= 2;
-  D.resize( N, N );
-  D.random();
-  Vector<double> y( N, 1.0 );
-  timer.start();
-  x = D.solve_parallel( y, 1 );
-  time_in_ms = timer.get_time();
-  timer.stop();
+  Matrix<double> L( N, N, 0.0 );
+  Matrix<double> U( N, N, 0.0 );
+  Matrix<double> P( N, N, 0.0 );
 
-  cout << "  * Solving a " << N << "x" << N << " system in parallel takes "
-       << time_in_ms << " ms. " << endl;*/
+  A.LU_decomp( L, U, P );
 
+  cout << "  * L = " << L << endl;
+  cout << "  * U = " << U << endl;
+  cout << "  * P = " << P << endl;
+  cout << "  * Check that the decomposition has worked." << endl;
+  cout << "  * PA - LU = " << P * A - L * U << endl;
+  cout << "  * Now caluculate the determinant of the matrix." << endl;
+  cout << "  * A.det() = " << A.det() << endl;
+  Matrix<double> Inv( N, N, 0.0 );
+  Inv = A.inverse();
+  cout << "  * Also calculate the inverse and check it." << endl;
+  cout << "  * A.inverse() = " << Inv << endl;
+  cout << "  * AA^{-1} = " << A * Inv << endl;
 
   cout << "------------------ FINISHED ------------------" << endl;
 }

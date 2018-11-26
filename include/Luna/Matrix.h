@@ -1,5 +1,5 @@
 /// \file Matrix.h
-/// A templated matrix class which constructs a matrix as an std::vector of
+/// A templated matrix class which constructs a Matrix as an std::vector of
 /// Vectors.
 
 #ifndef MATRIX_H
@@ -8,7 +8,6 @@
 #include <vector>
 #include <random>
 #include <chrono>
-//#include <mpi.h>
 #include <omp.h>
 
 #include "Error.h"
@@ -100,12 +99,11 @@ namespace Luna
 
     void Gauss_with_pivot( Matrix<T>& X );
 
-    void Gauss_with_pivot_parallel( Vector<T>& x, std::size_t threads );
-
     void partial_pivot( Vector<T>& x, std::size_t k );
 
     void partial_pivot( Matrix<T>& X, std::size_t k );
 
+    std::size_t LU_decomp_in_place( Matrix<T>& P );
 
   public:
 
@@ -228,7 +226,6 @@ namespace Luna
     /// \return The result vector A * x
     Vector<T> operator*( Vector<T>& x );
 
-
     /* ----- Methods ----- */
 
     /// Matrix multiplication
@@ -240,8 +237,6 @@ namespace Luna
     /// \param x The vector which is to be multiplied
     /// \return The result vector A * x
     Vector<T> multiply( const Vector<T>& x );
-
-    /// TODO parallel multiplication in separate function?
 
     /// Return the number of rows in the Matrix
     /// \return The number of rows in the Matrix
@@ -345,14 +340,7 @@ namespace Luna
     /// \return The entrywise max-norm of the Matrix
     double norm_max() const;
 
-    /* ----- Determinant ----- */
-
-    //TODO
-
     /* ----- Solve linear systems ----- */
-
-    //TODO solve_parallel, solve -> string to choose method
-    //TODO Vector and Matrix versions of each
 
     /// Solve the system of equations Ax=b where x and b are Vectors
     /// \param b The right-hand side Vector of the system of equations
@@ -364,11 +352,33 @@ namespace Luna
     /// \return The solution Matrix (each column is a solution Vector)
     Matrix<T> solve_basic( const Matrix<T>& B );
 
-    /// Solve the system of equations Ax=b in parallel where x and b are Vectors
+    /// LU decomposition of the Matrix ( with partial pivotting )
+    /// \param L The lower triangular Matrix
+    /// \param U The upper triangular Matrix
+    /// \param P The permutation Matrix
+    void LU_decomp( Matrix<T>& L, Matrix<T>& U, Matrix<T>& P );
+
+    /// Solve the system of equations Ax=b where x and b are Vectors
     /// \param b The right-hand side Vector of the system of equations
-    /// \param threads The requested number of threads to use in the computation
     /// \return The solution Vector
-    Vector<T> solve_parallel( const Vector<T>& b, std::size_t threads );
+    Vector<T> solve_LU( const Vector<T>& b );
+
+    /// Solve the system of equation AX=B where X and B are Matrices
+    /// \param B The right-hand side Matrix of the system of equations
+    /// \return The solution Matrix (each column is a solution Vector)
+    Matrix<T> solve_LU( const Matrix<T>& B );
+
+    /* ----- Determinant ----- */
+
+    /// Calculate the determinant of the Matrix ( via LU decomposition )
+    /// \return The determinant of the Matrix
+    T det();
+
+    /* ----- Inverse ----- */
+
+    /// Calculate the inverse of the Matrix ( via LU decomposition )
+    /// \return The inverse Matrix
+    Matrix<T> inverse();
 
   };	// End of class Matrix
 
@@ -983,28 +993,159 @@ namespace Luna
   }
 
   template <typename T>
-  inline Vector<T> Matrix<T>::solve_parallel( const Vector<T>& b,
-                                              std::size_t threads )
+  inline void Matrix<T>::LU_decomp( Matrix<T>& L, Matrix<T>& U, Matrix<T>& P )
+  {
+    if ( ROWS != COLS )
+    {
+      throw Error( "LU_decomp error: Matrix is not square.");
+    }
+
+    Matrix<T> temp( *this );
+    std::size_t pivots;
+    pivots = temp.LU_decomp_in_place( P );
+    L.resize( ROWS, ROWS );
+    L.fill( 0 );
+    U.resize( ROWS, ROWS );
+    U.fill( 0 );
+
+    for ( std::size_t i = 0; i < ROWS; i++ )
+    {
+      for ( std::size_t j = 0; j < ROWS; j++ )
+      {
+        if ( i < j )
+        {
+          U( i, j ) = temp( i, j );
+        }
+        else if ( i == j )
+        {
+          L( i, j ) = 1;
+          U( i, j ) = temp( i, j );
+        }
+        else
+        {
+          L( i, j ) = temp( i, j );
+        }
+      }
+    }
+  }
+
+  template <typename T>
+  inline Vector<T> Matrix<T>::solve_LU( const Vector<T>& b )
   {
     if ( ROWS != b.size() )
     {
-      throw Error( "solve_parallel error: ROWS != b.size() " );
+      throw Error( "solve_LU error: ROWS != b.size() " );
     }
     if ( ROWS != COLS )
     {
-      throw Error( "solve_parallel error: Matrix is not square.");
+      throw Error( "solve_LU error: Matrix is not square.");
     }
-    Matrix<T> A( *this );
+    Matrix<T> LU( *this );
+    Matrix<T> P;
+    std::size_t pivots;
+    pivots = LU.LU_decomp_in_place( P );
     Vector<T> x( b );
+    x = P * x;
 
-    A.Gauss_with_pivot_parallel( x, threads );
-    A.backsolve( x );
-
-
+    for ( std::size_t i = 0; i < ROWS; i++ ) {
+        for ( std::size_t k = 0; k < i; k++ )
+            x[ i ] -= LU.MATRIX[ i ][ k ] * x[ k ];
+    }
+    LU.backsolve( x );
     return x;
   }
 
+  template <typename T>
+  inline Matrix<T> Matrix<T>::solve_LU( const Matrix<T>& B )
+  {
+    if ( ROWS != B.rows() )
+    {
+      throw Error( "solve_basic error: ROWS != B.rows() " );
+    }
+    if ( ROWS != COLS )
+    {
+      throw Error( "solve_basic error: Matrix is not square.");
+    }
+    Matrix<T> LU( *this );
+    Matrix<T> P;
+    std::size_t pivots;
+    pivots = LU.LU_decomp_in_place( P );
+    Matrix<T> X( B );
+    X = P * X;
+    Vector<T> x( ROWS );
+    for ( std::size_t j = 0; j < B.COLS; ++j )
+    {
+      x = X.get_col( j );
+      for ( std::size_t i = 0; i < ROWS; i++ ) {
+          for ( std::size_t k = 0; k < i; k++ )
+              x[ i ] -= LU.MATRIX[ i ][ k ] * x[ k ];
+      }
+      LU.backsolve( x );
+      X.set_col( j, x );
+    }
+    return X;
+  }
 
+  /* ----- Determinant ----- */
+
+  template <typename T>
+  inline T Matrix<T>::det()
+  {
+    T det( 1 );
+    Matrix<T> temp( *this );
+    Matrix<T> P;
+    std::size_t pivots;
+    pivots = temp.LU_decomp_in_place( P );
+    for ( std::size_t i = 0; i < ROWS; i++ )
+    {
+      det *= temp.MATRIX[ i ][ i ];
+    }
+    if ( pivots % 2 == 0 )
+    {
+      return det;
+    }
+    else
+    {
+      return - det;
+    }
+  }
+
+  /* ----- Inverse ----- */
+
+  template <typename T>
+  inline Matrix<T> Matrix<T>::inverse()
+  {
+    if ( ROWS != COLS )
+    {
+      throw Error( "Matrix inverse error: Matrix is not square.");
+    }
+    Matrix<T> inv;
+    Matrix<T> LU( *this );
+    std::size_t pivots;
+    pivots = LU.LU_decomp_in_place( inv );
+    for ( int j = 0; j < ROWS; j++ )
+    {
+        for ( int i = 0; i < ROWS; i++ )
+        {
+            for ( int k = 0; k < i; k++ )
+            {
+                inv.MATRIX[ i ][ j ] -= LU.MATRIX[ i ][ k ]
+                                      * inv.MATRIX[ k ][ j ];
+            }
+        }
+
+        for (int i = ROWS - 1; i >= 0; i--)
+        {
+            for (int k = i + 1; k < ROWS; k++)
+            {
+                inv.MATRIX[ i ][ j ] -= LU.MATRIX[ i ][ k ]
+                                      * inv.MATRIX[ k ][ j ];
+            }
+            inv.MATRIX[ i ][ j ] = inv.MATRIX[ i ][ j ] / LU.MATRIX[ i ][ i ];
+        }
+    }
+    return inv;
+  }
 
   /* ----- Private ----- */
 
@@ -1078,41 +1219,6 @@ namespace Luna
   }
 
   template <typename T>
-  inline void Matrix<T>::Gauss_with_pivot_parallel( Vector<T>& x,
-                                                    std::size_t threads )
-  {
-    std::size_t i, j;
-    T elem;
-
-    //omp_set_nested(1);
-    omp_set_num_threads( threads );
-    for ( std::size_t k = 0; k < ROWS - 1; ++k )
-    {
-      this->partial_pivot( x, k );
-
-      // for the vectoriser
-      /*for( i = k + 1; i < ROWS; i++ )
-      {
-        MATRIX[ i ][ k ] /= MATRIX[ k ][ k ];
-      }*/
-
-      #pragma omp parallel for shared( MATRIX, ROWS, x, k ) private( i, j, elem ) schedule(static, 64)
-      for ( i = k + 1; i < ROWS; ++i )
-      {
-        elem = MATRIX[ i ][ k ] / MATRIX[ k ][ k ];
-        //elem = MATRIX[ i ][ k ];
-
-        for ( j = k; j < ROWS; ++j )
-        {
-          MATRIX[ i ][ j ] -= elem * MATRIX[ k ][ j ];
-        }
-        x[ i ] -= elem * x[ k ];
-      }
-    }
-
-  }
-
-  template <typename T>
   inline void Matrix<T>::partial_pivot( Vector<T>& x, std::size_t k )
   {
     std::size_t pivot;
@@ -1128,6 +1234,56 @@ namespace Luna
     pivot = this->max_abs_in_column( k, k );
     this->swap_rows( pivot, k );
     X.swap_rows( pivot, k );
+  }
+
+  template <typename T>
+  inline std::size_t Matrix<T>::LU_decomp_in_place( Matrix<T>& P )
+  {
+
+    if ( ROWS != COLS )
+    {
+      throw Error( "LU_decomp_in_place error: Matrix is not square.");
+    }
+
+    std::size_t i, j, k, imax, pivots( 0 );
+    double maxA, absA;
+
+    Vector<T> row( ROWS, 0.0 );
+
+    P.resize( ROWS, ROWS );
+    P.fill( 0 );
+    P.fill_diag( 1 );
+
+    for (i = 0; i < ROWS; i++) {
+        maxA = 0.0;
+        imax = i;
+
+        for (k = i; k < ROWS; k++) {
+          if ( ( absA = std::abs( MATRIX[ k ][ i ] ) ) > maxA ) {
+              maxA = absA;
+              imax = k;
+          }
+        }
+
+        if ( maxA < 1e-40 )
+        {
+          throw Error( "LU_decomp_in_place error: Matrix is singular." );
+        }
+
+        if (imax != i) {
+            P.swap_rows( i, imax );
+            this->swap_rows( i, imax );
+            pivots++;
+        }
+
+        for (j = i + 1; j < ROWS; j++) {
+            MATRIX[ j ][ i ] /= MATRIX[ i ][ i ];
+
+            for (k = i + 1; k < ROWS; k++)
+                MATRIX[ j ][ k ] -= MATRIX[ j ][ i ] * MATRIX[ i ][ k ];
+        }
+    }
+    return pivots;
   }
 
 
