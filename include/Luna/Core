@@ -18,4 +18,5 @@
 #include "Vector.h"
 #include "Timer.h"
 #include "Matrix.h"
+#include "Mesh1D.h"
 

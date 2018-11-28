@@ -988,7 +988,6 @@ namespace Luna
       A.backsolve( x );
       X.set_col( j, x );
     }
-
     return X;
   }
 

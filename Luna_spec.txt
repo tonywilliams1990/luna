@@ -19,19 +19,23 @@ Luna aims to be a header-only library of numerical routines written in C++.
 2.  Vector - a generic vector class for use with numeric types               [x]
 3.  Timer - a simple timer class for timing methods                          [x]
 4.  Matrix - a generic matrix class (including linear algebra methods)       [x]
-5.  Mesh1D - a one-dimensional mesh class (including numerical integration)   []
+5.  Mesh1D - a one-dimensional mesh class (including numerical integration)  [x]
 6.  Mesh2D - a two-dimensional mesh class                                     []
-7.  Functions - special mathematical functions not contained in std library   []
+7.  Special - special mathematical functions not contained in std library     []
 8.  Polynomials - a class for solving and evaluating polynomials              []
 9.  Newton - a Newton's method iteration class                                []
 10. Residual - a class for defining residual objects (used with Newton)       []
 11. Arclength - arc length continuation class                                 []
 12. Interpolate - interpolation methods for 1D and 2D mesh objects (utility)  []
+13. MonteCarlo - a class for utilising Monte Carlo methods  		      []
+14. Quadrature - Numerical integration of functions  			      []
 
 --- Sparse ---
-1. SparseVector - a sparse vector class                                       []
-2. SparseMatrix - a sparse matrix class (including sparse linear algebra)     []
-3. BandedMatrix - a banded matrix class (including banded solver)             []
+1. Tridiagonal - a tridiagonal matrix class (including solver + parallel)     []
+2. BandedMatrix - a banded matrix class (including banded solver)             []
+3. SparseVector - a sparse vector class                                       []
+4. SparseMatrix - a sparse matrix class (including sparse linear algebra)     []  
+    -> biconjugate gradient method? ( linbcg.h ) + parallel multiplication/solve
 
 --- Eigenvalue ---
 1. Eigensystem - a class for solving linear eigensystems                      []
@@ -45,6 +49,7 @@ Luna aims to be a header-only library of numerical routines written in C++.
 --- PDE ---
 1. PDE_IBVP - PDE initial boundary value problem class                        []
 2. Poisson - a class for solving Poisson problems                             []
+3. Spectral - a class for solving PDEs using spectral methods		      []
 
 --- Automatic-differentiation ---
 1. Dual - a class defining dual numbers                                       []
@@ -61,6 +66,7 @@ demonstrate how the code can be used.
 
 1. Vector_algebra - test Vector and Error (range check) +,-,*,/,dot,norms    [x]
 2. Linear_system - test Matrix and Timer classes               		     [x]
-3. Integration - test Mesh1D and Mesh2D classes                               []
+3. Integration - test Mesh1D, Mesh2D, Special and Quadrature classes          []
+4. Root_finding - test Special, Polynomials, Newton and Residual classes      []
 
 
