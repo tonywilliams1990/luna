@@ -9,7 +9,7 @@ using namespace Luna;
 
 int main()
 {
-  cout << "----- Integration -----" << endl;
+  cout << "----------------- Integration -----------------" << endl;
 
   Vector<double> nodes;
   nodes.linspace( 0, 1, 101 );
@@ -35,6 +35,8 @@ int main()
 
   cout << "  * mesh.integral( 0 ) = " << mesh.integral( 0 ) << endl;
   cout << "  * mesh.integral( 1 ) = " << mesh.integral( 1 ) << endl;
+
+  cout << "-----------------------------------------------" << endl;
 
   
 

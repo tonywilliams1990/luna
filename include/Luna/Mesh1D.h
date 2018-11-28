@@ -40,7 +40,7 @@ namespace Luna
     Mesh1D( const Vector<X>& nodes, const std::size_t& nvars ) :
         NV( nvars ), NODES( nodes )
     {
-      // Create the storage Vector to zero and set the contents to zero
+      // Create the storage Vector and set the contents to zero
       VARS = Vector<T>( NV * NODES.size(), T( 0.0 ) );
     }
 
