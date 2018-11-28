@@ -45,14 +45,14 @@ namespace Luna
     }
 
     /// Destructor
-    virtual ~Mesh1D() {}
+    ~Mesh1D() {}
 
     /* ----- Operator overloading ----- */
 
     /// Read only access of a variable at a given node
     /// \param node Node index
     /// \param var Variable index
-    /// \return A reference to the variable var stored at the index i
+    /// \return A reference to the variable stored at the given node
     const T& operator()( const std::size_t node, const std::size_t var ) const
     {
       return VARS[ node * NV + var ];
@@ -81,8 +81,8 @@ namespace Luna
 
     /// Set the variables stored at a specific node
     /// \param node Node index
-    /// \param u Vector of variables
-    void set_nodes_vars( const std::size_t& node, const Vector<T>& u );
+    /// \param vec Vector of variables
+    void set_nodes_vars( const std::size_t& node, const Vector<T>& vec );
 
     /// Get the variables stored at a specific node
     /// \param node Node index
@@ -146,12 +146,12 @@ namespace Luna
 
   template <typename T, typename X>
   inline void Mesh1D<T, X>::set_nodes_vars( const std::size_t& node,
-                                            const Vector<T>& u )
+                                            const Vector<T>& vec )
   {
-    if ( u.size() != NV ) { throw Error( "Mesh error: set_nodes_vars " );}
-    for ( std::size_t var = 0; var < u.size(); ++var )
+    if ( vec.size() != NV ) { throw Error( "Mesh error: set_nodes_vars " );}
+    for ( std::size_t var = 0; var < vec.size(); ++var )
     {
-      VARS[ node * NV + var ] = u[ var ];
+      VARS[ node * NV + var ] = vec[ var ];
     }
   }
 
