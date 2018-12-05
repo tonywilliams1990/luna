@@ -179,11 +179,6 @@ namespace Luna
     /// \return A copy of the Vector of variables
     Vector<T> get_vars();
 
-
-
-    //TODO the rest of the 2D mesh methods
-
-
   };	// End of class Mesh2D
 
   template <typename T>
@@ -933,9 +928,6 @@ namespace Luna
     temp = VARS;
     return temp;
   }
-
-
-
 
 }  // End of namespace Luna
 
