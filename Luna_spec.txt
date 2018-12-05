@@ -20,7 +20,7 @@ Luna aims to be a header-only library of numerical routines written in C++.
 3.  Timer - a simple timer class for timing methods                          [x]
 4.  Matrix - a generic matrix class (including linear algebra methods)       [x]
 5.  Mesh1D - a one-dimensional mesh class (including numerical integration)  [x]
-6.  Mesh2D - a two-dimensional mesh class                                     []
+6.  Mesh2D - a two-dimensional mesh class                                    [x]
 7.  Special - special mathematical functions not contained in std library     []
 8.  Polynomials - a class for solving and evaluating polynomials              []
 9.  Newton - a Newton's method iteration class                                []
