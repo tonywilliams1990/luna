@@ -10,6 +10,8 @@ using namespace Luna;
 int main()
 {
   cout << "----------------- Integration -----------------" << endl;
+  cout << "  * Create a 1D mesh with 2 variables and set "  << endl;
+  cout << "  * one equal 2x and the other to x^2. "  << endl;
 
   Vector<double> nodes;
   nodes.linspace( 0, 1, 101 );
@@ -18,29 +20,35 @@ int main()
 
   for ( std::size_t i = 0; i< nodes.size(); ++i )
   {
-    // Set the first variable equal to 2 * x
-    mesh( i, 0 ) = 2 * mesh.coord( i );
-    // Set the second variable equal to x^2
-    mesh( i, 1 ) = mesh.coord( i ) * mesh.coord( i );
+    double x( mesh.coord( i ) );
+    mesh( i, 0 ) = 2 * x;
+    mesh( i, 1 ) = x * x;
   }
 
-  cout << "  * mesh.nnodes() = " << mesh.nnodes() << endl;
-  cout << "  * mesh.nvars() = " << mesh.nvars() << endl;
-
+  cout << "  * # nodes = " << mesh.nnodes() << endl;
+  cout << "  * # variables = " << mesh.nvars() << endl;
   Vector<double> vars;
   vars = mesh.get_interpolated_vars( 0.35 );
-  cout << "  * vars( 0.35 ) = " << vars << endl;
+  cout << "  * Interpolate the values of each of the " << endl;
+  cout << "  * variables at a specified point." << endl;
 
-  //mesh.output( "./test_output.txt" );
+  cout << "  * vars( 0.35 ) = " << vars << endl;
+  
+  cout << "  * Numerically integrate the variables over " << endl;
+  cout << "  * the domain (from 0 to 1). " << endl;
 
   cout << "  * mesh.integral( 0 ) = " << mesh.integral( 0 ) << endl;
   cout << "  * mesh.integral( 1 ) = " << mesh.integral( 1 ) << endl;
 
   cout << "-----------------------------------------------" << endl;
+  cout << "  * Create a 2D mesh with 2 variables and set "  << endl;
+  cout << "  * one equal 2x^2 and the other to 3y. "  << endl;
+  cout << "  * The domain is split uniformly from 0 to 1." << endl;
 
+  std::size_t N( 101 );
   Vector<double> x_nodes, y_nodes;
-  x_nodes.linspace( 0, 1, 11 );
-  y_nodes.linspace( 0, 1, 11 );
+  x_nodes.linspace( 0, 1, N );
+  y_nodes.linspace( 0, 1, N );
   Mesh2D<double> mesh2d( x_nodes, y_nodes, nvars );
 
   for ( std::size_t i = 0; i < x_nodes.size(); ++i )
@@ -49,54 +57,18 @@ int main()
     {
       double x( mesh2d.coord( i, j ).first );
       double y( mesh2d.coord( i, j ).second );
-      // Set the first variable equal to 2 * x^2
       mesh2d( i, j, 0 ) = 2 * x * x;
-      // Set the second variable equal to 3 * y
       mesh2d( i, j, 1 ) = 3 * y;
     }
   }
 
-  cout << " mesh2d( 1, 2, 0 ) = " << mesh2d( 1, 2, 0 ) << endl;
-  cout << " mesh2d( 1, 2, 1 ) = " << mesh2d( 1, 2, 1 ) << endl;
-
-  Vector<double> vec( 2, 1.1 );
-  mesh2d.set_nodes_vars( 1, 2, vec );
-  cout << " mesh2d( 1, 2, 0 ) = " << mesh2d( 1, 2, 0 ) << endl;
-  cout << " mesh2d( 1, 2, 1 ) = " << mesh2d( 1, 2, 1 ) << endl;
-
-  //mesh2d.assign( 3.14 );
-  vec =  mesh2d.get_nodes_vars( 3, 3 );
-  cout << " vec = " << vec << endl;
-
-  cout << " # x nodes = " << mesh2d.get_nnodes().first << endl;
-  cout << " # y nodes = " << mesh2d.get_nnodes().second << endl;
-  cout << " # vars = " << mesh2d.get_nvars() << endl;
-  cout << " mesh2d.xnodes() = " << mesh2d.xnodes() << endl;
-  cout << " mesh2d.ynodes() = " << mesh2d.ynodes() << endl;
-
-  cout << " mesh2d.get_var_as_matrix( 0 ) = "
-       << mesh2d.get_var_as_matrix( 0 ) << endl;
-
-  Vector<double> new_x_nodes, new_y_nodes;
-  new_x_nodes.linspace( 0, 1, 6 );
-  new_y_nodes.linspace( 0, 1, 6 );
-  mesh2d.remesh( new_x_nodes, new_y_nodes );
-
-  cout << " # x nodes = " << mesh2d.get_nnodes().first << endl;
-  cout << " # y nodes = " << mesh2d.get_nnodes().second << endl;
-
-  cout << " mesh2d.get_var_as_matrix( 0 ) = "
-       << mesh2d.get_var_as_matrix( 0 ) << endl;
-
-  //mesh2d.output_gnu( "./test.dat" );
-
-  cout << " mesh2d.get_interpolated_vars( 0.5, 0.5 ) = "
-       << mesh2d.get_interpolated_vars( 0.5, 0.5 ) << endl;
-
-  cout << " mesh2d.integral2D( 0 ) = " << mesh2d.integral2D( 0 ) << endl;
-  cout << " mesh2d.square_integral2D( 0 ) = "
-       << mesh2d.square_integral2D( 0 ) << endl;
-
+  cout << "  * # x nodes = " << mesh2d.get_nnodes().first << endl;
+  cout << "  * # y nodes = " << mesh2d.get_nnodes().second << endl;
+  cout << "  * # variables = " << mesh2d.get_nvars() << endl;
+  cout << "  * Integrate each variable over the domain." << endl;
+  cout << "  * mesh2d.integral2D( 0 ) = " << mesh2d.integral2D( 0 ) << endl;
+  cout << "  * mesh2d.integral2D( 1 ) = " << mesh2d.integral2D( 1 ) << endl;
+  cout << "-----------------------------------------------" << endl;
 
   cout << "--- FINISHED ---" << endl;
 
