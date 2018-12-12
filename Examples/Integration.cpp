@@ -33,7 +33,7 @@ int main()
   cout << "  * variables at a specified point." << endl;
 
   cout << "  * vars( 0.35 ) = " << vars << endl;
-  
+
   cout << "  * Numerically integrate the variables over " << endl;
   cout << "  * the domain (from 0 to 1). " << endl;
 
@@ -69,6 +69,13 @@ int main()
   cout << "  * mesh2d.integral2D( 0 ) = " << mesh2d.integral2D( 0 ) << endl;
   cout << "  * mesh2d.integral2D( 1 ) = " << mesh2d.integral2D( 1 ) << endl;
   cout << "-----------------------------------------------" << endl;
+
+  std::complex<double> x( 1.0 / 3.0, 1.0 );
+  cout << " gamma( 1/3 + i ) = " << std::setprecision( 8 )
+       << Luna::gamma( x ) << endl;
+
+  cout << " lngamma( 0.5 ) = " << std::setprecision( 6 )
+       << Luna::lngamma( 0.5 ) << endl;
 
   cout << "--- FINISHED ---" << endl;
 

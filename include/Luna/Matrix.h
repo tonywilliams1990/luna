@@ -8,6 +8,7 @@
 #include <vector>
 #include <random>
 #include <chrono>
+#include <complex>
 #include <omp.h>
 
 #include "Error.h"

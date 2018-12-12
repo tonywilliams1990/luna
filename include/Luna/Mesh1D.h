@@ -10,6 +10,7 @@
 #include <iostream>
 #include <iomanip>
 #include <cassert>
+#include <complex>
 
 #include "Error.h"
 #include "Vector.h"

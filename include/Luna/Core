@@ -21,3 +21,4 @@
 #include "Matrix.h"
 #include "Mesh1D.h"
 #include "Mesh2D.h"
+#include "Special.h"

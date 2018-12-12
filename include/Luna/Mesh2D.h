@@ -11,6 +11,7 @@
 #include <iomanip>
 #include <cassert>
 #include <utility>
+#include <complex>
 
 #include "Error.h"
 #include "Vector.h"
