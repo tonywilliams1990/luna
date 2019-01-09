@@ -77,6 +77,18 @@ int main()
   cout << " lngamma( 0.5 ) = " << std::setprecision( 6 )
        << Luna::lngamma( 0.5 ) << endl;
 
+  cout << " factorial( 5 ) = " << Luna::factorial( 5 ) << endl;
+  cout << " lnfactorial( 5000 ) = " << Luna::lnfactorial( 5000 ) << endl;
+  cout << " beta( 5, 4 ) = " << Luna::beta( 5., 4. ) << endl;
+  std::complex<double> z( 0.1, 1.0 );
+  cout << " erf( 0.1 + i ) = " << Luna::erf( z ) << endl;
+  cout << " erfc( 0.1 + i ) = " << Luna::erfc( z ) << endl;
+  Luna::Bessel<std::complex<double>> bessel;
+  z.real( 1.0 );
+  cout << " Y2( 1 + i ) = " << bessel.Yn( 2, z ) << endl;
+
+
+
   cout << "--- FINISHED ---" << endl;
 
 }
