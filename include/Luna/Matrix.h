@@ -369,6 +369,16 @@ namespace Luna
     /// \return The solution Matrix (each column is a solution Vector)
     Matrix<T> solve_LU( const Matrix<T>& B );
 
+    /// Solve the system of equations Ax=b where x and b are Vectors
+    /// \param b The right-hand side Vector of the system of equations
+    /// \return The solution Vector
+    Vector<T> solve( const Vector<T>& b ){ return solve_LU( b ); }
+
+    /// Solve the system of equation AX=B where X and B are Matrices
+    /// \param B The right-hand side Matrix of the system of equations
+    /// \return The solution Matrix (each column is a solution Vector)
+    Matrix<T> solve( const Matrix<T>& B ){ return solve_LU( B ); }
+
     /* ----- Determinant ----- */
 
     /// Calculate the determinant of the Matrix ( via LU decomposition )

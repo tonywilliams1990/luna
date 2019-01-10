@@ -22,3 +22,6 @@
 #include "Mesh1D.h"
 #include "Mesh2D.h"
 #include "Special.h"
+#include "Residual.h"
+#include "Newton.h"
+#include "Arclength.h"

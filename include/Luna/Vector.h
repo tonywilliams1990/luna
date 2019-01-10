@@ -34,7 +34,7 @@ namespace Luna
   private:
     std::vector<T> VECTOR;            // Data storage encapsulates std::vector
 
-    protected:
+  protected:
     friend class Matrix<T>;			      // Friend class can access VECTOR directly
     friend class SparseMatrix<T>;	    // Friend class can access VECTOR directly
 
