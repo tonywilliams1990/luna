@@ -21,6 +21,10 @@ namespace Luna
   template <class T>
   class Matrix;
 
+  // Forward declare the Polynomial class that will be friends with Vector
+  template <class T>
+  class Polynomial;
+
   // Forward declare the SparseMatrix class that will be friends with Vector
   template <class T>
   class SparseMatrix;
@@ -35,8 +39,9 @@ namespace Luna
     std::vector<T> VECTOR;            // Data storage encapsulates std::vector
 
   protected:
-    friend class Matrix<T>;			      // Friend class can access VECTOR directly
-    friend class SparseMatrix<T>;	    // Friend class can access VECTOR directly
+    friend class Matrix<T>;			    // Friend classes can access VECTOR directly
+    friend class Polynomial<T>;
+    friend class SparseMatrix<T>;
 
   public:
 

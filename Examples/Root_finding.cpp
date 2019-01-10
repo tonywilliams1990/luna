@@ -82,6 +82,13 @@ int main()
     cout << "x = " << state[ 0 ] << ", p = " << arc_prob.p << endl;
   }while( state[ 0 ] < 1.0 );
 
+  cout << endl << "----- Polynomial equations -----" << endl;
+
+  // f(x) = x^2 + 2*x - 1
+  Luna::Polynomial<double> f( { -1.0, 2.0, 1.0 } );
+
+  cout << " * f[0] = " << f[0] << endl;
+  cout << " * f( 0.1 ) = " << f( 0.1 ) << endl;
 
 
   cout << "--- FINISHED ---" << endl;

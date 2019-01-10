@@ -25,3 +25,4 @@
 #include "Residual.h"
 #include "Newton.h"
 #include "Arclength.h"
+#include "Polynomial.h"
