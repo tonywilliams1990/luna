@@ -12,6 +12,7 @@
 #include <functional>
 #include <numeric>
 #include <complex>
+#include <cmath>
 
 #include "Error.h"
 

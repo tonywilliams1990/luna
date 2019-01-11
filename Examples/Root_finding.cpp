@@ -84,11 +84,33 @@ int main()
 
   cout << endl << "----- Polynomial equations -----" << endl;
 
-  // f(x) = x^2 + 2*x - 1
-  Luna::Polynomial<double> f( { -1.0, 2.0, 1.0 } );
+  // f(x) = -1 + 2*x + x^2
+  Luna::Polynomial<double> f( { -1.0, 2.0, 1.0, 1.0 } );
 
   cout << " * f[0] = " << f[0] << endl;
   cout << " * f( 0.1 ) = " << f( 0.1 ) << endl;
+
+  // p(x) = a*x^2 + b*x + c
+  cout << " * Solve p(x) = ( 1 + i )*x^2 - ( 2 + i )*x - 1 = 0 " << endl;
+  Luna::Polynomial< std::complex<double> > p;
+  std::complex<double> a ( 1.0, 1.0 );
+  std::complex<double> b ( - 2.0, - 1.0 );
+  std::complex<double> c ( - 1.0, 0.0 );
+
+  Vector< std::complex<double> > roots;
+  roots = p.quadratic_solve( a, b, c );
+  cout << " * x_0 = " << roots[ 0 ] << endl;
+  cout << " * x_1 = " << roots[ 1 ] << endl;
+
+  cout << " * p[0] = " << p[0] << endl;
+
+  // f(x) = 2*x^3 + x^2 + x - 1
+  cout << " * Solve f(x) = 2*x^3 + x^2 + 2*x - 1 = 0 " << endl;
+  Vector<std::complex<double>> f_roots;
+  f_roots = f.cubic_solve( 2.0, 1.0, 2.0, - 1.0 );
+  cout << " * x_0 = " << f_roots[ 0 ] << endl;
+  cout << " * x_1 = " << f_roots[ 1 ] << endl;
+  cout << " * x_2 = " << f_roots[ 2 ] << endl;
 
 
   cout << "--- FINISHED ---" << endl;
