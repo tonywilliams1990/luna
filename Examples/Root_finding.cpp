@@ -102,8 +102,6 @@ int main()
   cout << " * x_0 = " << roots[ 0 ] << endl;
   cout << " * x_1 = " << roots[ 1 ] << endl;
 
-  cout << " * p[0] = " << p[0] << endl;
-
   // f(x) = 2*x^3 + x^2 + x - 1
   cout << " * Solve f(x) = 2*x^3 + x^2 + 2*x - 1 = 0 " << endl;
   Vector<std::complex<double>> f_roots;
@@ -112,6 +110,22 @@ int main()
   cout << " * x_1 = " << f_roots[ 1 ] << endl;
   cout << " * x_2 = " << f_roots[ 2 ] << endl;
 
+  // polynomial division u = x^3 - 2x^2 - 4, v = x - 3
+  Polynomial<double> u( std::vector<double> { -4.0, 0.0, -2.0, 1.0 } );
+  Polynomial<double> v( std::vector<double> { -3.0, 1.0 } );
+  Polynomial<double> q, r;
+
+  u.polydiv( v, q, r );
+
+  cout << " * v = " << v.coeffs() << endl;
+  cout << " * q = " << q.coeffs() << endl;
+  cout << " * r = " << r.coeffs() << endl;
+
+  // Find the roots of 3 + x + x^2 + x^4 = 0
+  Polynomial<double> poly( std::vector<double> { 3.0, 1.0, 1.0, 0.0, 1.0 } );
+  Vector<std::complex<double>> poly_roots;
+  poly_roots = poly.roots( true );
+  cout << " * poly_roots = " << poly_roots << endl;
 
   cout << "--- FINISHED ---" << endl;
 

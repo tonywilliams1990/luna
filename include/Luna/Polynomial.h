@@ -22,6 +22,12 @@ namespace Luna
       Vector<T> COEFFS;	// Vector for storing the coefficients of the polynomial
 			std::size_t N; 		// The degree of the polynomial
 
+			// Laguerre's method -> given complex coefficients of a polynomial a and a
+			// complex value x, this routine improves x until it converges to a root
+			// of the polynomial (to within the achievable round off limit).
+			void laguer( Vector< std::complex<double> >& a, std::complex<double>& x,
+			 						 std::size_t& iterations );
+
     public:
 
 			/// Constructor for a unspecified polynomial
@@ -62,6 +68,19 @@ namespace Luna
 
 			/* ----- Methods ----- */
 
+			/// Return the Vector of coefficients
+			/// \return The Vector of coefficients
+			Vector<T> coeffs();
+
+			/// Return the degree of the Polynomial
+			/// \return The degree of the Polynomial
+			std::size_t degree();
+
+			/// Set the degree of the Polynomial
+			/// \param n The degree of the Polynomial
+			void set_degree( const std::size_t& n );
+
+
 			/// Evaluation of the Polynomial
 			/// \param x Arguement of the Polynomial function
 			/// \return Value of the Polynomial function
@@ -78,8 +97,8 @@ namespace Luna
 			/// \param b Coefficient of \f$ x \f$
 			/// \param c Constant value in the quadratic
 			/// \return A Vector< std::complex<double> > containing the two roots
-			Vector< std::complex<double> > quadratic_solve( const T& a, const T& b,
-																											const T& c );
+			Vector<std::complex<double>> quadratic_solve( const T& a, const T& b,
+																										const T& c );
 
 			/// Cubic initialisation \f$ ax^3 + bx^2 + cx + d \f$
 			/// \param a Coefficient of \f$ x^3 \f$
@@ -94,15 +113,22 @@ namespace Luna
 			/// \param c Coefficient of \f$ x \f$
 			/// \param d Constant value in the quadratic
 			/// \return A Vector< std::complex<double> > containing the three roots
-			Vector< std::complex<double> > cubic_solve( const T& a, const T& b,
-																									const T& c, const T& d );
+			Vector<std::complex<double>> cubic_solve( const T& a, const T& b,
+																								const T& c, const T& d );
 
-			//TODO solve method with specialisation for quadratic and cubic (and linear/constant N=1/0)
+			/// Divide the polynomial \f$u\f$ by another \f$v\f$ to find the quotient
+			/// \f$q\f$ and the remainder \f$r\f$ such that \f$ u = vq + r  \f$
+			/// \param v The divisor polynomial
+			/// \param q The quotient polynomial
+			/// \param r The remainder polynomial
+			void polydiv( Polynomial<T>& v, Polynomial<T>& q, Polynomial<T>& r );
 
+			/// Find all the roots of the polynomial using Laguerre's method
+			/// \param polish True if you want to refine/polish the roots
+			/// \return A Vector<std::complex<double>> containing the roots
+			Vector<std::complex<double>> roots( const bool& polish );
 
-			//TODO polynomial division
-
-			//TODO rational functions
+			//TODO rational functions??
 
 			//TODO derivatives of the polynomial at a given point
 
@@ -135,6 +161,24 @@ namespace Luna
 	inline T Polynomial<T>::operator() ( const T& x )
 	{
 		return evaluate( x );
+	}
+
+	template <typename T>
+	inline Vector<T> Polynomial<T>::coeffs(){
+		return COEFFS;
+	}
+
+	template <typename T>
+	inline std::size_t Polynomial<T>::degree()
+	{
+		return N;
+	}
+
+	template <typename T>
+	inline void Polynomial<T>::set_degree( const std::size_t& n )
+	{
+		N = n;
+		COEFFS.resize( n + 1 );
 	}
 
 	template <typename T>
@@ -228,6 +272,176 @@ namespace Luna
 		result[ 2 ] = first - second;
 
 		return result;
+	}
+
+	template <typename T>
+	inline void Polynomial<T>::polydiv( Polynomial<T>& v, Polynomial<T>& q,
+																			Polynomial<T>& r )
+	{
+		int k, j, n=N, nv=v.N;
+		if ( nv == 0 )
+		{
+			 throw Error( "Polynomial.polydiv() divide by zero polynomial");
+		}
+		while ( nv >= 0 && v[nv] == 0.) nv--;
+		if ( nv < 0 )
+		{
+			 throw Error( "Polynomial.polydiv() divide by zero polynomial");
+		}
+		r.COEFFS = COEFFS;
+		r.N = N;
+		q.COEFFS.assign( COEFFS.size(), 0.0 );
+		q.N = N;
+
+		for ( k = n - nv; k >= 0; k-- )
+		{
+			q.COEFFS[ k ] = r.COEFFS[ nv + k ] / v.COEFFS[ nv ];
+			for ( j = nv + k - 1; j >= k; j-- )
+			{
+				 r.COEFFS[ j ] -= q.COEFFS[ k ] * v.COEFFS[ j - k ];
+			}
+		}
+		for ( j = nv; j <= n; j++ )
+		{
+			 r.COEFFS[ j ] = 0.0;
+		}
+		// Remove leading zeros from r and q polynomials
+		T r_val( r.COEFFS[ n ] );
+		while ( std::abs( r_val ) == 0.0 )
+		{
+			r.COEFFS.pop_back();
+			r.N--;
+			n--;
+			r_val = r.COEFFS[ n ];
+		}
+		n = N;
+		T q_val( q.COEFFS[ n ] );
+		while ( std::abs( q_val ) == 0.0 )
+		{
+			q.COEFFS.pop_back();
+			q.N--;
+			n--;
+			q_val = q.COEFFS[ n ];
+		}
+	}
+
+	template <typename T>
+	inline Vector<std::complex<double>> Polynomial<T>::roots( const bool& polish )
+	{
+		Vector<std::complex<double>> poly_roots( N );
+		if ( N <= 0 )
+		{
+			std::string problem;
+			problem = "Polynomial roots: degree must be at least 1";
+			throw Error( problem );
+		}
+		if ( N == 1 )
+		{
+			poly_roots[ 0 ] = - COEFFS[ 0 ] / COEFFS[ 1 ];
+			return poly_roots;
+		}
+		if ( N == 2 )
+		{
+			poly_roots = quadratic_solve( COEFFS[ 2 ], COEFFS[ 1 ], COEFFS[ 0 ] );
+			return poly_roots;
+		}
+		if ( N == 3 )
+		{
+			poly_roots = cubic_solve( COEFFS[ 3 ], COEFFS[ 2 ], COEFFS[ 1 ],
+																COEFFS[ 0 ] );
+			return poly_roots;
+		}
+
+		const double EPS( 1.0e-14 );
+		std::size_t i, its;
+		std::complex<double> x, b, c;
+
+		Vector< std::complex<double> > a( N + 1 );
+		for ( std::size_t n = 0; n < N + 1; n++ )
+		{
+			a[ n ] = COEFFS[ n ];
+		}
+
+		Vector< std::complex<double> > ad( a );
+
+		for ( int j = N - 1; j >= 0; j-- )
+		{
+			x = 0.0;
+			Vector< std::complex<double> > ad_v( j + 2 );
+			for ( int jj = 0; jj < j + 2; jj++ ) ad_v[ jj ] = ad[ jj ];
+			laguer( ad_v, x, its );
+			if ( std::abs( std::imag(x) ) <=
+					 2.0 * EPS * std::abs( std::real( x ) ) )
+			{
+				x = std::complex<double>( std::real( x ), 0.0 );
+			}
+			poly_roots[ j ] = x;
+			b = ad[ j + 1 ];
+			for ( int jj = j; jj >= 0; jj-- ) {
+				c = ad[ jj ];
+				ad[ jj ] = b ;
+				b = x * b + c;
+			}
+		}
+
+		// Polish the roots
+		if ( polish )
+		{
+			for ( std::size_t j = 0; j < N; j++ )
+			{
+				laguer( a, poly_roots[ j ], its );
+			}
+		}
+
+		return poly_roots;
+	}
+
+	/* ----- Private functions ----- */
+	template <typename T>
+	inline void Polynomial<T>::laguer( Vector< std::complex<double> >& a,
+																		 std::complex<double>& x,
+																		 std::size_t& iterations )
+	{
+		const int MR=8, MT=10, MAXIT=MT*MR;
+		const double EPS=std::numeric_limits<double>::epsilon();
+		// Fraction used to break possible limit cycle
+		static const double frac[MR+1]=
+			{0.0,0.5,0.25,0.75,0.13,0.38,0.62,0.88,1.0};
+		std::complex<double> dx,x1,b,d,f,g,h,sq,gp,gm,g2;
+		int m=a.size()-1;
+		for ( int iter = 1; iter <= MAXIT; iter++ )
+		{
+			iterations=iter;
+			b = a[ m ];
+			double err = std::abs( b );
+			d = f = 0.0;
+			double abx = std::abs( x );
+			for (int j = m - 1; j >= 0 ; j-- )
+			{
+				f = x * f + d;
+				d = x * d + b;
+				b = x * b + a[ j ];
+				err = std::abs( b ) + abx * err;
+			}
+			err *= EPS;
+			if ( std::abs( b ) <= err ){ return; }
+			g = d / b;
+			g2 = g * g;
+			h = g2 - 2.0 * f / b;
+			sq = std::sqrt( double( m - 1 ) * ( double( m ) * h - g2 ) );
+			gp = g + sq;
+			gm = g - sq;
+			double abp = std::abs( gp );
+			double abm = std::abs( gm );
+			if ( abp < abm ){ gp = gm; }
+			dx = std::max( abp, abm ) > 0. ? double( m ) / gp :
+																			 std::polar( 1 + abx, double( iter ));
+			x1 = x - dx;
+			if ( x == x1 ){ return; }
+			if ( iter % MT != 0 ){ x = x1; }
+			else { x -= frac[ iter / MT ] * dx; }
+		}
+		throw Error( "Polynomial: Too many iterations in laguer method" );
 	}
 
 }  // End of namespace Luna
