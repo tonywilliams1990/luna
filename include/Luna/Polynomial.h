@@ -1,5 +1,6 @@
 /// \file Polynomial.h
-
+/// A class for defining and evaluating polynomials and finding the roots of
+/// polynomial equations.
 
 #ifndef POLYNOMIAL_H
 #define POLYNOMIAL_H
@@ -128,10 +129,7 @@ namespace Luna
 			/// \return A Vector<std::complex<double>> containing the roots
 			Vector<std::complex<double>> roots( const bool& polish );
 
-			//TODO rational functions??
-
 			//TODO derivatives of the polynomial at a given point
-
 
 
 
