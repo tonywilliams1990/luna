@@ -140,5 +140,4 @@ int main()
        << " * x_3 = " << poly_roots[3] << endl << endl;
 
   cout << "--- FINISHED ---" << endl;
-
 }

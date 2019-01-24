@@ -129,9 +129,11 @@ namespace Luna
 			/// \return A Vector<std::complex<double>> containing the roots
 			Vector<std::complex<double>> roots( const bool& polish );
 
-			//TODO derivatives of the polynomial at a given point
-
-
+			/// Determine all the derivatives of the polynomial at a given value
+			/// \param x Arguement of the Polynomial function
+			/// \return A Vector of the N + 1 derivatives at the point x where N is
+			/// the degree of the polynomial
+			Vector<T> derivatives( const T& x );
 
   }; // End of class Polynomial
 
@@ -392,6 +394,30 @@ namespace Luna
 		}
 
 		return poly_roots;
+	}
+
+	template <typename T>
+	inline Vector<T> Polynomial<T>::derivatives( const T& x )
+	{
+		Vector<T> derivs( N + 1, 0.0 );
+		int nnd, j, i;
+		double cnst = 1.0;
+		derivs[ 0 ] = COEFFS[ N ];
+		for ( i = N - 1; i >= 0; i-- )
+		{
+			nnd = ( N < ( N - i ) ? N : N-i );
+			for ( j = nnd; j > 0; j-- )
+			{
+				 derivs[ j ] = derivs[ j ] * x + derivs[ j - 1 ];
+			}
+			derivs[ 0 ] = derivs[ 0 ] * x + COEFFS[ i ];
+		}
+		for ( i = 2; i < N + 1; i++ )
+		{
+			cnst *= i;
+			derivs[ i ] *= cnst;
+		}
+		return derivs;
 	}
 
 	/* ----- Private functions ----- */

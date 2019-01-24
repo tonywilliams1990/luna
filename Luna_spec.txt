@@ -43,6 +43,7 @@ Luna aims to be a header-only library of numerical routines written in C++.
 
 --- ODE ---
 1. ODE_BVP - ODE boundary value problem solver class                          []
+   -> think about 2nd/4th order accuracy (solve function chooses which) 
 2. ODE_IVP - ODE intial value problem solver class                            []
 3. Equation - class for specifying the ODE equation                           []
 
@@ -67,7 +68,7 @@ demonstrate how the code can be used.
 1. Vector_algebra - test Vector and Error (range check) +,-,*,/,dot,norms    [x]
 2. Linear_system - test Matrix and Timer classes               		     [x]
 3. Integration - test Mesh1D, Mesh2D, Special and Quadrature classes          []
-4. Root_finding - test Polynomial, Newton and Residual classes                []
+4. Root_finding - test Polynomial, Newton and Residual classes               [x]
 5. Wave_equation - test Tridiagonal					      []		
 
 
