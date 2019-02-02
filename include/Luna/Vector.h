@@ -155,9 +155,13 @@ namespace Luna
     /// \return The number of elements in the Vector
     std::size_t size() const;
 
-    /// Push back a new element into the end of the Vector
+    /// Push a new element into the end of the Vector
     /// \param new_elem New element to be appended to the end of the Vector
     void push_back( const T& new_elem );
+
+    /// Push a new element into the front of the Vector
+    /// \param new_elem New element to be added to the front of the Vector
+    void push_front( const T& new_elem );
 
     /// Remove the last element in the Vector
     void pop_back();
@@ -556,6 +560,12 @@ namespace Luna
   inline void Vector<T>::push_back( const T& new_elem )
   {
     VECTOR.push_back( new_elem );
+  }
+
+  template <typename T>
+  inline void Vector<T>::push_front( const T& new_elem )
+  {
+    VECTOR.insert( VECTOR.begin(), new_elem );
   }
 
   template <typename T>

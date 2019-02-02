@@ -28,6 +28,7 @@ namespace Luna
 
     void error_header()
     {
+      std::cout << std::endl;
       std::cout << "------------------------------------------" << std::endl;
       std::cout << " Error: A Luna routine has had a problem! " << std::endl;
       std::cout << "------------------------------------------" << std::endl;

@@ -684,6 +684,9 @@ namespace Luna
   template <typename T>
   inline Vector<T> Matrix<T>::get_row( const std::size_t& row )
   {
+    if ( row < 0 || ROWS <= row ){
+      throw Error( "Range error in get_row method." );
+    }
     Vector<T> temp;
     temp = MATRIX[ row ];
     return temp;
@@ -692,6 +695,9 @@ namespace Luna
   template <typename T>
   inline Vector<T> Matrix<T>::get_col( const std::size_t& col )
   {
+    if ( col < 0 || COLS <= col ){
+      throw Error( "Range error in get_col method." );
+    }
     Vector<T> temp( ROWS, 0.0 );
     for ( std::size_t row = 0; row < ROWS; ++row )
     {
