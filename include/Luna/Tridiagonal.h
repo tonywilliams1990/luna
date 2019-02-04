@@ -12,6 +12,7 @@
 
 #include "Error.h"
 #include "Vector.h"
+#include "Matrix.h"
 
 namespace Luna
 {
@@ -23,9 +24,9 @@ namespace Luna
   class Tridiagonal
   {
   private:
-    Vector<T> a;                // Subdiagonal of the matrix
-    Vector<T> b;                // Main diagonal of the matrix
-    Vector<T> c;                // Superdiagonal of the matrix
+    Vector<T> a;                // Subdiagonal of the matrix (size N-1)
+    Vector<T> b;                // Main diagonal of the matrix (size N)
+    Vector<T> c;                // Superdiagonal of the matrix (size N-1)
     std::size_t N;              // Size of the matrix (N x N) and main diagonal
 
   public:
@@ -39,11 +40,17 @@ namespace Luna
     /// Constructor for a Tridiagonal matrix using specified Vectors
     /// \param sub The subdiagonal of the matrix as a Vector
     /// \param main The main diagonal of the matrix as a Vector
-    /// \param super The subdiagonal of the matrix as a Vector
+    /// \param super The superdiagonal of the matrix as a Vector
     Tridiagonal( const Vector<T>& sub, const Vector<T>& main,
                  const Vector<T>& super );
 
-    //TODO constructor just using elements rather than Vectors (like fill_tridiag)
+    /// Constructor for a Tridiagonal matrix using specified elements
+    /// \param sub_elem The element to populate the subdiagonal
+    /// \param main_elem The element to populate the main diagonal
+    /// \param super_elem The element to populate the superdiagonal
+    /// \param n The size of the main diagonal
+    Tridiagonal( const T& sub_elem, const T& main_elem, const T& super_elem,
+                 const std::size_t n );
 
     /// Destructor
     ~Tridiagonal(){}
@@ -65,9 +72,81 @@ namespace Luna
     /// \param j Column index
     T& operator() ( const std::size_t& i, const std::size_t& j );
 
+    /// Copy assignment
+    /// \param original Tridiagonal matrix to be copied
+    /// \return The Tridiagonal matrix to which the original matrix is assigned
+    Tridiagonal<T>& operator=( const Tridiagonal<T>& original );
 
+    /// Unary +
+    /// \return The Tridiagonal matrix
+    Tridiagonal<T> operator+() const;
 
-    //TODO more operator overloading
+    /// Unary -
+    /// \return The negation of the Tridiagonal matrix
+    Tridiagonal<T> operator-() const;
+
+    /// Binary +
+    /// \param m_plus The Tridiagonal matrix to be added
+    /// \return The sum of this Tridiagonal matrix and m_plus
+    Tridiagonal<T> operator+( const Tridiagonal<T>& m_plus ) const;
+
+    /// Binary -
+    /// \param m_minus The Tridiagonal matrix to be subtracted
+    /// \return The subtraction of m_minus from this Tridiagonal matrix
+    Tridiagonal<T> operator-( const Tridiagonal<T>& m_minus ) const;
+
+    /// Scalar multiplication
+    /// \param scalar The scalar to multiply the Tridiagonal matrix by
+    /// \return The Tridiagonal matrix multiplied by the scalar
+    Tridiagonal<T> operator*( const T& scalar ) const;
+    friend Tridiagonal<T> operator*( const T& scalar, Tridiagonal<T>& mat )
+    {
+      return mat * scalar;
+    }
+
+    /// Scalar division
+    /// \param divisor The divisor to divide the Tridiagonal matrix by
+    /// \return The Tridiagonal matrix divided by the divisor
+    Tridiagonal<T> operator/( const T& divisor ) const;
+
+    /// Addition assignment
+    /// \param m_plus The Tridiagonal matrix to be added
+    /// \return A reference to the Tridiagonal matrix after addition by m_plus
+    Tridiagonal<T>& operator+=( const Tridiagonal<T>& m_plus );
+
+    /// Subtraction assignment
+    /// \param m_minus The Tridiagonal matrix to be subtracted
+    /// \return A reference to the Tridiagonal matrix after subtraction by
+    /// m_minus
+    Tridiagonal<T>& operator-=( const Tridiagonal<T>& m_minus );
+
+    /// Scalar multiplication assignment
+    /// \param scalar The scalar to multiply the Tridiagonal matrix by
+    /// \return A reference to the Tridiagonal matrix after multiplication by
+    /// a scalar
+    Tridiagonal<T>& operator*=( const T& scalar );
+
+    /// Scalar division assigment
+    /// \param divisor The divisor to divide the Tridiagonal matrix by
+    /// \return A reference to the Tridiagonal matrix after division by a scalar
+    Tridiagonal<T>& operator/=( const T& divisor );
+
+    /// Constant addition assignment
+    /// \param add The constant to be added to each element
+    /// \return A reference to the Tridiagonal matrix after addition by a
+    /// constant
+    Tridiagonal<T>& operator+=( const T& add );
+
+    /// Constant subtraction assignment
+    /// \param minus The constant to be subtracted from each element
+    /// \return A reference to the Tridiagonal matrix after subtraction by a
+    /// constant
+    Tridiagonal<T>& operator-=( const T& minus );
+
+    /// Tridiagonal matrix Vector multiplication
+    /// \param x The Vector which is to be multiplied
+    /// \return The result vector T * x
+    Vector<T> operator*( Vector<T>& x );
 
     /* ----- Methods ----- */
 
@@ -84,8 +163,20 @@ namespace Luna
     void set_main( const Vector<T>& main );
 
     /// Set the superdiagonal of the matrix
-    /// \param super The subdiagonal of the matrix as a Vector
+    /// \param super The superdiagonal of the matrix as a Vector
     void set_super( const Vector<T>& super );
+
+    /// Set the subdiagonal of the matrix
+    /// \param sub The subdiagonal element of the matrix
+    void set_sub( const T& sub_elem );
+
+    /// Set the main diagonal of the matrix
+    /// \param main The main diagonal element of the matrix
+    void set_main( const T& main_elem );
+
+    /// Set the superdiagonal of the matrix
+    /// \param super The superdiagonal element of the matrix
+    void set_super( const T& super_elem );
 
     /// Get the subdiagonal of the matrix
     /// \return The subdiagonal of the matrix as a Vector
@@ -104,21 +195,42 @@ namespace Luna
     /// \return A Vector of the row of the Tridiagonal matrix
     Vector<T> get_row( const std::size_t& row );
 
-    //TODO transpose_in_place, transpose, conjugate, resize, swap_rows, random
-    //TODO various fill methods -> sub, main, super 
+    /// Replace the current Matrix with its transpose
+    void transpose_in_place();
 
-    /* ----- Norms ----- */
+    /// Return the transpose of the Matrix
+    /// \return The transpose of the Matrix
+    Tridiagonal<T> transpose() const;
 
+    /// Resize the Tridiagonal matrix
+    /// \param size The new size of the main diagonal of the matrix
+    void resize( const std::size_t& size );
+
+    /// Take the complex conjugate of each element of the Tridiagonal matrix
+    /// \return The complex conjugate Tridiagonal matrix
+    Tridiagonal<T> conjugate() const;
+
+    /// Convert the Tridiagonal matrix to a dense Matrix
+    /// \return The dense Matrix form of the Tridiagonal matrix
+    Matrix<T> convert();
 
     /* ----- Solve linear systems ----- */
 
-    //TODO solve tridiagonal system (Vector and Matrix inputs)
+    /// Solve the Tridiagonal system of equations Tu=r where u and r are Vectors
+    /// \param r The right-side Vector of the system of equations
+    /// \return The solution Vector u
+    Vector<T> solve( const Vector<T>& r );
+
+    /// Solve the Tridiagonal system TU=R where U and R are Matrices
+    /// \param R The right-side Matrix of the system of equations
+    /// \return The solution Matrix U
+    Matrix<T> solve( const Matrix<T>& R );
 
     /* ----- Determinant ----- */
 
-
-    /* ----- Inverse ----- */
-
+    /// Calculate the determinant of the matrix
+    /// \return The determinant of the Tridiagonal matrix
+    T det();
 
   };	// End of class Tridiagonal
 
@@ -142,6 +254,16 @@ namespace Luna
     N = main.size();
   }
 
+  template <typename T>
+  inline Tridiagonal<T>::Tridiagonal( const T& sub_elem, const T& main_elem,
+                                      const T& super_elem, const std::size_t n )
+  {
+    a.assign( n - 1, sub_elem );
+    b.assign( n, main_elem );
+    c.assign( n - 1, super_elem );
+    N = n;
+  }
+
   /* ----- Operator overloading ----- */
 
   template <class Type>
@@ -149,23 +271,27 @@ namespace Luna
                                    const Tridiagonal<Type>& m )
   {
     os << std::endl;
-    for (std::size_t j = 0; j < m.N; ++j )
+    if ( m.N == 0 )	{ return os; }
+    if ( m.N > 0 )
     {
-      std::string tabs;
-      for ( std::size_t i = 0; i < j; i++ ){ tabs += "\t"; }
+      for (std::size_t j = 0; j < m.N; ++j )
+      {
+        std::string tabs;
+        for ( std::size_t i = 0; i < j; i++ ){ tabs += "\t"; }
 
-      if ( j == 0 )
-      {
-        os << "\t" << m.b[ 0 ] << "\t" << m.c[ 0 ] << std::endl;
-      }
-      else if ( j == m.N - 1 )
-      {
-        os << tabs << m.a[ m.N - 2 ] << "\t" << m.b[ m.N - 1 ] << std::endl;
-      }
-      else
-      {
-        os << tabs << m.a[ j - 1 ] << "\t" << m.b[ j ]
-           << "\t" << m.c[ j ] << std::endl;
+        if ( j == 0 )
+        {
+          os << "\t" << m.b[ 0 ] << "\t" << m.c[ 0 ] << std::endl;
+        }
+        else if ( j == m.N - 1 )
+        {
+          os << tabs << m.a[ m.N - 2 ] << "\t" << m.b[ m.N - 1 ] << std::endl;
+        }
+        else
+        {
+          os << tabs << m.a[ j - 1 ] << "\t" << m.b[ j ]
+             << "\t" << m.c[ j ] << std::endl;
+        }
       }
     }
     return os;
@@ -175,8 +301,8 @@ namespace Luna
   inline const T& Tridiagonal<T>::operator() ( const std::size_t& i,
                                                const std::size_t& j ) const
   {
-    if ( i<0 || N<=i )	{ throw Error( "Tridiagonal range error: row." );}
-    if ( j<0 || N<=j )	{ throw Error( "Tridiagonal range error: column." );}
+    if ( i<0 || N<=i )	{ throw Error( "Tridiagonal range error: row." ); }
+    if ( j<0 || N<=j )	{ throw Error( "Tridiagonal range error: column." ); }
     // First row
     if ( i == 0 )
     {
@@ -243,6 +369,167 @@ namespace Luna
     }
   }
 
+  template <typename T>
+  inline Tridiagonal<T>& Tridiagonal<T>::operator=(
+                                              const Tridiagonal<T>& original )
+  {
+    if ( this == &original )
+    {
+      return *this;
+    }
+    a = original.a;
+    b = original.b;
+    c = original.c;
+    N = original.N;
+    return *this;
+  }
+
+  template <typename T>
+  inline Tridiagonal<T> Tridiagonal<T>::operator+() const
+  {
+    return *this;
+  }
+
+  template <typename T>
+  inline Tridiagonal<T> Tridiagonal<T>::operator-() const
+  {
+    Tridiagonal<T> temp( *this );
+    temp.a = - a;
+    temp.b = - b;
+    temp.c = - c;
+    return temp;
+  }
+
+  template <typename T>
+  inline Tridiagonal<T> Tridiagonal<T>::operator+(
+                                          const Tridiagonal<T>& m_plus ) const
+  {
+    Tridiagonal<T> temp( *this );
+    if ( m_plus.N != N  )
+    {
+      throw Error( "Tridiagonal matrix dimension error in + operator." );
+    }
+    temp.a = a + m_plus.a;
+    temp.b = b + m_plus.b;
+    temp.c = c + m_plus.c;
+    return temp;
+  }
+
+  template <typename T>
+  inline Tridiagonal<T> Tridiagonal<T>::operator-(
+                                          const Tridiagonal<T>& m_minus ) const
+  {
+    Tridiagonal<T> temp( *this );
+    if ( m_minus.N != N )
+    {
+      throw Error( "Tridiagonal matrix dimension error in - operator." );
+    }
+    temp.a = a - m_minus.a;
+    temp.b = b - m_minus.b;
+    temp.c = c - m_minus.c;
+    return temp;
+  }
+
+  template <typename T>
+  inline Tridiagonal<T> Tridiagonal<T>::operator*( const T& scalar ) const
+  {
+    Tridiagonal<T> temp( *this );
+    temp.a = a * scalar;
+    temp.b = b * scalar;
+    temp.c = c * scalar;
+    return temp;
+  }
+
+  template <typename T>
+  inline Tridiagonal<T> Tridiagonal<T>::operator/( const T& divisor ) const
+  {
+    Tridiagonal<T> temp( *this );
+    temp.a = a / divisor;
+    temp.b = b / divisor;
+    temp.c = c / divisor;
+    return temp;
+
+  }
+
+  template <typename T>
+  inline Tridiagonal<T>& Tridiagonal<T>::operator+=(
+                                                  const Tridiagonal<T>& m_plus )
+  {
+    if ( m_plus.N != N )
+    {
+      throw Error( "Tridiagonal matrix dimension error in += operator." );
+    }
+    a = a + m_plus.a;
+    b = b + m_plus.b;
+    c = c + m_plus.c;
+    return *this;
+  }
+
+  template <typename T>
+  inline Tridiagonal<T>& Tridiagonal<T>::operator-=(
+                                                 const Tridiagonal<T>& m_minus )
+  {
+    if ( m_minus.N != N )
+    {
+      throw Error( "Tridiagonal matrix dimension error in -= operator." );
+    }
+    a = a - m_minus.a;
+    b = b - m_minus.b;
+    c = c - m_minus.c;
+    return *this;
+  }
+
+  template <typename T>
+  inline Tridiagonal<T>& Tridiagonal<T>::operator*=( const T& scalar )
+  {
+    a *= scalar;
+    b *= scalar;
+    c *= scalar;
+    return *this;
+  }
+
+  template <typename T>
+  inline Tridiagonal<T>& Tridiagonal<T>::operator/=( const T& divisor )
+  {
+    a /= divisor;
+    b /= divisor;
+    c /= divisor;
+    return *this;
+  }
+
+  template <typename T>
+  inline Tridiagonal<T>& Tridiagonal<T>::operator+=( const T& add )
+  {
+    a += add;
+    b += add;
+    c += add;
+    return *this;
+  }
+
+  template <typename T>
+  inline Tridiagonal<T>& Tridiagonal<T>::operator-=( const T& minus )
+  {
+    a -= minus;
+    b -= minus;
+    c -= minus;
+    return *this;
+  }
+
+  template <typename T>
+  inline Vector<T> Tridiagonal<T>::operator*( Vector<T>& x )
+  {
+    Vector<T> result( N );
+    result[ 0 ] = b[ 0 ] * x[ 0 ] + c[ 0 ] * x[ 1 ];
+    for ( std::size_t i = 1; i < N - 1; i++ )
+    {
+      result[ i ] = a[ i - 1 ] * x[ i - 1 ] + b[ i ] * x[ i ]
+                  + c[ i ] * x[ i + 1 ];
+    }
+    result[ N - 1 ] = a[ N - 2 ] * x[ N - 2 ] + b[ N - 1 ] * x[ N - 1 ];
+    return result;
+  }
+
+
   /* ----- Methods ----- */
 
   template <typename T>
@@ -279,6 +566,24 @@ namespace Luna
       throw Error( "Tridiagonal error: superdiagonal wrong size." );
     }
     c = super;
+  }
+
+  template <typename T>
+  inline void Tridiagonal<T>::set_sub( const T& sub_elem )
+  {
+    a.assign( N, sub_elem );
+  }
+
+  template <typename T>
+  inline void Tridiagonal<T>::set_main( const T& main_elem )
+  {
+    b.assign( N, main_elem );
+  }
+
+  template <typename T>
+  inline void Tridiagonal<T>::set_super( const T& super_elem )
+  {
+    c.assign( N, super_elem );
   }
 
   template <typename T>
@@ -327,6 +632,148 @@ namespace Luna
     }
     return temp;
   }
+
+  template <typename T>
+  inline void Tridiagonal<T>::transpose_in_place()
+  {
+    Vector<T> temp( a );
+    a = c;
+    c = temp;
+  }
+
+  template <typename T>
+  inline Tridiagonal<T> Tridiagonal<T>::transpose() const
+  {
+    Tridiagonal<T> temp( *this );
+    temp.transpose_in_place();
+    return temp;
+  }
+
+  template <typename T>
+  inline void Tridiagonal<T>::resize( const std::size_t& size )
+  {
+    N = size;
+    a.resize( size - 1 );
+    b.resize( size );
+    c.resize( size - 1 );
+  }
+
+  template <typename T>
+  inline Tridiagonal<T> Tridiagonal<T>::conjugate() const
+  {
+    Tridiagonal<T> temp( *this );
+    temp.a = temp.a.conjugate();
+    temp.b = temp.b.conjugate();
+    temp.c = temp.c.conjugate();
+    return temp;
+  }
+
+  template <typename T>
+  inline Matrix<T> Tridiagonal<T>::convert()
+  {
+    Matrix<T> dense( N, N, 0 );
+    if ( N == 0 ) { throw Error( "Tridiagonal error: zero size matrix." ); }
+    if ( N == 1 ) {
+      dense( 0, 0 ) = b[ 0 ];
+      dense( 0, 1 ) = c[ 0 ];
+    } else if ( N == 2 ) {
+      dense( 0, 0 ) = b[ 0 ];
+      dense( 0, 1 ) = c[ 0 ];
+      dense( N - 1, N - 2 ) = a[ N - 2 ];
+      dense( N - 1, N - 1 ) = b[ N - 1 ];
+    } else {
+      dense( 0, 0 ) = b[ 0 ];
+      dense( 0, 1 ) = c[ 0 ];
+
+      for ( std::size_t i = 1; i < N - 1; i++ )
+      {
+        dense( i, i - 1 ) = a[ i - 1 ];
+        dense( i, i ) = b[ i ];
+        dense( i, i + 1 ) = c[ i ];
+      }
+
+      dense( N - 1, N - 2 ) = a[ N - 2 ];
+      dense( N - 1, N - 1 ) = b[ N - 1 ];
+    }
+    return dense;
+  }
+
+
+  /* ----- Solve linear systems ----- */
+
+  template <typename T>
+  inline Vector<T> Tridiagonal<T>::solve( const Vector<T>& r )
+  {
+    if ( r.size() != N ) {
+      throw Error( "Tridiagonal solve error: Vector incorrect size." );
+    }
+
+    Vector<T> u( N );
+    Vector<T> a_temp( a );
+    Vector<T> c_temp( c );
+    a_temp.push_front( 0.0 );
+    c_temp.push_back( 0.0 );
+
+    T beta( b[ 0 ] );
+    Vector<T> gamma( N );
+
+    if ( b[ 0 ] == 0.0 ) {
+      throw Error( "Tridiagonal solve error: zero on leading diagonal." );
+    }
+
+    u[ 0 ] = r[ 0 ] / beta;
+    for ( int j = 1; j < N; j++ )
+    {
+      gamma[ j ] = c_temp[ j - 1 ] / beta;
+      beta = b[ j ] - a_temp[ j ] * gamma[ j ];
+      if ( beta == 0.0 ) {
+        throw Error( "Tridiagonal solve error: zero pivot." );
+      }
+      u[ j ] = ( r[ j ] - a_temp[ j ] * u[ j - 1 ] ) / beta;
+    }
+
+    for ( int j = (N - 2); j >= 0; j-- )
+    {
+      u[ j ] -= gamma[ j + 1 ] * u[ j + 1 ];
+    }
+
+    return u;
+  }
+
+  template <typename T>
+  inline Matrix<T> Tridiagonal<T>::solve( const Matrix<T>& R )
+  {
+    if ( R.rows() != N ) {
+      throw Error( "Tridiagonal solve error: Matrix rows incorrect size." );
+    }
+    Matrix<T> U( R );
+    Vector<T> u( N );
+    for ( std::size_t j = 0; j < R.cols(); ++j )
+    {
+      u = U.get_col( j );
+      u = solve( u );
+      U.set_col( j, u );
+    }
+    return U;
+  }
+
+  /* ----- Determinant ----- */
+
+  template <typename T>
+  inline T Tridiagonal<T>::det()
+  {
+    Vector<T> f( N + 1 );
+    f[ 0 ] = 1;
+    f[ 1 ] = b[ 0 ] * f[ 0 ];
+
+    for ( std::size_t j = 2; j < N + 1; j++ )
+    {
+      f[ j ] = b[ j - 1 ] * f[ j - 1 ] - a[ j - 2 ] * c[ j - 2 ] * f[ j - 2];
+    }
+    return f[ N ];
+  }
+
+  /* ----- Inverse ----- */
 
 }  // End of namespace Luna
 

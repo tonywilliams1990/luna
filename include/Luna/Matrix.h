@@ -223,7 +223,7 @@ namespace Luna
     Matrix<T> operator*( Matrix<T>& B );
 
     /// Matrix Vector multiplication
-    /// \param x The vector which is to be multiplied
+    /// \param x The Vector which is to be multiplied
     /// \return The result vector A * x
     Vector<T> operator*( Vector<T>& x );
 
