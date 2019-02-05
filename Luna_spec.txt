@@ -13,7 +13,7 @@ Luna aims to be a header-only library of numerical routines written in C++.
 9. The Eigen library will also be used for performance improvements.
 10. Code should use parallelisation wherever applicable to improve performance.
 
-***** Class list *****
+***** Class/File list *****
 --- Core ---
 1.  Error - error handling and reports                                       [x]
 2.  Vector - a generic vector class for use with numeric types               [x]
@@ -29,6 +29,7 @@ Luna aims to be a header-only library of numerical routines written in C++.
 12. Interpolate - interpolation methods for 1D and 2D mesh objects (utility)  []
 13. MonteCarlo - a class for utilising Monte Carlo methods  		      []
 14. Quadrature - Numerical integration of functions  			      []
+15. Utility - General utility functions 				      []
 
 --- Sparse ---
 1. Tridiagonal - a tridiagonal matrix class (including solver)    	     [x]

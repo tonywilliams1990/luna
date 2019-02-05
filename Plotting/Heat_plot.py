@@ -34,20 +34,30 @@ Tmax = time[-1]
 u.shape = (N+1,J+1)
 
 files = []
-print("Saving frames...")
+print("Saving frames ...")
 
 for i in range(N+1):
     plt.cla()
     axes = plt.gca()
     axes.set_xlim([0,1])
     axes.set_ylim([0,110])
-    plt.plot(x_axis, u[i,:], "k-")
+    plt.xlabel('x')
+    plt.ylabel('u(x)')
+    title = 'Heat equation'
+    plt.title(title)
+    time_str = 't=%1.2f' %time[i]
+    plt.text(0.07, 0.94, time_str,
+         horizontalalignment='center',
+         transform = axes.transAxes)
+    plt.plot(x_axis, u[0,:], "k--", label="u(x,0)")
+    plt.plot(x_axis, u[i,:], "k-", label="u(x,t)")
+    plt.legend(loc='upper right')
     fname = '_tmp%03d.png' % i
     plt.savefig(fname)
     files.append(fname)
 
 print("Saving complete.")
-print("Making movie Heat_equation.avi - this may take a while.")
+print("Making movie Heat_equation.avi ...")
 fps = N / (Tmax * slowdown)
 FNULL = open(os.devnull, 'w')  # For supressing subprocess output
 subprocess.call("mencoder 'mf://_tmp*.png' -mf type=png:fps=" + str(fps) +
