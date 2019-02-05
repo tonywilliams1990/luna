@@ -4,12 +4,23 @@ import subprocess
 import numpy as np
 import matplotlib.mlab as mlab
 import matplotlib.pyplot as plt
-from itertools import cycle
+from argparse import ArgumentParser
+
+parser = ArgumentParser()
+parser.add_argument('integers', metavar='INTS', type=int, nargs='+',
+                    help='Values for J and N steps.')
+
+args = parser.parse_args()
+
+if len(args.integers)==2:
+    J = args.integers[0]
+    N = args.integers[1]
+else:
+    raise ValueError("J and N step values not specified.")
 
 slowdown = 5
-J = 50
-N = 500
-data = np.loadtxt( "./Heat_equation_J_"+ str(J) + "_N_" + str(N) + ".dat" )
+
+data = np.loadtxt( "./DATA/Heat_equation_J_"+ str(J) + "_N_" + str(N) + ".dat" )
 
 x = data[:,0]
 t = data[:,1]
@@ -23,6 +34,7 @@ Tmax = time[-1]
 u.shape = (N+1,J+1)
 
 files = []
+print("Saving frames...")
 
 for i in range(N+1):
     plt.cla()
@@ -31,19 +43,19 @@ for i in range(N+1):
     axes.set_ylim([0,110])
     plt.plot(x_axis, u[i,:], "k-")
     fname = '_tmp%03d.png' % i
-    print('Saving frame', fname)
     plt.savefig(fname)
     files.append(fname)
 
-print('Making movie Heat_equation.mpg - this may take a while')
+print("Saving complete.")
+print("Making movie Heat_equation.avi - this may take a while.")
 fps = N / (Tmax * slowdown)
-subprocess.call("mencoder 'mf://_tmp*.png' -mf type=png:fps=" + str(fps)
-                + " -ovc lavc " +
-                "-lavcopts vcodec=wmv2 -oac copy -o Heat_equation.mpg"
-                , shell=True)
-#TODO tidy up
-
-#plt.show()
+FNULL = open(os.devnull, 'w')  # For supressing subprocess output
+subprocess.call("mencoder 'mf://_tmp*.png' -mf type=png:fps=" + str(fps) +
+                " -ovc lavc -lavcopts vcodec=msmpeg4v2 -oac mp3lame -o " +
+                "./DATA/Heat_equation.avi", shell=True, stdout=FNULL,
+                stderr=subprocess.STDOUT)
+#vcodec = wmv2 for .mpg and -oac copy -o
+print("Movie complete.")
 
 # cleanup
 for fname in files:

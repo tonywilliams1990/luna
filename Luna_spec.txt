@@ -31,7 +31,7 @@ Luna aims to be a header-only library of numerical routines written in C++.
 14. Quadrature - Numerical integration of functions  			      []
 
 --- Sparse ---
-1. Tridiagonal - a tridiagonal matrix class (including solver)    	      []
+1. Tridiagonal - a tridiagonal matrix class (including solver)    	     [x]
 2. BandedMatrix - a banded matrix class (including banded solver)             []
 3. SparseVector - a sparse vector class                                       []
 4. SparseMatrix - a sparse matrix class (including sparse linear algebra)     []  

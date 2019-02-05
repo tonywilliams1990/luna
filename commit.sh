@@ -5,9 +5,9 @@ echo "Commit script"
 make clean
 
 # Move unnecessary files
-#mv ./DATA ~/Desktop/DATA_temp
-#mkdir ./DATA
-#cp ~/Desktop/DATA_temp/.gitkeep ./DATA/.gitkeep
+mv ./DATA ~/Desktop/DATA_temp
+mkdir ./DATA
+cp ~/Desktop/DATA_temp/.gitkeep ./DATA/.gitkeep
 #rm -rf .sconf_temp
 
 # Setup commit message
@@ -26,7 +26,7 @@ git commit -m $message
 git push origin master
 
 # Move the files back
-#rm -r DATA
-#mv ~/Desktop/DATA_temp ./DATA
+rm -r DATA
+mv ~/Desktop/DATA_temp ./DATA
 
 exit 0

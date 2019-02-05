@@ -8,6 +8,7 @@
 using namespace std;
 using namespace Luna;
 
+//TODO Utility.h
 std::string stringify( const int &val )
 {
   std::stringstream temp;
@@ -28,15 +29,15 @@ int main()
   cout << "----- Heat equation -----" << endl;
 
   double T_max( 1.0 );                // Maxium simulation time
-  int N( 500 );                        // Number of time steps
-  int J( 50 );                        // Number of spacial steps
+  int N( 20 );                       // Number of time steps
+  int J( 10 );                        // Number of spacial steps
   double dt( T_max / ( 1. * N ) );    // Time step
   double dx( 1.0 / J );               // Spatial step
   double alpha( 1.0 );                // Thermal diffusivity
 
   double mu( alpha * dt / ( dx * dx ) );
 
-  // Mesh for storing the data
+  // Mesh for storing the solution
   Vector<double> t_nodes, x_nodes;
   t_nodes.linspace( 0.0, T_max, N + 1 );
   x_nodes.linspace( 0.0, 1.0, J + 1 );
@@ -50,22 +51,26 @@ int main()
   Implicit( J, J )     = 1.0;
 
   Tridiagonal<double> Explicit( mu, 2. - 2. * mu, mu, J + 1 );
-  Explicit( 0, 0 )     = 1.0;
-  Explicit( 0, 1 )     = 0.0;
-  Explicit( J, J - 1 ) = 0.0;
-  Explicit( J, J )     = 1.0;
+  Explicit( 0, 0 )     =   1.0;
+  Explicit( 0, 1 )     =   0.0;
+  Explicit( J, J - 1 ) =   0.0;
+  Explicit( J, J )     = - 1.0;
 
   // Initial condition u_0(x) = 100 * sin( pi * x )
   Vector<double> current( J + 1, 0.0 );
-  for ( std::size_t j = 0; j < J + 1; j++ )
+  current[ 0 ] = 0.0;
+  solution( 0, 0, 0 ) = current[ 0 ];
+  for ( std::size_t j = 1; j < J; j++ )
   {
     current[ j ] = 100 * sin( M_PI * j * dx );
     solution( j, 0, 0 ) = current[ j ];
   }
+  current[ J ] = 0.0;
+  solution( J, 0, 0 ) = current[ J ];
 
   cout << " * dx = " << dx << endl;
   cout << " * dt = " << dt << endl;
-  //cout << " * u_0(x) = " << current << endl;
+  cout << " * u_0(x) = " << current << endl;
 
   Vector<double> next( J + 1 );
 
@@ -73,7 +78,6 @@ int main()
   {
     current = Explicit * current;
     next = Implicit.solve( current );
-    //cout << " * u_"<< i <<"(x) = " << next << endl;
     current = next;
     for ( std::size_t j = 0; j < J + 1; j++ )
     {
@@ -81,14 +85,14 @@ int main()
     }
   }
 
-  string outstring( "Heat_equation" );
+  string outstring( "./DATA/Heat_equation" );
   outstring += "_J_" + stringify( J );
   outstring += "_N_" + stringify( N );
   outstring += ".dat";
   solution.output( outstring );
 
-
-  //TODO Utility stringify functions
+  cout << " * For an animation of the solution run:" << endl;
+  cout << "python Plotting/Heat_plot.py " << J << " " << N << endl;
 
   cout << "--- FINISHED ---" << endl;
 
