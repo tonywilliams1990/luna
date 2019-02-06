@@ -37,6 +37,7 @@ Luna aims to be a header-only library of numerical routines written in C++.
 3. SparseVector - a sparse vector class                                       []
 4. SparseMatrix - a sparse matrix class (including sparse linear algebra)     []  
     -> biconjugate gradient method? ( linbcg.h ) + parallel multiplication/solve
+5. Triplet - a class of tuples for use with SparseMatrix		      []
 
 --- Eigenvalue ---
 1. Eigensystem - a class for solving linear eigensystems                      []

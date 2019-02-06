@@ -163,8 +163,20 @@ namespace Luna
     /// \param new_elem New element to be added to the front of the Vector
     void push_front( const T& new_elem );
 
+    /// Insert new elements into the Vector at a specified position
+    /// \param pos The position to insert the elements
+    /// \param new_elem The new element to be inserted
+    /// \param num The number of new elements to be inserted ( 1 by default )
+    void insert( const std::size_t& pos, const T& new_elem,
+                 const std::size_t& num = 1 );
+
     /// Remove the last element in the Vector
     void pop_back();
+
+    /// Find the first element in the Vector that is equal to a given value
+    /// \param val The value to find
+    /// \return The index of the value in the Vector (if not found returns last)
+    std::size_t find( const T& val );
 
     /// Returns whether the Vector is empty
     /// \return true if the Vector is size 0 and false otherwise
@@ -569,9 +581,30 @@ namespace Luna
   }
 
   template <typename T>
+  inline void Vector<T>::insert( const std::size_t& pos, const T& new_elem,
+                                 const std::size_t& num )
+  {
+    VECTOR.insert( VECTOR.begin() + pos, num, new_elem );
+  }
+
+  template <typename T>
   inline void Vector<T>::pop_back()
   {
     VECTOR.pop_back();
+  }
+
+  template <typename T>
+  inline std::size_t Vector<T>::find( const T& val )
+  {
+    std::size_t index( 0 );
+    std::vector<std::size_t>::iterator it;
+    it = std::find( VECTOR.begin(), VECTOR.end(), val );
+    for ( std::vector<std::size_t>::iterator i = VECTOR.begin();
+          i != it; i++ )
+    {
+      index++;
+    }
+    return index;
   }
 
   template <typename T>

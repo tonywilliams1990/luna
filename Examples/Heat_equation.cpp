@@ -13,15 +13,6 @@ using namespace std;
 using namespace Luna;
 
 
-
-std::string stringify( const double &val, int p )
-{
-  std::stringstream temp;
-  temp.precision( p );
-  temp << val;
-  return temp.str();
-}
-
 int main()
 {
   cout << "---------------------- Heat equation ----------------------" << endl;

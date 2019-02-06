@@ -7,6 +7,8 @@
 #include <stdexcept>
 #include <vector>
 #include <complex>
+#include <algorithm>
+#include <tuple>
 #include <cassert>
 #include <stdlib.h>
 #include <chrono>
