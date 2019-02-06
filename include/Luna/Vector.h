@@ -149,6 +149,10 @@ namespace Luna
     /// \return A reference to the Vector after subtraction by a constant
     Vector<T>& operator-=( const T& minus );
 
+    /// Push a new element into the end of the Vector (overload () to push_back)
+    /// \param new_elem New element to be appended to the end of the Vector
+    void operator() ( const T& new_elem );
+
     /* ----- Methods ----- */
 
     /// Size of the Vector
@@ -558,6 +562,12 @@ namespace Luna
     std::transform ( VECTOR.cbegin(), VECTOR.cend(), VECTOR.begin(),
                      std::bind( std::minus<T>(), std::placeholders::_1, minus ));
     return *this;
+  }
+
+  template <typename T>
+  inline void Vector<T>::operator() ( const T& new_elem )
+  {
+    VECTOR.push_back( new_elem );
   }
 
   /* ----- Methods ----- */

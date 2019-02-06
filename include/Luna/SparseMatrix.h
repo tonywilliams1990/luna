@@ -15,6 +15,7 @@
 
 #include "Error.h"
 #include "Vector.h"
+#include "Triplet.h"
 
 namespace Luna
 {
@@ -218,7 +219,10 @@ namespace Luna
     }
     if ( COL_START.size() < COLS + 1 )
     {
-      throw Error( "SparseMatrix insert error: Some columns have no entries." );
+      std::string problem;
+      problem  = "SparseMatrix insert error: Some columns have no entries.\n";
+      problem += "Use Vector<Triplet> instead.";
+      throw Error( problem );
     }
     // Convert to triplet format
     Vector<std::size_t> col_index = this->col_index();

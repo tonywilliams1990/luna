@@ -52,5 +52,19 @@ int main()
   sparse.scale( 2.0 );
   cout << " * val       = " << sparse.val() << endl;
 
+  typedef Triplet<double> Td;
+  Td triplet( 0, 1, 5.0 );
+  triplet( 4, 3, 7.0 );
+  cout << " * triplet.row() = " << triplet.row() << endl;
+  cout << " * triplet.col() = " << triplet.col() << endl;
+  cout << " * triplet.val() = " << triplet.val() << endl;
+
+  Vector<double> a( 2, 0.0 );
+  cout << " a = " << a << endl;
+  a( 0.4 );
+  cout << " a = " << a << endl;
+
+  //TODO test Vector<Triplet> + output
+
   cout << "--- FINISHED ---" << endl;
 }

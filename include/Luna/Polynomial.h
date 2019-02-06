@@ -14,7 +14,7 @@
 
 namespace Luna
 {
-  /// A templated base class to be inherited by objects that define residuals
+  /// A templated class for defining polynomials
 	template <class T>
 
 	class Polynomial
