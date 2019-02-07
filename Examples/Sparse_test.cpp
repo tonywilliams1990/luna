@@ -1,6 +1,6 @@
 /// \file  Sparse_test.cpp
 /// \ingroup Examples
-/// TODO
+/// TODO description / rename file
 
 #include "Luna/Core"
 #include "Luna/Sparse"
@@ -12,21 +12,9 @@ int main()
 {
   cout << "--------------------- Sparse Matrices --------------------" << endl;
 
-  Vector<double> val( 9 );
-  Vector<std::size_t> row_ind( 9 );
-  Vector<std::size_t> col_ptr( 6 );
-
-  val[ 0 ] = 3.; val[ 1 ] = 4.; val[ 2 ] = 7.; val[ 3 ] = 1.; val[ 4 ] = 5.;
-  val[ 5 ] = 2.; val[ 6 ] = 9.; val[ 7 ] = 6.; val[ 8 ] = 5.;
-
-  row_ind[ 0 ] = 0; row_ind[ 1 ] = 1; row_ind[ 2 ] = 2; row_ind[ 3 ] = 0;
-  row_ind[ 4 ] = 2; row_ind[ 5 ] = 0; row_ind[ 6 ] = 2; row_ind[ 7 ] = 4;
-  row_ind[ 8 ] = 4;
-
-  col_ptr[ 0 ] = 0; col_ptr[ 1 ] = 1; col_ptr[ 2 ] = 3; col_ptr[ 3 ] = 5;
-  col_ptr[ 4 ] = 8; col_ptr[ 5 ] = 9;
-
-
+  Vector<double> val( { 3., 4., 7., 1., 5., 2., 9., 6., 5. } );
+  Vector<std::size_t> row_ind( { 0, 1, 2, 0, 2, 0, 2, 4, 4 } );
+  Vector<std::size_t> col_ptr( { 0, 1, 3, 5, 8, 9 } );
 
   SparseMatrix<double> sparse( 5, 5, val, row_ind, col_ptr );
 
@@ -36,11 +24,6 @@ int main()
   cout << " * col_start = " << sparse.col_start() << endl;
   cout << " * nonzeros  = " << sparse.nonzero() << endl;
 
-  //Vector<std::size_t> col_ind;
-  //col_ind = sparse.col_index();
-  //cout << " * col_index = " << col_ind << endl;
-  //cout << " * col_start = " << sparse.col_start_from_index( col_ind ) << endl;
-
   sparse.insert( 1, 3, 2.0 );
   sparse.insert( 1, 0, 5.0 );
 
@@ -49,22 +32,38 @@ int main()
   cout << " * col_start = " << sparse.col_start() << endl;
   cout << " * nonzeros  = " << sparse.nonzero() << endl;
 
-  sparse.scale( 2.0 );
-  cout << " * val       = " << sparse.val() << endl;
-
   typedef Triplet<double> Td;
-  Td triplet( 0, 1, 5.0 );
-  triplet( 4, 3, 7.0 );
-  cout << " * triplet.row() = " << triplet.row() << endl;
-  cout << " * triplet.col() = " << triplet.col() << endl;
-  cout << " * triplet.val() = " << triplet.val() << endl;
+  Vector<Td> triplets { Td( 0, 3, 2.0 ), Td( 2, 3, 9.0 ), Td( 4, 3, 6.0 ),
+                        Td( 4, 4, 5.0 ), Td( 0, 0, 3.0 ), Td( 1, 1, 4.0 ) };
 
-  Vector<double> a( 2, 0.0 );
-  cout << " a = " << a << endl;
-  a( 0.4 );
-  cout << " a = " << a << endl;
+  triplets( Td( 2, 1, 7.0 ) );
+  triplets( Td( 0, 2, 1.0 ) );
+  triplets( Td( 2, 2, 5.0 ) );
 
-  //TODO test Vector<Triplet> + output
+  SparseMatrix<double> sparse_trip( 5, 5, triplets );
+  cout << " * val       = " << sparse_trip.val() << endl;
+  cout << " * row_index = " << sparse_trip.row_index() << endl;
+  cout << " * col_start = " << sparse_trip.col_start() << endl;
+  cout << " * nonzeros  = " << sparse_trip.nonzero() << endl;
+
+  Vector<double> x { 1, 2, 3, 4, 5 };
+  cout << " * x = " << x << endl;
+
+  Vector<double> b;
+  b = sparse_trip.multiply( x );
+  cout << " * A * x = " << b << endl;
+  b = sparse_trip.transpose_multiply( x );
+  cout << " * A^T * x = " << b << endl;
+
+  SparseMatrix<double> transp;
+  transp = sparse_trip.transpose();
+  cout << " * val       = " << transp.val() << endl;
+  cout << " * row_index = " << transp.row_index() << endl;
+  cout << " * col_start = " << transp.col_start() << endl;
+  cout << " * nonzeros  = " << transp.nonzero() << endl;
+
+  b = transp.multiply( x );
+  cout << " * A^T * x = " << b << endl;
 
   cout << "--- FINISHED ---" << endl;
 }

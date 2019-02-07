@@ -13,6 +13,7 @@
 #include <numeric>
 #include <complex>
 #include <cmath>
+#include <initializer_list>
 
 #include "Error.h"
 
@@ -57,6 +58,10 @@ namespace Luna
     /// \param size Size of the Vector
     /// \param elem Element to fill each entry of the Vector with
     Vector( const std::size_t& size, const T& elem );
+
+    /// Constructor from a list of elements
+    /// \param list A list of elements to store in the Vector
+    Vector( const std::initializer_list<T>& list );
 
     /// Copy constructor
     /// \param source Vector to be copied when initialising
@@ -391,6 +396,15 @@ namespace Luna
   inline Vector<T>::Vector( const std::size_t& size,
                             const T& elem ) : VECTOR( size, elem )
   {}
+
+  template <typename T>
+  inline Vector<T>::Vector( const std::initializer_list<T>& list )
+  {
+    for ( auto i = list.begin(); i != list.end(); ++i )
+    {
+      VECTOR.push_back( *i );
+    }
+  }
 
   template <typename T>
   inline Vector<T>::Vector( const Vector<T>& source )

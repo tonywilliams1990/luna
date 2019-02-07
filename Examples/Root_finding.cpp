@@ -90,7 +90,7 @@ int main()
 
   cout << endl << "--------- Polynomial equations ---------" << endl;
   cout << " * Define the function f(x) = -1 + 2x + x^2" << endl;
-  Luna::Polynomial<double> f( { -1.0, 2.0, 1.0, 1.0 } );
+  Luna::Polynomial<double> f( std::vector<double> { -1.0, 2.0, 1.0, 1.0 } );
   cout << " * Access the x coefficient f[1] = " << f[1] << endl;
   cout << " * Evaluate the polynomial at x = 0.1 " << endl
        << " * f( 0.1 ) = " << f( 0.1 ) << endl << endl;

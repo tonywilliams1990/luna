@@ -38,7 +38,21 @@ namespace Luna
 
   public:
 
-    //TODO constructor from Vector of triplets( or tuples ) - check no empty columns
+    SparseMatrix() : ROWS( 0 ), COLS( 0 ), N( 0 ),
+                  COL_START(), ROW_INDEX(), VAL()
+    {}
+
+    SparseMatrix( const std::size_t& rows, const std::size_t& cols,
+                  const std::size_t& n ) : ROWS( rows ), COLS( cols ), N( n ),
+                  COL_START( cols + 1, 0 ), ROW_INDEX( n, 0 ), VAL( n, 0.0 )
+    {}
+
+    /// Constructor from Vector of Triplets
+    /// \param rows The number of rows in the matrix.
+    /// \param cols The number of columns in the matrix.
+    /// \param triplets Vector of Triplets
+    SparseMatrix( const std::size_t& rows, const std::size_t& cols,
+                  Vector< Triplet<T> >& triplets );
 
     /// Constructor from Vectors
     /// \param rows The number of rows in the matrix.
@@ -103,7 +117,73 @@ namespace Luna
     /// \param scalar The scalar to multiply the SparseMatrix by
     void scale( const T& scalar );
 
+    /// Get a specific value if it exists
+    /// \param row The row index
+    /// \param col The column index
+    /// \return The value stored at that location
+    const T& get( const std::size_t& row, const std::size_t& col ) const;
+
+
+    /// Multiply the SparseMatrix A by a Vector to the right
+    /// \param x The vector which is to be multiplied
+    /// \return The result vector A * x
+    Vector<T> multiply( const Vector<T>& x );
+
+    /// Multiply the transpose of the SparseMatrix A^T by a Vector to the right
+    /// \param x The vector which is to be multiplied
+    /// \return The result vector A^T * x
+    Vector<T> transpose_multiply( const Vector<T>& x );
+
+    /// Return the transpose of the SparseMatrix
+    /// \return The transpose of the SparseMatrix
+    SparseMatrix<T> transpose() const;
+
   };	// End of class SparseMatrix
+
+  template <typename T>
+  inline SparseMatrix<T>::SparseMatrix( const std::size_t& rows,
+                                        const std::size_t& cols,
+                                        Vector< Triplet<T> >& triplets )
+  {
+    ROWS = rows;
+    COLS = cols;
+    // Sort the triplets for column major ordering
+    std::sort( triplets.begin(), triplets.end() );
+
+    Vector<std::size_t> col_index;
+    std::size_t row, col;
+    T val;
+    N = 0;
+
+    for ( std::size_t i = 0; i < triplets.size(); i++ )
+    {
+      row = triplets[ i ].get_row();
+      col = triplets[ i ].get_col();
+      if ( row<0 || ROWS<=row )	{
+        throw Error( "SparseMatrix range error: dimension 1 in triplets." );
+      }
+      if ( col<0 || COLS<=col )	{
+        throw Error( "SparseMatrix range error: dimension 2 in triplets." );
+      }
+      val = triplets[ i ].get_val();
+
+      // Check there are no duplicates
+      for ( std::size_t k = 0; k < N; k++ )
+      {
+        if ( ROW_INDEX[ k ] == row && col_index[ k ] == col )
+        {
+          throw Error( "SparseMatrix: duplicate entry in triplet list." );
+        }
+      }
+      // Push into Vectors
+      ROW_INDEX.push_back( row );
+      col_index.push_back( col );
+      VAL.push_back( val );
+      N++;
+    }
+    // Convert col_index to COL_START
+    COL_START = this->col_start_from_index( col_index );
+  }
 
   template <typename T>
   inline SparseMatrix<T>::SparseMatrix( const std::size_t& rows,
@@ -264,6 +344,114 @@ namespace Luna
   {
     VAL *= scalar;
   }
+
+  template <typename T>
+  inline const T& SparseMatrix<T>::get( const std::size_t& row,
+                                        const std::size_t& col ) const
+  {
+    if ( row<0 || ROWS<=row )	{
+      throw Error( "SparseMatrix range error in get method: dimension 1." );
+    }
+    if ( col<0 || COLS<=col )	{
+      throw Error( "SparseMatrix range error in get method: dimension 2." );
+    }
+    if ( COL_START.size() < COLS + 1 )
+    {
+      std::string problem;
+      problem  = "SparseMatrix get error: Some columns have no entries.";
+      throw Error( problem );
+    }
+
+    Vector<std::size_t> col_index = this->col_index();
+
+    for ( std::size_t k = 0; k < N; k++)
+    {
+      if ( ROW_INDEX[ k ] == row && col_index[ k ] == col )
+      {
+        return VAL[ k ];
+      }
+      else
+      {
+        throw Error( "SparseMatrix get error: entry does not exist." );
+      }
+    }
+  }
+
+  template <typename T>
+  inline Vector<T> SparseMatrix<T>::multiply( const Vector<T>& x )
+  {
+    if ( x.size() != COLS )
+    {
+      throw Error( "SparseMatrix multiply: dimensions do not agree." );
+    }
+    Vector<T> y( ROWS, 0 );
+    for ( std::size_t j = 0; j < COLS; j++ )
+    {
+      for ( std::size_t i = COL_START[ j ]; i < COL_START[ j + 1 ]; i++ )
+      {
+        y[ ROW_INDEX[ i ] ] += VAL[ i ] * x[ j ];
+      }
+    }
+    return y;
+  }
+
+  template <typename T>
+  inline Vector<T> SparseMatrix<T>::transpose_multiply( const Vector<T>& x )
+  {
+    if ( x.size() != ROWS )
+    {
+      std::string problem;
+      problem  = "SparseMatrix transpose_multiply: dimensions do not agree.";
+      throw Error( problem );
+    }
+    Vector<T> y( COLS, 0 );
+    for ( std::size_t i = 0; i < COLS; i++ )
+    {
+      for ( std::size_t j = COL_START[ i ]; j < COL_START[ i + 1 ]; j++ )
+      {
+        y[ i ] += VAL[ j ] * x[ ROW_INDEX[ j ] ];
+      }
+    }
+    return y;
+  }
+
+  template <typename T>
+  inline SparseMatrix<T> SparseMatrix<T>::transpose() const
+  {
+    std::size_t i, j, k, index, m = ROWS, n = COLS;
+    SparseMatrix<T> at( n, m, N );
+
+    Vector<int> count( m, 0 );
+    for ( i = 0; i < n; i++ )
+    {
+      for ( j = COL_START[ i ]; j < COL_START[ i + 1 ]; j++ )
+      {
+        k = ROW_INDEX[ j ];
+        count[ k ]++;
+      }
+    }
+    for ( j = 0; j < m; j++ )
+    {
+      at.COL_START[ j + 1 ] = at.COL_START[ j ] + count[ j ];
+    }
+    for ( j = 0; j < m; j++ )
+    {
+      count[ j ] = 0;
+    }
+    for ( i = 0; i < n; i++ )
+    {
+      for ( j = COL_START[ i ]; j < COL_START[ i + 1 ]; j++ )
+      {
+        k = ROW_INDEX[ j ];
+        index = at.COL_START[ k ] + count[ k ];
+        at.ROW_INDEX[ index ] = i;
+        at.VAL[ index ] = VAL[ j ];
+        count[ k ]++;
+      }
+    }
+    return at;
+  }
+
 
 }  // End of namespace Luna
 
