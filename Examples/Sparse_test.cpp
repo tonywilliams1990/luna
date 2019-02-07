@@ -39,6 +39,7 @@ int main()
   triplets( Td( 2, 1, 7.0 ) );
   triplets( Td( 0, 2, 1.0 ) );
   triplets( Td( 2, 2, 5.0 ) );
+  triplets( Td( 3, 2, 1.0 ) );
 
   SparseMatrix<double> sparse_trip( 5, 5, triplets );
   cout << " * val       = " << sparse_trip.val() << endl;
@@ -46,24 +47,38 @@ int main()
   cout << " * col_start = " << sparse_trip.col_start() << endl;
   cout << " * nonzeros  = " << sparse_trip.nonzero() << endl;
 
-  Vector<double> x { 1, 2, 3, 4, 5 };
+  Vector<double> b { 1, 2, 3, 4, 5 };
+  Vector<double> x( 5, 0.0 );
+
+  int iter( 0 );
+  double err( 0.0 );
+  sparse_trip.solve_bcg( b, x, 1, 1e-8, 100, iter, err );
+
   cout << " * x = " << x << endl;
+  cout << " * iter = " << iter << endl;
+  cout << " * err = " << scientific << err << endl;
 
-  Vector<double> b;
-  b = sparse_trip.multiply( x );
-  cout << " * A * x = " << b << endl;
-  b = sparse_trip.transpose_multiply( x );
-  cout << " * A^T * x = " << b << endl;
+  //TODO need to test a complex sparse matrix
 
-  SparseMatrix<double> transp;
-  transp = sparse_trip.transpose();
-  cout << " * val       = " << transp.val() << endl;
-  cout << " * row_index = " << transp.row_index() << endl;
-  cout << " * col_start = " << transp.col_start() << endl;
-  cout << " * nonzeros  = " << transp.nonzero() << endl;
+  typedef std::complex<double> cmplx;
+  typedef Triplet<cmplx> Tc;
 
-  b = transp.multiply( x );
-  cout << " * A^T * x = " << b << endl;
+  Vector<Tc> trips;
+
+  trips( Tc( 0, 0, cmplx( 1.0, 1.0 ) ) );
+  trips( Tc( 0, 1, cmplx( -1.0, 0.0 ) ) );
+  trips( Tc( 1, 0, cmplx( 1.0, -1.0 ) ) );
+  trips( Tc( 1, 1, cmplx( 1.0, 1.0 ) ) );
+
+  SparseMatrix<cmplx> sparse_cmplx( 2, 2, trips );
+  Vector<cmplx> c{ 1.0, 1.0 };
+  Vector<cmplx> y( 2, 0.0 );
+  cout << " * c = " << c << endl;
+  sparse_cmplx.solve_bcg( c, y, 1, 1e-8, 100, iter, err );
+  cout << " * y = " << y << endl;
+  cout << " * B * y = " << sparse_cmplx.multiply( y ) << endl;
+
+  //cout << trips << endl;
 
   cout << "--- FINISHED ---" << endl;
 }

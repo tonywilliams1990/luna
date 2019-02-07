@@ -658,10 +658,10 @@ namespace Luna
   template <typename T>
   inline Vector<double> Vector<T>::abs() const
   {
-    Vector<double> abs_vals( size() );
-    for (size_t i=0; i < size(); ++i)
+    Vector<double> abs_vals;
+    for (size_t i=0; i < this->size(); ++i)
     {
-      abs_vals.VECTOR[ i ] = std::abs( VECTOR[ i ] ) ;
+      abs_vals.push_back( std::abs( VECTOR[ i ] ) ) ;
     }
     return abs_vals;
   }
