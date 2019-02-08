@@ -147,96 +147,24 @@ namespace Luna
     /// \param iter_max The maximum number of iterations to be performed
     /// \param iter The number of iterations actually taken
     /// \param err The estimated error
-    void solve_bcg( const Vector<T>& b, Vector<T>& x, const int itol,
+    void solve_BiCG( const Vector<T>& b, Vector<T>& x, const int itol,
                     const double tol, const int iter_max, int& iter,
-                    double& err )
-    {
-      //TODO check dimensions agree
-      const double EPS( 1e-14 );
-      T ak, akden, bk, bkden = 1.0, bknum, dxnrm, xnrm, zm1nrm;
-      double bnrm, znrm;
-      int j, n = b.size();
-      Vector<T> p( n ), pp( n ), r( n ), rr( n ), z( n ), zz( n );
+                    double& err );
 
-      r = this->multiply( x );
-      for ( j = 0; j < n; j++ )
-      {
-         r[ j ]  = b[ j ] - r[ j ];
-         rr[ j ] = r[ j ];
-      }
+    /// Diagonal preconditioner for the solve_BiCG method
+    /// \param b Right hand side Vector
+    /// \param x Solution Vector
+    void diagonal_precondtioner( const Vector<T>& b, Vector<T>& x );
 
-      if ( itol == 1 ) {
-        bnrm = b.norm_2();
-        this->asolve( r, z, 0 );
-      }
-      else if ( itol == 2 ) {
-        this->asolve( b, z, 0 );
-        bnrm = z.norm_2();
-        this->asolve( r, z, 0 );
-      }
-      else {
-        throw Error( "SparseMatrix solve_bcg error: illegal itol." );
-      }
+    /// Identity preconditioner for the solve_BiCG method
+    /// \param b Right hand side Vector
+    /// \param x Solution Vector
+    void identity_preconditioner( const Vector<T>& b, Vector<T>& x );
 
-      // Main loop
-      while ( iter < iter_max )
-      {
-        ++iter;
-        this->asolve( rr, zz, 1 );
-        for ( bknum = 0.0, j = 0; j < n; j++ )
-        {
-          bknum += z[ j ] * rr[ j ];
-        }
-        if ( iter == 1 ) {
-          for ( j = 0; j < n; j++ )
-          {
-            p[ j ] = z[ j ];
-            pp[ j ] = zz[ j ];
-          }
-        } else {
-          bk = bknum / bkden;
-          for ( j = 0; j < n; j++ )
-          {
-            p[ j ] = bk * p[ j ] + z[ j ];
-            pp[ j ] = bk * pp[ j ] + zz[ j ];
-          }
-        }
-        bkden = bknum;
-        z = this->multiply( p );
-        for ( akden = 0.0, j = 0; j < n; j++ )
-        {
-          akden += z[ j ] * pp[ j ];
-        }
-        ak = bknum / akden;
-        zz = this->transpose_multiply( pp );
-        for ( j = 0; j < n; j++ )
-        {
-          x[ j ]  += ak * p[ j ];
-          r[ j ]  -= ak * z[ j ];
-          rr[ j ] -= ak * zz[ j ];
-        }
-        this->asolve(r,z,0);
 
-        if ( itol == 1 ) {
-          err = r.norm_2() / bnrm;
-        } else if ( itol == 2 ) {
-          err = z.norm_2() / bnrm;
-        }
-        
-        if ( err <= tol ) break;
+    //TODO BiCGSTAB method -> this requires no preconditioner (but is slower)
+    // https://math.nist.gov/iml++/
 
-      } // end of while loop
-    }
-
-    //TODO a proper preconditioner
-    void asolve( const Vector<T>& b, Vector<T>& x, const int itrnsp )
-    {
-      int i;
-      for ( i = 0; i < ROWS; i++ )
-      {
-        x[ i ] =  b[ i ];
-      }
-    }
 
   };	// End of class SparseMatrix
 
@@ -550,6 +478,125 @@ namespace Luna
       }
     }
     return at;
+  }
+
+  template <typename T>
+  inline void SparseMatrix<T>::solve_BiCG( const Vector<T>& b, Vector<T>& x,
+  const int itol, const double tol, const int iter_max, int& iter, double& err )
+  {
+    if ( ROWS != b.size() )
+    {
+      throw Error( "solve_BiCG error: ROWS != b.size() " );
+    }
+    if ( ROWS != COLS )
+    {
+      throw Error( "solve_BiCG error: Matrix is not square.");
+    }
+    if ( b.size() != x.size() )
+    {
+      throw Error( "solve_BiCG error: b.size() != x.size() " );
+    }
+
+    T ak, akden, bk, bkden = 1.0, bknum;
+    double bnrm, znrm;
+    int j, n = b.size();
+    Vector<T> p( n ), pp( n ), r( n ), rr( n ), z( n ), zz( n );
+
+    r = this->multiply( x );
+    for ( j = 0; j < n; j++ )
+    {
+       r[ j ]  = b[ j ] - r[ j ];
+       rr[ j ] = r[ j ];
+    }
+
+    if ( itol == 1 ) {
+      bnrm = b.norm_2();
+      this->diagonal_precondtioner( r, z );           // replaces asolve in NR
+    }
+    else if ( itol == 2 ) {
+      this->diagonal_precondtioner( b, z );
+      bnrm = z.norm_2();
+      this->diagonal_precondtioner( r, z );
+    }
+    else {
+      throw Error( "SparseMatrix solve_bcg error: illegal itol." );
+    }
+
+    // Main loop
+    while ( iter < iter_max )
+    {
+      ++iter;
+      this->diagonal_precondtioner( rr, zz );
+      for ( bknum = 0.0, j = 0; j < n; j++ )
+      {
+        bknum += z[ j ] * rr[ j ];
+      }
+      if ( iter == 1 ) {
+        for ( j = 0; j < n; j++ )
+        {
+          p[ j ] = z[ j ];
+          pp[ j ] = zz[ j ];
+        }
+      } else {
+        bk = bknum / bkden;
+        for ( j = 0; j < n; j++ )
+        {
+          p[ j ] = bk * p[ j ] + z[ j ];
+          pp[ j ] = bk * pp[ j ] + zz[ j ];
+        }
+      }
+      bkden = bknum;
+      z = this->multiply( p );
+      for ( akden = 0.0, j = 0; j < n; j++ )
+      {
+        akden += z[ j ] * pp[ j ];
+      }
+      ak = bknum / akden;
+      zz = this->transpose_multiply( pp );
+      for ( j = 0; j < n; j++ )
+      {
+        x[ j ]  += ak * p[ j ];
+        r[ j ]  -= ak * z[ j ];
+        rr[ j ] -= ak * zz[ j ];
+      }
+      this->diagonal_precondtioner( r, z );
+
+      if ( itol == 1 ) {
+        err = r.norm_2() / bnrm;
+      } else if ( itol == 2 ) {
+        err = z.norm_2() / bnrm;
+      }
+      if ( err <= tol ) break;
+    } // end of while loop
+  }
+
+  template <typename T>
+  inline void SparseMatrix<T>::diagonal_precondtioner( const Vector<T>& b,
+                                                       Vector<T>& x )
+  {
+    Vector<std::size_t> col_index = this->col_index();
+    for ( std::size_t i = 0; i < ROWS; i++ )
+    {
+      for ( std::size_t k = 0; k < N; k++)
+      {
+        if ( ROW_INDEX[ k ] == i && col_index[ k ] == i ) {
+          x[ i ] = b[ i ] / VAL[ k ];
+        }
+        else {
+          x[ i ] = b[ i ];
+        }
+      }
+    }
+  }
+
+  template <typename T>
+  inline void SparseMatrix<T>::identity_preconditioner( const Vector<T>& b,
+                                                        Vector<T>& x )
+  {
+    for ( std::size_t i = 0; i < ROWS; i++ )
+    {
+      x[ i ] =  b[ i ];
+    }
   }
 
 

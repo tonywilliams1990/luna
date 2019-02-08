@@ -52,7 +52,7 @@ int main()
 
   int iter( 0 );
   double err( 0.0 );
-  sparse_trip.solve_bcg( b, x, 1, 1e-8, 100, iter, err );
+  sparse_trip.solve_BiCG( b, x, 1, 1e-8, 100, iter, err );
 
   cout << " * x = " << x << endl;
   cout << " * iter = " << iter << endl;
@@ -74,7 +74,9 @@ int main()
   Vector<cmplx> c{ 1.0, 1.0 };
   Vector<cmplx> y( 2, 0.0 );
   cout << " * c = " << c << endl;
-  sparse_cmplx.solve_bcg( c, y, 1, 1e-8, 100, iter, err );
+
+  sparse_cmplx.solve_BiCG( c, y, 2, 1e-8, 100, iter, err );
+
   cout << " * y = " << y << endl;
   cout << " * B * y = " << sparse_cmplx.multiply( y ) << endl;
 
