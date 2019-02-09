@@ -1,6 +1,9 @@
 /// \file SparseMatrix.h
 /// A templated sparse matrix class
 /// TODO
+// Maybe this class should just be a wrapper to Eigen::SparseMatrix to make it
+// more useable like TSL::SparseMatrix but not using separate storage for the
+// matrix. Still set from triplets and use insert method rather than indexing 
 
 #ifndef SPARSEMATRIX_H
 #define SPARSEMATRIX_H
@@ -16,6 +19,7 @@
 #include "Error.h"
 #include "Vector.h"
 #include "Triplet.h"
+#include "Timer.h"
 
 namespace Luna
 {
@@ -161,9 +165,22 @@ namespace Luna
     /// \param x Solution Vector
     void identity_preconditioner( const Vector<T>& b, Vector<T>& x );
 
+    /// Solve the system of equations Ax=b using the stabilised biconjugate
+    /// gradient method BiCGSTAB
+    /// \param b The right-hand side Vector of the system of equations
+    /// \param x Initial guess x_0 the solution is also stored here
+    /// \param max_iter The maximun number of iterations ( the number of
+    /// iterations performed will also be returned here )
+    /// \param tol Tolerance for convergence ( the error residual is also
+    /// returned here )
+    /// \return Success or failure code ( 0 = success, 1 = exceeded max_iter)
+    int solve_BiCGSTAB( const Vector<T>& b, Vector<T>& x, int& max_iter,
+                        double& tol );
 
-    //TODO BiCGSTAB method -> this requires no preconditioner (but is slower)
-    // https://math.nist.gov/iml++/
+    //TODO sparse LU - maybe just use Eigen ? Wrapper to construct Eigen
+    // SparseMatrix from Triplets ? Or convert to Eigen matrix afterwards?
+    // innerIndexPtr (row), outerIndexPtr (col), valuePtr
+
 
 
   };	// End of class SparseMatrix
@@ -177,7 +194,6 @@ namespace Luna
     COLS = cols;
     // Sort the triplets for column major ordering
     std::sort( triplets.begin(), triplets.end() );
-
     Vector<std::size_t> col_index;
     std::size_t row, col;
     T val;
@@ -195,14 +211,14 @@ namespace Luna
       }
       val = triplets[ i ].get_val();
 
-      // Check there are no duplicates
-      for ( std::size_t k = 0; k < N; k++ )
+      // Check there are no duplicates (really slows things down)
+      /*for ( std::size_t k = 0; k < N; k++ )
       {
         if ( ROW_INDEX[ k ] == row && col_index[ k ] == col )
         {
           throw Error( "SparseMatrix: duplicate entry in triplet list." );
         }
-      }
+      }*/
       // Push into Vectors
       ROW_INDEX.push_back( row );
       col_index.push_back( col );
@@ -296,23 +312,23 @@ namespace Luna
   inline Vector<std::size_t> SparseMatrix<T>::col_start_from_index(
                                       const Vector<std::size_t>& col_index )
   {
-    Vector<std::size_t> temp;
-    std::size_t max_col_index;
-    max_col_index = col_index[ col_index.size() - 1 ];
-    std::size_t count( 0 );
-    Vector<std::size_t> gaps;
-    for ( std::size_t j = 0; j < max_col_index + 1; j++ )
+    Vector<std::size_t> col_start( COLS + 1, 0 );
+    // Computer number of elements in each column
+    for ( std::size_t n = 0; n < N; ++n )
     {
-      count = std::count( col_index.begin(),
-                          col_index.begin() + col_index.size(), j );
-      gaps.push_back( count );
+      col_start[ col_index[ n ] ]++;
     }
-    temp.push_back( 0 );
-    for ( std::size_t k = 1; k < gaps.size() + 1; k++ )
+    std::size_t sum( 0 );
+    std::size_t k;
+    // Cumulative sum
+    for ( k = 0; k < COLS; ++k )
     {
-      temp.push_back( temp[ k - 1 ] + gaps[ k - 1 ] );
+      std::size_t ck = col_start[ k ];
+      col_start[ k ] = sum;
+      sum += ck;
     }
-    return temp;
+    col_start[ COLS ] = sum;
+    return col_start;
   }
 
   template <typename T>
@@ -413,11 +429,16 @@ namespace Luna
       throw Error( "SparseMatrix multiply: dimensions do not agree." );
     }
     Vector<T> y( ROWS, 0 );
-    for ( std::size_t j = 0; j < COLS; j++ )
+
+    std::size_t i, j;
+    T xj;
+
+    for ( j = 0; j < COLS; ++j )
     {
-      for ( std::size_t i = COL_START[ j ]; i < COL_START[ j + 1 ]; i++ )
+      xj = x[ j ];
+      for ( i = COL_START[ j ]; i < COL_START[ j + 1 ]; ++i )
       {
-        y[ ROW_INDEX[ i ] ] += VAL[ i ] * x[ j ];
+        y[ ROW_INDEX[ i ] ] += VAL[ i ] * xj;
       }
     }
     return y;
@@ -433,9 +454,12 @@ namespace Luna
       throw Error( problem );
     }
     Vector<T> y( COLS, 0 );
-    for ( std::size_t i = 0; i < COLS; i++ )
+
+    std::size_t i, j;
+
+    for ( i = 0; i < COLS; i++ )
     {
-      for ( std::size_t j = COL_START[ i ]; j < COL_START[ i + 1 ]; j++ )
+      for ( j = COL_START[ i ]; j < COL_START[ i + 1 ]; j++ )
       {
         y[ i ] += VAL[ j ] * x[ ROW_INDEX[ j ] ];
       }
@@ -511,12 +535,15 @@ namespace Luna
 
     if ( itol == 1 ) {
       bnrm = b.norm_2();
-      this->diagonal_precondtioner( r, z );           // replaces asolve in NR
+      //this->diagonal_precondtioner( r, z );           // replaces asolve in NR
+      this->identity_preconditioner( r, z );
     }
     else if ( itol == 2 ) {
-      this->diagonal_precondtioner( b, z );
+      //this->diagonal_precondtioner( b, z );
+      this->identity_preconditioner( b, z );
       bnrm = z.norm_2();
-      this->diagonal_precondtioner( r, z );
+      //this->diagonal_precondtioner( r, z );
+      this->identity_preconditioner( r, z );
     }
     else {
       throw Error( "SparseMatrix solve_bcg error: illegal itol." );
@@ -526,7 +553,8 @@ namespace Luna
     while ( iter < iter_max )
     {
       ++iter;
-      this->diagonal_precondtioner( rr, zz );
+      //this->diagonal_precondtioner( rr, zz );
+      this->identity_preconditioner( rr, zz );
       for ( bknum = 0.0, j = 0; j < n; j++ )
       {
         bknum += z[ j ] * rr[ j ];
@@ -559,7 +587,8 @@ namespace Luna
         r[ j ]  -= ak * z[ j ];
         rr[ j ] -= ak * zz[ j ];
       }
-      this->diagonal_precondtioner( r, z );
+      //this->diagonal_precondtioner( r, z );
+      this->identity_preconditioner( r, z );
 
       if ( itol == 1 ) {
         err = r.norm_2() / bnrm;
@@ -597,6 +626,88 @@ namespace Luna
     {
       x[ i ] =  b[ i ];
     }
+  }
+
+  template <typename T>
+  inline int SparseMatrix<T>::solve_BiCGSTAB( const Vector<T>& b, Vector<T>& x, int& max_iter,
+                      double& tol )
+  {
+    // https://math.nist.gov/iml++/
+    double resid;
+    Vector<T> p( x.size(), 0.0 ), phat, s, shat, t, v( x.size(), 0.0 );
+    Vector<T> temp;
+
+    T rho_1 = 1.0;
+    T rho_2 = 1.0;
+    T alpha = 1.0;
+    T beta;
+    T omega = 1.0;
+
+    double normb = b.norm_2();
+    Vector<T> r;
+    r = this->multiply( x );
+    r = b - r;
+    Vector<T> rtilde = r;
+
+    if ( normb == 0.0 )
+    {
+      normb = 1.;
+    }
+    if ( (resid = r.norm_2() / normb ) <= tol )
+    {
+      tol = resid;
+      max_iter = 0;
+      return 0;
+    }
+
+    for ( int i = 1; i <= max_iter; i++ )
+    {
+      rho_1 = rtilde.dot( r );
+      if ( rho_1 == 0.0 ) {
+        tol = r.norm_2() / normb;
+        return 2;
+      }
+      if ( i == 1 ) {
+        p = r;
+      } else {
+        beta = ( rho_1 / rho_2 ) * ( alpha / omega );
+        temp = omega * v;
+        temp = p - temp;
+        temp *= beta;
+        p = r + temp;
+        //p = r + beta[0] * ( p - omega[0] * v );
+      }
+      phat = p; //could have preconditioner here phat = M.solve(p);
+      v = this->multiply( phat );
+      alpha = rho_1 / rtilde.dot( v );
+      s = r - alpha * v;
+      if ( ( resid = s.norm_2() / normb ) <= tol ) {
+        x += alpha * phat;
+        tol = resid;
+        max_iter = i;
+        return 0;
+      }
+      shat = s; //could have preconditioner here shat = M.solve(s);
+      t = this->multiply( shat );
+      omega = t.dot( s ) / t.dot( t );
+      x += alpha * phat;
+      x += omega * shat;
+      r = s - omega * t;
+
+      rho_2 = rho_1;
+      if ( ( resid = r.norm_2() / normb ) < tol ) {
+        tol = resid;
+        max_iter = i;
+        return 0;
+      }
+      if ( omega == 0.0 ) {
+        tol = r.norm_2() / normb;
+        return 3;
+      }
+    }
+
+    tol = resid;
+    return 1;
   }
 
 

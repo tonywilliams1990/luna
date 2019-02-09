@@ -76,11 +76,24 @@ int main()
   cout << " * c = " << c << endl;
 
   sparse_cmplx.solve_BiCG( c, y, 2, 1e-8, 100, iter, err );
+  iter = 1000;
+  double tol( 1e-8 );
+  y.random();
+  int code;
+  code = sparse_cmplx.solve_BiCGSTAB( c, y, iter, tol );
 
   cout << " * y = " << y << endl;
   cout << " * B * y = " << sparse_cmplx.multiply( y ) << endl;
+  cout << " * iter = " << iter << endl;
+  cout << " * code = " << code << endl;
 
-  //cout << trips << endl;
+  iter = 1000;
+  tol = 1e-8;
+  x.random();
+  code = sparse_trip.solve_BiCGSTAB( b, x, iter, tol );
+  cout << " * x = " << x << endl;
+  cout << " * iter = " << iter << endl;
+  cout << " * code = " << code << endl;
 
   cout << "--- FINISHED ---" << endl;
 }

@@ -7,6 +7,7 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
+#include <random>
 #include <fstream>
 #include <algorithm>
 #include <functional>
@@ -300,6 +301,9 @@ namespace Luna
     /// \param p The exponent to raise each of the elements to
     /// \return Vector of the elements raised to the power p
     Vector<T> power( const double& p ) const;
+
+    /// Fill the Vector with random elements (between -1 and 1)
+    void random();
 
     /* ----- Norms ----- */
 
@@ -866,6 +870,43 @@ namespace Luna
       power.VECTOR.push_back( std::pow( VECTOR[ i ], p ) );
     }
     return power;
+  }
+
+  template <>
+  inline void Vector<double>::random()
+  {
+    std::mt19937_64 rng;
+    // initialize the random number generator with time-dependent seed
+    auto start = std::chrono::high_resolution_clock::now();
+    uint64_t timeSeed = start.time_since_epoch().count();
+    std::seed_seq ss{uint32_t(timeSeed & 0xffffffff), uint32_t(timeSeed>>32)};
+    rng.seed(ss);
+    // initialize a uniform distribution between -1 and 1
+    std::uniform_real_distribution<double> unif(-1, 1);
+    for ( std::size_t i = 0; i < VECTOR.size(); ++i )
+    {
+      double num( unif(rng) );
+      VECTOR[ i ] = num;
+    }
+  }
+
+  template <>
+  inline void Vector< std::complex<double> >::random()
+  {
+    std::mt19937_64 rng;
+    // initialize the random number generator with time-dependent seed
+    auto start = std::chrono::high_resolution_clock::now();
+    uint64_t timeSeed = start.time_since_epoch().count();
+    std::seed_seq ss{uint32_t(timeSeed & 0xffffffff), uint32_t(timeSeed>>32)};
+    rng.seed(ss);
+    // initialize a uniform distribution between -1 and 1
+    std::uniform_real_distribution<double> unif(-1, 1);
+    for ( std::size_t i = 0; i < VECTOR.size(); ++i )
+    {
+      double real( unif(rng) );
+      double imag( unif(rng) );
+      VECTOR[ i ] = std::complex<double> ( real, imag );
+    }
   }
 
   /* ----- Norms ----- */
