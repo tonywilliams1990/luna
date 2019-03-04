@@ -50,13 +50,13 @@ int main()
   Vector<double> b { 1, 2, 3, 4, 5 };
   Vector<double> x( 5, 0.0 );
 
-  int iter( 0 );
-  double err( 0.0 );
-  sparse_trip.solve_BiCG( b, x, 1, 1e-8, 100, iter, err );
+  int iter( 100 );
+  double tol( 1e-8 );
+  int code = sparse_trip.solve_BiCG( b, x, iter, tol );
 
   cout << " * x = " << x << endl;
   cout << " * iter = " << iter << endl;
-  cout << " * err = " << scientific << err << endl;
+  cout << " * err = " << scientific << tol << endl;
 
   //TODO need to test a complex sparse matrix
 
@@ -75,11 +75,12 @@ int main()
   Vector<cmplx> y( 2, 0.0 );
   cout << " * c = " << c << endl;
 
-  sparse_cmplx.solve_BiCG( c, y, 2, 1e-8, 100, iter, err );
+  iter = 100;
+  tol = 1e-8;
+  sparse_cmplx.solve_BiCG( c, y, iter, tol );
   iter = 1000;
-  double tol( 1e-8 );
+  tol = 1e-8;
   y.random();
-  int code;
   code = sparse_cmplx.solve_BiCGSTAB( c, y, iter, tol );
 
   cout << " * y = " << y << endl;

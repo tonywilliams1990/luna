@@ -12,12 +12,13 @@ int main()
 {
   cout << "--------------------- Laplace's equation --------------------" << endl;
 
-  int N( 64 );                              // Number of intervals
+  int N( 256 );                              // Number of intervals
   double dx( 1.0 / N );                      // Step size
   std::size_t size( ( N + 1 ) * ( N + 1 ) ); // Size of the linear system
   Vector<double> rhs( size, 0.0 );           // Right hand side vector
   Vector<double> u( size, 0.0 );             // Solution vector
   Vector<double> u_exact( size, 0.0 );       // Exact solution
+  Vector<double> u_guess( size, 0.0 );       // Guess solution
 
   typedef Triplet<double> Td;
   Vector<Td> triplets;
@@ -25,7 +26,6 @@ int main()
   double x( 0.0 );
   double y( 0.0 );
   std::size_t row( 0 );
-
 
   // x = 0 boundary ( u = y / ( 1 + y^2 ) )
   std::size_t i( 0 );
@@ -84,47 +84,49 @@ int main()
     {
       y = j * dx;
       u_exact[ row ] = y / ( ( 1. + x ) * ( 1. + x ) + y * y );
+      u_guess[ row ] = y / ( 1. + x * x + y * y );
       ++row;
     }
   }
 
-  // Random initial guess
+  // Create the sparse matrix from the triplets
+  SparseMatrix<double> sparse( size, size, triplets );
+
+  // Solve with Biconjugate gradient method
   //u.random();
-  u = u_exact;
-  //Timer timer;
-  //timer.start();
-  SparseMatrix<double> sparse( size, size, triplets ); //This takes much longer than the solve ?
-  //timer.print();
-  int iter( 0 );
-  double err( 0.0 );
+  u = u_guess;
+  double tol( 1e-8 );
+  int code;
+  int max_iter( 10000 );
 
   double time_start = omp_get_wtime();
-  sparse.solve_BiCG( rhs, u, 1, 1e-8, 10000, iter, err );
-  //timer.print();
-  //timer.stop();
+  code = sparse.solve_BiCG( rhs, u, max_iter, tol );
   double time_total = omp_get_wtime() - time_start;
+
   cout << " * time = " << time_total << endl;
-  cout << " * iter = " << iter << endl;
-  cout << " * err = " << scientific << err << endl;
+  cout << " * iter = " << max_iter << endl;
+  cout << " * error estimate = " << scientific << tol << endl;
   u = u - u_exact;
-  cout << " * BiCG error = " << u.norm_2() << endl;
-
-  // Solve with BiCGSTAB
-  iter = 1000;              // Maximum number of iterations
-  double tol( 1e-8 );
-  //u.random();
-  u = u_exact;
-  int code;
-  time_start = omp_get_wtime();
-
-  code = sparse.solve_BiCGSTAB( rhs, u, iter, tol );
-
-  time_total = omp_get_wtime() - time_start;
-  cout << " * time = " << time_total << endl;
-  cout << " * iter = " << iter << endl;
-  u = u - u_exact;
-  cout << " * BiCGSTAB error = " << u.norm_2() << endl;
+  cout << " * BiCG solution error = " << u.norm_2() << endl;
   cout << " * code = " << code << endl;
+  cout << endl;
+
+  // Solve with QMR
+  max_iter = 10000;
+  //u.random();
+  u = u_guess;
+  tol = 1e-8;
+
+  time_start = omp_get_wtime();
+  code = sparse.solve_QMR( rhs, u, max_iter, tol );
+  time_total = omp_get_wtime() - time_start;
+
+  cout << " * time = " << time_total << endl;
+  cout << " * iter = " << max_iter << endl;
+  u = u - u_exact;
+  cout << " * QMR solution error = " << u.norm_2() << endl;
+  cout << " * code = " << code << endl;
+  cout << endl;
 
   cout << "--- FINISHED ---" << endl;
 }

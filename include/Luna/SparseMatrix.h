@@ -3,7 +3,12 @@
 /// TODO
 // Maybe this class should just be a wrapper to Eigen::SparseMatrix to make it
 // more useable like TSL::SparseMatrix but not using separate storage for the
-// matrix. Still set from triplets and use insert method rather than indexing 
+// matrix. Still set from triplets and use insert method rather than indexing.
+
+/*
+First try implementing a conjugate-gradient method for symmetric matrices and
+see if that helps with the ill-conditioning in the Laplace problem.
+*/
 
 #ifndef SPARSEMATRIX_H
 #define SPARSEMATRIX_H
@@ -142,23 +147,22 @@ namespace Luna
     /// \return The transpose of the SparseMatrix
     SparseMatrix<T> transpose() const;
 
-
     /// Solve the system of equations Ax=b using the biconjugate gradient method
     /// \param b The right-hand side Vector of the system of equations
     /// \param x Initial guess x_0 the solution is also stored here
+    /// \param max_iter The maximum number of iterations to be performed
+    /// ( the number of iterations actually taken is returned here )
+    /// \param tol Tolerance for convergence ( the estimated error is returned
+    /// here )
     /// \param itol Convergence test specifier
-    /// \param tol Tolerance for convergence
-    /// \param iter_max The maximum number of iterations to be performed
-    /// \param iter The number of iterations actually taken
-    /// \param err The estimated error
-    void solve_BiCG( const Vector<T>& b, Vector<T>& x, const int itol,
-                    const double tol, const int iter_max, int& iter,
-                    double& err );
+    /// \return Success or failure code ( 0 = success, 1 = exceeded max_iter )
+    int solve_BiCG( const Vector<T>& b, Vector<T>& x, int& max_iter,
+                    double& tol, int itol = 1 );
 
     /// Diagonal preconditioner for the solve_BiCG method
     /// \param b Right hand side Vector
     /// \param x Solution Vector
-    void diagonal_precondtioner( const Vector<T>& b, Vector<T>& x );
+    void diagonal_preconditioner( const Vector<T>& b, Vector<T>& x );
 
     /// Identity preconditioner for the solve_BiCG method
     /// \param b Right hand side Vector
@@ -173,14 +177,34 @@ namespace Luna
     /// iterations performed will also be returned here )
     /// \param tol Tolerance for convergence ( the error residual is also
     /// returned here )
-    /// \return Success or failure code ( 0 = success, 1 = exceeded max_iter)
+    /// \return Success or failure code ( 0 = success, 1 = exceeded max_iter )
     int solve_BiCGSTAB( const Vector<T>& b, Vector<T>& x, int& max_iter,
                         double& tol );
 
-    //TODO sparse LU - maybe just use Eigen ? Wrapper to construct Eigen
-    // SparseMatrix from Triplets ? Or convert to Eigen matrix afterwards?
-    // innerIndexPtr (row), outerIndexPtr (col), valuePtr
+    /// Solve the system of equations Ax=b using the conjugate gradient method
+    /// \param b The right-hand side Vector of the system of equations
+    /// \param x Initial guess x_0 the solution is also stored here
+    /// \param max_iter The maximun number of iterations ( the number of
+    /// iterations performed will also be returned here )
+    /// \param tol Tolerance for convergence ( the error residual is also
+    /// returned here )
+    /// \return Success or failure code ( 0 = success, 1 = exceeded max_iter )
+    int solve_CG( const Vector<T>& b, Vector<T>& x, int& max_iter,
+                  double& tol );
 
+    /// Solve the system of equations Ax=b using the Quasi-minimal residual
+    /// method
+    /// \param b The right-hand side Vector of the system of equations
+    /// \param x Initial guess x_0 the solution is also stored here
+    /// \param max_iter The maximun number of iterations ( the number of
+    /// iterations performed will also be returned here )
+    /// \param tol Tolerance for convergence ( the error residual is also
+    /// returned here )
+    /// \return Success or failure code ( 0 = success, 1 = exceeded max_iter )
+    int solve_QMR( const Vector<T>& b, Vector<T>& x, int& max_iter,
+                  double& tol );
+
+    //TODO GMRES, SVD to find condition number?
 
 
   };	// End of class SparseMatrix
@@ -505,8 +529,8 @@ namespace Luna
   }
 
   template <typename T>
-  inline void SparseMatrix<T>::solve_BiCG( const Vector<T>& b, Vector<T>& x,
-  const int itol, const double tol, const int iter_max, int& iter, double& err )
+  inline int SparseMatrix<T>::solve_BiCG( const Vector<T>& b, Vector<T>& x,
+                                          int& max_iter, double& tol, int itol )
   {
     if ( ROWS != b.size() )
     {
@@ -521,17 +545,14 @@ namespace Luna
       throw Error( "solve_BiCG error: b.size() != x.size() " );
     }
 
-    T ak, akden, bk, bkden = 1.0, bknum;
-    double bnrm, znrm;
+    T alpha, beta, rho_1, rho_2 = 1.0;
+    double bnrm, znrm, err;
     int j, n = b.size();
     Vector<T> p( n ), pp( n ), r( n ), rr( n ), z( n ), zz( n );
 
     r = this->multiply( x );
-    for ( j = 0; j < n; j++ )
-    {
-       r[ j ]  = b[ j ] - r[ j ];
-       rr[ j ] = r[ j ];
-    }
+    r = b - r;
+    rr = r;
 
     if ( itol == 1 ) {
       bnrm = b.norm_2();
@@ -546,61 +567,57 @@ namespace Luna
       this->identity_preconditioner( r, z );
     }
     else {
-      throw Error( "SparseMatrix solve_bcg error: illegal itol." );
+      throw Error( "SparseMatrix solve_BiCG error: illegal itol." );
     }
 
     // Main loop
-    while ( iter < iter_max )
+    int iter( 0 );
+    while ( iter < max_iter )
     {
       ++iter;
       //this->diagonal_precondtioner( rr, zz );
       this->identity_preconditioner( rr, zz );
-      for ( bknum = 0.0, j = 0; j < n; j++ )
-      {
-        bknum += z[ j ] * rr[ j ];
-      }
+
+      rho_1 = z.dot( rr );
+
       if ( iter == 1 ) {
-        for ( j = 0; j < n; j++ )
-        {
-          p[ j ] = z[ j ];
-          pp[ j ] = zz[ j ];
-        }
+        p = z;
+        pp = zz;
       } else {
-        bk = bknum / bkden;
-        for ( j = 0; j < n; j++ )
-        {
-          p[ j ] = bk * p[ j ] + z[ j ];
-          pp[ j ] = bk * pp[ j ] + zz[ j ];
-        }
+        beta = rho_1 / rho_2;
+        p = beta * p + z;
+        pp = beta * pp + zz;
       }
-      bkden = bknum;
+
       z = this->multiply( p );
-      for ( akden = 0.0, j = 0; j < n; j++ )
-      {
-        akden += z[ j ] * pp[ j ];
-      }
-      ak = bknum / akden;
+      alpha = rho_1 / z.dot( pp );
       zz = this->transpose_multiply( pp );
-      for ( j = 0; j < n; j++ )
-      {
-        x[ j ]  += ak * p[ j ];
-        r[ j ]  -= ak * z[ j ];
-        rr[ j ] -= ak * zz[ j ];
-      }
+      x += alpha * p;
+      r -= alpha * z;
+      rr -= alpha * zz;
+
       //this->diagonal_precondtioner( r, z );
       this->identity_preconditioner( r, z );
+
+      rho_2 = rho_1;
 
       if ( itol == 1 ) {
         err = r.norm_2() / bnrm;
       } else if ( itol == 2 ) {
         err = z.norm_2() / bnrm;
       }
-      if ( err <= tol ) break;
+      if ( err <= tol )
+      {
+        max_iter = iter;
+        tol = err;
+        return 0;
+      }
     } // end of while loop
+    return 1;
   }
 
   template <typename T>
-  inline void SparseMatrix<T>::diagonal_precondtioner( const Vector<T>& b,
+  inline void SparseMatrix<T>::diagonal_preconditioner( const Vector<T>& b,
                                                        Vector<T>& x )
   {
     Vector<std::size_t> col_index = this->col_index();
@@ -629,13 +646,15 @@ namespace Luna
   }
 
   template <typename T>
-  inline int SparseMatrix<T>::solve_BiCGSTAB( const Vector<T>& b, Vector<T>& x, int& max_iter,
-                      double& tol )
+  inline int SparseMatrix<T>::solve_BiCGSTAB( const Vector<T>& b, Vector<T>& x,
+                                              int& max_iter, double& tol )
   {
-    // https://math.nist.gov/iml++/
+    // https://math.nist.gov/iml++
     double resid;
-    Vector<T> p( x.size(), 0.0 ), phat, s, shat, t, v( x.size(), 0.0 );
-    Vector<T> temp;
+    Vector<T> p( x.size(), 0.0 ), phat( x.size(), 0.0 );
+    Vector<T> s( x.size(), 0.0 ), shat( x.size(), 0.0 );
+    Vector<T> v( x.size(), 0.0 );
+    Vector<T> temp, t;
 
     T rho_1 = 1.0;
     T rho_2 = 1.0;
@@ -653,7 +672,7 @@ namespace Luna
     {
       normb = 1.;
     }
-    if ( (resid = r.norm_2() / normb ) <= tol )
+    if ( ( resid = r.norm_2() / normb ) <= tol )
     {
       tol = resid;
       max_iter = 0;
@@ -671,13 +690,12 @@ namespace Luna
         p = r;
       } else {
         beta = ( rho_1 / rho_2 ) * ( alpha / omega );
-        temp = omega * v;
-        temp = p - temp;
-        temp *= beta;
-        p = r + temp;
-        //p = r + beta[0] * ( p - omega[0] * v );
+        temp = p - omega * v;
+        p = r + beta * temp;
+        //p = r + beta * ( p - omega * v );
       }
-      phat = p; //could have preconditioner here phat = M.solve(p);
+      //phat = p; //could have preconditioner here phat = M.solve(p);
+      this->identity_preconditioner( p, phat );
       v = this->multiply( phat );
       alpha = rho_1 / rtilde.dot( v );
       s = r - alpha * v;
@@ -687,7 +705,8 @@ namespace Luna
         max_iter = i;
         return 0;
       }
-      shat = s; //could have preconditioner here shat = M.solve(s);
+      //shat = s; //could have preconditioner here shat = M.solve(s);
+      this->identity_preconditioner( s, shat );
       t = this->multiply( shat );
       omega = t.dot( s ) / t.dot( t );
       x += alpha * phat;
@@ -695,6 +714,7 @@ namespace Luna
       r = s - omega * t;
 
       rho_2 = rho_1;
+
       if ( ( resid = r.norm_2() / normb ) < tol ) {
         tol = resid;
         max_iter = i;
@@ -710,6 +730,195 @@ namespace Luna
     return 1;
   }
 
+  template <typename T>
+  inline int SparseMatrix<T>::solve_CG( const Vector<T>& b, Vector<T>& x,
+                                        int& max_iter, double& tol )
+  {
+    double resid;
+    Vector<T> p( x.size(), 0.0 ), z( x.size(), 0.0 ), q( x.size(), 0.0 );
+    Vector<T> temp;
+
+    T rho = 1.0;
+    T rho_1 = 1.0;
+    T alpha = 1.0;
+    T beta;
+
+    double normb = b.norm_2();
+    Vector<T> r;
+    r = this->multiply( x );
+    r = b - r;
+
+    if ( normb == 0.0 )
+    {
+      normb = 1.;
+    }
+    if ( ( resid = r.norm_2() / normb ) <= tol )
+    {
+      tol = resid;
+      max_iter = 0;
+      return 0;
+    }
+
+    for ( int i = 1; i <= max_iter; i++ )
+    {
+      //this->diagonal_preconditioner( r, z );
+      //this->identity_preconditioner( r, z );
+      z = r; // Could have preconditioner here?
+      rho = r.dot( z );
+
+      if ( i == 1 ) {
+        p = z;
+      } else {
+        beta = rho / rho_1;
+        p = z + beta * p;
+      }
+
+      q = this->multiply( p );
+      alpha = rho / p.dot( q );
+
+      x += alpha * p;
+      r -= alpha * q;
+
+      if ( ( resid = r.norm_2() / normb ) <= tol )
+      {
+        tol = resid;
+        max_iter = i;
+        return 0;
+      }
+
+      rho_1 = rho;
+    }
+
+    tol = resid;
+    return 1;
+  }
+
+  template <typename T>
+  inline int SparseMatrix<T>::solve_QMR( const Vector<T>& b, Vector<T>& x,
+                                         int& max_iter, double& tol )
+  {
+    double resid;
+
+    T rho( 1.0 ), rho_1( 1.0 ), xi( 1.0 );
+    T delta( 1.0 ), ep( 1.0 );
+    T beta;
+
+    double gamma, gamma_1, eta, theta, theta_1;
+
+    Vector<T> r, v, y, w, z;
+    Vector<T> v_tld, w_tld, y_tld, z_tld;
+    Vector<T> p, q, p_tld, d, s;
+
+    double normb = b.norm_2();
+    r = this->multiply( x );
+    r = b - r;
+
+    if ( normb == 0.0 )
+    {
+      normb = 1.0;
+    }
+    if ( ( resid = r.norm_2() / normb ) <= tol )
+    {
+      tol = resid;
+      max_iter = 0;
+      return 0;
+    }
+
+    v_tld = r;
+    y = v_tld; // Could have preconditioner here
+    rho = y.norm_2();
+
+    w_tld = r;
+    z = w_tld; // Could have preconditioner here
+    xi = z.norm_2();
+
+    gamma = 1.0;
+    eta = - 1.0;
+    theta = 0.0;
+
+    for ( int i = 1; i <= max_iter; i++ )
+    {
+      if ( rho == 0.0 )
+        return 2;                     // Return on breakdown
+
+      if ( xi == 0.0 )
+        return 7;                     // Return on breakdown
+
+      v = ( 1. / rho ) * v_tld;
+      y = ( 1. / rho ) * y;
+
+      w = ( 1. / xi ) * w_tld;
+      z = ( 1. / xi ) * z;
+
+      delta = z.dot( y );
+      if ( delta == 0.0 )
+        return 5;                     // Return on breakdown
+
+      y_tld = y;
+      z_tld = z;  // Could have preconditioners here
+
+      if (i > 1) {
+        p = y_tld - ( xi * delta / ep ) * p;
+        q = z_tld - ( rho * delta / ep ) * q;
+      } else {
+        p = y_tld;
+        q = z_tld;
+      }
+
+      p_tld = this->multiply( p );
+      ep = q.dot( p_tld );
+      if ( ep == 0.0 )
+        return 6;                       // Return on breakdown
+
+      beta = ep / delta;
+      if ( beta == 0.0 )
+        return 3;                       // Return on breakdown
+
+      v_tld = p_tld - beta * v;
+      y = v_tld; // Could have preconditioner here
+
+      rho_1 = rho;
+      rho = y.norm_2();
+      w_tld = this->transpose_multiply( q );
+      w_tld -= beta * w;
+      z = w_tld; // Could have preconditioner here
+
+      xi = z.norm_2();
+
+      gamma_1 = gamma;
+      theta_1 = theta;
+
+      theta = rho / ( gamma_1 * beta );
+      gamma = 1.0 / std::sqrt( 1.0 + theta * theta );
+
+      if ( gamma == 0.0 )
+        return 4;                       // Return on breakdown
+
+      eta = - eta * rho_1 * gamma * gamma / ( beta * gamma_1 * gamma_1 );
+
+      if (i > 1) {
+        d = eta * p + ( theta_1 * theta_1 * gamma * gamma ) * d;
+        s = eta * p_tld + ( theta_1 * theta_1 * gamma * gamma ) * s;
+      } else {
+        d = eta * p;
+        s = eta * p_tld;
+      }
+
+      x += d;
+      r -= s;
+
+      if ( ( resid = r.norm_2() / normb ) <= tol )
+      {
+        tol = resid;
+        max_iter = i;
+        return 0;
+      }
+
+    }
+
+    tol = resid;
+    return 1;
+  }
 
 }  // End of namespace Luna
 

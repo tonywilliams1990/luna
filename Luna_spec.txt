@@ -73,4 +73,6 @@ demonstrate how the code can be used.
 5. Heat_equation - test Tridiagonal					     [x]
 6. Laplace_equation - test SparseMatrix + Triplets			      []			
 
+ODE_IVP example - Lorenz equations with python plots, parameter variation and 
+sensitivity to initial conditions etc
 
