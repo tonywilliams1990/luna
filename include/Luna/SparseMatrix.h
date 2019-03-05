@@ -33,7 +33,6 @@ namespace Luna
   template <class T>
 
   /// A SparseMatrix class for use with double and std::complex<double>
-  /// TODO column compressed storage?
   class SparseMatrix
   {
   private:
@@ -204,7 +203,10 @@ namespace Luna
     int solve_QMR( const Vector<T>& b, Vector<T>& x, int& max_iter,
                   double& tol );
 
-    //TODO GMRES, SVD to find condition number?
+    //TODO GMRES, SVD to find condition number ?
+    //TODO General solve method - choose method by string
+    //TODO Sparse matrix-matrix multiplication ?
+    //TODO Preconditioning ?
 
 
   };	// End of class SparseMatrix
@@ -556,14 +558,14 @@ namespace Luna
 
     if ( itol == 1 ) {
       bnrm = b.norm_2();
-      //this->diagonal_precondtioner( r, z );           // replaces asolve in NR
+      //this->diagonal_preconditioner( r, z );           // replaces asolve in NR
       this->identity_preconditioner( r, z );
     }
     else if ( itol == 2 ) {
-      //this->diagonal_precondtioner( b, z );
+      //this->diagonal_preconditioner( b, z );
       this->identity_preconditioner( b, z );
       bnrm = z.norm_2();
-      //this->diagonal_precondtioner( r, z );
+      //this->diagonal_preconditioner( r, z );
       this->identity_preconditioner( r, z );
     }
     else {
@@ -575,7 +577,7 @@ namespace Luna
     while ( iter < max_iter )
     {
       ++iter;
-      //this->diagonal_precondtioner( rr, zz );
+      //this->diagonal_preconditioner( rr, zz );
       this->identity_preconditioner( rr, zz );
 
       rho_1 = z.dot( rr );
@@ -596,7 +598,7 @@ namespace Luna
       r -= alpha * z;
       rr -= alpha * zz;
 
-      //this->diagonal_precondtioner( r, z );
+      //this->diagonal_preconditioner( r, z );
       this->identity_preconditioner( r, z );
 
       rho_2 = rho_1;
