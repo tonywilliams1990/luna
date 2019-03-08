@@ -106,6 +106,8 @@ namespace Luna
 
     std::size_t LU_decomp_in_place( Matrix<T>& P );
 
+    void rsolve( Vector<T>& b, Vector<T>& x, Matrix<T>& R );
+
   public:
 
     /// Constructor for an empty Matrix of unspecified size
@@ -318,6 +320,9 @@ namespace Luna
     /// Fill the Matrix with random elements (between -1 and 1)
     void random();
 
+    /// Set the Matrix to be the identity Matrix
+    void eye();
+
     /* ----- Norms ----- */
 
     /// The Matrix one-norm
@@ -359,12 +364,14 @@ namespace Luna
     /// \param P The permutation Matrix
     void LU_decomp( Matrix<T>& L, Matrix<T>& U, Matrix<T>& P );
 
-    /// Solve the system of equations Ax=b where x and b are Vectors
+    /// Solve the system of equations Ax=b where x and b are Vectors using LU
+    /// decomposition
     /// \param b The right-hand side Vector of the system of equations
     /// \return The solution Vector
     Vector<T> solve_LU( const Vector<T>& b );
 
-    /// Solve the system of equation AX=B where X and B are Matrices
+    /// Solve the system of equation AX=B where X and B are Matrices using LU
+    /// decomposition
     /// \param B The right-hand side Matrix of the system of equations
     /// \return The solution Matrix (each column is a solution Vector)
     Matrix<T> solve_LU( const Matrix<T>& B );
@@ -378,6 +385,37 @@ namespace Luna
     /// \param B The right-hand side Matrix of the system of equations
     /// \return The solution Matrix (each column is a solution Vector)
     Matrix<T> solve( const Matrix<T>& B ){ return solve_LU( B ); }
+
+    /// QR decomposition of the Matrix A = QR
+    /// \param QT The transpose of the orthogonal Matrix Q (Q^T Q = I)
+    /// \param R The upper triangular Matrix R
+    void QR_decomp( Matrix<T>& QT, Matrix<T>& R );
+
+    /// Solve the system of equations Ax=b where x and b are Vectors using QR
+    /// decomposition
+    /// \param b The right-hand side Vector of the system of equations
+    /// \return The solution Vector
+    Vector<T> solve_QR( const Vector<T>& b );
+
+    //TODO Matrix version of solve_QR
+
+
+    //TODO proper description
+    Vector<T> makeHessenberg()
+    {
+      //TODO check matrix is square
+      Vector<T> tau( ROWS );
+      if ( ROWS < 3 )
+      {
+        return tau; // Already Hessenberg
+      }
+      Vector<T> c, hv; // matrix column and householder vector
+      Matrix<T> m;     // submatrix
+
+
+
+      return tau;
+    }
 
     /* ----- Determinant ----- */
 
@@ -894,6 +932,13 @@ namespace Luna
     }
   }
 
+  template <typename T>
+  inline void Matrix<T>::eye()
+  {
+    this->fill( 0.0 );
+    this->fill_diag( 1.0 );
+  }
+
   /* ----- Norms ----- */
 
   template <typename T>
@@ -1102,6 +1147,111 @@ namespace Luna
     return X;
   }
 
+  template <typename T>
+  inline void Matrix<T>::QR_decomp( Matrix<T>& QT, Matrix<T>& R )
+  {
+    if ( ROWS != COLS )
+    {
+      throw Error( "QR_decomp error: Matrix is not square.");
+    }
+    R.MATRIX = MATRIX;
+    R.ROWS = ROWS;
+    R.COLS = COLS;
+
+    QT.resize( ROWS, ROWS );
+
+    bool singular( false );
+
+    int i, j, k;
+    Vector<T> c( ROWS ), d( ROWS );
+    T sigma, sum, tau;
+    double scale;
+
+    for ( k = 0; k < ROWS - 1; k++ ) {
+      scale = 0.0;
+      for ( i = k; i < ROWS; i++ ) {
+        scale = std::max( scale, std::abs( R.MATRIX[ i ][ k ] ) );
+      }
+      if ( scale == 0.0 ) {
+        singular = true;
+        c[k] = d[k] = 0.0;
+      } else {
+        for ( i = k; i < ROWS; i++ ){
+          R.MATRIX[ i ][ k ] /= scale;
+        }
+        for ( sum = 0.0, i = k; i < ROWS; i++ ){
+          sum += R.MATRIX[ i ][ k ] * R.MATRIX[ i ][ k ];
+        }
+        T a = std::sqrt( sum ); //TODO check this is okay
+        T b = R.MATRIX[ k ][ k ];
+        sigma = std::real(b) >= 0 ? ( std::real(a) >= 0 ? a : -a) :
+                                    ( std::real(a) >= 0 ? -a : a); // sign(a,b)
+        R.MATRIX[ k ][ k ] += sigma;
+        c[k] = sigma * R.MATRIX[ k ][ k ];
+        d[k] = - scale * sigma;
+        for ( j = k + 1; j < ROWS; j++ ) {
+          for ( sum = 0.0 , i = k; i < ROWS; i++ ){
+            sum += R.MATRIX[ i ][ k ] * R.MATRIX[ i ][ j ];
+          }
+          tau = sum / c[ k ];
+          for (i = k; i < ROWS; i++ ){
+            R.MATRIX[ i ][ j ] -= tau * R.MATRIX[ i ][ k ];
+          }
+        }
+      }
+    }
+
+    d[ ROWS - 1 ] = R.MATRIX[ ROWS - 1 ][ ROWS - 1 ];
+    if ( d[ ROWS - 1 ] == 0.0) singular=true;
+    QT.eye();
+
+    for ( k = 0; k < ROWS - 1; k++ ) {
+      if ( c[ k ] != 0.0 ) {
+        for ( j = 0; j < ROWS; j++ ) {
+          sum = 0.0;
+          for ( i = k; i < ROWS; i++ ) {
+            sum += R.MATRIX[ i ][ k ] * QT.MATRIX[ i ][ j ];
+          }
+          sum /= c[ k ];
+          for ( i = k; i < ROWS; i++ ) {
+            QT.MATRIX[ i ][ j ] -= sum * R.MATRIX[ i ][ k ];
+          }
+        }
+      }
+    }
+
+    for ( i = 0; i < ROWS; i++ ) {
+      R.MATRIX[ i ][ i ] = d[ i ];
+      for ( j = 0; j < i; j++ ){
+        R.MATRIX[ i ][ j ] = 0.0;
+      }
+    }
+
+    if ( singular ) {
+      std::cout << " *** WARNING! Matrix is singular in QR decomposition."
+                << std::endl;
+    }
+  }
+
+  template <typename T>
+  inline Vector<T> Matrix<T>::solve_QR( const Vector<T>& b )
+  {
+    if ( ROWS != b.size() )
+    {
+      throw Error( "solve_QR error: ROWS != b.size() " );
+    }
+    if ( ROWS != COLS )
+    {
+      throw Error( "solve_QR error: Matrix is not square.");
+    }
+    Matrix<T> QT, R;
+    this->QR_decomp( QT, R );
+    Vector<T> x( ROWS, 0.0 );
+    x = QT.multiply( b );
+    this->rsolve( x, x, R );            // Solve R * x = Q^T * b
+    return x;
+  }
+
   /* ----- Determinant ----- */
 
   template <typename T>
@@ -1300,6 +1450,20 @@ namespace Luna
         }
     }
     return pivots;
+  }
+
+  template <typename T>
+  inline void Matrix<T>::rsolve( Vector<T>& b, Vector<T>& x, Matrix<T>& R )
+  {
+    int i, j;
+    T sum;
+    for ( i = R.ROWS - 1; i >= 0; i-- ) {
+      sum = b[ i ];
+      for ( j = i + 1; j < R.ROWS; j++ ){
+        sum -= R.MATRIX[ i ][ j ] * x[ j ];
+      }
+      x[ i ]=sum / R.MATRIX[ i ][ i ];
+    }
   }
 
 

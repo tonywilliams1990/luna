@@ -237,9 +237,9 @@ namespace Luna
   template <typename T>
   inline Tridiagonal<T>::Tridiagonal( const std::size_t& size )
   {
-    a.resize( size );
+    a.resize( size - 1 );
     b.resize( size );
-    c.resize( size );
+    c.resize( size - 1 );
     N = size;
   }
 
@@ -248,6 +248,13 @@ namespace Luna
                                       const Vector<T>& main,
                                       const Vector<T>& super )
   {
+    if ( main.size() != sub.size() + 1 || main.size() != super.size() + 1 )
+    {
+      std::string problem;
+      problem = "Tridiagonal constructor error: ";
+      problem += "size of Vectors are incompatible.";
+      throw Error( problem );
+    }
     a = sub;
     b = main;
     c = super;

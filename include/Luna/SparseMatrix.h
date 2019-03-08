@@ -1,14 +1,5 @@
 /// \file SparseMatrix.h
-/// A templated sparse matrix class
-/// TODO
-// Maybe this class should just be a wrapper to Eigen::SparseMatrix to make it
-// more useable like TSL::SparseMatrix but not using separate storage for the
-// matrix. Still set from triplets and use insert method rather than indexing.
-
-/*
-First try implementing a conjugate-gradient method for symmetric matrices and
-see if that helps with the ill-conditioning in the Laplace problem.
-*/
+/// A templated sparse matrix class for solving sparse linear systems. 
 
 #ifndef SPARSEMATRIX_H
 #define SPARSEMATRIX_H

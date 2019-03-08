@@ -34,7 +34,7 @@ Luna aims to be a header-only library of numerical routines written in C++.
 --- Sparse ---
 1. Tridiagonal - a tridiagonal matrix class (including solver)    	     [x]
 2. BandedMatrix - a banded matrix class (including banded solver)             []
-3. SparseMatrix - a sparse matrix class (including sparse linear algebra)     []  
+3. SparseMatrix - a sparse matrix class (including sparse linear algebra)    [x]  
     -> biconjugate gradient method? ( linbcg.h ) + parallel multiplication/solve
 4. Triplet - a class of 3-tuples for use with SparseMatrix		     [x]
 
@@ -71,7 +71,7 @@ demonstrate how the code can be used.
 3. Integration - test Mesh1D, Mesh2D, Special and Quadrature classes          []
 4. Root_finding - test Polynomial, Newton and Residual classes               [x]
 5. Heat_equation - test Tridiagonal					     [x]
-6. Laplace_equation - test SparseMatrix + Triplets			      []			
+6. Laplace_equation - test SparseMatrix + Triplets			     [x]			
 
 ODE_IVP example - Lorenz equations with python plots, parameter variation and 
 sensitivity to initial conditions etc
