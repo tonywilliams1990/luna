@@ -6,6 +6,7 @@
 #define MATRIX_H
 
 #include <vector>
+#include <algorithm>
 #include <random>
 #include <chrono>
 #include <complex>
@@ -229,6 +230,11 @@ namespace Luna
     /// \return The result vector A * x
     Vector<T> operator*( Vector<T>& x );
 
+    /// Matrix Vector multiplication
+    /// \param x The Vector which is to be multiplied
+    /// \return The result vector A * x
+    //Vector<std::complex<double>> operator*( Vector<std::complex<double>>& x );
+
     /* ----- Methods ----- */
 
     /// Matrix multiplication
@@ -298,6 +304,14 @@ namespace Luna
     /// \param j The index of the second row
     void swap_rows( const std::size_t& i, const std::size_t& j );
 
+    /// Swap two elements of the Matrix
+    /// \param i_1 The row index of the first element
+    /// \param j_1 The column index of the first element
+    /// \param i_2 The row index of the second element
+    /// \param j_2 The column index of the second element
+    void swap_elem( const std::size_t& i_1, const std::size_t& j_1,
+                    const std::size_t& i_2, const std::size_t& j_2 );
+
     /// Fill the Matrix with specified elements
     /// \param elem The element to fill the Matrix with
     void fill( const T& elem );
@@ -322,6 +336,14 @@ namespace Luna
 
     /// Set the Matrix to be the identity Matrix
     void eye();
+
+    /// Real part of the elements of the Matrix
+    /// \return Matrix of real parts of the elements
+    Matrix<double> real() const;
+
+    /// Imaginary part of the elements of the Matrix
+    /// \return Matrix of imaginary parts of the elements
+    Matrix<double> imag() const;
 
     /* ----- Norms ----- */
 
@@ -400,22 +422,6 @@ namespace Luna
     //TODO Matrix version of solve_QR
 
 
-    //TODO proper description
-    Vector<T> makeHessenberg()
-    {
-      //TODO check matrix is square
-      Vector<T> tau( ROWS );
-      if ( ROWS < 3 )
-      {
-        return tau; // Already Hessenberg
-      }
-      Vector<T> c, hv; // matrix column and householder vector
-      Matrix<T> m;     // submatrix
-
-
-
-      return tau;
-    }
 
     /* ----- Determinant ----- */
 
@@ -846,6 +852,15 @@ namespace Luna
   }
 
   template <typename T>
+  inline void Matrix<T>::swap_elem( const std::size_t& i_1,
+                                    const std::size_t& j_1,
+                                    const std::size_t& i_2,
+                                    const std::size_t& j_2 )
+  {
+    std::swap( MATRIX[ i_1 ][ j_1 ], MATRIX[ i_2 ][ j_2 ] );
+  }
+
+  template <typename T>
   inline void Matrix<T>::fill( const T& elem )
   {
     for ( std::size_t i = 0; i < ROWS; ++i )
@@ -937,6 +952,30 @@ namespace Luna
   {
     this->fill( 0.0 );
     this->fill_diag( 1.0 );
+  }
+
+  template <typename T>
+  inline Matrix<double> Matrix<T>::real() const
+  {
+    Matrix<double> real_part( ROWS, COLS, 0.0 );
+    for (size_t i = 0; i < ROWS; ++i )
+    {
+      for (size_t j = 0; j < COLS; ++j )
+      real_part( i, j ) = std::real( MATRIX[ i ][ j ] ) ;
+    }
+    return real_part;
+  }
+
+  template <typename T>
+  inline Matrix<double> Matrix<T>::imag() const
+  {
+    Matrix<double> imag_part( ROWS, COLS, 0.0 );
+    for (size_t i = 0; i < ROWS; ++i )
+    {
+      for (size_t j = 0; j < COLS; ++j )
+      imag_part( i, j ) = std::imag( MATRIX[ i ][ j ] ) ;
+    }
+    return imag_part;
   }
 
   /* ----- Norms ----- */

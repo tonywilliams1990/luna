@@ -224,6 +224,10 @@ namespace Luna
     /// \return Vector of real parts of the elements
     Vector<double> real() const;
 
+    /// Imaginary part of the elements of the Vector
+    /// \return Vector of imaginary parts of the elements
+    Vector<double> imag() const;
+
     /// Conjugate of the elements of the Vector
     /// \return Vector of conjugates of the elements
     Vector<T> conjugate() const;
@@ -695,11 +699,22 @@ namespace Luna
   inline Vector<double> Vector<T>::real() const
   {
     Vector<double> real_part( size() );
-    for (size_t i=0; i < size(); ++i)
+    for ( std::size_t i = 0; i < size(); ++i )
     {
       real_part[ i ] = std::real( VECTOR[ i ] ) ;
     }
     return real_part;
+  }
+
+  template <typename T>
+  inline Vector<double> Vector<T>::imag() const
+  {
+    Vector<double> imag_part( size() );
+    for ( std::size_t i = 0; i < size(); ++i )
+    {
+      imag_part[ i ] = std::imag( VECTOR[ i ] ) ;
+    }
+    return imag_part;
   }
 
   template <typename T>
@@ -784,7 +799,9 @@ namespace Luna
   template <typename T>
   inline T Vector<T>::dot( const Vector<T>& w )
   {
-    if ( size() != w.size() )	{ throw Error( "Vector dot product: size error" );}
+    if ( size() != w.size() )	{
+      throw Error( "Vector dot product: size error" );
+    }
     T init( 0.0 );
     return std::inner_product ( VECTOR.cbegin(), VECTOR.cend(),
                      w.VECTOR.begin(), init );

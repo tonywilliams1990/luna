@@ -60,27 +60,15 @@ int main()
   cout << " * evals = " << eig_sys.eigenvalues().real() << endl;
   cout << " * evecs = " << eig_sys.eigenvector_matrix() << endl;
 
+  cout << " * Compute the eigenvalues of a real nonsymmetric matrix. " << endl;
+  Matrix<double> B( 3, 3, 1.0 );
+  B( 0, 1 ) = B( 1, 2 ) = B( 2, 0 ) = 2.0;
+  B( 0, 2 ) = B( 1, 0 ) = B( 2, 1 ) = 3.0;
+  cout << " * B = " << B << endl;
 
-
-  //TODO real nonsymmetric eigensystem -> get eigenvectors working
-
-  /*eig_sys.compute_real( A, true);
-
+  eig_sys.compute_real( B, false );
   cout << " * evals = " << eig_sys.eigenvalues() << endl;
-  cout << " * evecs = " << eig_sys.eigenvector_matrix() << endl;
 
-  std::vector<Vector<std::complex<double>>> evecs;
-  evecs = eig_sys.eigenvectors();
-
-  Vector<double> evec_0;
-  evec_0 = evecs[0].real();
-  cout << " * x_0 = " << evecs[0] << endl;
-  cout << " * A * x_0 =  " << A * evec_0 << endl;
-  double lambda_0;
-  lambda_0 = eig_sys.eigenvalues()[ 0 ].real();
-  cout << " * lambda_0 * x_0 = " << lambda_0 * evec_0 << endl;*/
-
-  //TODO eigenvector calculation isn't working !!!
 
   cout << "--- FINISHED ---" << endl;
 }

@@ -51,11 +51,9 @@ namespace Luna
 
     /* ----- Methods ----- */
 
-    //TODO compute_real_symmetric_tridiagonal, tidy up
-
     /// Solve a LinearEigensystem A*v=lambda*v where A is a real symmetric
     /// Matrix to give the eigenvalues ( and optionally the eigenvectors )
-    /// \param A The Matrix A in the eigensystem
+    /// \param a The Matrix A in the eigensystem
     /// \param compute_evecs True if the eigenvectors are to be computed
     void compute_real_symmetric( const Matrix<double>& a,
                                  bool compute_evecs = true );
@@ -72,14 +70,13 @@ namespace Luna
 
     /// Solve a LinearEigensystem A*v=lambda*v where A is a real Matrix to give
     /// the eigenvalues ( and optionally the eigenvectors )
-    /// \param A The Matrix A in the eigensystem
+    /// \param a The Matrix A in the eigensystem
     /// \param compute_evecs True if the eigenvectors are to be computed too
     void compute_real( const Matrix<double>& a, bool compute_evecs = true );
 
     //TODO compute_real -> eigenvectors not working properly
 
-
-    //TODO solve_complex
+    //TODO solve_complex - > Hermitian + general
 
     //TODO solve_generalised_real
 
@@ -89,9 +86,7 @@ namespace Luna
 
     //TODO eigenvalues computed, eigenvectors computed
 
-    //TODO return alphas, return betas 
-
-
+    //TODO return alphas, return betas
 
     /// Return the eigenvalues
     /// \return The eigenvalues as a Vector of std::complex<double>
@@ -113,40 +108,40 @@ namespace Luna
                 bool compute_evecs );
 
     // QL algorithm with implicit shift to determine the eigenvalues ( and
-    // eigenvalues ) of a real symmetric tridiagonal matrix
+    // eigenvectors ) of a real symmetric tridiagonal matrix
     void tqli( Matrix<double>& z, Vector<double>& d, Vector<double>& e,
                bool compute_evecs );
 
+    // Computer (a^2 + b^2)^1/2
     double pythag(const double a, const double b);
 
     // Sort the eigenvalues (and eigenvectors) into descending order
     void eigsrt( Vector<double> &d, Matrix<double> *v=NULL);
     void sort( Vector<double>& d, Matrix<double>& z, bool evecs_computed );
 
-
-
-    //TODO need to sort out functions below here
-
+    // Replace the matrix with a balanced matrix with identical eigenvalues
     void balance();
 
+    // Reduction to Hessenberg form by the elimination method
     void elmhes();
 
+    // Find the eigenvalues of an upper Hessenberg matrix
     void hqr();
 
+    // Return a value with the same magnitude as a and the same sign as b
     T sign( const T &a, const T &b );
 
-    //void sort();
+    // Sort the eigenvalues of an unsymmetric matrix
+    void sort_unsymm();
 
+    // Accumulate the stabilised elementary similarity transformations
     void eltran();
 
+    // Find the eigenvalues and eigenvectors of an upper Hessenberg matrix
     void hqr2();
 
-    void balbak()
-    {
-      for ( int i = 0; i < N; i++ )
-    		for ( int j = 0; j < N; j++ )
-    			EIGENVECTORS( i, j ) *= SCALE[ i ];
-    }
+    // Back transform eigenvectors of the corresponding balanced matrix
+    void balbak();
 
     void sortvecs()
     {
@@ -167,8 +162,6 @@ namespace Luna
     			EIGENVECTORS( k, i + 1 ) = temp[ k ];
     	}
     }
-
-    //TODO elmhes etc (possibly rename) - brief descriptions
 
     void find_small_subdiagonals( int& l, int& nn, double& s,
                                   const double& anorm )
@@ -339,15 +332,16 @@ namespace Luna
 
   template <>
   inline void LinearEigensystem<double>::compute_real( const Matrix<double>& a,
-                                                       bool compute_evecs)
+                                                       bool compute_evecs )
   {
-    //TODO check A is square
+    if ( a.rows() != a.cols() )
+    {
+      throw Error( "compute_real error: Matrix is not square.");
+    }
     A = a;
     N = a.rows();
-
     balance();
     elmhes();
-    std::cout << "a = " << A << std::endl;
     if ( compute_evecs ) {
       EIGENVECTORS.resize( N, N );
       EIGENVECTORS.fill( 1.0 );
@@ -355,19 +349,14 @@ namespace Luna
       hqr2();
       balbak();
       sortvecs();
-
       EIGENVALUES_COMPUTED = true;
       EIGENVECTORS_COMPUTED = true;
     } else {
       hqr();
-      //sort();
+      sort_unsymm();
       EIGENVALUES_COMPUTED = true;
     }
-
-
-
   }
-
 
 
   template <typename T>
@@ -585,7 +574,8 @@ namespace Luna
 
   template <typename T>
   inline void LinearEigensystem<T>::sort( Vector<double>& d, Matrix<double>& z,
-                                          bool evecs_computed ) {
+                                          bool evecs_computed )
+  {
     if ( evecs_computed ){
       eigsrt(d,&z);
     } else {
@@ -632,6 +622,7 @@ namespace Luna
         }
       }
     }
+    //std::cout << " SCALE = " << SCALE << std::endl;
   }
 
   template <typename T>
@@ -649,8 +640,14 @@ namespace Luna
       }
       PERM[ m ] = i;
       if ( i != m ) {
-        for ( int j = m - 1; j < N; j++ ) std::swap( A( i, j ) , A( m, j ) );
-        for ( int j = 0; j < N; j++ ) std::swap( A( j, i ), A( j, m ) );
+        for ( int j = m - 1; j < N; j++ )
+        {
+           A.swap_elem( i, j, m, j );
+        }
+        for ( int j = 0; j < N; j++ )
+        {
+           A.swap_elem( j, i, j, m );
+        }
       }
       if ( x != 0.0 ) {
         for ( i = m + 1; i < N; i++ ) {
@@ -739,8 +736,8 @@ namespace Luna
     return b >= 0 ? (a >= 0 ? a : -a) : (a >= 0 ? -a : a);
   }
 
-  /*template <typename T>
-  inline void LinearEigensystem<T>::sort()
+  template <typename T>
+  inline void LinearEigensystem<T>::sort_unsymm()
   {
     int i;
     for ( int j = 1; j < N; j++ ) {
@@ -751,7 +748,7 @@ namespace Luna
       }
       EIGENVALUES[ i + 1 ] = x;
     }
-  }*/
+  }
 
   template <typename T>
   inline void LinearEigensystem<T>::eltran()
@@ -878,7 +875,7 @@ namespace Luna
   			}
   		} while ( l + 1 < nn );
   	}
-  	if (anorm != 0.0) {
+  	if ( anorm != 0.0 ) {
   		for ( nn = N - 1; nn >= 0; nn-- ) {
   			p = std::real( EIGENVALUES[ nn ] );
   			q = std::imag( EIGENVALUES[ nn ] );
@@ -995,6 +992,13 @@ namespace Luna
   	}
   }
 
+  template <typename T>
+  inline void LinearEigensystem<T>::balbak()
+  {
+    for ( int i = 0; i < N; i++ )
+      for ( int j = 0; j < N; j++ )
+        EIGENVECTORS( i, j ) *= SCALE[ i ];
+  }
 
 }  // End of namespace Luna
 
