@@ -39,7 +39,7 @@ Luna aims to be a header-only library of numerical routines written in C++.
 4. Triplet - a class of 3-tuples for use with SparseMatrix		     [x]
 
 --- Eigenvalue ---
-1. Eigensystem - a class for solving linear eigensystems                      []
+1. Eigensystem - a class for solving linear eigensystems                     [?]
 2. SparseEigensystem - a class for solving sparse linear eigensystems         []
 
 --- ODE ---

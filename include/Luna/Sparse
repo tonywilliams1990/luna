@@ -1,3 +1,4 @@
 // Sparse
 #include "Tridiagonal.h"
+#include "BandedMatrix.h"
 #include "SparseMatrix.h"
