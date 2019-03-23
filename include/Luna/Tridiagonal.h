@@ -525,6 +525,10 @@ namespace Luna
   template <typename T>
   inline Vector<T> Tridiagonal<T>::operator*( Vector<T>& x )
   {
+    if ( N != x.size() )
+    {
+      throw Error( "Tridiagonal: dimensions do not agree in multiply method." );
+    }
     Vector<T> result( N );
     result[ 0 ] = b[ 0 ] * x[ 0 ] + c[ 0 ] * x[ 1 ];
     for ( std::size_t i = 1; i < N - 1; i++ )

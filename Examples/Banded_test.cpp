@@ -26,7 +26,7 @@ int main()
   std::size_t bands_above( 1 );
   BandedMatrix<double> band( dense, bands_below, bands_above );
 
-  cout << " band = " << band.compact() << endl;
+  cout << " band = " << band << endl;
   Vector<double> b( n, 1.0 );
   cout << " b = " << b << endl;
   Vector<double> x;
@@ -37,6 +37,19 @@ int main()
   cout << " band.size() = " << band.size() << endl;
   cout << " band.size_below() = " << band.size_below() << endl;
   cout << " band.size_above() = " << band.size_above() << endl;
+
+
+  //BandedMatrix<double> B( n, bands_below, bands_above );
+  //B( 0, 0 ) = 17.0;
+  //B = band;
+  //cout << " B * b = " << B * b << endl;
+
+  Matrix<double> B( n, 2, 1.0 );
+  B( 1, 1 ) = 2.0; B( 2, 1 ) = 3.0; B( 3, 1 ) = 4.0;
+  cout << " B = " << B << endl;
+  Matrix<double> X;
+  X = band.solve( B );
+  cout << " X = " << X << endl;
 
   /*typedef std::complex<double> cmplx;
   Matrix<cmplx> dense_cmplx( n, n, 0.0 );

@@ -375,7 +375,7 @@ namespace Luna
     /// \return The solution Vector
     Vector<T> solve_basic( const Vector<T>& b );
 
-    /// Solve the system of equation AX=B where X and B are Matrices
+    /// Solve the system of equations AX=B where X and B are Matrices
     /// \param B The right-hand side Matrix of the system of equations
     /// \return The solution Matrix (each column is a solution Vector)
     Matrix<T> solve_basic( const Matrix<T>& B );
@@ -392,7 +392,7 @@ namespace Luna
     /// \return The solution Vector
     Vector<T> solve_LU( const Vector<T>& b );
 
-    /// Solve the system of equation AX=B where X and B are Matrices using LU
+    /// Solve the system of equations AX=B where X and B are Matrices using LU
     /// decomposition
     /// \param B The right-hand side Matrix of the system of equations
     /// \return The solution Matrix (each column is a solution Vector)
@@ -403,7 +403,7 @@ namespace Luna
     /// \return The solution Vector
     Vector<T> solve( const Vector<T>& b ){ return solve_LU( b ); }
 
-    /// Solve the system of equation AX=B where X and B are Matrices
+    /// Solve the system of equations AX=B where X and B are Matrices
     /// \param B The right-hand side Matrix of the system of equations
     /// \return The solution Matrix (each column is a solution Vector)
     Matrix<T> solve( const Matrix<T>& B ){ return solve_LU( B ); }

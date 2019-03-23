@@ -35,8 +35,12 @@ namespace Luna
 
   public:
 
-    /// Constructor
-    //TODO specified size but empty (need access operators)
+    /// Constructor for a BandedMatrix of specfied size and number of bands
+    /// \param n The size of the matrix (n x n)
+    /// \param m1 The number of bands below the main diagonal
+    /// \param m2 The number of bands above the main diagonal
+    BandedMatrix( const std::size_t& n, const std::size_t& m1,
+                  const std::size_t& m2 );
 
     /// Constructor for a BandedMatrix from a dense Matrix
     /// \param mat The dense Matrix used to create the BandedMatrix
@@ -50,11 +54,92 @@ namespace Luna
 
     /* ----- Operator overloading ----- */
 
-    //TODO print the BandedMatrix to the screen -> convert COMPACT to nice output
-    // leaving zero entries outside bands blank
+    /// Output operator <<
+    template <class Type>
+    friend std::ostream& operator<<( std::ostream& os,
+                                     const BandedMatrix<Type>& m );
 
-    //TODO access operator, =, +, - (unary and binary), * (scalar and Vector),
-    // /, +=, -=, *= (scalar), /=,
+    /// Indexing operator ( read only )
+    /// \param i Row index
+    /// \param j Column index
+    const T& operator() ( const int& i, const int& j ) const;
+
+    /// Indexing operator ( read / write )
+    /// \param i Row index
+    /// \param j Column index
+    T& operator() ( const int& i, const int& j );
+
+    /// Copy assignment
+    /// \param original BandedMatrix to be copied
+    /// \return The BandedMatrix to which the original matrix is assigned
+    BandedMatrix<T>& operator=( const BandedMatrix<T>& original );
+
+    /// Unary +
+    /// \return The BandedMatrix
+    BandedMatrix<T> operator+() const;
+
+    /// Unary -
+    /// \return The negation of the BandedMatrix
+    BandedMatrix<T> operator-() const;
+
+    /// Binary +
+    /// \param m_plus The BandedMatrix to be added
+    /// \return The sum of this BandedMatrix and m_plus
+    BandedMatrix<T> operator+( const BandedMatrix<T>& m_plus ) const;
+
+    /// Binary -
+    /// \param m_minus The BandedMatrix to be subtracted
+    /// \return The subtraction of m_minus from this BandedMatrix
+    BandedMatrix<T> operator-( const BandedMatrix<T>& m_minus ) const;
+
+    /// Scalar multiplication
+    /// \param scalar The scalar to multiply the BandedMatrix by
+    /// \return The BandedMatrix multiplied by the scalar
+    BandedMatrix<T> operator*( const T& scalar ) const;
+    friend BandedMatrix<T> operator*( const T& scalar, BandedMatrix<T>& mat )
+    {
+      return mat * scalar;
+    }
+
+    /// Scalar division
+    /// \param divisor The divisor to divide the BandedMatrix by
+    /// \return The BandedMatrix divided by the divisor
+    BandedMatrix<T> operator/( const T& divisor ) const;
+
+    /// Addition assignment
+    /// \param m_plus The BandedMatrix to be added
+    /// \return A reference to the BandedMatrix after addition by m_plus
+    BandedMatrix<T>& operator+=( const BandedMatrix<T>& m_plus );
+
+    /// Subtraction assignment
+    /// \param m_minus The BandedMatrix to be subtracted
+    /// \return A reference to the BandedMatrix after subtraction by m_minus
+    BandedMatrix<T>& operator-=( const BandedMatrix<T>& m_minus );
+
+    /// Scalar multiplication assignment
+    /// \param scalar The scalar to multiply the BandedMatrix by
+    /// \return A reference to the BandedMatrix after multiplication by a scalar
+    BandedMatrix<T>& operator*=( const T& scalar );
+
+    /// Scalar division assigment
+    /// \param divisor The divisor to divide the BandedMatrix by
+    /// \return A reference to the BandedMatrix after division by a scalar
+    BandedMatrix<T>& operator/=( const T& divisor );
+
+    /// Constant addition assignment
+    /// \param add The constant to be added to each element
+    /// \return A reference to the BandedMatrix after addition by a constant
+    BandedMatrix<T>& operator+=( const T& add );
+
+    /// Constant subtraction assignment
+    /// \param minus The constant to be subtracted from each element
+    /// \return A reference to the BandedMatrix after subtraction by a constant
+    BandedMatrix<T>& operator-=( const T& minus );
+
+    /// BandedMatrix Vector multiplication (B * x)
+    /// \param x The Vector which is to be multiplied
+    /// \return The result vector B * x
+    Vector<T> operator*( Vector<T>& x );
 
     /* ----- Methods ----- */
 
@@ -81,7 +166,10 @@ namespace Luna
     /// \return The solution Vector x
     Vector<T> solve( const Vector<T>& b );
 
-    //TODO solve with Matrix input -> just decompose once
+    /// Solve the banded system of equations AX=B where X and B are Matrices
+    /// \param B The right-hand side Matrix of the system of equations
+    /// \return The solution Matrix (each column is a solution Vector)
+    Matrix<T> solve( const Matrix<T>& B );
 
     /* ----- Determinant ----- */
 
@@ -95,6 +183,13 @@ namespace Luna
   /* ----- Constructors ----- */
 
   template <typename T>
+  inline BandedMatrix<T>::BandedMatrix( const std::size_t& n,
+    const std::size_t& m1, const std::size_t& m2 ) : N( n ), M1( m1 ), M2( m2 )
+  {
+    COMPACT.resize( n, m1 + m2 + 1 );
+  }
+
+  template <typename T>
   inline BandedMatrix<T>::BandedMatrix( const Matrix<T>& mat,
     const std::size_t& m1, const std::size_t& m2 ) : M1( m1 ), M2( m2 )
   {
@@ -104,31 +199,7 @@ namespace Luna
       throw Error( "BandedMatrix constructor error: Matrix is not square.");
     }
     COMPACT.resize( N, m1 + m2 + 1 );
-    /*
-    // Main diagonal
-    for ( std::size_t i = 0; i < N; i++ )
-    {
-      COMPACT( i, m1 ) = mat( i, i );
-    }
-    // Below
-    for ( std::size_t l = 1; l <= m1; l++ )
-    {
-      for ( std::size_t i = 0; i < N - l; i++ )
-      {
-        COMPACT( i + l, m1 - l ) = mat( i + l, i );
-      }
-    }
-    // Above
-    for ( std::size_t l = 1; l <= m2; l++ )
-    {
-      for ( std::size_t i = 0; i < N - l; i++ )
-      {
-        COMPACT( i, m1 + l ) = mat( i, i + l );
-      }
-    }
-    */
-
-    for ( std::size_t i = 0; i < N; i++ )
+    for ( std::size_t i = 0; i < N; i++ ) // Fill the BandedMatrix
     {
       for ( std::size_t j = 0; j < N; j++ )
       {
@@ -138,12 +209,202 @@ namespace Luna
         }
       }
     }
-
   }
 
   /* ----- Operator overloading ----- */
 
+  template <class Type>
+  inline std::ostream& operator<<( std::ostream& os,
+                                   const BandedMatrix<Type>& m )
+  {
+    os << std::endl;
+    if ( m.N == 0 )	{ return os; }
+    if ( m.N > 0 )
+    {
+      for ( std::size_t i = 0; i < m.N; ++i )
+      {
+        for ( std::size_t j = 0; j < m.N; ++j )
+        {
+          if ( j > i + m.M2 || i > j + m.M1 )
+          {
+            os << "\t";
+          } else {
+            os << "\t" << m.COMPACT( i, j - i + m.M1 );
+          }
+        }
+        os << std::endl;
+      }
+    }
+    return os;
+  }
 
+  template <typename T>
+  inline const T& BandedMatrix<T>::operator() ( const int& i,
+                                                const int& j ) const
+  {
+    if ( i < 0 )	{ throw Error( "BandedMatrix range error: row < 0." ); }
+    if ( j < 0 )	{ throw Error( "BandedMatrix range error: column < 0." ); }
+    if ( j > i + M2 || i > j + M1 )
+    {
+      throw Error( "BandedMatrix range error: index not in a band." );
+    }
+    return COMPACT( i, j - i + M1 );
+  }
+
+  template <typename T>
+  inline T& BandedMatrix<T>::operator() ( const int& i, const int& j )
+  {
+    if ( i < 0 )	{ throw Error( "BandedMatrix range error: row < 0." ); }
+    if ( j < 0 )	{ throw Error( "BandedMatrix range error: column < 0." ); }
+    if ( j > i + M2 || i > j + M1 )
+    {
+      throw Error( "BandedMatrix range error: index not in a band." );
+    }
+    return COMPACT( i, j - i + M1 );
+  }
+
+  template <typename T>
+  inline BandedMatrix<T>& BandedMatrix<T>::operator=(
+                                              const BandedMatrix<T>& original )
+  {
+    if ( this == &original )
+    {
+      return *this;
+    }
+    N = original.N;
+    M1 = original.M1;
+    M2 = original.M2;
+    COMPACT = original.COMPACT;
+    return *this;
+  }
+
+  template <typename T>
+  inline BandedMatrix<T> BandedMatrix<T>::operator+() const
+  {
+    return *this;
+  }
+
+  template <typename T>
+  inline BandedMatrix<T> BandedMatrix<T>::operator-() const
+  {
+    BandedMatrix<T> temp( *this );
+    temp.COMPACT = - COMPACT;
+    return temp;
+  }
+
+  template <typename T>
+  inline BandedMatrix<T> BandedMatrix<T>::operator+(
+                                          const BandedMatrix<T>& m_plus ) const
+  {
+    BandedMatrix<T> temp( *this );
+    if ( m_plus.N != N || m_plus.M1 != M1 || m_plus.M2 != M2  )
+    {
+      throw Error( "BandedMatrix dimension error in + operator." );
+    }
+    temp.COMPACT = COMPACT + m_plus.COMPACT;
+    return temp;
+  }
+
+  template <typename T>
+  inline BandedMatrix<T> BandedMatrix<T>::operator-(
+                                          const BandedMatrix<T>& m_minus ) const
+  {
+    BandedMatrix<T> temp( *this );
+    if ( m_minus.N != N || m_minus.M1 != M1 || m_minus.M2 != M2 )
+    {
+      throw Error( "BandedMatrix dimension error in - operator." );
+    }
+    temp.COMPACT = COMPACT - m_minus.COMPACT;
+    return temp;
+  }
+
+  template <typename T>
+  inline BandedMatrix<T> BandedMatrix<T>::operator*( const T& scalar ) const
+  {
+    BandedMatrix<T> temp( *this );
+    temp.COMPACT = COMPACT * scalar;
+    return temp;
+  }
+
+  template <typename T>
+  inline BandedMatrix<T> BandedMatrix<T>::operator/( const T& divisor ) const
+  {
+    BandedMatrix<T> temp( *this );
+    temp.COMPACT = COMPACT / divisor;
+    return temp;
+  }
+
+  template <typename T>
+  inline BandedMatrix<T>& BandedMatrix<T>::operator+=(
+                                                const BandedMatrix<T>& m_plus )
+  {
+    if ( m_plus.N != N || m_plus.M1 != M1 || m_plus.M2 != M2 )
+    {
+      throw Error( "BandedMatrix dimension error in += operator." );
+    }
+    COMPACT = COMPACT + m_plus.COMPACT;
+    return *this;
+  }
+
+  template <typename T>
+  inline BandedMatrix<T>& BandedMatrix<T>::operator-=(
+                                               const BandedMatrix<T>& m_minus )
+  {
+    if ( m_minus.N != N || m_minus.M1 != M1 || m_minus.M2 != M2 )
+    {
+      throw Error( "BandedMatrix dimension error in -= operator." );
+    }
+    COMPACT = COMPACT - m_minus.COMPACT;
+    return *this;
+  }
+
+  template <typename T>
+  inline BandedMatrix<T>& BandedMatrix<T>::operator*=( const T& scalar )
+  {
+    COMPACT *= scalar;
+    return *this;
+  }
+
+  template <typename T>
+  inline BandedMatrix<T>& BandedMatrix<T>::operator/=( const T& divisor )
+  {
+    COMPACT /= divisor;
+    return *this;
+  }
+
+  template <typename T>
+  inline BandedMatrix<T>& BandedMatrix<T>::operator+=( const T& add )
+  {
+    COMPACT += add;
+    return *this;
+  }
+
+  template <typename T>
+  inline BandedMatrix<T>& BandedMatrix<T>::operator-=( const T& minus )
+  {
+    COMPACT -= minus;
+    return *this;
+  }
+
+  template <typename T>
+  inline Vector<T> BandedMatrix<T>::operator*( Vector<T>& x )
+  {
+    if ( N != x.size() )
+    {
+      throw Error( "BandedMatrix: dimensions do not agree in multiply method.");
+    }
+    Vector<T> result( N );
+    int i, j, k, tmploop;
+    for ( i = 0; i < N; i++ ) {
+  		k = i - M1;
+  		tmploop = std::min( M1 + M2 + 1, N - k );
+  		result[ i ] = 0.0;
+  		for ( j = std::max( 0, - k ); j < tmploop; j++ ){
+        result[ i ] += COMPACT( i, j ) * x[ j + k ];
+      }
+  	}
+    return result;
+  }
 
   /* ----- Methods ----- */
 
@@ -213,6 +474,55 @@ namespace Luna
       if ( l < mm ) l++;
     }
     return x;
+  }
+
+  template <typename T>
+  inline Matrix<T> BandedMatrix<T>::solve( const Matrix<T>& B )
+  {
+    if ( B.rows() != N ) {
+      throw Error( "BandedMatrix solve error: Matrix rows incorrect size." );
+    }
+    Matrix<T> X( B );
+
+    // LU decomposition
+    Matrix<T> au, al;
+    Vector<int> index;
+    double d;
+    au = COMPACT;
+    al.resize( N, M1 );
+    index.resize( N );
+    decompose( au, al, index, d );
+
+    Vector<T> x( N );
+    int i, j, k, l, mm;
+    T dum;
+    mm = M1 + M2 + 1;
+
+    for ( std::size_t col = 0; col < B.cols(); ++col )
+    {
+      // Solve the system for each column
+      x = X.get_col( col );
+      l = M1;
+      for ( k = 0; k < N; k++ ) {
+        j = index[ k ] - 1;
+        if ( j != k ) std::swap( x[ k ], x[ j ] );
+        if ( l < N ) l++;
+        for ( j = k + 1; j < l; j++ ){
+          x[ j ] -= al( k, j - k - 1 ) * x[ k ];
+        }
+      }
+      l = 1;
+      for ( i = N - 1; i >= 0; i-- ) {
+        dum = x[ i ];
+        for ( k = 1; k < l; k++ ) {
+          dum -= au( i, k ) * x[ k + i ];
+        }
+        x[ i ] = dum / au( i, 0 );
+        if ( l < mm ) l++;
+      }
+      X.set_col( col, x );
+    }
+    return X;
   }
 
   /* ----- Determinant ----- */
