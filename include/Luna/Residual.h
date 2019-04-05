@@ -32,13 +32,13 @@ namespace Luna
       Vector<T> FN_AT_LAST_STATE;  // Residual for the last state vector
       Vector<T> LAST_STATE;				 // The last state vector
       T DELTA;										 // Step for FD computation of the Jacobian
-      std::size_t ORDER_OF_SYSTEM; // The order of the system of equations
-      std::size_t NUMBER_OF_VARS;	 // The number of elements in the state vector
+      unsigned ORDER_OF_SYSTEM; // The order of the system of equations
+      unsigned NUMBER_OF_VARS;	 // The number of elements in the state vector
 
     public:
       /// Constructor for a 'square' residual (N residuals for N unknowns)
       /// \param order The order of the system of equations
-      Residual( const std::size_t& order ) : DELTA( 1.e-8 )
+      Residual( const unsigned& order ) : DELTA( 1.e-8 )
       {
         ORDER_OF_SYSTEM = order;
         NUMBER_OF_VARS = order;
@@ -50,8 +50,8 @@ namespace Luna
       /// Constructor for a 'non-square' residual object
       /// \param order The order of the system of equations
       /// \param nvars The number of elements in the state vector
-      Residual( const std::size_t& order,
-                const std::size_t& nvars ) : DELTA( 1.e-8 )
+      Residual( const unsigned& order,
+                const unsigned& nvars ) : DELTA( 1.e-8 )
       {
         ORDER_OF_SYSTEM = order;
         NUMBER_OF_VARS = nvars;
@@ -69,11 +69,11 @@ namespace Luna
 
       /// Get the order of the residual vector
       /// \return The order of the system of equations
-      std::size_t get_order() const { return ORDER_OF_SYSTEM; }
+      unsigned get_order() const { return ORDER_OF_SYSTEM; }
 
       /// Get the number of variables
       /// \return The number of elements in the state vector
-      std::size_t get_number_of_vars() const { return NUMBER_OF_VARS; }
+      unsigned get_number_of_vars() const { return NUMBER_OF_VARS; }
 
       /// Update the Residual object for the current set of state variables
       /// \param The last state vector
