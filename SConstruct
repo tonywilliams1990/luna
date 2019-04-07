@@ -30,7 +30,7 @@ libdir_str = topdir + '/lib '
 libs_str   = Luna_lib + ' '
 preproc    = ''
 #opts = ' -O2 -std=c++14 -Wall -Wextra '
-opts = ' -O2 -std=c++11 -fopenmp '
+opts = ' -O2 -std=c++17 -fopenmp '
 #opts = ' -O3 -std=c++11'# -fopenmp'
 link_flags = ' -fopenmp '
 

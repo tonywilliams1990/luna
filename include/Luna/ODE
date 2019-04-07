@@ -1,5 +1,6 @@
 // ODE
 #include "Residual_with_coords.h"
 #include "Equation.h"
+#include "Equation_1matrix.h"
 #include "ODE_BVP.h"
 

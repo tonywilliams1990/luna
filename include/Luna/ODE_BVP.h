@@ -14,7 +14,6 @@
 #include "Vector.h"
 #include "Error.h"
 #include "Matrix.h"
-//TODO remove this #include "SparseMatrix.h"
 #include "BandedMatrix.h"
 #include "Equation.h"
 #include "Mesh1D.h"
@@ -29,26 +28,26 @@ namespace Luna
   class ODE_BVP //TODO : public Arclength<T>
   {
   private:
-    Mesh1D<T, X> SOLUTION;            // Solution mesh
-    int MAX_ITER;			                // Maximum number of iterations
-    double TOL;						            // Tolerance for convergence
-    Equation<T, X> *ptr_EQUATION; 	  // Pointer to the ODE equation
-    Residual<T> *ptr_LEFT_RESIDUAL;   // Pointer to the left residual
-    Residual<T> *ptr_RIGHT_RESIDUAL;  // Pointer to the right residual
-    int LAST_DET_SIGN;                // Sign of the determinant of the Jacobian
-    bool MONITOR_DET;                 // Monitor the determinant if true
+    Mesh1D<T, X> SOLUTION;                // Solution mesh
+    int MAX_ITER;			                    // Maximum number of iterations
+    double TOL;						                // Tolerance for convergence
+    Equation_1matrix<T, X> *ptr_EQUATION; // Pointer to the ODE equation
+    Residual<T> *ptr_LEFT_RESIDUAL;       // Pointer to the left residual
+    Residual<T> *ptr_RIGHT_RESIDUAL;      // Pointer to the right residual
+    int LAST_DET_SIGN;                    // Determinant sign of the Jacobian
+    bool MONITOR_DET;                     // Monitor the determinant if true
 
     // Solve the system for an initial guess by Newton iteration. This method is
-    //  inherited from Arclength and points to solve_bvp
+    // inherited from Arclength and points to solve_bvp
     void solve( Vector<T>& state );
 
     // Assemble the Jacobian matrix and the residual vector
-    void assemble_matrix_problem( BandedMatrix<T>& A, Vector<T>& B );
+    void assemble_matrix_problem( BandedMatrix<T>& a, Vector<T>& b );
 
   public:
 
     /// Constructor
-    ODE_BVP( Equation<T, X>* ptr_equation, const Vector<X>& nodes,
+    ODE_BVP( Equation_1matrix<T, X>* ptr_equation, const Vector<X>& nodes,
              Residual<T>* ptr_left_residual, Residual<T>* ptr_right_residual );
 
     //TODO copy constructor
@@ -61,16 +60,40 @@ namespace Luna
     /// Return a pointer to the current solution mesh
     Mesh1D<T, X>& solution();
 
-    //TODO tolerance, max_iter, solution etc
+    /// Access the tolerance for convergence
+    /// \return a pointer to the tolerance
+    double& tolerance();
 
-    /// Solve the BVP
+    /// Access the maximum number of iterations
+    /// \return a pointer to the maximum number of iterations
+    int& max_iterations();
+
+    /// Set whether the determinant will be monitored
+    /// \param monitor The boolean value determining whether the determinant
+    /// will be monitored
+    void set_monitor_det( bool monitor );
+
+    /// Solve the boundary value problem
     void solve_bvp();
+
+    /// Adapt the computational mesh
+    /// \param adapt_tol The residual tolerance at a nodal point to determine
+    /// whether mesh refinements will occur
+    /// \return A pair of values indicating the number of refinements
+    /// and unrefinements.
+    std::pair<unsigned, unsigned> adapt( const double& adapt_tol );
+
+    /// Solve the system with mesh refinements or unrefinements
+    /// \param adapt_tol The residual tolerance at a nodal point to determine
+    /// whether mesh refinements will occur
+    void adapt_until( const double& adapt_tol );
 
   }; // End of class ODE_BVP
 
   template <typename T, typename X>
-  ODE_BVP<T, X>::ODE_BVP( Equation<T, X>* ptr_equation, const Vector<X>& nodes,
-           Residual<T>* ptr_left_residual, Residual<T>* ptr_right_residual ) :
+  ODE_BVP<T, X>::ODE_BVP( Equation_1matrix<T, X>* ptr_equation,
+           const Vector<X>& nodes, Residual<T>* ptr_left_residual,
+           Residual<T>* ptr_right_residual ) :
            MAX_ITER( 20 ), TOL( 1e-8 ), ptr_EQUATION( ptr_equation ),
            ptr_LEFT_RESIDUAL( ptr_left_residual ),
            ptr_RIGHT_RESIDUAL( ptr_right_residual ),
@@ -107,10 +130,29 @@ namespace Luna
 	{}
 
   /* ---- Methods ----- */
+
   template <typename T, typename X>
   Mesh1D<T, X>& ODE_BVP<T, X>::solution()
   {
     return SOLUTION;
+  }
+
+  template <typename T, typename X>
+  double& ODE_BVP<T, X>::tolerance()
+  {
+    return TOL;
+  }
+
+  template <typename T, typename X>
+  int& ODE_BVP<T, X>::max_iterations()
+  {
+    return MAX_ITER;
+  }
+
+  template <typename T, typename X>
+  void ODE_BVP<T, X>::set_monitor_det( bool monitor )
+  {
+    MONITOR_DET = monitor;
   }
 
   template <typename T, typename X>
@@ -121,18 +163,159 @@ namespace Luna
     double max_residual( 1.0 );
     int counter( 0 );
     int det_sign( LAST_DET_SIGN );
-
     // Banded LHS matrix
     BandedMatrix<T> a( n * order, 2 * order - 1, 2 * order - 1 );
     // RHS vector
     Vector<T> b( n * order, 0.0 );
-
     // Loop until convergence
+    do {
+      ++counter;
+      assemble_matrix_problem( a, b );
+      //TODO actions before linear solve ?
+      max_residual = b.norm_inf();
+      b = a.solve( b );
+      // Put the solution into the 1D mesh
+      for ( std::size_t var = 0; var < order; ++var )
+      {
+        for ( std::size_t i = 0; i < n; ++i )
+        {
+          SOLUTION( i, var ) += b[ i * order + var ];
+        }
+      }
+
+    } while( ( max_residual > TOL ) && ( counter < MAX_ITER ) );
+
+    if ( counter >= MAX_ITER )
+    {
+      std::string problem( "solve_bvp method error: Too many iterations" );
+      throw Error( problem );
+    }
+
+    if ( MONITOR_DET )
+    {
+      T det = a.det();
+      if ( std::real( det ) < 0 ) {
+        det_sign = -1;
+      } else {
+        det_sign = 1;
+      }
+      if ( det_sign * LAST_DET_SIGN < 0 )
+      {
+        LAST_DET_SIGN = det_sign;
+        std::string problem;
+        problem = "Determinant monitor has changed signs in ODE_BVP.\n";
+        problem += "Bifurcation detected.\n";
+        throw Error( problem );
+      }
+      LAST_DET_SIGN = det_sign;
+    }
+  }
+
+  template <typename T, typename X>
+  std::pair<unsigned, unsigned> ODE_BVP<T, X>::adapt( const double& adapt_tol )
+  {
     
+  }
+
+  template <typename T, typename X>
+  void ODE_BVP<T, X>::adapt_until( const double& adapt_tol )
+  {
 
   }
 
   /* ----- Private methods ----- */
+
+  template <typename T, typename X>
+  void ODE_BVP<T, X>::assemble_matrix_problem( BandedMatrix<T>& a,
+                                               Vector<T>& b )
+  {
+    a.fill( 0.0 );
+    unsigned order( ptr_EQUATION -> get_order() );
+    unsigned n( SOLUTION.nnodes() );
+    std::size_t row( 0 );
+
+    Matrix<T> Jac_midpt( order, order, 0.0 );
+    Vector<T> F_midpt( order, 0.0 );
+    Vector<T> R_midpt( order, 0.0 );
+    Vector<T> state_dy( order, 0.0 );
+    Matrix<T> h0( order, order, 0.0 );
+    // update the BC residuals
+    ptr_LEFT_RESIDUAL -> update( SOLUTION.get_nodes_vars( 0 ) );
+    // add the LHS BCs to the matrix problem
+    for ( std::size_t i = 0; i < ptr_LEFT_RESIDUAL -> get_order(); ++i )
+    {
+      // loop thru variables at LHS of the domain
+      for ( std::size_t var = 0; var < order; ++var )
+      {
+        a( row, var ) = ptr_LEFT_RESIDUAL -> jacobian()( i, var );
+      }
+      b[ row ] = - ptr_LEFT_RESIDUAL -> residual()[ i ];
+      ++row;
+    }
+    // inner nodes
+    for ( std::size_t node = 0; node <= n - 2; ++node )
+    {
+      const std::size_t lnode( node );
+      const std::size_t rnode( node + 1 );
+      // inverse of step size
+      const X invh = 1. / ( SOLUTION.coord( rnode ) - SOLUTION.coord( lnode ) );
+      for ( std::size_t var = 0; var < order; ++var )
+      {
+        F_midpt[ var ] = ( SOLUTION( lnode, var ) +
+                           SOLUTION( rnode, var ) ) / 2.;
+        state_dy[ var ] = ( SOLUTION( rnode, var ) -
+                            SOLUTION( lnode, var ) ) * invh;
+      }
+      X y_midpt = ( SOLUTION.coord( lnode ) + SOLUTION.coord( rnode ) ) / 2.;
+      ptr_EQUATION -> coord( 0 ) = y_midpt;
+      ptr_EQUATION -> update( F_midpt );
+      ptr_EQUATION -> get_jacobian_of_matrix0_mult_vector( F_midpt,
+                                                           state_dy, h0 );
+      for ( std::size_t var = 0; var < order; ++var )
+      {
+        for ( std::size_t i = 0; i < order; ++i )
+        {
+          // Jac of matrix * F_y * g terms
+          int col_l( order * lnode + i );
+          int col_r( order * rnode + i );
+          a( row, col_l ) += h0( var, i )/2.;
+          a( row, col_r ) += h0( var, i )/2.;
+          // Matrix * g_y terms
+          a( row, col_l ) -= ptr_EQUATION -> matrix0()( var, i ) * invh;
+          a( row, col_r ) += ptr_EQUATION -> matrix0()( var, i ) * invh;
+          // Jacobian of RHS terms
+          a( row, col_l ) -= ptr_EQUATION -> jacobian()( var, i ) / 2.;
+          a( row, col_r ) -= ptr_EQUATION -> jacobian()( var, i ) / 2.;
+        }
+        b[ row ] = ptr_EQUATION -> residual()[ var ]
+                 - state_dy.dot( ptr_EQUATION -> matrix0()[ var ] );
+        row++;
+      }
+    }
+    // update the BC residuals
+    ptr_RIGHT_RESIDUAL -> update( SOLUTION.get_nodes_vars( n - 1 ) );
+    // add the RHS BCs to the matrix problem
+    for ( std::size_t i = 0; i < ptr_RIGHT_RESIDUAL -> get_order(); ++i )
+    {
+      // loop thru variables at RHS of the domain
+      for ( std::size_t var = 0; var < order; ++var )
+      {
+        int col( order * ( n - 1 ) + var );
+        a( row, col ) = ptr_RIGHT_RESIDUAL -> jacobian()( i, var );
+      }
+      b[ row ] = - ptr_RIGHT_RESIDUAL -> residual()[ i ];
+      ++row;
+    }
+
+    if ( row != n * order )
+     {
+       std::string problem;
+       problem += "ODE_BVP error: incorrect number of boundary conditions.";
+       throw Error( problem );
+     }
+  }
+
+
 
 }  // End of namespace Luna
 

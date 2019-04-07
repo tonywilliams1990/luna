@@ -10,12 +10,12 @@ enum{ y, yd };
 
 namespace Luna
 {
-  class test_equation : public Equation<double>
+  class test_equation : public Equation_1matrix<double>
 	{
 
 		public:
 			// The test equation is 2nd order ( y'' + 4y = 0 )
-			test_equation() : Equation<double> ( 2 ) {}
+			test_equation() : Equation_1matrix<double> ( 2 ) {}
 
 			// Define the equation
 			void residual_fn( const Vector<double>& u, Vector<double>& F  ) const
@@ -24,6 +24,11 @@ namespace Luna
 				F[ y ]   = u[ yd ];
 				F[ yd ]  = - 4 * u[ y ];
 			}
+
+      void matrix0( const Vector<double>&x, Matrix<double> &m ) const
+      {
+        m.eye();
+      }
 	};
 
   class left_BC : public Residual<double>
@@ -84,6 +89,10 @@ int main()
 		ode.solution()( j , y )  = gradient * x - 2.0;
     ode.solution()( j , yd ) = gradient;
 	}
+
+  ode.tolerance() = 1e-10;
+  ode.max_iterations() = 30;
+  ode.set_monitor_det( false );
 
   // Solve
   ode.solve_bvp();

@@ -159,6 +159,10 @@ namespace Luna
     /// \return The number of bands above the main diagonal
     std::size_t size_above();
 
+    /// Fill the Matrix with specified elements
+    /// \param elem The element to fill the Matrix with
+    void fill( const T& elem );
+
     /* ----- Solve linear systems ----- */
 
     /// Solve the banded system of equations Ax=b where x and b are Vectors
@@ -430,6 +434,12 @@ namespace Luna
   inline std::size_t BandedMatrix<T>::size_above()
   {
     return M2;
+  }
+
+  template <typename T>
+  inline void BandedMatrix<T>::fill( const T& elem )
+  {
+    COMPACT.fill( elem );
   }
 
   /* ----- Solve linear systems ----- */
