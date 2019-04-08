@@ -68,7 +68,7 @@ int main()
 
   double left( 0.0 );               // Left boundary
   double right( M_PI / 4.0 );			  // Right boundary
-	std::size_t N( 20 );              // Number of nodes
+	std::size_t N( 1000 );            // Number of nodes
 	Vector<double> nodes;						  // Vector of nodes ( uniformly spaced )
 	nodes.linspace( left, right, N);
 
@@ -85,28 +85,37 @@ int main()
   double gradient( 48.0 / M_PI );
 	for (std::size_t j=0; j < N; ++j )
 	{
-		double x = nodes[ j ];					// eta value at node j
-		ode.solution()( j , y )  = gradient * x - 2.0;
-    ode.solution()( j , yd ) = gradient;
+		double x = nodes[ j ];
+		ode.solution()( j, y )  = gradient * x - 2.0;
+    ode.solution()( j, yd ) = gradient;
 	}
 
-  ode.tolerance() = 1e-10;
-  ode.max_iterations() = 30;
+  ode.tolerance() = 1e-8;
+  ode.max_iterations() = 50;
   ode.set_monitor_det( false );
 
-  std::pair<unsigned, unsigned> refinements;
-  refinements = ode.adapt( 1e-8 );
+  // Adaptively solve the BVP
+  //ode.adapt_until( 1e-7 );
 
-  cout << " refinements = " << refinements.first << endl;
-  cout << " unrefinements = " << refinements.second << endl;
+  cout << " Number of nodes in the solution = " << ode.solution().nnodes()
+       << endl;
 
+  nodes = ode.solution().nodes();
+  Mesh1D<double, double> exact_solution( nodes, 2 );
+  for (std::size_t j=0; j < nodes.size(); ++j )
+	{
+		double x = nodes[ j ];
+		exact_solution( j, y )  = - 2.0 * cos( 2 * x ) + 10.0 * sin( 2 * x );
+    exact_solution( j, yd ) =   4.0 * sin( 2 * x ) + 20.0 * cos( 2 * x );
+	}
   // Solve
   ode.solve_bvp();
 
   // Output the solution data
-  ode.solution().output( "./DATA/ODE_BVP_test.dat" );
+  ode.solution().output( "./DATA/ODE_BVP_numerical_solution.dat" );
+  exact_solution.output( "./DATA/ODE_BVP_exact_solution.dat" );
 
-  //TODO compare to exact solution y'(0) = 20
+  //TODO plotting instructions
 
   cout << "--- FINISHED ---" << endl;
 }

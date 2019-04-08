@@ -331,10 +331,36 @@ namespace Luna
     return feedback;
   }
 
+  template<>
+  void ODE_BVP<double, cmplx>::adapt_until( const double& adapt_tol )
+  {
+    std::string problem;
+    problem = " The ODE_BVP.adapt_until method has been called for a problem\n";
+    problem += " in the complex plane. This doesn't make sense as the path\n";
+    problem += " is not geometrically defined. \n";
+    throw Error( problem );
+  }
+
+  template<>
+  void ODE_BVP<cmplx, cmplx>::adapt_until( const double& adapt_tol )
+  {
+    std::string problem;
+    problem = " The ODE_BVP.adapt_until method has been called for a problem\n";
+    problem += " in the complex plane. This doesn't make sense as the path\n";
+    problem += " is not geometrically defined. \n";
+    throw Error( problem );
+  }
+
   template <typename T, typename X>
   void ODE_BVP<T, X>::adapt_until( const double& adapt_tol )
   {
-
+    std::pair<unsigned, unsigned> changes;
+    do {
+      changes = adapt( adapt_tol );
+      solve_bvp();
+      std::cout << " * Adapting: " << changes.first << " " << changes.second
+                << std::endl;
+    }while ( changes.first + changes.second != 0 );
   }
 
   /* ----- Private methods ----- */
