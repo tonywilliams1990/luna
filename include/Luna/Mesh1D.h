@@ -130,6 +130,10 @@ namespace Luna
     /// \param var Variable index
     T integral( std::size_t var = 0 ) const;
 
+    /// Linearly interpolate this mesh data into a new nodal mesh.
+    /// \param z The nodal coordinates to be used in the new mesh.
+    void remesh( const Vector<X>& z );
+
 
   };	// End of class Mesh1D
 
@@ -381,6 +385,128 @@ namespace Luna
     }
     return sum;
   }
+
+  template <>
+  inline void Mesh1D<double, double>::remesh( const Vector<double>& newX )
+  {
+    if ( std::abs( NODES[ 0 ] - newX[ 0 ] ) > 1.e-10 ||
+         std::abs( NODES.back() - newX.back() ) > 1.e-10 )
+    {
+      std::string problem;
+      problem = " The Mesh1D.remesh method has been called with a passed\n";
+      problem += " coordinate vector that has different start and/or \n";
+      problem += " end points from the instantiated object. \n";
+      throw Error( problem );
+    }
+    for ( std::size_t i = 0; i < newX.size() - 1; ++i )
+    {
+      if ( newX[ i ] >= newX[ i + 1 ] )
+      {
+        std::string problem;
+        problem = " The Mesh1D.remesh method has been passed \n";
+        problem += " a non-monotonic coordinate vector. \n";
+        throw Error( problem );
+      }
+    }
+    Vector<double> copy_of_vars( VARS );
+    VARS.resize( newX.size() * NV );
+    for ( std::size_t node = 1; node < newX.size() - 1; ++node )
+    {
+      // loop through the source mesh and find the bracket-nodes
+      for ( std::size_t i = 0; i < NODES.size(); ++i )
+      {
+        if ( ( NODES[ i ] <= newX[ node ] ) &&
+             ( newX[ node ] < NODES[ i + 1 ] ) )
+        {
+          // linearly interpolate each variable in the mesh
+          for ( std::size_t var = 0; var < NV; ++var )
+          {
+            double dX = newX[ node ] - NODES[ i ];
+            double dvarsdX = ( copy_of_vars[ ( i+1 )*NV + var ] -
+                               copy_of_vars[ i*NV + var ] )
+                             / ( NODES[ i + 1 ] - NODES[ i ] );
+            VARS[ node * NV + var ] =   copy_of_vars[ i * NV + var ]
+                                      + dX * dvarsdX;
+          }
+        }
+      }
+    }
+    // add the last nodal values to the resized vector
+    for ( std::size_t var = 0; var < NV; ++var )
+    {
+      VARS[ ( newX.size() - 1 ) * NV + var ] = copy_of_vars[ ( NODES.size() - 1 )
+                                                            * NV + var ];
+    }
+    NODES = newX;
+  }
+
+  template <>
+  inline void Mesh1D<std::complex<double>, double>::remesh(
+                                                    const Vector<double>& newX )
+  {
+    if ( std::abs( NODES[ 0 ] - newX[ 0 ] ) > 1.e-10 ||
+         std::abs( NODES.back() - newX.back() ) > 1.e-10 )
+    {
+      std::string problem;
+      problem = " The Mesh1D.remesh method has been called with a passed\n";
+      problem += " coordinate vector that has different start and/or \n";
+      problem += " end points from the instantiated object. \n";
+      throw Error( problem );
+    }
+    for ( std::size_t i = 0; i < newX.size() - 1; ++i )
+    {
+      if ( newX[ i ] >= newX[ i + 1 ] )
+      {
+        std::string problem;
+        problem = " The Mesh1D.remesh method has been passed \n";
+        problem += " a non-monotonic coordinate vector. \n";
+        throw Error( problem );
+      }
+    }
+
+    Vector<std::complex<double> > copy_of_vars( VARS );
+    VARS.resize( newX.size() * NV );
+    for ( std::size_t node = 1; node < newX.size() - 1; ++node )
+    {
+      // loop through the source mesh and find the bracket-nodes
+      for ( std::size_t i = 0; i < NODES.size(); ++i )
+      {
+        if ( ( NODES[ i ] <= newX[ node ] ) &&
+             ( newX[ node ] < NODES[ i + 1 ] ) )
+         {
+          // linearly interpolate each variable in the mesh
+          for ( std::size_t var = 0; var < NV; ++var )
+          {
+            double dX = newX[ node ] - NODES[ i ];
+            // if the paranoid checks above are satisfied, then the X[ i + 1 ] should still be in bounds
+            std::complex<double> dvarsdX = ( copy_of_vars[ ( i+1 )*NV + var ] -
+                                             copy_of_vars[ i*NV + var ] )
+                                            / ( NODES[ i + 1 ] - NODES[ i ] );
+            VARS[ node * NV + var ] =   copy_of_vars[ i * NV + var ]
+                                      + dX * dvarsdX;
+          }
+        }
+      }
+    }
+    // add the last nodal values to the resized vector
+    for ( std::size_t var = 0; var < NV; ++var )
+    {
+      VARS[ ( newX.size() - 1 ) * NV + var ] = copy_of_vars[
+                                              ( NODES.size() - 1 ) * NV + var ];
+    }
+    NODES = newX;
+  }
+
+  template <>
+  void Mesh1D<std::complex<double>, std::complex<double>>::remesh(
+                                         const Vector<std::complex<double>>& z )
+  {
+    std::string problem;
+    problem = " The Mesh1D.remesh method has been called with \n";
+    problem += " a complex data set on a complex mesh.\n";
+    throw Error( problem );
+  }
+
 
 }  // End of namespace Luna
 

@@ -94,6 +94,12 @@ int main()
   ode.max_iterations() = 30;
   ode.set_monitor_det( false );
 
+  std::pair<unsigned, unsigned> refinements;
+  refinements = ode.adapt( 1e-8 );
+
+  cout << " refinements = " << refinements.first << endl;
+  cout << " unrefinements = " << refinements.second << endl;
+
   // Solve
   ode.solve_bvp();
 

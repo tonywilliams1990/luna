@@ -211,10 +211,124 @@ namespace Luna
     }
   }
 
+  typedef std::complex<double> cmplx;
+  template<>
+  std::pair<unsigned, unsigned> ODE_BVP<double, cmplx>::adapt(
+                                                       const double& adapt_tol )
+  {
+    std::string problem;
+    problem = " The ODE_BVP.adapt method has been called for a problem in \n";
+    problem += " the complex plane. This doesn't make sense as the path is \n";
+    problem += " not geometrically defined. \n";
+    throw Error( problem );
+  }
+
+  template<>
+  std::pair<unsigned, unsigned> ODE_BVP<cmplx, cmplx>::adapt(
+                                                       const double& adapt_tol )
+  {
+    std::string problem;
+    problem = " The ODE_BVP.adapt method has been called for a problem in \n";
+    problem += " the complex plane. This doesn't make sense as the path is \n";
+    problem += " not geometrically defined. \n";
+    throw Error( problem );
+  }
+
   template <typename T, typename X>
   std::pair<unsigned, unsigned> ODE_BVP<T, X>::adapt( const double& adapt_tol )
   {
-    
+    unsigned order( ptr_EQUATION -> get_order() );
+    unsigned N( SOLUTION.nnodes() );
+
+    Vector<T> F_node( order, 0.0 );
+    Vector<T> R_node( order, 0.0 );
+
+    std::vector<bool> refine( N, false );
+    std::vector<bool> unrefine( N, false );
+
+    Vector<double> Res2( N, 0.0 );
+
+    for ( std::size_t node = 1; node <= N - 2; node += 2 )
+    {
+      // set the current solution at this node
+      for ( unsigned var = 0; var < order; ++var )
+      {
+         F_node[ var ] = SOLUTION( node, var );
+      }
+      // set the y-pos in the eqn
+      ptr_EQUATION -> coord(0) = SOLUTION.coord( node );
+      // Update the equation to the nodal position
+      ptr_EQUATION -> update( F_node );
+      // step size centred at the node
+      X invh = 1. / ( SOLUTION.coord( node + 1 ) - SOLUTION.coord( node - 1 ) );
+      // loop over all the variables
+      Vector<T> temp( order, 0.0 );
+      for ( unsigned var = 0; var < order; ++var )
+      {
+        temp[ var ] = ptr_EQUATION -> residual()[ var ] - (
+                SOLUTION( node + 1, var ) - SOLUTION( node - 1, var ) ) * invh;
+      }
+      Res2[ node ] = temp.norm_inf();
+      if ( Res2[ node ] > adapt_tol )
+      {
+        refine[ node ] = true;
+      }
+      else if ( Res2[ node ] < TOL / 10. )
+      {
+        unrefine[ node ] = true;
+      }
+    }
+
+    std::size_t no_refined( 0 ), no_unrefined( 0 );
+    for ( std::size_t i = 0; i < refine.size(); ++i )
+    {
+      if ( refine[ i ] == true ){ no_refined++; }
+      if ( unrefine[ i ] == true ){ no_unrefined++; }
+    }
+
+    // make a new refined/unrefined mesh
+    Vector<X> nodes( SOLUTION.nodes() );
+    Vector<X> newX;
+    newX.push_back( nodes[ 0 ] );
+    for ( std::size_t i = 1; i < N - 1; ++i )
+    {
+      if ( refine[ i ] )
+      {
+        if ( !refine[ i - 1 ] )
+        {
+          // Have not already refined to the left
+          // so refine left AND right with new nodes
+          X left( nodes[ i - 1 ] );
+          X right( nodes[ i + 1 ] );
+          X here( nodes[ i ] );
+          newX.push_back( ( left + here ) / 2. );
+          newX.push_back( here );
+          newX.push_back( ( right + here ) / 2. );
+        }
+        else
+        {
+          // already left refined, so just refine right
+          X right( nodes[ i + 1 ] );
+          X here( nodes[ i ] );
+          newX.push_back( here );
+          newX.push_back( ( right + here ) / 2. );
+        }
+      }
+      else if ( !unrefine[ i ] )
+      {
+        newX.push_back( nodes[ i ] );
+      }
+    }
+    newX.push_back( nodes[ N - 1 ] );
+
+    SOLUTION.remesh( newX );
+
+    LAST_DET_SIGN = 0;
+
+    std::pair< unsigned, unsigned > feedback;
+    feedback.first = no_refined;
+    feedback.second = no_unrefined;
+    return feedback;
   }
 
   template <typename T, typename X>

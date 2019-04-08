@@ -1,6 +1,8 @@
 /// \file Vector.h
 /// A templated numeric Vector class that encapsulates std::vector.
 
+/// \todo Lots of the Vector methods could be done better using stl algorithms
+
 #ifndef VECTOR_H
 #define VECTOR_H
 
@@ -308,6 +310,14 @@ namespace Luna
 
     /// Fill the Vector with random elements (between -1 and 1)
     void random();
+
+    /// A reference to the last element in the Vector
+    /// \return A reference to the last element
+    T& back();
+
+    /// A ( read only ) reference to the last element in the Vector
+    /// \return The last element in the Vector
+    const T& back() const;
 
     /* ----- Norms ----- */
 
@@ -924,6 +934,18 @@ namespace Luna
       double imag( unif(rng) );
       VECTOR[ i ] = std::complex<double> ( real, imag );
     }
+  }
+
+  template <typename T>
+  inline T& Vector<T>::back()
+  {
+    return VECTOR.back();
+  }
+
+  template <typename T>
+  inline const T& Vector<T>::back() const
+  {
+    return VECTOR.back();
   }
 
   /* ----- Norms ----- */
