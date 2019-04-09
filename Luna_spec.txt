@@ -27,16 +27,17 @@ Luna aims to be a header-only library of numerical routines written in C++.
 10. Newton - a Newton's method iteration class                               [x]
 11. Arclength - arc length continuation class                                [x]
 12. Interpolate - interpolation methods for 1D and 2D mesh objects (utility)  []
-13. MonteCarlo - a class for utilising Monte Carlo methods  		      []
-14. Quadrature - Numerical integration of functions  			      []
-15. Utility - General utility functions 				      []
+13. MonteCarlo - a class for utilising Monte Carlo methods  		              []
+14. Quadrature - Numerical integration of functions  			                    []
+15. Utility - General utility functions 				                              []
+16. Chebyshev - a class Chebyshev approximation and related methods	          []
 
 --- Sparse ---
-1. Tridiagonal - a tridiagonal matrix class (including solver)    	     [x]
+1. Tridiagonal - a tridiagonal matrix class (including solver)    	         [x]
 2. BandedMatrix - a banded matrix class (including banded solver)            [x]
 3. SparseMatrix - a sparse matrix class (including sparse linear algebra)    [x]  
     -> biconjugate gradient method? ( linbcg.h ) + parallel multiplication/solve
-4. Triplet - a class of 3-tuples for use with SparseMatrix		     [x]
+4. Triplet - a class of 3-tuples for use with SparseMatrix		               [x]
 
 --- Eigenvalue ---
 1. Eigensystem - a class for solving linear eigensystems                     [?]
@@ -52,7 +53,7 @@ Luna aims to be a header-only library of numerical routines written in C++.
 --- PDE ---
 1. PDE_IBVP - PDE initial boundary value problem class                        []
 2. Poisson - a class for solving Poisson problems                             []
-3. Spectral - a class for solving PDEs using spectral methods		      []
+3. Spectral - a class for solving PDEs using spectral methods		              []
 
 --- Automatic-differentiation ---
 1. Dual - a class defining dual numbers                                       []
@@ -60,7 +61,7 @@ Luna aims to be a header-only library of numerical routines written in C++.
 3. Autodiff - a class for automatic-differentiation                           []
 
 --- Quaternions ---
-1. Quaternion - a class defining quaternions				      []
+1. Quaternion - a class defining quaternions				                          []
 
 
 ***** Examples *****
@@ -68,12 +69,16 @@ Examples should be used both to test the functionality of the code and
 demonstrate how the code can be used.
 
 1. Vector_algebra - test Vector and Error (range check) +,-,*,/,dot,norms    [x]
-2. Linear_system - test Matrix and Timer classes               		     [x]
+2. Linear_system - test Matrix and Timer classes               		           [x]
 3. Integration - test Mesh1D, Mesh2D, Special and Quadrature classes          []
 4. Root_finding - test Polynomial, Newton and Residual classes               [x]
-5. Heat_equation - test Tridiagonal					     [x]
-6. Laplace_equation - test SparseMatrix + Triplets			     [x]
-7. Blasius_equation - test ODE_BVP and BandedMatrix (inside ODE_BVP)	      []			
+5. Heat_equation - test Tridiagonal					                                 [x]
+6. Laplace_equation - test SparseMatrix + Triplets			                     [x]
+7. Blasius_equation - test ODE_BVP and BandedMatrix (inside ODE_BVP)	        []
+
+***** General TODO *****
+1. Cholesky decomposition - Hermitian Matrices (or just real symmetric?)	
+2. Spectral methods? - Fourier, Chebyshev, collocation? 		
 
 ODE_IVP example - Lorenz equations with python plots, parameter variation and 
 sensitivity to initial conditions etc
