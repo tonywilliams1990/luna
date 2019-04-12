@@ -23,7 +23,7 @@
 /// - M_0(\mathbf{f}^g, x) \frac{d \mathbf{f}^g}{d x}. \f] The system is then
 /// solved for the correction \f$ \mathbf{f}^c \f$ which is used to update the
 /// known solution \f$ \mathbf{f}^g \f$, this is repeated until convergence is
-/// achieved.  
+/// achieved.
 
 #ifndef ODE_BVP_H
 #define ODE_BVP_H
@@ -48,7 +48,7 @@ namespace Luna
 
 	/// A templated object for boundary-value problems as systems of first-order
 	/// ordinary differential equations.
-  class ODE_BVP //TODO : public Arclength<T>
+  class ODE_BVP : public Arclength<T>
   {
   private:
     Mesh1D<T, X> SOLUTION;                // Solution mesh
@@ -110,6 +110,12 @@ namespace Luna
     /// \param adapt_tol The residual tolerance at a nodal point to determine
     /// whether mesh refinements will occur
     void adapt_until( const double& adapt_tol );
+
+		/// Initialise so that we can perform arc-length continuation
+		void init_arc( T* ptr_param, const double& ds, const double& max_ds );
+
+		/// Arc-length solve the system (init_arc must be called first)
+		double arclength_solve( const double& step );
 
   }; // End of class ODE_BVP
 
@@ -261,17 +267,17 @@ namespace Luna
   std::pair<unsigned, unsigned> ODE_BVP<T, X>::adapt( const double& adapt_tol )
   {
     unsigned order( ptr_EQUATION -> get_order() );
-    unsigned N( SOLUTION.nnodes() );
+    unsigned n( SOLUTION.nnodes() );
 
     Vector<T> F_node( order, 0.0 );
     Vector<T> R_node( order, 0.0 );
 
-    std::vector<bool> refine( N, false );
-    std::vector<bool> unrefine( N, false );
+    std::vector<bool> refine( n, false );
+    std::vector<bool> unrefine( n, false );
 
-    Vector<double> Res2( N, 0.0 );
+    Vector<double> Res2( n, 0.0 );
 
-    for ( std::size_t node = 1; node <= N - 2; node += 2 )
+    for ( std::size_t node = 1; node <= n - 2; node += 2 )
     {
       // set the current solution at this node
       for ( unsigned var = 0; var < order; ++var )
@@ -313,7 +319,7 @@ namespace Luna
     Vector<X> nodes( SOLUTION.nodes() );
     Vector<X> newX;
     newX.push_back( nodes[ 0 ] );
-    for ( std::size_t i = 1; i < N - 1; ++i )
+    for ( std::size_t i = 1; i < n - 1; ++i )
     {
       if ( refine[ i ] )
       {
@@ -342,7 +348,7 @@ namespace Luna
         newX.push_back( nodes[ i ] );
       }
     }
-    newX.push_back( nodes[ N - 1 ] );
+    newX.push_back( nodes[ n - 1 ] );
 
     SOLUTION.remesh( newX );
 
@@ -385,6 +391,108 @@ namespace Luna
                 << std::endl;
     }while ( changes.first + changes.second != 0 );
   }
+
+	template <typename T, typename X>
+	void ODE_BVP<T,X>::init_arc( T* ptr_param, const double& ds,
+															 const double& max_ds )
+  {
+    Vector<T> state( SOLUTION.vars_as_vector() );
+    this -> Arclength<T>::init_arc( state, ptr_param, ds, max_ds );
+  }
+
+	template <typename T, typename X>
+	double ODE_BVP<T, X>::arclength_solve( const double& step )
+	{
+		this -> ds() = step;
+		std::size_t order( ptr_EQUATION -> get_order() );  // Order of the equation
+		std::size_t n( SOLUTION.nnodes() );            		 // Number of nodes
+		std::size_t Size( order * n );
+
+		BandedMatrix<T> Jac( n * order, 2 * order - 1, 2 * order - 1 );                 // Jacobian matrix
+		// Residuals over all nodes
+		Vector<T> Res1( Size, 0.0 );
+		Vector<T> Res2( Size, 0.0 );
+		Vector<T> dRes_dp( Size, 0.0 );
+		// RHS vectors for the linear solvers
+		Vector<T> y( Size, 0.0 );
+		Vector<T> z( Size, 0.0 );
+		Vector<T> Jac_E;
+		// Make backups in case we can't find a converged solution
+		Vector<T> backup_state( SOLUTION.vars_as_vector() );
+		T backup_parameter( *( this -> ptr_PARAM ) );
+		// Generate a 1st order guess for the next state and parameter
+		Vector<T> x( this -> LAST_X + this -> X_DERIV_S * this -> DS );
+		*( this -> ptr_PARAM ) = this -> LAST_PARAM + this -> PARAM_DERIV_S * this -> DS;
+
+		SOLUTION.set_vars_from_vector( x );            // Update the solution mesh
+		bool step_succeeded( false );                  // Check for success
+		std::size_t itn( 0 );                          // Iteration counter
+
+		do
+		{
+			++itn;
+			double E1 = this -> arclength_residual( x );            // Arclength residual
+			assemble_matrix_problem( Jac, Res1 );                   // Assemble matrix problem
+			if ( Res1.norm_inf() < TOL && itn > 1 )
+			{
+				step_succeeded = true;
+				break;
+			}
+			y = Jac.solve( Res1 );
+			// Derivatives wrt parameter
+			const double delta( 1.e-8 );
+			*( this -> ptr_PARAM ) += delta;
+			assemble_matrix_problem( Jac, Res2 );
+			double E2 = this -> arclength_residual( x );
+			*( this -> ptr_PARAM ) -= delta;
+			dRes_dp = ( Res2 - Res1 ) / delta;
+			double dE_dp = ( E2 - E1 ) / delta;
+			z = Jac.solve( dRes_dp );
+			Jac_E = this -> Jac_arclength_residual( x );
+			T delta_p = -( E1 + Jac_E.dot( y ) ) / ( dE_dp + Jac_E.dot( z ) );
+			Vector<T> delta_x = y + z * delta_p;
+			// Update the state variables and the parameter with the corrections
+			x += delta_x;
+			*( this -> ptr_PARAM ) += delta_p;
+			SOLUTION.set_vars_from_vector( x );
+			// Check for convergence
+			if ( delta_x.norm_inf() < TOL )
+			{
+				step_succeeded = true;
+				break;
+			}
+			if ( itn > MAX_ITER )
+			{
+				step_succeeded = false;
+				break;
+			}
+		 }while( true );
+		 // If this isn't a successful step
+		 if ( !step_succeeded )
+		 {
+				// Restore things using the backups we made earlier
+				SOLUTION.set_vars_from_vector( backup_state );            // Restore state
+				*( this -> ptr_PARAM ) = backup_parameter;                // Restore parameter
+				this -> DS /= this -> ARCSTEP_MULTIPLIER;                 // Reduce step length
+		 }
+		 else
+		 {
+				this -> update( SOLUTION.vars_as_vector() );
+				if ( itn > 8 || std::abs( this -> DS ) > this -> MAX_DS )
+				{
+					// Converging too slowly, so decrease DS
+					this -> DS /= this -> ARCSTEP_MULTIPLIER;
+				}
+				if ( itn < 4 ) // Converging too quickly, so increase DS
+				{
+					if ( std::abs( this -> DS * this -> ARCSTEP_MULTIPLIER ) < this -> MAX_DS )
+					{
+						this -> DS *= this -> ARCSTEP_MULTIPLIER;
+					}
+				}
+		 }
+		 return this -> DS;
+	}
 
   /* ----- Private methods ----- */
 
@@ -477,6 +585,14 @@ namespace Luna
        throw Error( problem );
      }
   }
+
+	template <typename T, typename X>
+	void ODE_BVP<T, X>::solve( Vector<T>& state )
+	{
+		SOLUTION.set_vars_from_vector( state );
+		solve_bvp();
+		state = SOLUTION.vars_as_vector();
+	}
 
 
 

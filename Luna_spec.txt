@@ -43,11 +43,11 @@ Luna aims to be a header-only library of numerical routines written in C++.
 2. SparseEigensystem - a class for solving sparse linear eigensystems         []
 
 --- ODE ---
-1. ODE_BVP - ODE boundary value problem solver class                          []
-   -> think about 2nd/4th order accuracy (solve function chooses which) 
+1. ODE_BVP - ODE boundary value problem solver class                         [x]
 2. ODE_IVP - ODE intial value problem solver class                            []
-3. Equation - class for specifying the ODE equation                           []
-4. Residual_with_coords - Residual object with an independent variable	      []	  	
+3. Equation - class for specifying the ODE equation                          [x]
+4. Residual_with_coords - Residual object with an independent variable	     [x]
+5. Equation_1matrix - Equation with added matrix for complicated equations   [x]	  	
 
 --- PDE ---
 1. PDE_IBVP - PDE initial boundary value problem class                        []
@@ -83,7 +83,8 @@ demonstrate how the code can be used.
 4. Root_finding - test Polynomial, Newton and Residual classes               [x]
 5. Heat_equation - test Tridiagonal					                                 [x]
 6. Laplace_equation - test SparseMatrix + Triplets			                     [x]
-7. Blasius_equation - test ODE_BVP and BandedMatrix (inside ODE_BVP)	        []
+7. Nonlinear_ODE_BVP - test ODE_BVP and BandedMatrix (inside ODE_BVP)	       [x]
+8. Arclength_Falkner - test arclength solving in ODE_BVP                      []
 
 ***** General TODO *****
 1. Cholesky decomposition - Hermitian Matrices (or just real symmetric?)	

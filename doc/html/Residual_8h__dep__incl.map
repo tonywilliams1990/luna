@@ -1,7 +1,0 @@
-<map id="include/Luna/Residual.h" name="include/Luna/Residual.h">
-<area shape="rect" id="node2" href="$Residual__with__coords_8h.html" title="A specification of a residual class that defines a vector residual of a vector of state variables..." alt="" coords="106,80,257,121"/>
-<area shape="rect" id="node6" href="$Newton_8h.html" title="A class for using Newton&#39;s method for solving systems of nonlinear equations of the form &#160;where &#160;is a..." alt="" coords="281,87,436,114"/>
-<area shape="rect" id="node3" href="$Equation_8h.html" title="A templated class for equations that can be inherited from to allow instantiation of ODE/PDE objects ..." alt="" coords="11,177,173,203"/>
-<area shape="rect" id="node5" href="$Equation__1matrix_8h.html" title="A templated class for equations that can be inherited from to allow instantiation of ODE/PDE objects ..." alt="" coords="197,169,347,211"/>
-<area shape="rect" id="node4" href="$ODE__BVP_8h.html" title="A class for solving a system of &#160;first&#45;order ordinary differential equations subject to &#160;boundary con..." alt="" coords="5,259,179,285"/>
-</map>

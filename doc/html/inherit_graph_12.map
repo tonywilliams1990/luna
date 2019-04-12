@@ -1,6 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classLuna_1_1Residual.html" title="A templated base class to be inherited by objects that define residuals. " alt="" coords="5,35,147,61"/>
-<area shape="rect" id="node2" href="$classLuna_1_1Residual__with__coords.html" title="Luna::Residual_with\l_coords\&lt; T, X \&gt;" alt="" coords="195,27,335,69"/>
-<area shape="rect" id="node3" href="$classLuna_1_1Equation.html" title="Luna::Equation\&lt; T, X \&gt;" alt="" coords="383,5,541,32"/>
-<area shape="rect" id="node4" href="$classLuna_1_1Equation__1matrix.html" title="Luna::Equation_1matrix\l\&lt; T, X \&gt;" alt="" coords="383,57,541,98"/>
-</map>

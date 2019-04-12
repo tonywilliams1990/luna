@@ -1,7 +1,0 @@
-<map id="include/Luna/Equation_1matrix.h" name="include/Luna/Equation_1matrix.h">
-<area shape="rect" id="node2" href="$Residual__with__coords_8h.html" title="A specification of a residual class that defines a vector residual of a vector of state variables..." alt="" coords="504,95,665,121"/>
-<area shape="rect" id="node6" href="$Matrix_8h.html" title="A templated matrix class which constructs a Matrix as an std::vector of Vectors. " alt="" coords="770,244,839,271"/>
-<area shape="rect" id="node15" href="$Vector_8h.html" title="A templated numeric Vector class that encapsulates std::vector. " alt="" coords="641,319,712,345"/>
-<area shape="rect" id="node3" href="$Residual_8h.html" title="A residual class for use with Newton for solving systems of non&#45;linear equations of the form F(x) = 0..." alt="" coords="341,169,425,196"/>
-<area shape="rect" id="node13" href="$Error_8h.html" title="Defines a class for simple error handling. " alt="" coords="90,393,151,420"/>
-</map>

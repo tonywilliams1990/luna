@@ -1,8 +1,0 @@
-<map id="include/Luna/Newton.h" name="include/Luna/Newton.h">
-<area shape="rect" id="node4" href="$Matrix_8h.html" title="A templated matrix class which constructs a Matrix as an std::vector of Vectors. " alt="" coords="429,155,499,181"/>
-<area shape="rect" id="node11" href="$Error_8h.html" title="Defines a class for simple error handling. " alt="" coords="115,304,176,331"/>
-<area shape="rect" id="node13" href="$Vector_8h.html" title="A templated numeric Vector class that encapsulates std::vector. " alt="" coords="718,229,789,256"/>
-<area shape="rect" id="node20" href="$Timer_8h.html" title="Defines a timer class for timing methods. " alt="" coords="999,80,1065,107"/>
-<area shape="rect" id="node22" href="$Residual_8h.html" title="A residual class for use with Newton for solving systems of non&#45;linear equations of the form F(x) = 0..." alt="" coords="251,80,335,107"/>
-<area shape="rect" id="node23" href="$Arclength_8h.html" title="A base class for arc length solvers. " alt="" coords="617,155,705,181"/>
-</map>
