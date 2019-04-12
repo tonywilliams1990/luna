@@ -1,0 +1,147 @@
+\hypertarget{Laplace__equation_8cpp}{}\section{Examples/\+Laplace\+\_\+equation.cpp File Reference}
+\label{Laplace__equation_8cpp}\index{Examples/\+Laplace\+\_\+equation.\+cpp@{Examples/\+Laplace\+\_\+equation.\+cpp}}
+
+
+Solve Laplace\textquotesingle{}s equation \[ \nabla^2 u = 0, \] on the unit square $ (x,y) \in [0,1] \times [0,1] $.  
+
+
+{\ttfamily \#include \char`\"{}Luna/\+Core\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Luna/\+Sparse\char`\"{}}\newline
+Include dependency graph for Laplace\+\_\+equation.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{Laplace__equation_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{Laplace__equation_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Solve Laplace\textquotesingle{}s equation \[ \nabla^2 u = 0, \] on the unit square $ (x,y) \in [0,1] \times [0,1] $. 
+
+The equation is subject to the boundary conditions \[ u(x,0) = 0, \hspace{0.5cm} u(x,1) = \frac{1}{(1+x)^2 + 1}, \hspace{0.5cm} 0 \leq x \leq 1, \] \[ u(0,y) = \frac{y}{1+y^2}, \hspace{0.5cm} u(1,y) = \frac{y}{4+y^2}, \hspace{0.5cm} 0 \leq y \leq 1. \] The exact solution is given by \[ u(x,y) = \frac{y}{(1+x)^2 + y^2}, \hspace{0.5cm} 0 \leq x,y \leq 1. \] The equation is discretised using a second order finite-\/difference scheme with step size $ \Delta x = \Delta y = 1 / N $ where $ N $ is the number of intervals. The internal nodes in the discretisation are governed by the finite-\/difference equation \[ u_{i-1,j} + u_{i,j-1} - 4u_{i,j} + u_{i,j+1} + u_{i+1,j} = 0, \] where $ u(x,y) \approx u(x_i,y_j) = u_{i,j} $ and $ x_i = i \Delta x, \hspace{0.2cm} y_j = j \Delta y $ with $ i,j = 0,1,\ldots,N. $ 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{Laplace__equation_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{Laplace__equation_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}} 
+\index{Laplace\+\_\+equation.\+cpp@{Laplace\+\_\+equation.\+cpp}!main@{main}}
+\index{main@{main}!Laplace\+\_\+equation.\+cpp@{Laplace\+\_\+equation.\+cpp}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 24 of file Laplace\+\_\+equation.\+cpp.
+
+
+
+References Luna\+::\+Timer\+::get\+\_\+time(), Heat\+\_\+plot\+::N, Luna\+::\+Vector$<$ T $>$\+::norm\+\_\+2(), Luna\+::\+Vector$<$ T $>$\+::random(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::solve\+\_\+\+Bi\+C\+G(), Luna\+::\+Timer\+::start(), Luna\+::\+Timer\+::stop(), Heat\+\_\+plot\+::u, Heat\+\_\+plot\+::x, and y.
+
+
+\begin{DoxyCode}
+25 \{
+26   cout << \textcolor{stringliteral}{"--------------------- Laplace's equation --------------------"} << endl;
+27 
+28   \textcolor{keywordtype}{int} \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}( 256 );                              \textcolor{comment}{// Number of intervals}
+29   \textcolor{keywordtype}{double} dx( 1.0 / \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} );                      \textcolor{comment}{// Step size}
+30   std::size\_t size( ( \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} + 1 ) * ( \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} + 1 ) ); \textcolor{comment}{// Size of the linear system}
+31   \hyperlink{classLuna_1_1Vector}{Vector<double>} rhs( size, 0.0 );           \textcolor{comment}{// Right hand side vector}
+32   \hyperlink{classLuna_1_1Vector}{Vector<double>} \hyperlink{namespaceHeat__plot_ae622b86afa46daa3e9b887624ab1bf26}{u}( size, 0.0 );             \textcolor{comment}{// Solution vector}
+33   \hyperlink{classLuna_1_1Vector}{Vector<double>} u\_exact( size, 0.0 );       \textcolor{comment}{// Exact solution}
+34 
+35   \textcolor{keyword}{typedef} \hyperlink{classLuna_1_1Triplet}{Triplet<double>} Td;
+36   \hyperlink{classLuna_1_1Vector}{Vector<Td>} triplets;
+37 
+38   \textcolor{keywordtype}{double} \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x}( 0.0 );
+39   \textcolor{keywordtype}{double} \hyperlink{ODE__BVP__test_8cpp_adf764cbdea00d65edcd07bb9953ad2b7ae1f9fdb8b786c63efc4ce44eeacd17f2}{y}( 0.0 );
+40   std::size\_t row( 0 );
+41 
+42   \textcolor{comment}{// x = 0 boundary ( u = y / ( 1 + y^2 ) )}
+43   std::size\_t i( 0 );
+44   std::size\_t j( 0 );
+45   \textcolor{keywordflow}{for} ( j = 0; j < \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} + 1; j++ )
+46   \{
+47     \hyperlink{ODE__BVP__test_8cpp_adf764cbdea00d65edcd07bb9953ad2b7ae1f9fdb8b786c63efc4ce44eeacd17f2}{y} = j * dx;
+48     triplets( Td( row, i * ( N + 1 ) + j, 1.0 ) );
+49     rhs[ row ] = \hyperlink{ODE__BVP__test_8cpp_adf764cbdea00d65edcd07bb9953ad2b7ae1f9fdb8b786c63efc4ce44eeacd17f2}{y} / ( 1 + \hyperlink{ODE__BVP__test_8cpp_adf764cbdea00d65edcd07bb9953ad2b7ae1f9fdb8b786c63efc4ce44eeacd17f2}{y} * \hyperlink{ODE__BVP__test_8cpp_adf764cbdea00d65edcd07bb9953ad2b7ae1f9fdb8b786c63efc4ce44eeacd17f2}{y} );
+50     ++row;
+51   \}
+52 
+53   \textcolor{keywordflow}{for} ( i = 1; i < \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}; i++ )
+54   \{
+55     \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x} = i * dx;
+56     \textcolor{comment}{// y = 0 boundary ( u = 0 )}
+57     j = 0;
+58     triplets( Td( row, i * ( N + 1 ) + j, 1.0 ) );
+59     rhs[ row ] = 0.0;
+60     ++row;
+61     \textcolor{comment}{// Interior nodes}
+62     \textcolor{keywordflow}{for} ( j = 1; j < \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}; j++ )
+63     \{
+64       triplets( Td( row, ( i - 1 ) * ( N + 1 ) + j, 1.0 ) );
+65       triplets( Td( row, ( i + 1 ) * ( N + 1 ) + j, 1.0 ) );
+66       triplets( Td( row, i * ( N + 1 ) + j - 1, 1.0 ) );
+67       triplets( Td( row, i * ( N + 1 ) + j + 1, 1.0 ) );
+68       triplets( Td( row, i * ( N + 1 ) + j, - 4.0 ) );
+69       rhs[ row ] = 0.0;
+70       ++row;
+71     \}
+72     \textcolor{comment}{// y = 1 boundary ( u = 1 / ( ( 1 + x )^2 + 1 ) )}
+73     j = \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N};
+74     triplets( Td( row, i * ( N + 1 ) + j, 1.0 ) );
+75     rhs[ row ] = 1. / ( ( 1. + \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x} ) * ( 1. + \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x} ) + 1. );
+76     ++row;
+77   \}
+78 
+79   \textcolor{comment}{// x = 1 boundary ( u = y / ( 4 + y^2 ) )}
+80   i = \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N};
+81   \textcolor{keywordflow}{for} ( j = 0; j < N + 1; j++ )
+82   \{
+83     \hyperlink{ODE__BVP__test_8cpp_adf764cbdea00d65edcd07bb9953ad2b7ae1f9fdb8b786c63efc4ce44eeacd17f2}{y} = j * dx;
+84     triplets( Td( row, i * ( N + 1 ) + j, 1.0 ) );
+85     rhs[ row ] = \hyperlink{ODE__BVP__test_8cpp_adf764cbdea00d65edcd07bb9953ad2b7ae1f9fdb8b786c63efc4ce44eeacd17f2}{y} / ( 4 + \hyperlink{ODE__BVP__test_8cpp_adf764cbdea00d65edcd07bb9953ad2b7ae1f9fdb8b786c63efc4ce44eeacd17f2}{y} * \hyperlink{ODE__BVP__test_8cpp_adf764cbdea00d65edcd07bb9953ad2b7ae1f9fdb8b786c63efc4ce44eeacd17f2}{y} );
+86     ++row;
+87   \}
+88 
+89   \textcolor{comment}{// Exact solution u = y / ( ( 1 + x )^2 + y^2 )}
+90   row = 0;
+91   \textcolor{keywordflow}{for} ( i = 0; i < N + 1; i++ )
+92   \{
+93     \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x} = i * dx;
+94     \textcolor{keywordflow}{for} ( j = 0; j < N + 1; j++ )
+95     \{
+96       \hyperlink{ODE__BVP__test_8cpp_adf764cbdea00d65edcd07bb9953ad2b7ae1f9fdb8b786c63efc4ce44eeacd17f2}{y} = j * dx;
+97       u\_exact[ row ] = \hyperlink{ODE__BVP__test_8cpp_adf764cbdea00d65edcd07bb9953ad2b7ae1f9fdb8b786c63efc4ce44eeacd17f2}{y} / ( ( 1. + \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x} ) * ( 1. + \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x} ) + \hyperlink{ODE__BVP__test_8cpp_adf764cbdea00d65edcd07bb9953ad2b7ae1f9fdb8b786c63efc4ce44eeacd17f2}{y} * \hyperlink{ODE__BVP__test_8cpp_adf764cbdea00d65edcd07bb9953ad2b7ae1f9fdb8b786c63efc4ce44eeacd17f2}{y} );
+98       ++row;
+99     \}
+100   \}
+101 
+102   \textcolor{comment}{// Create the sparse matrix from the triplets}
+103   \hyperlink{classLuna_1_1SparseMatrix}{SparseMatrix<double>} sparse( size, size, triplets );
+104 
+105   \textcolor{comment}{// Solve using the Biconjugate gradient method}
+106   \hyperlink{namespaceHeat__plot_ae622b86afa46daa3e9b887624ab1bf26}{u}.random();                                    \textcolor{comment}{// Random initial guess}
+107   \textcolor{keywordtype}{double} tol( 1e-8 );
+108   \textcolor{keywordtype}{int} code;
+109   \textcolor{keywordtype}{int} max\_iter( 10000 );
+110 
+111   \hyperlink{classLuna_1_1Timer}{Timer} timer;
+112   \textcolor{keywordtype}{double} time\_in\_ms;
+113   timer.\hyperlink{classLuna_1_1Timer_ab074740a502b02be0bb64ef3320733b3}{start}();
+114   code = sparse.solve\_BiCG( rhs, \hyperlink{namespaceHeat__plot_ae622b86afa46daa3e9b887624ab1bf26}{u}, max\_iter, tol );
+115   time\_in\_ms = timer.\hyperlink{classLuna_1_1Timer_ac8b59a9f3d149ec56156af6f74a6d1a9}{get\_time}();
+116   timer.\hyperlink{classLuna_1_1Timer_ad8ba9deb09bfe422cfaadba04a776662}{stop}();
+117 
+118   cout << endl << \textcolor{stringliteral}{" * time = "} << time\_in\_ms / 1000 << \textcolor{stringliteral}{" s"} << endl;
+119   cout << \textcolor{stringliteral}{" * iter = "} << max\_iter << endl;
+120   cout << \textcolor{stringliteral}{" * system error estimate = "} << scientific << tol << endl;
+121   \hyperlink{namespaceHeat__plot_ae622b86afa46daa3e9b887624ab1bf26}{u} = \hyperlink{namespaceHeat__plot_ae622b86afa46daa3e9b887624ab1bf26}{u} - u\_exact;
+122   cout << \textcolor{stringliteral}{" * solution error = "} << \hyperlink{namespaceHeat__plot_ae622b86afa46daa3e9b887624ab1bf26}{u}.norm\_2() << endl;
+123   cout << \textcolor{stringliteral}{" * code ( 0 = success ) = "} << code << endl << endl;
+124   cout << \textcolor{stringliteral}{"--- FINISHED ---"} << endl;
+125 \}
+\end{DoxyCode}

@@ -1,0 +1,1044 @@
+\hypertarget{classLuna_1_1Mesh1D}{}\section{Luna\+:\+:Mesh1D$<$ T, X $>$ Class Template Reference}
+\label{classLuna_1_1Mesh1D}\index{Luna\+::\+Mesh1\+D$<$ T, X $>$@{Luna\+::\+Mesh1\+D$<$ T, X $>$}}
+
+
+A templated class.  
+
+
+
+
+{\ttfamily \#include $<$Mesh1\+D.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classLuna_1_1Mesh1D_a84574dba756de3111663ffadd973b91d}{Mesh1D} ()
+\begin{DoxyCompactList}\small\item\em Constructor for an empty mesh. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Mesh1D_a9ef6bded127b6f27218f80b763564f46}{Mesh1D} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ X $>$ \&\hyperlink{classLuna_1_1Mesh1D_a628f377e1a2d66a8ff53d052dcc697e2}{nodes}, const std\+::size\+\_\+t \&\hyperlink{classLuna_1_1Mesh1D_a6cf5a08c5464bc7de45376cf3f5c1a68}{nvars})
+\begin{DoxyCompactList}\small\item\em Constructor (given nodal distribution) \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Mesh1D_afa5fc0086cfba00000b492fcde59e12f}{$\sim$\+Mesh1D} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+const T \& \hyperlink{classLuna_1_1Mesh1D_a948c14c9fb7ac229a110910015e60ac8}{operator()} (const std\+::size\+\_\+t node, const std\+::size\+\_\+t var) const
+\begin{DoxyCompactList}\small\item\em Read only access of a variable at a given node. \end{DoxyCompactList}\item 
+T \& \hyperlink{classLuna_1_1Mesh1D_ae52f29ef7e30fd3d8c1bca421b55f5d4}{operator()} (const std\+::size\+\_\+t node, const std\+::size\+\_\+t var)
+\begin{DoxyCompactList}\small\item\em Read and write access of a variable at a given node. \end{DoxyCompactList}\item 
+const X \& \hyperlink{classLuna_1_1Mesh1D_a116e935585276efbffe2a378058c12e4}{coord} (const std\+::size\+\_\+t \&node) const
+\begin{DoxyCompactList}\small\item\em Read only access to the nodal value. \end{DoxyCompactList}\item 
+X \& \hyperlink{classLuna_1_1Mesh1D_a3cf086a7bc3f7846ee8cf57b935ae116}{coord} (const std\+::size\+\_\+t \&node)
+\begin{DoxyCompactList}\small\item\em Read and write access to the nodal value. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Mesh1D_ad28b2c5f3505e1296286288ee2f71f13}{set\+\_\+nodes\+\_\+vars} (const std\+::size\+\_\+t \&node, const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&vec)
+\begin{DoxyCompactList}\small\item\em Set the variables stored at a specific node. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Mesh1D_ac26360c5d246da376ebdcaa9fab05e81}{get\+\_\+nodes\+\_\+vars} (const std\+::size\+\_\+t \&node) const
+\begin{DoxyCompactList}\small\item\em Get the variables stored at a specific node. \end{DoxyCompactList}\item 
+std\+::size\+\_\+t \hyperlink{classLuna_1_1Mesh1D_a83cb9003736324ec955fb091c20dee4b}{nnodes} () const
+\begin{DoxyCompactList}\small\item\em Return the number of nodal points in the mesh. \end{DoxyCompactList}\item 
+std\+::size\+\_\+t \hyperlink{classLuna_1_1Mesh1D_a6cf5a08c5464bc7de45376cf3f5c1a68}{nvars} () const
+\begin{DoxyCompactList}\small\item\em Return the number of variables stored in the mesh. \end{DoxyCompactList}\item 
+const \hyperlink{classLuna_1_1Vector}{Vector}$<$ X $>$ \& \hyperlink{classLuna_1_1Mesh1D_a628f377e1a2d66a8ff53d052dcc697e2}{nodes} () const
+\begin{DoxyCompactList}\small\item\em Return the vector of nodal positions. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Mesh1D_af5e794667847fb278a028acc3ddea1d2}{get\+\_\+interpolated\+\_\+vars} (const X \&pos) const
+\begin{DoxyCompactList}\small\item\em Get the variables at an interpolated position ( first order scheme ) \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Mesh1D_a4151177f59bac4391ca951af8c7e14e4}{output} (std\+::string filename, int precision=15) const
+\begin{DoxyCompactList}\small\item\em Output data to a file. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Mesh1D_ae8f5231c9745fbe70662dd6ce61ee418}{read} (std\+::string filename, int precision=15, bool reset=false)
+\begin{DoxyCompactList}\small\item\em Read data from a file. \end{DoxyCompactList}\item 
+const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \& \hyperlink{classLuna_1_1Mesh1D_a4e867f91a2d0cc0b44c14b97014207ce}{vars\+\_\+as\+\_\+vector} () const
+\begin{DoxyCompactList}\small\item\em Return a vector of all the variables stored in the mesh. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Mesh1D_ab5d22c6f03f81879e1b329f8dc87ec99}{set\+\_\+vars\+\_\+from\+\_\+vector} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&vec)
+\begin{DoxyCompactList}\small\item\em Set the variables of this mesh from a vector. \end{DoxyCompactList}\item 
+T \hyperlink{classLuna_1_1Mesh1D_af317b96151dcd9aa9d31f4814740d3be}{integral} (std\+::size\+\_\+t var=0) const
+\begin{DoxyCompactList}\small\item\em Integrate a given variable over the domain. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Mesh1D_ac4df77e9ee7aeb4dbcf4dec8edd1a4c3}{remesh} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ X $>$ \&z)
+\begin{DoxyCompactList}\small\item\em Linearly interpolate this mesh data into a new nodal mesh. \end{DoxyCompactList}\item 
+{\footnotesize template$<$$>$ }\\\hyperlink{classLuna_1_1Vector}{Vector}$<$ double $>$ \hyperlink{classLuna_1_1Mesh1D_a0e248d3566778b329594a921398205f1}{get\+\_\+interpolated\+\_\+vars} (const double \&x\+\_\+pos) const
+\item 
+{\footnotesize template$<$$>$ }\\\hyperlink{classLuna_1_1Vector}{Vector}$<$ std\+::complex$<$ double $>$ $>$ \hyperlink{classLuna_1_1Mesh1D_a82ec81e6e39128431ad6dfa752456313}{get\+\_\+interpolated\+\_\+vars} (const double \&x\+\_\+pos) const
+\item 
+{\footnotesize template$<$$>$ }\\\hyperlink{classLuna_1_1Vector}{Vector}$<$ std\+::complex$<$ double $>$ $>$ \hyperlink{classLuna_1_1Mesh1D_a58f5f0a80fc4af9e82d5753f5b29604a}{get\+\_\+interpolated\+\_\+vars} (const std\+::complex$<$ double $>$ \&pos) const
+\item 
+{\footnotesize template$<$$>$ }\\void \hyperlink{classLuna_1_1Mesh1D_a44c64e8949c67fd0274634c6c0df0d3b}{read} (std\+::string filename, int precision, bool reset)
+\item 
+{\footnotesize template$<$$>$ }\\void \hyperlink{classLuna_1_1Mesh1D_a2648e36fd6dc8c769501a775347281b6}{remesh} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ double $>$ \&newX)
+\item 
+{\footnotesize template$<$$>$ }\\void \hyperlink{classLuna_1_1Mesh1D_a256e7318b0f42a43d2d9f803b452e625}{remesh} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ double $>$ \&newX)
+\item 
+{\footnotesize template$<$$>$ }\\void \hyperlink{classLuna_1_1Mesh1D_a0caa5cfc7ced1937c94e692c3bdbdc25}{remesh} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ std\+::complex$<$ double $>$$>$ \&z)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class T, class X = double$>$\newline
+class Luna\+::\+Mesh1\+D$<$ T, X $>$}
+
+A templated class. 
+
+Definition at line 25 of file Mesh1\+D.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classLuna_1_1Mesh1D_a84574dba756de3111663ffadd973b91d}\label{classLuna_1_1Mesh1D_a84574dba756de3111663ffadd973b91d}} 
+\index{Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}!Mesh1D@{Mesh1D}}
+\index{Mesh1D@{Mesh1D}!Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}}
+\subsubsection{\texorpdfstring{Mesh1\+D()}{Mesh1D()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class T, class X = double$>$ \\
+\hyperlink{classLuna_1_1Mesh1D}{Luna\+::\+Mesh1D}$<$ T, X $>$\+::\hyperlink{classLuna_1_1Mesh1D}{Mesh1D} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for an empty mesh. 
+
+
+
+Definition at line 35 of file Mesh1\+D.\+h.
+
+
+\begin{DoxyCode}
+35              : NV( 0 )
+36     \{\}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Mesh1D_a9ef6bded127b6f27218f80b763564f46}\label{classLuna_1_1Mesh1D_a9ef6bded127b6f27218f80b763564f46}} 
+\index{Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}!Mesh1D@{Mesh1D}}
+\index{Mesh1D@{Mesh1D}!Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}}
+\subsubsection{\texorpdfstring{Mesh1\+D()}{Mesh1D()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class T, class X = double$>$ \\
+\hyperlink{classLuna_1_1Mesh1D}{Luna\+::\+Mesh1D}$<$ T, X $>$\+::\hyperlink{classLuna_1_1Mesh1D}{Mesh1D} (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ X $>$ \&}]{nodes,  }\item[{const std\+::size\+\_\+t \&}]{nvars }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor (given nodal distribution) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nodes} & The \hyperlink{classLuna_1_1Vector}{Vector} of nodal points \\
+\hline
+{\em nvars} & The number of variables \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 41 of file Mesh1\+D.\+h.
+
+
+
+References Luna\+::\+Vector$<$ T $>$\+::size().
+
+
+\begin{DoxyCode}
+41                                                              :
+42         NV( \hyperlink{classLuna_1_1Mesh1D_a6cf5a08c5464bc7de45376cf3f5c1a68}{nvars} ), NODES( nodes )
+43     \{
+44       \textcolor{comment}{// Create the storage Vector and set the contents to zero}
+45       VARS = Vector<T>( NV * NODES.\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}(), T( 0.0 ) );
+46     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Mesh1D_afa5fc0086cfba00000b492fcde59e12f}\label{classLuna_1_1Mesh1D_afa5fc0086cfba00000b492fcde59e12f}} 
+\index{Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}!````~Mesh1D@{$\sim$\+Mesh1D}}
+\index{````~Mesh1D@{$\sim$\+Mesh1D}!Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}}
+\subsubsection{\texorpdfstring{$\sim$\+Mesh1\+D()}{~Mesh1D()}}
+{\footnotesize\ttfamily template$<$class T, class X = double$>$ \\
+\hyperlink{classLuna_1_1Mesh1D}{Luna\+::\+Mesh1D}$<$ T, X $>$\+::$\sim$\hyperlink{classLuna_1_1Mesh1D}{Mesh1D} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Destructor. 
+
+
+
+Definition at line 49 of file Mesh1\+D.\+h.
+
+
+\begin{DoxyCode}
+49 \{\}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classLuna_1_1Mesh1D_a116e935585276efbffe2a378058c12e4}\label{classLuna_1_1Mesh1D_a116e935585276efbffe2a378058c12e4}} 
+\index{Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}!coord@{coord}}
+\index{coord@{coord}!Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}}
+\subsubsection{\texorpdfstring{coord()}{coord()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T , typename X $>$ \\
+const X \& \hyperlink{classLuna_1_1Mesh1D}{Luna\+::\+Mesh1D}$<$ T, X $>$\+::coord (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t \&}]{node }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Read only access to the nodal value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & Node index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The nodal value at the specified index 
+\end{DoxyReturn}
+
+
+Definition at line 141 of file Mesh1\+D.\+h.
+
+
+
+Referenced by main(), and Luna\+::\+Mesh1\+D$<$ T, X $>$\+::operator()().
+
+
+\begin{DoxyCode}
+142   \{
+143     \textcolor{keywordflow}{return} NODES[ node ];
+144   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Mesh1D_a3cf086a7bc3f7846ee8cf57b935ae116}\label{classLuna_1_1Mesh1D_a3cf086a7bc3f7846ee8cf57b935ae116}} 
+\index{Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}!coord@{coord}}
+\index{coord@{coord}!Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}}
+\subsubsection{\texorpdfstring{coord()}{coord()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T , typename X $>$ \\
+X \& \hyperlink{classLuna_1_1Mesh1D}{Luna\+::\+Mesh1D}$<$ T, X $>$\+::coord (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t \&}]{node }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Read and write access to the nodal value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & Node index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The nodal value at the specified index 
+\end{DoxyReturn}
+
+
+Definition at line 147 of file Mesh1\+D.\+h.
+
+
+\begin{DoxyCode}
+148   \{
+149     \textcolor{keywordflow}{return} NODES[ node ];
+150   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Mesh1D_af5e794667847fb278a028acc3ddea1d2}\label{classLuna_1_1Mesh1D_af5e794667847fb278a028acc3ddea1d2}} 
+\index{Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}!get\+\_\+interpolated\+\_\+vars@{get\+\_\+interpolated\+\_\+vars}}
+\index{get\+\_\+interpolated\+\_\+vars@{get\+\_\+interpolated\+\_\+vars}!Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}}
+\subsubsection{\texorpdfstring{get\+\_\+interpolated\+\_\+vars()}{get\_interpolated\_vars()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$class T, class X = double$>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$T$>$ \hyperlink{classLuna_1_1Mesh1D}{Luna\+::\+Mesh1D}$<$ T, X $>$\+::get\+\_\+interpolated\+\_\+vars (\begin{DoxyParamCaption}\item[{const X \&}]{pos }\end{DoxyParamCaption}) const}
+
+
+
+Get the variables at an interpolated position ( first order scheme ) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & Position within the nodal domain \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The \hyperlink{classLuna_1_1Vector}{Vector} of interpolated variables 
+\end{DoxyReturn}
+
+
+Referenced by Luna\+::\+Mesh2\+D$<$ T $>$\+::get\+\_\+interpolated\+\_\+vars(), main(), and Luna\+::\+Mesh1\+D$<$ T, X $>$\+::operator()().
+
+\mbox{\Hypertarget{classLuna_1_1Mesh1D_a0e248d3566778b329594a921398205f1}\label{classLuna_1_1Mesh1D_a0e248d3566778b329594a921398205f1}} 
+\index{Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}!get\+\_\+interpolated\+\_\+vars@{get\+\_\+interpolated\+\_\+vars}}
+\index{get\+\_\+interpolated\+\_\+vars@{get\+\_\+interpolated\+\_\+vars}!Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}}
+\subsubsection{\texorpdfstring{get\+\_\+interpolated\+\_\+vars()}{get\_interpolated\_vars()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$$>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ double $>$ \hyperlink{classLuna_1_1Mesh1D}{Luna\+::\+Mesh1D}$<$ double, double $>$\+::get\+\_\+interpolated\+\_\+vars (\begin{DoxyParamCaption}\item[{const double \&}]{x\+\_\+pos }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 197 of file Mesh1\+D.\+h.
+
+
+
+References Luna\+::\+Mesh1\+D$<$ T, X $>$\+::get\+\_\+nodes\+\_\+vars(), and Luna\+::\+Vector$<$ T $>$\+::size().
+
+
+\begin{DoxyCode}
+199   \{
+200     \textcolor{keywordflow}{for} ( \textcolor{keywordtype}{unsigned} node = 0; node < NODES.\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}() - 1; ++node )
+201     \{
+202       \textcolor{comment}{// find bracketing nodes}
+203       \textcolor{keywordflow}{if} ( ( ( NODES[ node ] < x\_pos ) && ( NODES[ node + 1 ] > x\_pos ) )
+204               ||  ( std::abs( NODES[ node ] - x\_pos ) < 1.e-7  )
+205               || ( std::abs( NODES[ node + 1 ] - x\_pos ) < 1.e-7 ) )
+206       \{
+207         \textcolor{comment}{// distance from left node}
+208         \textcolor{keywordtype}{double} delta\_x( x\_pos - NODES[ node ] );
+209         \textcolor{comment}{// empty data to return}
+210         Vector<double> left;
+211         Vector<double> right;
+212         Vector<double> deriv;
+213         \textcolor{comment}{// interpolate data linearly}
+214         left = \hyperlink{classLuna_1_1Mesh1D_ac26360c5d246da376ebdcaa9fab05e81}{get\_nodes\_vars}( node );
+215         right = \hyperlink{classLuna_1_1Mesh1D_ac26360c5d246da376ebdcaa9fab05e81}{get\_nodes\_vars}( node + 1 );
+216         deriv = ( right - left ) / ( NODES[ node + 1 ] - NODES[ node ] );
+217         \textcolor{comment}{// overwrite right}
+218         right = left + deriv * delta\_x;
+219         \textcolor{keywordflow}{return} right;
+220       \}
+221     \}
+222     \textcolor{comment}{// If the position is not in the range throw an error}
+223     \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Mesh error: interpolation not in range "} );
+224   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Mesh1D_a82ec81e6e39128431ad6dfa752456313}\label{classLuna_1_1Mesh1D_a82ec81e6e39128431ad6dfa752456313}} 
+\index{Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}!get\+\_\+interpolated\+\_\+vars@{get\+\_\+interpolated\+\_\+vars}}
+\index{get\+\_\+interpolated\+\_\+vars@{get\+\_\+interpolated\+\_\+vars}!Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}}
+\subsubsection{\texorpdfstring{get\+\_\+interpolated\+\_\+vars()}{get\_interpolated\_vars()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$$>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ std\+::complex$<$ double $>$ $>$ \hyperlink{classLuna_1_1Mesh1D}{Luna\+::\+Mesh1D}$<$ std\+::complex$<$ double $>$, double $>$\+::get\+\_\+interpolated\+\_\+vars (\begin{DoxyParamCaption}\item[{const double \&}]{x\+\_\+pos }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 228 of file Mesh1\+D.\+h.
+
+
+
+References Luna\+::\+Mesh1\+D$<$ T, X $>$\+::get\+\_\+nodes\+\_\+vars(), and Luna\+::\+Vector$<$ T $>$\+::size().
+
+
+\begin{DoxyCode}
+229   \{
+230     \textcolor{keywordflow}{for} ( \textcolor{keywordtype}{unsigned} node = 0; node < NODES.\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}() - 1; ++node )
+231     \{
+232       \textcolor{comment}{// find bracketing nodes}
+233       \textcolor{keywordflow}{if} ( ( NODES[ node ] < x\_pos
+234         || std::abs( NODES[ node ] - x\_pos ) < 1.e-7 ) &&
+235            ( NODES[ node + 1 ] > x\_pos
+236         || std::abs( NODES[ node + 1 ] - x\_pos ) < 1.e-7 ) )
+237       \{
+238         \textcolor{comment}{// distance from left node}
+239         \textcolor{keywordtype}{double} delta\_x( x\_pos - NODES[ node ] );
+240         \textcolor{comment}{// empty data to return}
+241         Vector<std::complex<double> > left;
+242         Vector<std::complex<double> > right;
+243         Vector<std::complex<double> > deriv;
+244         \textcolor{comment}{// interpolate data linearly}
+245         left = \hyperlink{classLuna_1_1Mesh1D_ac26360c5d246da376ebdcaa9fab05e81}{get\_nodes\_vars}( node );
+246         right = \hyperlink{classLuna_1_1Mesh1D_ac26360c5d246da376ebdcaa9fab05e81}{get\_nodes\_vars}( node + 1 );
+247         deriv = ( right - left ) / ( NODES[ node + 1 ] - NODES[ node ] );
+248         \textcolor{comment}{// overwrite right}
+249         right = left + deriv * delta\_x;
+250         \textcolor{keywordflow}{return} right;
+251       \}
+252     \}
+253     \textcolor{comment}{// If the position is not in the range throw an error}
+254     \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Mesh error: interpolation not in range "} );
+255   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Mesh1D_a58f5f0a80fc4af9e82d5753f5b29604a}\label{classLuna_1_1Mesh1D_a58f5f0a80fc4af9e82d5753f5b29604a}} 
+\index{Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}!get\+\_\+interpolated\+\_\+vars@{get\+\_\+interpolated\+\_\+vars}}
+\index{get\+\_\+interpolated\+\_\+vars@{get\+\_\+interpolated\+\_\+vars}!Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}}
+\subsubsection{\texorpdfstring{get\+\_\+interpolated\+\_\+vars()}{get\_interpolated\_vars()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$$>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ std\+::complex$<$ double $>$ $>$ \hyperlink{classLuna_1_1Mesh1D}{Luna\+::\+Mesh1D}$<$ std\+::complex$<$ double $>$, std\+::complex$<$ double $>$ $>$\+::get\+\_\+interpolated\+\_\+vars (\begin{DoxyParamCaption}\item[{const std\+::complex$<$ double $>$ \&}]{pos }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 259 of file Mesh1\+D.\+h.
+
+
+
+References Luna\+::\+Mesh1\+D$<$ T, X $>$\+::get\+\_\+nodes\+\_\+vars(), Luna\+::\+Vector$<$ T $>$\+::real(), and Luna\+::\+Vector$<$ T $>$\+::size().
+
+
+\begin{DoxyCode}
+261   \{
+262     \textcolor{keywordtype}{double} x\_pos( pos.real() );
+263     \textcolor{keywordflow}{for} ( \textcolor{keywordtype}{unsigned} node = 0; node < NODES.\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}() - 1; ++node )
+264     \{
+265       \textcolor{comment}{// find bracketing nodes}
+266       \textcolor{keywordflow}{if} ( ( NODES[ node ].real() < x\_pos
+267         || std::abs( NODES[ node ].real() - x\_pos ) < 1.e-7 ) &&
+268            ( NODES[ node + 1 ].\hyperlink{classLuna_1_1Vector_a39fa58d9f5fdca76b6ffa6cc481f9284}{real}() > x\_pos
+269         || std::abs( NODES[ node + 1 ].real() - x\_pos ) < 1.e-7 ) )
+270       \{
+271         \textcolor{comment}{// distance from left node -- real coordinate is given. We also need to}
+272         \textcolor{comment}{// interpolate between the two complex nodes}
+273         std::complex<double> delta\_z = ( NODES[ node + 1 ] - NODES[ node ] )
+274                                        * ( x\_pos - NODES[ node ].real() )
+275                                        / ( NODES[ node + 1 ].real()
+276                                          - NODES[ node ].\hyperlink{classLuna_1_1Vector_a39fa58d9f5fdca76b6ffa6cc481f9284}{real}() );
+277         \textcolor{comment}{// empty data to return}
+278         Vector<std::complex<double> > left;
+279         Vector<std::complex<double> > right;
+280         Vector<std::complex<double> > deriv;
+281         \textcolor{comment}{// interpolate data linearly}
+282         left = \hyperlink{classLuna_1_1Mesh1D_ac26360c5d246da376ebdcaa9fab05e81}{get\_nodes\_vars}( node );
+283         right = \hyperlink{classLuna_1_1Mesh1D_ac26360c5d246da376ebdcaa9fab05e81}{get\_nodes\_vars}( node + 1 );
+284         \textcolor{comment}{// derivative of the data}
+285         deriv = ( right - left ) / ( NODES[ node + 1 ] - NODES[ node ] );
+286         \textcolor{comment}{// overwrite right}
+287         right = left + deriv * delta\_z;
+288         \textcolor{keywordflow}{return} right;
+289       \}
+290     \}
+291     \textcolor{comment}{// If the position is not in the range throw an error}
+292     \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Mesh error: interpolation not in range "} );
+293   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Mesh1D_ac26360c5d246da376ebdcaa9fab05e81}\label{classLuna_1_1Mesh1D_ac26360c5d246da376ebdcaa9fab05e81}} 
+\index{Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}!get\+\_\+nodes\+\_\+vars@{get\+\_\+nodes\+\_\+vars}}
+\index{get\+\_\+nodes\+\_\+vars@{get\+\_\+nodes\+\_\+vars}!Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}}
+\subsubsection{\texorpdfstring{get\+\_\+nodes\+\_\+vars()}{get\_nodes\_vars()}}
+{\footnotesize\ttfamily template$<$typename T , typename X $>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Mesh1D}{Luna\+::\+Mesh1D}$<$ T, X $>$\+::get\+\_\+nodes\+\_\+vars (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t \&}]{node }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the variables stored at a specific node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & Node index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The \hyperlink{classLuna_1_1Vector}{Vector} of variables 
+\end{DoxyReturn}
+
+
+Definition at line 164 of file Mesh1\+D.\+h.
+
+
+
+References Luna\+::\+Vector$<$ T $>$\+::push\+\_\+back(), and Luna\+::\+Vector$<$ T $>$\+::size().
+
+
+
+Referenced by Luna\+::\+Mesh1\+D$<$ T, X $>$\+::get\+\_\+interpolated\+\_\+vars(), and Luna\+::\+Mesh1\+D$<$ T, X $>$\+::operator()().
+
+
+\begin{DoxyCode}
+165   \{
+166     \textcolor{keywordflow}{if} ( ( node >= NODES.\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}() ) || ( node < 0 ) )
+167     \{
+168       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Mesh error: get\_nodes\_vars range error."} );
+169     \}
+170     Vector<T> nodes\_vars;
+171     \textcolor{keywordflow}{for} ( std::size\_t var = 0; var < NV; ++var )
+172     \{
+173       nodes\_vars.push\_back( VARS[ node * NV + var ] );
+174     \}
+175     \textcolor{keywordflow}{return} nodes\_vars;
+176   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Mesh1D_af317b96151dcd9aa9d31f4814740d3be}\label{classLuna_1_1Mesh1D_af317b96151dcd9aa9d31f4814740d3be}} 
+\index{Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}!integral@{integral}}
+\index{integral@{integral}!Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}}
+\subsubsection{\texorpdfstring{integral()}{integral()}}
+{\footnotesize\ttfamily template$<$typename T , typename X $>$ \\
+T \hyperlink{classLuna_1_1Mesh1D}{Luna\+::\+Mesh1D}$<$ T, X $>$\+::integral (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{var = {\ttfamily 0} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Integrate a given variable over the domain. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em var} & Variable index \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 375 of file Mesh1\+D.\+h.
+
+
+
+References Luna\+::\+Vector$<$ T $>$\+::size().
+
+
+
+Referenced by main(), and Luna\+::\+Mesh1\+D$<$ T, X $>$\+::operator()().
+
+
+\begin{DoxyCode}
+376   \{
+377     T sum( 0.0 );
+378     X dx( 0.0 );
+379 
+380     \textcolor{keywordflow}{for} ( std::size\_t node = 0; node < NODES.\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}() - 1; ++node )
+381     \{
+382       dx = ( NODES[ node + 1 ] - NODES[ node ] );
+383       sum += 0.5 * dx * ( VARS[ node * NV + var ]
+384                         + VARS[ ( node + 1 ) * NV + var ] );
+385     \}
+386     \textcolor{keywordflow}{return} sum;
+387   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Mesh1D_a83cb9003736324ec955fb091c20dee4b}\label{classLuna_1_1Mesh1D_a83cb9003736324ec955fb091c20dee4b}} 
+\index{Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}!nnodes@{nnodes}}
+\index{nnodes@{nnodes}!Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}}
+\subsubsection{\texorpdfstring{nnodes()}{nnodes()}}
+{\footnotesize\ttfamily template$<$typename T , typename X $>$ \\
+std\+::size\+\_\+t \hyperlink{classLuna_1_1Mesh1D}{Luna\+::\+Mesh1D}$<$ T, X $>$\+::nnodes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the number of nodal points in the mesh. 
+
+\begin{DoxyReturn}{Returns}
+The number of nodal points 
+\end{DoxyReturn}
+
+
+Definition at line 179 of file Mesh1\+D.\+h.
+
+
+
+References Luna\+::\+Vector$<$ T $>$\+::size().
+
+
+
+Referenced by main(), and Luna\+::\+Mesh1\+D$<$ T, X $>$\+::operator()().
+
+
+\begin{DoxyCode}
+180   \{
+181     \textcolor{keywordflow}{return} NODES.\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}();
+182   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Mesh1D_a628f377e1a2d66a8ff53d052dcc697e2}\label{classLuna_1_1Mesh1D_a628f377e1a2d66a8ff53d052dcc697e2}} 
+\index{Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}!nodes@{nodes}}
+\index{nodes@{nodes}!Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}}
+\subsubsection{\texorpdfstring{nodes()}{nodes()}}
+{\footnotesize\ttfamily template$<$typename T , typename X $>$ \\
+const \hyperlink{classLuna_1_1Vector}{Vector}$<$ X $>$ \& \hyperlink{classLuna_1_1Mesh1D}{Luna\+::\+Mesh1D}$<$ T, X $>$\+::nodes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the vector of nodal positions. 
+
+\begin{DoxyReturn}{Returns}
+The \hyperlink{classLuna_1_1Vector}{Vector} of nodal points 
+\end{DoxyReturn}
+
+
+Definition at line 191 of file Mesh1\+D.\+h.
+
+
+
+Referenced by Luna\+::\+Mesh1\+D$<$ T, X $>$\+::operator()().
+
+
+\begin{DoxyCode}
+192   \{
+193     \textcolor{keywordflow}{return} NODES;
+194   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Mesh1D_a6cf5a08c5464bc7de45376cf3f5c1a68}\label{classLuna_1_1Mesh1D_a6cf5a08c5464bc7de45376cf3f5c1a68}} 
+\index{Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}!nvars@{nvars}}
+\index{nvars@{nvars}!Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}}
+\subsubsection{\texorpdfstring{nvars()}{nvars()}}
+{\footnotesize\ttfamily template$<$typename T , typename X $>$ \\
+std\+::size\+\_\+t \hyperlink{classLuna_1_1Mesh1D}{Luna\+::\+Mesh1D}$<$ T, X $>$\+::nvars (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the number of variables stored in the mesh. 
+
+\begin{DoxyReturn}{Returns}
+The number of variables 
+\end{DoxyReturn}
+
+
+Definition at line 185 of file Mesh1\+D.\+h.
+
+
+
+Referenced by main(), and Luna\+::\+Mesh1\+D$<$ T, X $>$\+::operator()().
+
+
+\begin{DoxyCode}
+186   \{
+187     \textcolor{keywordflow}{return} NV;
+188   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Mesh1D_a948c14c9fb7ac229a110910015e60ac8}\label{classLuna_1_1Mesh1D_a948c14c9fb7ac229a110910015e60ac8}} 
+\index{Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}!operator()@{operator()}}
+\index{operator()@{operator()}!Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class T, class X = double$>$ \\
+const T\& \hyperlink{classLuna_1_1Mesh1D}{Luna\+::\+Mesh1D}$<$ T, X $>$\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{node,  }\item[{const std\+::size\+\_\+t}]{var }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Read only access of a variable at a given node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & Node index \\
+\hline
+{\em var} & Variable index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the variable stored at the given node 
+\end{DoxyReturn}
+
+
+Definition at line 57 of file Mesh1\+D.\+h.
+
+
+\begin{DoxyCode}
+58     \{
+59       \textcolor{keywordflow}{return} VARS[ node * NV + var ];
+60     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Mesh1D_ae52f29ef7e30fd3d8c1bca421b55f5d4}\label{classLuna_1_1Mesh1D_ae52f29ef7e30fd3d8c1bca421b55f5d4}} 
+\index{Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}!operator()@{operator()}}
+\index{operator()@{operator()}!Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class T, class X = double$>$ \\
+T\& \hyperlink{classLuna_1_1Mesh1D}{Luna\+::\+Mesh1D}$<$ T, X $>$\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{node,  }\item[{const std\+::size\+\_\+t}]{var }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Read and write access of a variable at a given node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & Node index \\
+\hline
+{\em var} & Variable index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the variable var stored at the index i 
+\end{DoxyReturn}
+
+
+Definition at line 66 of file Mesh1\+D.\+h.
+
+
+
+References Luna\+::\+Mesh1\+D$<$ T, X $>$\+::coord(), Luna\+::\+Mesh1\+D$<$ T, X $>$\+::get\+\_\+interpolated\+\_\+vars(), Luna\+::\+Mesh1\+D$<$ T, X $>$\+::get\+\_\+nodes\+\_\+vars(), Luna\+::\+Mesh1\+D$<$ T, X $>$\+::integral(), Luna\+::\+Mesh1\+D$<$ T, X $>$\+::nnodes(), Luna\+::\+Mesh1\+D$<$ T, X $>$\+::nodes(), Luna\+::\+Mesh1\+D$<$ T, X $>$\+::nvars(), Luna\+::\+Mesh1\+D$<$ T, X $>$\+::output(), Luna\+::\+Mesh1\+D$<$ T, X $>$\+::read(), Luna\+::\+Mesh1\+D$<$ T, X $>$\+::remesh(), Luna\+::\+Mesh1\+D$<$ T, X $>$\+::set\+\_\+nodes\+\_\+vars(), Luna\+::\+Mesh1\+D$<$ T, X $>$\+::set\+\_\+vars\+\_\+from\+\_\+vector(), and Luna\+::\+Mesh1\+D$<$ T, X $>$\+::vars\+\_\+as\+\_\+vector().
+
+
+\begin{DoxyCode}
+67     \{
+68       \textcolor{keywordflow}{return} VARS[ node * NV + var ];
+69     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Mesh1D_a4151177f59bac4391ca951af8c7e14e4}\label{classLuna_1_1Mesh1D_a4151177f59bac4391ca951af8c7e14e4}} 
+\index{Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}!output@{output}}
+\index{output@{output}!Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}}
+\subsubsection{\texorpdfstring{output()}{output()}}
+{\footnotesize\ttfamily template$<$typename T , typename X $>$ \\
+void \hyperlink{classLuna_1_1Mesh1D}{Luna\+::\+Mesh1D}$<$ T, X $>$\+::output (\begin{DoxyParamCaption}\item[{std\+::string}]{filename,  }\item[{int}]{precision = {\ttfamily 15} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Output data to a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Name of the file to write to \\
+\hline
+{\em precision} & Decimal precision of the output \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 296 of file Mesh1\+D.\+h.
+
+
+
+References Luna\+::\+Vector$<$ T $>$\+::size().
+
+
+
+Referenced by main(), and Luna\+::\+Mesh1\+D$<$ T, X $>$\+::operator()().
+
+
+\begin{DoxyCode}
+297   \{
+298     std::ofstream out;
+299     out.open( filename.c\_str() );
+300     out.precision( precision );
+301     out.setf( std::ios::showpoint );
+302     out.setf( std::ios::showpos );
+303     out.setf( std::ios::scientific );
+304     \textcolor{keywordflow}{for} ( std::size\_t i = 0; i < NODES.\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}(); ++i )
+305     \{
+306       out << NODES[ i ] << \textcolor{stringliteral}{" "};
+307       \textcolor{keywordflow}{for} ( std::size\_t var = 0; var < NV; ++var )
+308       \{
+309         out << VARS[ i * NV + var ] << \textcolor{stringliteral}{" "};
+310       \}
+311       out << \textcolor{stringliteral}{"\(\backslash\)n"};
+312     \}
+313   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Mesh1D_ae8f5231c9745fbe70662dd6ce61ee418}\label{classLuna_1_1Mesh1D_ae8f5231c9745fbe70662dd6ce61ee418}} 
+\index{Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}!read@{read}}
+\index{read@{read}!Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}}
+\subsubsection{\texorpdfstring{read()}{read()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class T, class X = double$>$ \\
+void \hyperlink{classLuna_1_1Mesh1D}{Luna\+::\+Mesh1D}$<$ T, X $>$\+::read (\begin{DoxyParamCaption}\item[{std\+::string}]{filename,  }\item[{int}]{precision = {\ttfamily 15},  }\item[{bool}]{reset = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Read data from a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Name of the file to read from \\
+\hline
+{\em precision} & Decimal precision of the input \\
+\hline
+{\em reset} & Reset the nodal positions after reading from file \\
+\hline
+\end{DoxyParams}
+
+
+Referenced by Luna\+::\+Mesh1\+D$<$ T, X $>$\+::operator()().
+
+\mbox{\Hypertarget{classLuna_1_1Mesh1D_a44c64e8949c67fd0274634c6c0df0d3b}\label{classLuna_1_1Mesh1D_a44c64e8949c67fd0274634c6c0df0d3b}} 
+\index{Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}!read@{read}}
+\index{read@{read}!Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}}
+\subsubsection{\texorpdfstring{read()}{read()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$$>$ \\
+void \hyperlink{classLuna_1_1Mesh1D}{Luna\+::\+Mesh1D}$<$ double, double $>$\+::read (\begin{DoxyParamCaption}\item[{std\+::string}]{filename,  }\item[{int}]{precision,  }\item[{bool}]{reset }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 316 of file Mesh1\+D.\+h.
+
+
+
+References Luna\+::\+Vector$<$ T $>$\+::size(), and Heat\+\_\+plot\+::x.
+
+
+\begin{DoxyCode}
+318     \{
+319         std::ifstream inFile;
+320         inFile.open( filename.c\_str() );
+321         inFile.precision( precision );
+322         inFile.setf( std::ios::showpoint );
+323         inFile.setf( std::ios::showpos );
+324         inFile.setf( std::ios::scientific );
+325         \textcolor{keywordflow}{if} (!inFile) \{
+326             \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Mesh1D unable to open file"} );
+327         \}
+328 
+329         \textcolor{keywordtype}{double} \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x};
+330         Vector<double> vals( NV );
+331 
+332         \textcolor{keywordflow}{for} ( std::size\_t i=0; i<NODES.\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}(); ++i )
+333         \{
+334             inFile >> \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x};
+335             \textcolor{keywordflow}{for} ( std::size\_t v=0; v<vals.size(); ++v )
+336             \{
+337                 inFile >> vals[ v ];
+338                 VARS[ i * NV + v ] = vals[ v ];
+339             \}
+340             \textcolor{comment}{// Check the mesh}
+341             \textcolor{keywordflow}{if} ( !reset )
+342             \{
+343                 \textcolor{keywordflow}{if} ( ( std::abs( x - NODES[ i ] ) > 1.e-6 ) )
+344                 \{
+345                     std::cout << \textcolor{stringliteral}{" Read x = "} << x
+346                     << \textcolor{stringliteral}{" Expected x = "} << NODES[ i ] << std::endl;
+347                     \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Mesh1D: file has different nodal points."} );
+348                 \}
+349             \}
+350             \textcolor{keywordflow}{else}
+351             \{
+352                 NODES[ i ] = \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x};
+353             \}
+354         \}
+355         inFile.close();
+356     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Mesh1D_ac4df77e9ee7aeb4dbcf4dec8edd1a4c3}\label{classLuna_1_1Mesh1D_ac4df77e9ee7aeb4dbcf4dec8edd1a4c3}} 
+\index{Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}!remesh@{remesh}}
+\index{remesh@{remesh}!Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}}
+\subsubsection{\texorpdfstring{remesh()}{remesh()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$class T, class X = double$>$ \\
+void \hyperlink{classLuna_1_1Mesh1D}{Luna\+::\+Mesh1D}$<$ T, X $>$\+::remesh (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ X $>$ \&}]{z }\end{DoxyParamCaption})}
+
+
+
+Linearly interpolate this mesh data into a new nodal mesh. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em z} & The nodal coordinates to be used in the new mesh. \\
+\hline
+\end{DoxyParams}
+
+
+Referenced by Luna\+::\+Mesh1\+D$<$ T, X $>$\+::operator()().
+
+\mbox{\Hypertarget{classLuna_1_1Mesh1D_a2648e36fd6dc8c769501a775347281b6}\label{classLuna_1_1Mesh1D_a2648e36fd6dc8c769501a775347281b6}} 
+\index{Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}!remesh@{remesh}}
+\index{remesh@{remesh}!Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}}
+\subsubsection{\texorpdfstring{remesh()}{remesh()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$$>$ \\
+void \hyperlink{classLuna_1_1Mesh1D}{Luna\+::\+Mesh1D}$<$ double, double $>$\+::remesh (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ double $>$ \&}]{newX }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 390 of file Mesh1\+D.\+h.
+
+
+
+References Luna\+::\+Vector$<$ T $>$\+::back(), and Luna\+::\+Vector$<$ T $>$\+::size().
+
+
+\begin{DoxyCode}
+391   \{
+392     \textcolor{keywordflow}{if} ( std::abs( NODES[ 0 ] - newX[ 0 ] ) > 1.e-10 ||
+393          std::abs( NODES.\hyperlink{classLuna_1_1Vector_add6be56568d90c49e5f616e334275786}{back}() - newX.\hyperlink{classLuna_1_1Vector_add6be56568d90c49e5f616e334275786}{back}() ) > 1.e-10 )
+394     \{
+395       std::string problem;
+396       problem = \textcolor{stringliteral}{" The Mesh1D.remesh method has been called with a passed\(\backslash\)n"};
+397       problem += \textcolor{stringliteral}{" coordinate vector that has different start and/or \(\backslash\)n"};
+398       problem += \textcolor{stringliteral}{" end points from the instantiated object. \(\backslash\)n"};
+399       \textcolor{keywordflow}{throw} Error( problem );
+400     \}
+401     \textcolor{keywordflow}{for} ( std::size\_t i = 0; i < newX.\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}() - 1; ++i )
+402     \{
+403       \textcolor{keywordflow}{if} ( newX[ i ] >= newX[ i + 1 ] )
+404       \{
+405         std::string problem;
+406         problem = \textcolor{stringliteral}{" The Mesh1D.remesh method has been passed \(\backslash\)n"};
+407         problem += \textcolor{stringliteral}{" a non-monotonic coordinate vector. \(\backslash\)n"};
+408         \textcolor{keywordflow}{throw} Error( problem );
+409       \}
+410     \}
+411     Vector<double> copy\_of\_vars( VARS );
+412     VARS.resize( newX.\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}() * NV );
+413     \textcolor{keywordflow}{for} ( std::size\_t node = 1; node < newX.\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}() - 1; ++node )
+414     \{
+415       \textcolor{comment}{// loop through the source mesh and find the bracket-nodes}
+416       \textcolor{keywordflow}{for} ( std::size\_t i = 0; i < NODES.\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}(); ++i )
+417       \{
+418         \textcolor{keywordflow}{if} ( ( NODES[ i ] <= newX[ node ] ) &&
+419              ( newX[ node ] < NODES[ i + 1 ] ) )
+420         \{
+421           \textcolor{comment}{// linearly interpolate each variable in the mesh}
+422           \textcolor{keywordflow}{for} ( std::size\_t var = 0; var < NV; ++var )
+423           \{
+424             \textcolor{keywordtype}{double} dX = newX[ node ] - NODES[ i ];
+425             \textcolor{keywordtype}{double} dvarsdX = ( copy\_of\_vars[ ( i+1 )*NV + var ] -
+426                                copy\_of\_vars[ i*NV + var ] )
+427                              / ( NODES[ i + 1 ] - NODES[ i ] );
+428             VARS[ node * NV + var ] =   copy\_of\_vars[ i * NV + var ]
+429                                       + dX * dvarsdX;
+430           \}
+431         \}
+432       \}
+433     \}
+434     \textcolor{comment}{// add the last nodal values to the resized vector}
+435     \textcolor{keywordflow}{for} ( std::size\_t var = 0; var < NV; ++var )
+436     \{
+437       VARS[ ( newX.\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}() - 1 ) * NV + var ] = copy\_of\_vars[ ( NODES.\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}() - 1 )
+438                                                             * NV + var ];
+439     \}
+440     NODES = newX;
+441   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Mesh1D_a256e7318b0f42a43d2d9f803b452e625}\label{classLuna_1_1Mesh1D_a256e7318b0f42a43d2d9f803b452e625}} 
+\index{Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}!remesh@{remesh}}
+\index{remesh@{remesh}!Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}}
+\subsubsection{\texorpdfstring{remesh()}{remesh()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$$>$ \\
+void \hyperlink{classLuna_1_1Mesh1D}{Luna\+::\+Mesh1D}$<$ std\+::complex$<$ double $>$, double $>$\+::remesh (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ double $>$ \&}]{newX }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 444 of file Mesh1\+D.\+h.
+
+
+
+References Luna\+::\+Vector$<$ T $>$\+::back(), and Luna\+::\+Vector$<$ T $>$\+::size().
+
+
+\begin{DoxyCode}
+446   \{
+447     \textcolor{keywordflow}{if} ( std::abs( NODES[ 0 ] - newX[ 0 ] ) > 1.e-10 ||
+448          std::abs( NODES.\hyperlink{classLuna_1_1Vector_add6be56568d90c49e5f616e334275786}{back}() - newX.\hyperlink{classLuna_1_1Vector_add6be56568d90c49e5f616e334275786}{back}() ) > 1.e-10 )
+449     \{
+450       std::string problem;
+451       problem = \textcolor{stringliteral}{" The Mesh1D.remesh method has been called with a passed\(\backslash\)n"};
+452       problem += \textcolor{stringliteral}{" coordinate vector that has different start and/or \(\backslash\)n"};
+453       problem += \textcolor{stringliteral}{" end points from the instantiated object. \(\backslash\)n"};
+454       \textcolor{keywordflow}{throw} Error( problem );
+455     \}
+456     \textcolor{keywordflow}{for} ( std::size\_t i = 0; i < newX.\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}() - 1; ++i )
+457     \{
+458       \textcolor{keywordflow}{if} ( newX[ i ] >= newX[ i + 1 ] )
+459       \{
+460         std::string problem;
+461         problem = \textcolor{stringliteral}{" The Mesh1D.remesh method has been passed \(\backslash\)n"};
+462         problem += \textcolor{stringliteral}{" a non-monotonic coordinate vector. \(\backslash\)n"};
+463         \textcolor{keywordflow}{throw} Error( problem );
+464       \}
+465     \}
+466 
+467     Vector<std::complex<double> > copy\_of\_vars( VARS );
+468     VARS.resize( newX.\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}() * NV );
+469     \textcolor{keywordflow}{for} ( std::size\_t node = 1; node < newX.\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}() - 1; ++node )
+470     \{
+471       \textcolor{comment}{// loop through the source mesh and find the bracket-nodes}
+472       \textcolor{keywordflow}{for} ( std::size\_t i = 0; i < NODES.\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}(); ++i )
+473       \{
+474         \textcolor{keywordflow}{if} ( ( NODES[ i ] <= newX[ node ] ) &&
+475              ( newX[ node ] < NODES[ i + 1 ] ) )
+476          \{
+477           \textcolor{comment}{// linearly interpolate each variable in the mesh}
+478           \textcolor{keywordflow}{for} ( std::size\_t var = 0; var < NV; ++var )
+479           \{
+480             \textcolor{keywordtype}{double} dX = newX[ node ] - NODES[ i ];
+481             \textcolor{comment}{// if the paranoid checks above are satisfied, then the X[ i + 1 ] should still be in bounds}
+482             std::complex<double> dvarsdX = ( copy\_of\_vars[ ( i+1 )*NV + var ] -
+483                                              copy\_of\_vars[ i*NV + var ] )
+484                                             / ( NODES[ i + 1 ] - NODES[ i ] );
+485             VARS[ node * NV + var ] =   copy\_of\_vars[ i * NV + var ]
+486                                       + dX * dvarsdX;
+487           \}
+488         \}
+489       \}
+490     \}
+491     \textcolor{comment}{// add the last nodal values to the resized vector}
+492     \textcolor{keywordflow}{for} ( std::size\_t var = 0; var < NV; ++var )
+493     \{
+494       VARS[ ( newX.\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}() - 1 ) * NV + var ] = copy\_of\_vars[
+495                                               ( NODES.\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}() - 1 ) * NV + var ];
+496     \}
+497     NODES = newX;
+498   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Mesh1D_a0caa5cfc7ced1937c94e692c3bdbdc25}\label{classLuna_1_1Mesh1D_a0caa5cfc7ced1937c94e692c3bdbdc25}} 
+\index{Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}!remesh@{remesh}}
+\index{remesh@{remesh}!Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}}
+\subsubsection{\texorpdfstring{remesh()}{remesh()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$$>$ \\
+void \hyperlink{classLuna_1_1Mesh1D}{Luna\+::\+Mesh1D}$<$ std\+::complex$<$ double $>$, std\+::complex$<$ double $>$ $>$\+::remesh (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ std\+::complex$<$ double $>$$>$ \&}]{z }\end{DoxyParamCaption})}
+
+
+
+Definition at line 501 of file Mesh1\+D.\+h.
+
+
+\begin{DoxyCode}
+503   \{
+504     std::string problem;
+505     problem = \textcolor{stringliteral}{" The Mesh1D.remesh method has been called with \(\backslash\)n"};
+506     problem += \textcolor{stringliteral}{" a complex data set on a complex mesh.\(\backslash\)n"};
+507     \textcolor{keywordflow}{throw} Error( problem );
+508   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Mesh1D_ad28b2c5f3505e1296286288ee2f71f13}\label{classLuna_1_1Mesh1D_ad28b2c5f3505e1296286288ee2f71f13}} 
+\index{Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}!set\+\_\+nodes\+\_\+vars@{set\+\_\+nodes\+\_\+vars}}
+\index{set\+\_\+nodes\+\_\+vars@{set\+\_\+nodes\+\_\+vars}!Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}}
+\subsubsection{\texorpdfstring{set\+\_\+nodes\+\_\+vars()}{set\_nodes\_vars()}}
+{\footnotesize\ttfamily template$<$typename T , typename X $>$ \\
+void \hyperlink{classLuna_1_1Mesh1D}{Luna\+::\+Mesh1D}$<$ T, X $>$\+::set\+\_\+nodes\+\_\+vars (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t \&}]{node,  }\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the variables stored at a specific node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & Node index \\
+\hline
+{\em vec} & \hyperlink{classLuna_1_1Vector}{Vector} of variables \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 153 of file Mesh1\+D.\+h.
+
+
+
+References Luna\+::\+Vector$<$ T $>$\+::size().
+
+
+
+Referenced by Luna\+::\+Mesh2\+D$<$ T $>$\+::get\+\_\+cross\+\_\+section\+\_\+xnode(), Luna\+::\+Mesh2\+D$<$ T $>$\+::get\+\_\+cross\+\_\+section\+\_\+ynode(), and Luna\+::\+Mesh1\+D$<$ T, X $>$\+::operator()().
+
+
+\begin{DoxyCode}
+155   \{
+156     \textcolor{keywordflow}{if} ( vec.size() != NV ) \{ \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Mesh error: set\_nodes\_vars "} );\}
+157     \textcolor{keywordflow}{for} ( std::size\_t var = 0; var < vec.size(); ++var )
+158     \{
+159       VARS[ node * NV + var ] = vec[ var ];
+160     \}
+161   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Mesh1D_ab5d22c6f03f81879e1b329f8dc87ec99}\label{classLuna_1_1Mesh1D_ab5d22c6f03f81879e1b329f8dc87ec99}} 
+\index{Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}!set\+\_\+vars\+\_\+from\+\_\+vector@{set\+\_\+vars\+\_\+from\+\_\+vector}}
+\index{set\+\_\+vars\+\_\+from\+\_\+vector@{set\+\_\+vars\+\_\+from\+\_\+vector}!Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}}
+\subsubsection{\texorpdfstring{set\+\_\+vars\+\_\+from\+\_\+vector()}{set\_vars\_from\_vector()}}
+{\footnotesize\ttfamily template$<$typename T , typename X $>$ \\
+void \hyperlink{classLuna_1_1Mesh1D}{Luna\+::\+Mesh1D}$<$ T, X $>$\+::set\+\_\+vars\+\_\+from\+\_\+vector (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the variables of this mesh from a vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em A} & \hyperlink{classLuna_1_1Vector}{Vector} of the variables to be stored in the mesh \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 367 of file Mesh1\+D.\+h.
+
+
+
+References Luna\+::\+Vector$<$ T $>$\+::size().
+
+
+
+Referenced by Luna\+::\+Mesh1\+D$<$ T, X $>$\+::operator()().
+
+
+\begin{DoxyCode}
+368   \{
+369     \textcolor{keywordflow}{if} ( vec.size() != NV * NODES.\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}() )
+370     \{ \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Mesh1D: set\_vars\_from\_vector sizes do not agree."} ); \}
+371     VARS = vec;
+372   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Mesh1D_a4e867f91a2d0cc0b44c14b97014207ce}\label{classLuna_1_1Mesh1D_a4e867f91a2d0cc0b44c14b97014207ce}} 
+\index{Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}!vars\+\_\+as\+\_\+vector@{vars\+\_\+as\+\_\+vector}}
+\index{vars\+\_\+as\+\_\+vector@{vars\+\_\+as\+\_\+vector}!Luna\+::\+Mesh1D@{Luna\+::\+Mesh1D}}
+\subsubsection{\texorpdfstring{vars\+\_\+as\+\_\+vector()}{vars\_as\_vector()}}
+{\footnotesize\ttfamily template$<$typename T , typename X $>$ \\
+const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \& \hyperlink{classLuna_1_1Mesh1D}{Luna\+::\+Mesh1D}$<$ T, X $>$\+::vars\+\_\+as\+\_\+vector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return a vector of all the variables stored in the mesh. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the \hyperlink{classLuna_1_1Vector}{Vector} of the variables stored in the mesh 
+\end{DoxyReturn}
+
+
+Definition at line 361 of file Mesh1\+D.\+h.
+
+
+
+Referenced by Luna\+::\+Mesh1\+D$<$ T, X $>$\+::operator()().
+
+
+\begin{DoxyCode}
+362   \{
+363     \textcolor{keywordflow}{return} VARS;
+364   \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Luna/\hyperlink{Mesh1D_8h}{Mesh1\+D.\+h}\end{DoxyCompactItemize}

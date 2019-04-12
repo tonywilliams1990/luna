@@ -1,0 +1,536 @@
+\hypertarget{classLuna_1_1Residual}{}\section{Luna\+:\+:Residual$<$ T $>$ Class Template Reference}
+\label{classLuna_1_1Residual}\index{Luna\+::\+Residual$<$ T $>$@{Luna\+::\+Residual$<$ T $>$}}
+
+
+A templated base class to be inherited by objects that define residuals.  
+
+
+
+
+{\ttfamily \#include $<$Residual.\+h$>$}
+
+
+
+Inheritance diagram for Luna\+:\+:Residual$<$ T $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=336pt]{classLuna_1_1Residual__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Luna\+:\+:Residual$<$ T $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=186pt]{classLuna_1_1Residual__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classLuna_1_1Residual_a6d918065d5ad8f65e5d226b9903af0cd}{Residual} (const unsigned \&order)
+\begin{DoxyCompactList}\small\item\em Constructor for a \textquotesingle{}square\textquotesingle{} residual (N residuals for N unknowns) \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Residual_a7c109fba68ee9658d4e2a81929c4c2cd}{Residual} (const unsigned \&order, const unsigned \&nvars)
+\begin{DoxyCompactList}\small\item\em Constructor for a \textquotesingle{}non-\/square\textquotesingle{} residual object. \end{DoxyCompactList}\item 
+virtual \hyperlink{classLuna_1_1Residual_a49919ce545464441f326d3be815241af}{$\sim$\+Residual} ()
+\begin{DoxyCompactList}\small\item\em Destructor ( virtual since we have virtual functions ) \end{DoxyCompactList}\item 
+unsigned \hyperlink{classLuna_1_1Residual_a866342c8d328177ea3f00c16d929cb0e}{get\+\_\+order} () const
+\begin{DoxyCompactList}\small\item\em Get the order of the residual vector. \end{DoxyCompactList}\item 
+unsigned \hyperlink{classLuna_1_1Residual_aa64479978dfc1879345e5b650881c488}{get\+\_\+number\+\_\+of\+\_\+vars} () const
+\begin{DoxyCompactList}\small\item\em Get the number of variables. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Residual_ac1f39e77c729e6a4a1e10ac951f6c704}{update} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&\hyperlink{classLuna_1_1Residual_a41d9f863aa529f16c5d78fb19b4906bd}{state})
+\begin{DoxyCompactList}\small\item\em Update the \hyperlink{classLuna_1_1Residual}{Residual} object for the current set of state variables. \end{DoxyCompactList}\item 
+const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \& \hyperlink{classLuna_1_1Residual_a023ed8f4d0a5fa7acca0c982c746b662}{residual} () const
+\begin{DoxyCompactList}\small\item\em A handle to the residuals corresponding to the last state. \end{DoxyCompactList}\item 
+const \hyperlink{classLuna_1_1Matrix}{Matrix}$<$ T $>$ \& \hyperlink{classLuna_1_1Residual_adffbafa712fc6318f3cd05c03b88decb}{jacobian} () const
+\begin{DoxyCompactList}\small\item\em A handle to the Jacobian of the residual. \end{DoxyCompactList}\item 
+const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \& \hyperlink{classLuna_1_1Residual_a41d9f863aa529f16c5d78fb19b4906bd}{state} () const
+\begin{DoxyCompactList}\small\item\em A handle to the state vector. \end{DoxyCompactList}\item 
+T \& \hyperlink{classLuna_1_1Residual_a77c3f160a7683b9c960e5b3192107ae9}{delta} ()
+\begin{DoxyCompactList}\small\item\em A handle to the step size used when finite-\/differencing. \end{DoxyCompactList}\item 
+const T \& \hyperlink{classLuna_1_1Residual_a61c46d8d03274f949b2ac0832c30bde4}{delta} () const
+\begin{DoxyCompactList}\small\item\em A handle to the step size used when finite-\/differencing. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classLuna_1_1Residual_ae1b1ebe3314c788b176bcac7b328de5c}{residual\+\_\+fn} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&\hyperlink{classLuna_1_1Residual_a41d9f863aa529f16c5d78fb19b4906bd}{state}, \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&\hyperlink{Nonlinear__ODE__BVP_8cpp_a06fc87d81c62e9abb8790b6e5713c55ba7ce756344023b99e5ab27b804feb765c}{f}) const
+\begin{DoxyCompactList}\small\item\em The residual function to be defined later. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classLuna_1_1Residual_acfcbc7bc2731b0c432de7f98b9b7cca5}{jacobian} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&\hyperlink{classLuna_1_1Residual_a41d9f863aa529f16c5d78fb19b4906bd}{state}, \hyperlink{classLuna_1_1Matrix}{Matrix}$<$ T $>$ \&jac) const
+\begin{DoxyCompactList}\small\item\em Because the residual evaluation at the current state is assumed to have already been done by the \textquotesingle{}update\textquotesingle{} method, this routine is protected. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classLuna_1_1Matrix}{Matrix}$<$ T $>$ \hyperlink{classLuna_1_1Residual_ac76c460240288f84309b587c785df06a}{J\+A\+C\+\_\+\+A\+T\+\_\+\+L\+A\+S\+T\+\_\+\+S\+T\+A\+TE}
+\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Residual_ac7b086911239d3f42ceec4a826e83543}{F\+N\+\_\+\+A\+T\+\_\+\+L\+A\+S\+T\+\_\+\+S\+T\+A\+TE}
+\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Residual_abcfc99f00aa4cf3616b32dfd5315dece}{L\+A\+S\+T\+\_\+\+S\+T\+A\+TE}
+\item 
+T \hyperlink{classLuna_1_1Residual_a1bf38ddfa149797de560dcb11c975fef}{D\+E\+L\+TA}
+\item 
+unsigned \hyperlink{classLuna_1_1Residual_a7facf1267eb277d84aeea8beba2cb200}{O\+R\+D\+E\+R\+\_\+\+O\+F\+\_\+\+S\+Y\+S\+T\+EM}
+\item 
+unsigned \hyperlink{classLuna_1_1Residual_a8e7a52a94a49d900ba2784e621a35668}{N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+V\+A\+RS}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class T$>$\newline
+class Luna\+::\+Residual$<$ T $>$}
+
+A templated base class to be inherited by objects that define residuals. 
+
+Definition at line 22 of file Residual.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classLuna_1_1Residual_a6d918065d5ad8f65e5d226b9903af0cd}\label{classLuna_1_1Residual_a6d918065d5ad8f65e5d226b9903af0cd}} 
+\index{Luna\+::\+Residual@{Luna\+::\+Residual}!Residual@{Residual}}
+\index{Residual@{Residual}!Luna\+::\+Residual@{Luna\+::\+Residual}}
+\subsubsection{\texorpdfstring{Residual()}{Residual()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classLuna_1_1Residual}{Luna\+::\+Residual}$<$ T $>$\+::\hyperlink{classLuna_1_1Residual}{Residual} (\begin{DoxyParamCaption}\item[{const unsigned \&}]{order }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for a \textquotesingle{}square\textquotesingle{} residual (N residuals for N unknowns) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em order} & The order of the system of equations \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 41 of file Residual.\+h.
+
+
+\begin{DoxyCode}
+41                                         : \hyperlink{classLuna_1_1Residual_a1bf38ddfa149797de560dcb11c975fef}{DELTA}( 1.e-8 )
+42       \{
+43         \hyperlink{classLuna_1_1Residual_a7facf1267eb277d84aeea8beba2cb200}{ORDER\_OF\_SYSTEM} = order;
+44         \hyperlink{classLuna_1_1Residual_a8e7a52a94a49d900ba2784e621a35668}{NUMBER\_OF\_VARS} = order;
+45         \hyperlink{classLuna_1_1Residual_abcfc99f00aa4cf3616b32dfd5315dece}{LAST\_STATE} = Vector<T>( \hyperlink{classLuna_1_1Residual_a8e7a52a94a49d900ba2784e621a35668}{NUMBER\_OF\_VARS}, 0.0 );
+46         \hyperlink{classLuna_1_1Residual_ac7b086911239d3f42ceec4a826e83543}{FN\_AT\_LAST\_STATE} = Vector<T>( \hyperlink{classLuna_1_1Residual_a7facf1267eb277d84aeea8beba2cb200}{ORDER\_OF\_SYSTEM}, 0.0 );
+47         \hyperlink{classLuna_1_1Residual_ac76c460240288f84309b587c785df06a}{JAC\_AT\_LAST\_STATE} = Matrix<T>( \hyperlink{classLuna_1_1Residual_a7facf1267eb277d84aeea8beba2cb200}{ORDER\_OF\_SYSTEM}, 
+      \hyperlink{classLuna_1_1Residual_a8e7a52a94a49d900ba2784e621a35668}{NUMBER\_OF\_VARS}, 0.0 );
+48       \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Residual_a7c109fba68ee9658d4e2a81929c4c2cd}\label{classLuna_1_1Residual_a7c109fba68ee9658d4e2a81929c4c2cd}} 
+\index{Luna\+::\+Residual@{Luna\+::\+Residual}!Residual@{Residual}}
+\index{Residual@{Residual}!Luna\+::\+Residual@{Luna\+::\+Residual}}
+\subsubsection{\texorpdfstring{Residual()}{Residual()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classLuna_1_1Residual}{Luna\+::\+Residual}$<$ T $>$\+::\hyperlink{classLuna_1_1Residual}{Residual} (\begin{DoxyParamCaption}\item[{const unsigned \&}]{order,  }\item[{const unsigned \&}]{nvars }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for a \textquotesingle{}non-\/square\textquotesingle{} residual object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em order} & The order of the system of equations \\
+\hline
+{\em nvars} & The number of elements in the state vector \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 53 of file Residual.\+h.
+
+
+\begin{DoxyCode}
+54                                         : \hyperlink{classLuna_1_1Residual_a1bf38ddfa149797de560dcb11c975fef}{DELTA}( 1.e-8 )
+55       \{
+56         \hyperlink{classLuna_1_1Residual_a7facf1267eb277d84aeea8beba2cb200}{ORDER\_OF\_SYSTEM} = order;
+57         \hyperlink{classLuna_1_1Residual_a8e7a52a94a49d900ba2784e621a35668}{NUMBER\_OF\_VARS} = nvars;
+58         \hyperlink{classLuna_1_1Residual_abcfc99f00aa4cf3616b32dfd5315dece}{LAST\_STATE} = Vector<T>( \hyperlink{classLuna_1_1Residual_a8e7a52a94a49d900ba2784e621a35668}{NUMBER\_OF\_VARS}, 0.0 );
+59         \hyperlink{classLuna_1_1Residual_ac7b086911239d3f42ceec4a826e83543}{FN\_AT\_LAST\_STATE} = Vector<T>( \hyperlink{classLuna_1_1Residual_a7facf1267eb277d84aeea8beba2cb200}{ORDER\_OF\_SYSTEM}, 0.0 );
+60         \hyperlink{classLuna_1_1Residual_ac76c460240288f84309b587c785df06a}{JAC\_AT\_LAST\_STATE} = Matrix<T>( \hyperlink{classLuna_1_1Residual_a7facf1267eb277d84aeea8beba2cb200}{ORDER\_OF\_SYSTEM}, 
+      \hyperlink{classLuna_1_1Residual_a8e7a52a94a49d900ba2784e621a35668}{NUMBER\_OF\_VARS}, 0.0 );
+61       \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Residual_a49919ce545464441f326d3be815241af}\label{classLuna_1_1Residual_a49919ce545464441f326d3be815241af}} 
+\index{Luna\+::\+Residual@{Luna\+::\+Residual}!````~Residual@{$\sim$\+Residual}}
+\index{````~Residual@{$\sim$\+Residual}!Luna\+::\+Residual@{Luna\+::\+Residual}}
+\subsubsection{\texorpdfstring{$\sim$\+Residual()}{~Residual()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+virtual \hyperlink{classLuna_1_1Residual}{Luna\+::\+Residual}$<$ T $>$\+::$\sim$\hyperlink{classLuna_1_1Residual}{Residual} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Destructor ( virtual since we have virtual functions ) 
+
+
+
+Definition at line 64 of file Residual.\+h.
+
+
+\begin{DoxyCode}
+65       \{\}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classLuna_1_1Residual_a77c3f160a7683b9c960e5b3192107ae9}\label{classLuna_1_1Residual_a77c3f160a7683b9c960e5b3192107ae9}} 
+\index{Luna\+::\+Residual@{Luna\+::\+Residual}!delta@{delta}}
+\index{delta@{delta}!Luna\+::\+Residual@{Luna\+::\+Residual}}
+\subsubsection{\texorpdfstring{delta()}{delta()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+T\& \hyperlink{classLuna_1_1Residual}{Luna\+::\+Residual}$<$ T $>$\+::delta (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+A handle to the step size used when finite-\/differencing. 
+
+\begin{DoxyReturn}{Returns}
+The step for FD computation of the Jacobian 
+\end{DoxyReturn}
+
+
+Definition at line 101 of file Residual.\+h.
+
+
+\begin{DoxyCode}
+101 \{ \textcolor{keywordflow}{return} \hyperlink{classLuna_1_1Residual_a1bf38ddfa149797de560dcb11c975fef}{DELTA}; \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Residual_a61c46d8d03274f949b2ac0832c30bde4}\label{classLuna_1_1Residual_a61c46d8d03274f949b2ac0832c30bde4}} 
+\index{Luna\+::\+Residual@{Luna\+::\+Residual}!delta@{delta}}
+\index{delta@{delta}!Luna\+::\+Residual@{Luna\+::\+Residual}}
+\subsubsection{\texorpdfstring{delta()}{delta()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+const T\& \hyperlink{classLuna_1_1Residual}{Luna\+::\+Residual}$<$ T $>$\+::delta (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+A handle to the step size used when finite-\/differencing. 
+
+\begin{DoxyReturn}{Returns}
+The step for FD computation of the Jacobian 
+\end{DoxyReturn}
+
+
+Definition at line 105 of file Residual.\+h.
+
+
+\begin{DoxyCode}
+105 \{ \textcolor{keywordflow}{return} \hyperlink{classLuna_1_1Residual_a1bf38ddfa149797de560dcb11c975fef}{DELTA}; \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Residual_aa64479978dfc1879345e5b650881c488}\label{classLuna_1_1Residual_aa64479978dfc1879345e5b650881c488}} 
+\index{Luna\+::\+Residual@{Luna\+::\+Residual}!get\+\_\+number\+\_\+of\+\_\+vars@{get\+\_\+number\+\_\+of\+\_\+vars}}
+\index{get\+\_\+number\+\_\+of\+\_\+vars@{get\+\_\+number\+\_\+of\+\_\+vars}!Luna\+::\+Residual@{Luna\+::\+Residual}}
+\subsubsection{\texorpdfstring{get\+\_\+number\+\_\+of\+\_\+vars()}{get\_number\_of\_vars()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+unsigned \hyperlink{classLuna_1_1Residual}{Luna\+::\+Residual}$<$ T $>$\+::get\+\_\+number\+\_\+of\+\_\+vars (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the number of variables. 
+
+\begin{DoxyReturn}{Returns}
+The number of elements in the state vector 
+\end{DoxyReturn}
+
+
+Definition at line 76 of file Residual.\+h.
+
+
+\begin{DoxyCode}
+76 \{ \textcolor{keywordflow}{return} \hyperlink{classLuna_1_1Residual_a8e7a52a94a49d900ba2784e621a35668}{NUMBER\_OF\_VARS}; \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Residual_a866342c8d328177ea3f00c16d929cb0e}\label{classLuna_1_1Residual_a866342c8d328177ea3f00c16d929cb0e}} 
+\index{Luna\+::\+Residual@{Luna\+::\+Residual}!get\+\_\+order@{get\+\_\+order}}
+\index{get\+\_\+order@{get\+\_\+order}!Luna\+::\+Residual@{Luna\+::\+Residual}}
+\subsubsection{\texorpdfstring{get\+\_\+order()}{get\_order()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+unsigned \hyperlink{classLuna_1_1Residual}{Luna\+::\+Residual}$<$ T $>$\+::get\+\_\+order (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the order of the residual vector. 
+
+\begin{DoxyReturn}{Returns}
+The order of the system of equations 
+\end{DoxyReturn}
+
+
+Definition at line 72 of file Residual.\+h.
+
+
+\begin{DoxyCode}
+72 \{ \textcolor{keywordflow}{return} \hyperlink{classLuna_1_1Residual_a7facf1267eb277d84aeea8beba2cb200}{ORDER\_OF\_SYSTEM}; \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Residual_acfcbc7bc2731b0c432de7f98b9b7cca5}\label{classLuna_1_1Residual_acfcbc7bc2731b0c432de7f98b9b7cca5}} 
+\index{Luna\+::\+Residual@{Luna\+::\+Residual}!jacobian@{jacobian}}
+\index{jacobian@{jacobian}!Luna\+::\+Residual@{Luna\+::\+Residual}}
+\subsubsection{\texorpdfstring{jacobian()}{jacobian()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+void \hyperlink{classLuna_1_1Residual}{Luna\+::\+Residual}$<$ T $>$\+::jacobian (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{state,  }\item[{\hyperlink{classLuna_1_1Matrix}{Matrix}$<$ T $>$ \&}]{jac }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Because the residual evaluation at the current state is assumed to have already been done by the \textquotesingle{}update\textquotesingle{} method, this routine is protected. 
+
+This default uses a finite-\/differenced Jacobian. You can overload this to provide an analytic Jacobian if you wish 
+
+Definition at line 121 of file Residual.\+h.
+
+
+\begin{DoxyCode}
+123   \{
+124     Vector<T> new\_state( \hyperlink{classLuna_1_1Residual_a41d9f863aa529f16c5d78fb19b4906bd}{state} );
+125     \textcolor{comment}{// evaluation of the function}
+126     Vector<T> f\_at\_new\_state( \hyperlink{classLuna_1_1Residual_a7facf1267eb277d84aeea8beba2cb200}{ORDER\_OF\_SYSTEM}, 0.0 );
+127     \textcolor{comment}{// default is to FD the Jacobian}
+128     \textcolor{keywordflow}{for} ( std::size\_t i = 0; i < \hyperlink{classLuna_1_1Residual_a8e7a52a94a49d900ba2784e621a35668}{NUMBER\_OF\_VARS}; ++i )
+129     \{
+130       new\_state[ i ] += \hyperlink{classLuna_1_1Residual_a1bf38ddfa149797de560dcb11c975fef}{DELTA};
+131       \hyperlink{classLuna_1_1Residual_ae1b1ebe3314c788b176bcac7b328de5c}{residual\_fn}( new\_state, f\_at\_new\_state );
+132       new\_state[ i ] -= \hyperlink{classLuna_1_1Residual_a1bf38ddfa149797de560dcb11c975fef}{DELTA};
+133       jac.set\_col( i, ( f\_at\_new\_state - \hyperlink{classLuna_1_1Residual_ac7b086911239d3f42ceec4a826e83543}{FN\_AT\_LAST\_STATE} ) / 
+      \hyperlink{classLuna_1_1Residual_a1bf38ddfa149797de560dcb11c975fef}{DELTA} );
+134     \}
+135   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Residual_adffbafa712fc6318f3cd05c03b88decb}\label{classLuna_1_1Residual_adffbafa712fc6318f3cd05c03b88decb}} 
+\index{Luna\+::\+Residual@{Luna\+::\+Residual}!jacobian@{jacobian}}
+\index{jacobian@{jacobian}!Luna\+::\+Residual@{Luna\+::\+Residual}}
+\subsubsection{\texorpdfstring{jacobian()}{jacobian()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+const \hyperlink{classLuna_1_1Matrix}{Matrix}$<$T$>$\& \hyperlink{classLuna_1_1Residual}{Luna\+::\+Residual}$<$ T $>$\+::jacobian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+A handle to the Jacobian of the residual. 
+
+\begin{DoxyReturn}{Returns}
+Jacobian for the last state vector 
+\end{DoxyReturn}
+
+
+Definition at line 93 of file Residual.\+h.
+
+
+
+Referenced by Luna\+::\+Residual$<$ double $>$\+::update().
+
+
+\begin{DoxyCode}
+93 \{ \textcolor{keywordflow}{return} \hyperlink{classLuna_1_1Residual_ac76c460240288f84309b587c785df06a}{JAC\_AT\_LAST\_STATE}; \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Residual_a023ed8f4d0a5fa7acca0c982c746b662}\label{classLuna_1_1Residual_a023ed8f4d0a5fa7acca0c982c746b662}} 
+\index{Luna\+::\+Residual@{Luna\+::\+Residual}!residual@{residual}}
+\index{residual@{residual}!Luna\+::\+Residual@{Luna\+::\+Residual}}
+\subsubsection{\texorpdfstring{residual()}{residual()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+const \hyperlink{classLuna_1_1Vector}{Vector}$<$T$>$\& \hyperlink{classLuna_1_1Residual}{Luna\+::\+Residual}$<$ T $>$\+::residual (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+A handle to the residuals corresponding to the last state. 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{classLuna_1_1Residual}{Residual} for the last state vector 
+\end{DoxyReturn}
+
+
+Definition at line 89 of file Residual.\+h.
+
+
+\begin{DoxyCode}
+89 \{ \textcolor{keywordflow}{return} \hyperlink{classLuna_1_1Residual_ac7b086911239d3f42ceec4a826e83543}{FN\_AT\_LAST\_STATE}; \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Residual_ae1b1ebe3314c788b176bcac7b328de5c}\label{classLuna_1_1Residual_ae1b1ebe3314c788b176bcac7b328de5c}} 
+\index{Luna\+::\+Residual@{Luna\+::\+Residual}!residual\+\_\+fn@{residual\+\_\+fn}}
+\index{residual\+\_\+fn@{residual\+\_\+fn}!Luna\+::\+Residual@{Luna\+::\+Residual}}
+\subsubsection{\texorpdfstring{residual\+\_\+fn()}{residual\_fn()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+virtual void \hyperlink{classLuna_1_1Residual}{Luna\+::\+Residual}$<$ T $>$\+::residual\+\_\+fn (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{state,  }\item[{\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{f }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The residual function to be defined later. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & The current state \hyperlink{classLuna_1_1Vector}{Vector} \\
+\hline
+{\em f} & The function \hyperlink{classLuna_1_1Vector}{Vector} to be updated \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \hyperlink{classLuna_1_1right__BC_a513bb865a218a9ee309727839496afe0}{Luna\+::right\+\_\+\+BC}, \hyperlink{classLuna_1_1right__BC_a513bb865a218a9ee309727839496afe0}{Luna\+::right\+\_\+\+BC}, \hyperlink{classLuna_1_1left__BC_a01645de89a78c7c925d60bb68e994c90}{Luna\+::left\+\_\+\+BC}, \hyperlink{classLuna_1_1left__BC_a01645de89a78c7c925d60bb68e994c90}{Luna\+::left\+\_\+\+BC}, \hyperlink{classLuna_1_1Arc__problem_aeb5e14b8b06d0ad0f8b42cb280836f97}{Luna\+::\+Arc\+\_\+problem}, \hyperlink{classLuna_1_1nonlinear__equation_a5acffbdc83b8b487241cd92b0191be85}{Luna\+::nonlinear\+\_\+equation}, \hyperlink{classLuna_1_1test__equation_a90a4576ce51729e49dbe67f36ab31f81}{Luna\+::test\+\_\+equation}, and \hyperlink{classLuna_1_1test__residual_abf5e77702d2ffec8bf2ffdc6728a8473}{Luna\+::test\+\_\+residual}.
+
+
+
+Definition at line 110 of file Residual.\+h.
+
+
+
+Referenced by Luna\+::\+Residual$<$ double $>$\+::jacobian(), and Luna\+::\+Residual$<$ double $>$\+::update().
+
+
+\begin{DoxyCode}
+111       \{
+112         std::string problem;
+113         problem = \textcolor{stringliteral}{"The residual\_fn method has not been implemented.\(\backslash\)n"};
+114         problem += \textcolor{stringliteral}{"You must implement this method to define the residual.\(\backslash\)n"};
+115         \textcolor{keywordflow}{throw} Error( problem );
+116       \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Residual_a41d9f863aa529f16c5d78fb19b4906bd}\label{classLuna_1_1Residual_a41d9f863aa529f16c5d78fb19b4906bd}} 
+\index{Luna\+::\+Residual@{Luna\+::\+Residual}!state@{state}}
+\index{state@{state}!Luna\+::\+Residual@{Luna\+::\+Residual}}
+\subsubsection{\texorpdfstring{state()}{state()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+const \hyperlink{classLuna_1_1Vector}{Vector}$<$T$>$\& \hyperlink{classLuna_1_1Residual}{Luna\+::\+Residual}$<$ T $>$\+::state (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+A handle to the state vector. 
+
+\begin{DoxyReturn}{Returns}
+The last state vector 
+\end{DoxyReturn}
+
+
+Definition at line 97 of file Residual.\+h.
+
+
+
+Referenced by Luna\+::\+Residual$<$ double $>$\+::update().
+
+
+\begin{DoxyCode}
+97 \{ \textcolor{keywordflow}{return} \hyperlink{classLuna_1_1Residual_abcfc99f00aa4cf3616b32dfd5315dece}{LAST\_STATE}; \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Residual_ac1f39e77c729e6a4a1e10ac951f6c704}\label{classLuna_1_1Residual_ac1f39e77c729e6a4a1e10ac951f6c704}} 
+\index{Luna\+::\+Residual@{Luna\+::\+Residual}!update@{update}}
+\index{update@{update}!Luna\+::\+Residual@{Luna\+::\+Residual}}
+\subsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+void \hyperlink{classLuna_1_1Residual}{Luna\+::\+Residual}$<$ T $>$\+::update (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Update the \hyperlink{classLuna_1_1Residual}{Residual} object for the current set of state variables. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & last state vector \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 80 of file Residual.\+h.
+
+
+\begin{DoxyCode}
+81       \{
+82         \hyperlink{classLuna_1_1Residual_abcfc99f00aa4cf3616b32dfd5315dece}{LAST\_STATE} = \hyperlink{classLuna_1_1Residual_a41d9f863aa529f16c5d78fb19b4906bd}{state};
+83         \hyperlink{classLuna_1_1Residual_ae1b1ebe3314c788b176bcac7b328de5c}{residual\_fn}( \hyperlink{classLuna_1_1Residual_abcfc99f00aa4cf3616b32dfd5315dece}{LAST\_STATE}, \hyperlink{classLuna_1_1Residual_ac7b086911239d3f42ceec4a826e83543}{FN\_AT\_LAST\_STATE} );
+84         \hyperlink{classLuna_1_1Residual_adffbafa712fc6318f3cd05c03b88decb}{jacobian}( \hyperlink{classLuna_1_1Residual_abcfc99f00aa4cf3616b32dfd5315dece}{LAST\_STATE}, \hyperlink{classLuna_1_1Residual_ac76c460240288f84309b587c785df06a}{JAC\_AT\_LAST\_STATE} );
+85       \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classLuna_1_1Residual_a1bf38ddfa149797de560dcb11c975fef}\label{classLuna_1_1Residual_a1bf38ddfa149797de560dcb11c975fef}} 
+\index{Luna\+::\+Residual@{Luna\+::\+Residual}!D\+E\+L\+TA@{D\+E\+L\+TA}}
+\index{D\+E\+L\+TA@{D\+E\+L\+TA}!Luna\+::\+Residual@{Luna\+::\+Residual}}
+\subsubsection{\texorpdfstring{D\+E\+L\+TA}{DELTA}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+T \hyperlink{classLuna_1_1Residual}{Luna\+::\+Residual}$<$ T $>$\+::D\+E\+L\+TA\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 34 of file Residual.\+h.
+
+
+
+Referenced by Luna\+::\+Residual$<$ double $>$\+::delta(), and Luna\+::\+Residual$<$ double $>$\+::jacobian().
+
+\mbox{\Hypertarget{classLuna_1_1Residual_ac7b086911239d3f42ceec4a826e83543}\label{classLuna_1_1Residual_ac7b086911239d3f42ceec4a826e83543}} 
+\index{Luna\+::\+Residual@{Luna\+::\+Residual}!F\+N\+\_\+\+A\+T\+\_\+\+L\+A\+S\+T\+\_\+\+S\+T\+A\+TE@{F\+N\+\_\+\+A\+T\+\_\+\+L\+A\+S\+T\+\_\+\+S\+T\+A\+TE}}
+\index{F\+N\+\_\+\+A\+T\+\_\+\+L\+A\+S\+T\+\_\+\+S\+T\+A\+TE@{F\+N\+\_\+\+A\+T\+\_\+\+L\+A\+S\+T\+\_\+\+S\+T\+A\+TE}!Luna\+::\+Residual@{Luna\+::\+Residual}}
+\subsubsection{\texorpdfstring{F\+N\+\_\+\+A\+T\+\_\+\+L\+A\+S\+T\+\_\+\+S\+T\+A\+TE}{FN\_AT\_LAST\_STATE}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$T$>$ \hyperlink{classLuna_1_1Residual}{Luna\+::\+Residual}$<$ T $>$\+::F\+N\+\_\+\+A\+T\+\_\+\+L\+A\+S\+T\+\_\+\+S\+T\+A\+TE\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 32 of file Residual.\+h.
+
+
+
+Referenced by Luna\+::\+Residual$<$ double $>$\+::jacobian(), and Luna\+::\+Residual$<$ double $>$\+::residual().
+
+\mbox{\Hypertarget{classLuna_1_1Residual_ac76c460240288f84309b587c785df06a}\label{classLuna_1_1Residual_ac76c460240288f84309b587c785df06a}} 
+\index{Luna\+::\+Residual@{Luna\+::\+Residual}!J\+A\+C\+\_\+\+A\+T\+\_\+\+L\+A\+S\+T\+\_\+\+S\+T\+A\+TE@{J\+A\+C\+\_\+\+A\+T\+\_\+\+L\+A\+S\+T\+\_\+\+S\+T\+A\+TE}}
+\index{J\+A\+C\+\_\+\+A\+T\+\_\+\+L\+A\+S\+T\+\_\+\+S\+T\+A\+TE@{J\+A\+C\+\_\+\+A\+T\+\_\+\+L\+A\+S\+T\+\_\+\+S\+T\+A\+TE}!Luna\+::\+Residual@{Luna\+::\+Residual}}
+\subsubsection{\texorpdfstring{J\+A\+C\+\_\+\+A\+T\+\_\+\+L\+A\+S\+T\+\_\+\+S\+T\+A\+TE}{JAC\_AT\_LAST\_STATE}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classLuna_1_1Matrix}{Matrix}$<$T$>$ \hyperlink{classLuna_1_1Residual}{Luna\+::\+Residual}$<$ T $>$\+::J\+A\+C\+\_\+\+A\+T\+\_\+\+L\+A\+S\+T\+\_\+\+S\+T\+A\+TE\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 31 of file Residual.\+h.
+
+
+
+Referenced by Luna\+::\+Residual$<$ double $>$\+::jacobian().
+
+\mbox{\Hypertarget{classLuna_1_1Residual_abcfc99f00aa4cf3616b32dfd5315dece}\label{classLuna_1_1Residual_abcfc99f00aa4cf3616b32dfd5315dece}} 
+\index{Luna\+::\+Residual@{Luna\+::\+Residual}!L\+A\+S\+T\+\_\+\+S\+T\+A\+TE@{L\+A\+S\+T\+\_\+\+S\+T\+A\+TE}}
+\index{L\+A\+S\+T\+\_\+\+S\+T\+A\+TE@{L\+A\+S\+T\+\_\+\+S\+T\+A\+TE}!Luna\+::\+Residual@{Luna\+::\+Residual}}
+\subsubsection{\texorpdfstring{L\+A\+S\+T\+\_\+\+S\+T\+A\+TE}{LAST\_STATE}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$T$>$ \hyperlink{classLuna_1_1Residual}{Luna\+::\+Residual}$<$ T $>$\+::L\+A\+S\+T\+\_\+\+S\+T\+A\+TE\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 33 of file Residual.\+h.
+
+
+
+Referenced by Luna\+::\+Residual$<$ double $>$\+::state().
+
+\mbox{\Hypertarget{classLuna_1_1Residual_a8e7a52a94a49d900ba2784e621a35668}\label{classLuna_1_1Residual_a8e7a52a94a49d900ba2784e621a35668}} 
+\index{Luna\+::\+Residual@{Luna\+::\+Residual}!N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+V\+A\+RS@{N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+V\+A\+RS}}
+\index{N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+V\+A\+RS@{N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+V\+A\+RS}!Luna\+::\+Residual@{Luna\+::\+Residual}}
+\subsubsection{\texorpdfstring{N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+V\+A\+RS}{NUMBER\_OF\_VARS}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+unsigned \hyperlink{classLuna_1_1Residual}{Luna\+::\+Residual}$<$ T $>$\+::N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+V\+A\+RS\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 36 of file Residual.\+h.
+
+
+
+Referenced by Luna\+::\+Residual$<$ double $>$\+::get\+\_\+number\+\_\+of\+\_\+vars(), Luna\+::\+Residual$<$ double $>$\+::jacobian(), and Luna\+::\+Residual$<$ double $>$\+::\+Residual().
+
+\mbox{\Hypertarget{classLuna_1_1Residual_a7facf1267eb277d84aeea8beba2cb200}\label{classLuna_1_1Residual_a7facf1267eb277d84aeea8beba2cb200}} 
+\index{Luna\+::\+Residual@{Luna\+::\+Residual}!O\+R\+D\+E\+R\+\_\+\+O\+F\+\_\+\+S\+Y\+S\+T\+EM@{O\+R\+D\+E\+R\+\_\+\+O\+F\+\_\+\+S\+Y\+S\+T\+EM}}
+\index{O\+R\+D\+E\+R\+\_\+\+O\+F\+\_\+\+S\+Y\+S\+T\+EM@{O\+R\+D\+E\+R\+\_\+\+O\+F\+\_\+\+S\+Y\+S\+T\+EM}!Luna\+::\+Residual@{Luna\+::\+Residual}}
+\subsubsection{\texorpdfstring{O\+R\+D\+E\+R\+\_\+\+O\+F\+\_\+\+S\+Y\+S\+T\+EM}{ORDER\_OF\_SYSTEM}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+unsigned \hyperlink{classLuna_1_1Residual}{Luna\+::\+Residual}$<$ T $>$\+::O\+R\+D\+E\+R\+\_\+\+O\+F\+\_\+\+S\+Y\+S\+T\+EM\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 35 of file Residual.\+h.
+
+
+
+Referenced by Luna\+::\+Residual$<$ double $>$\+::get\+\_\+order(), Luna\+::\+Residual$<$ double $>$\+::jacobian(), and Luna\+::\+Residual$<$ double $>$\+::\+Residual().
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Luna/\hyperlink{Residual_8h}{Residual.\+h}\end{DoxyCompactItemize}

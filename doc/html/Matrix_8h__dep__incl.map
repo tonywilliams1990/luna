@@ -1,0 +1,12 @@
+<map id="include/Luna/Matrix.h" name="include/Luna/Matrix.h">
+<area shape="rect" id="node2" href="$BandedMatrix_8h.html" title="A templated banded matrix class. " alt="" coords="30,162,220,189"/>
+<area shape="rect" id="node3" href="$ODE__BVP_8h.html" title="A class for solving a system of &#160;first&#45;order ordinary differential equations subject to &#160;boundary con..." alt="" coords="38,333,212,360"/>
+<area shape="rect" id="node4" href="$Residual_8h.html" title="A residual class for use with Newton for solving systems of non&#45;linear equations of the form F(x) = 0..." alt="" coords="411,80,572,107"/>
+<area shape="rect" id="node5" href="$Residual__with__coords_8h.html" title="A specification of a residual class that defines a vector residual of a vector of state variables..." alt="" coords="475,155,626,196"/>
+<area shape="rect" id="node6" href="$Equation_8h.html" title="A templated class for equations that can be inherited from to allow instantiation of ODE/PDE objects ..." alt="" coords="178,251,339,278"/>
+<area shape="rect" id="node7" href="$Equation__1matrix_8h.html" title="A templated class for equations that can be inherited from to allow instantiation of ODE/PDE objects ..." alt="" coords="531,244,682,285"/>
+<area shape="rect" id="node8" href="$Newton_8h.html" title="A class for using Newton&#39;s method for solving systems of nonlinear equations of the form &#160;where &#160;is a..." alt="" coords="296,162,450,189"/>
+<area shape="rect" id="node9" href="$LinearEigensystem_8h.html" title="A templated class for solving linear eigenvalue problems of the form A*v=lambda*v where A is a matrix..." alt="" coords="700,80,921,107"/>
+<area shape="rect" id="node10" href="$Mesh2D_8h.html" title="A class specifying a two dimensional mesh object used for storing and manipulating data..." alt="" coords="946,80,1104,107"/>
+<area shape="rect" id="node11" href="$Tridiagonal_8h.html" title="A templated Tridiagonal matrix class which constructs a matrix as three Vectors for the main..." alt="" coords="1129,80,1302,107"/>
+</map>

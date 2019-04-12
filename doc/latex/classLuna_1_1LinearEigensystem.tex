@@ -1,0 +1,409 @@
+\hypertarget{classLuna_1_1LinearEigensystem}{}\section{Luna\+:\+:Linear\+Eigensystem$<$ T $>$ Class Template Reference}
+\label{classLuna_1_1LinearEigensystem}\index{Luna\+::\+Linear\+Eigensystem$<$ T $>$@{Luna\+::\+Linear\+Eigensystem$<$ T $>$}}
+
+
+A \hyperlink{classLuna_1_1LinearEigensystem}{Linear\+Eigensystem} class for use with double and std\+::complex$<$double$>$  
+
+
+
+
+{\ttfamily \#include $<$Linear\+Eigensystem.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classLuna_1_1LinearEigensystem_a6a285716463cb439b2c82d0055d247c5}{Linear\+Eigensystem} ()
+\begin{DoxyCompactList}\small\item\em Constructor for a \hyperlink{classLuna_1_1LinearEigensystem}{Linear\+Eigensystem}. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1LinearEigensystem_a3bb8fffcca088facf2e8efedc20d9944}{$\sim$\+Linear\+Eigensystem} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1LinearEigensystem_ae109e1012fda347ac9c1da4fa30313f6}{compute\+\_\+real\+\_\+symmetric} (const \hyperlink{classLuna_1_1Matrix}{Matrix}$<$ double $>$ \&a, bool compute\+\_\+evecs=true)
+\begin{DoxyCompactList}\small\item\em Solve a \hyperlink{classLuna_1_1LinearEigensystem}{Linear\+Eigensystem} A$\ast$v=lambda$\ast$v where A is a real symmetric \hyperlink{classLuna_1_1Matrix}{Matrix} to give the eigenvalues ( and optionally the eigenvectors ) \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1LinearEigensystem_a91ac311c3fe4226c4652b6bf41fc0d91}{compute\+\_\+real\+\_\+symmetric\+\_\+tridiagonal} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ double $>$ \&diag, const \hyperlink{classLuna_1_1Vector}{Vector}$<$ double $>$ \&off\+\_\+diag, bool compute\+\_\+evecs=true)
+\begin{DoxyCompactList}\small\item\em Solve a \hyperlink{classLuna_1_1LinearEigensystem}{Linear\+Eigensystem} A$\ast$v=lambda$\ast$v where A is a real symmetric tridiagonal \hyperlink{classLuna_1_1Matrix}{Matrix} to give the eigenvalues ( and optionally the eigenvectors ) \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1LinearEigensystem_ab303a80cc2cf6bfe232b9d62efe13109}{compute\+\_\+real} (const \hyperlink{classLuna_1_1Matrix}{Matrix}$<$ double $>$ \&a, bool compute\+\_\+evecs=true)
+\begin{DoxyCompactList}\small\item\em Solve a \hyperlink{classLuna_1_1LinearEigensystem}{Linear\+Eigensystem} A$\ast$v=lambda$\ast$v where A is a real \hyperlink{classLuna_1_1Matrix}{Matrix} to give the eigenvalues ( and optionally the eigenvectors ) \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ std\+::complex$<$ double $>$ $>$ \hyperlink{classLuna_1_1LinearEigensystem_ad74f60a4830eefb2858ab92765dc0ae4}{eigenvalues} () const
+\begin{DoxyCompactList}\small\item\em Return the eigenvalues. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Matrix}{Matrix}$<$ T $>$ \hyperlink{classLuna_1_1LinearEigensystem_ab68a36f7f1c1ecf9da83df84be6e49e9}{eigenvector\+\_\+matrix} () const
+\begin{DoxyCompactList}\small\item\em Return a \hyperlink{classLuna_1_1Matrix}{Matrix} containing the eigenvectors. \end{DoxyCompactList}\item 
+std\+::vector$<$ \hyperlink{classLuna_1_1Vector}{Vector}$<$ std\+::complex$<$ double $>$ $>$ $>$ \hyperlink{classLuna_1_1LinearEigensystem_a34fd0e8eef6dc0e85a13d1cb78beb32f}{eigenvectors} () const
+\begin{DoxyCompactList}\small\item\em Return an std\+::vector of eigenvectors. \end{DoxyCompactList}\item 
+{\footnotesize template$<$$>$ }\\void \hyperlink{classLuna_1_1LinearEigensystem_a239e3ff62330c51c94d0112de0318249}{compute\+\_\+real\+\_\+symmetric} (const \hyperlink{classLuna_1_1Matrix}{Matrix}$<$ double $>$ \&a, bool compute\+\_\+evecs)
+\item 
+{\footnotesize template$<$$>$ }\\void \hyperlink{classLuna_1_1LinearEigensystem_a080e0fe1d3baa1f6c5b56b9ae8082ae6}{compute\+\_\+real\+\_\+symmetric\+\_\+tridiagonal} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ double $>$ \&diag, const \hyperlink{classLuna_1_1Vector}{Vector}$<$ double $>$ \&off\+\_\+diag, bool compute\+\_\+evecs)
+\item 
+{\footnotesize template$<$$>$ }\\void \hyperlink{classLuna_1_1LinearEigensystem_a0aa01a39e1b44cc2cf225c8566d6bd95}{compute\+\_\+real} (const \hyperlink{classLuna_1_1Matrix}{Matrix}$<$ double $>$ \&a, bool compute\+\_\+evecs)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class T$>$\newline
+class Luna\+::\+Linear\+Eigensystem$<$ T $>$}
+
+A \hyperlink{classLuna_1_1LinearEigensystem}{Linear\+Eigensystem} class for use with double and std\+::complex$<$double$>$ 
+
+Definition at line 25 of file Linear\+Eigensystem.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classLuna_1_1LinearEigensystem_a6a285716463cb439b2c82d0055d247c5}\label{classLuna_1_1LinearEigensystem_a6a285716463cb439b2c82d0055d247c5}} 
+\index{Luna\+::\+Linear\+Eigensystem@{Luna\+::\+Linear\+Eigensystem}!Linear\+Eigensystem@{Linear\+Eigensystem}}
+\index{Linear\+Eigensystem@{Linear\+Eigensystem}!Luna\+::\+Linear\+Eigensystem@{Luna\+::\+Linear\+Eigensystem}}
+\subsubsection{\texorpdfstring{Linear\+Eigensystem()}{LinearEigensystem()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classLuna_1_1LinearEigensystem}{Luna\+::\+Linear\+Eigensystem}$<$ T $>$\+::\hyperlink{classLuna_1_1LinearEigensystem}{Linear\+Eigensystem} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for a \hyperlink{classLuna_1_1LinearEigensystem}{Linear\+Eigensystem}. 
+
+
+
+Definition at line 45 of file Linear\+Eigensystem.\+h.
+
+
+\begin{DoxyCode}
+45                         : EIGENVALUES\_COMPUTED( \textcolor{keyword}{false} ),
+46                           EIGENVECTORS\_COMPUTED( \textcolor{keyword}{false} )
+47     \{\}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1LinearEigensystem_a3bb8fffcca088facf2e8efedc20d9944}\label{classLuna_1_1LinearEigensystem_a3bb8fffcca088facf2e8efedc20d9944}} 
+\index{Luna\+::\+Linear\+Eigensystem@{Luna\+::\+Linear\+Eigensystem}!````~Linear\+Eigensystem@{$\sim$\+Linear\+Eigensystem}}
+\index{````~Linear\+Eigensystem@{$\sim$\+Linear\+Eigensystem}!Luna\+::\+Linear\+Eigensystem@{Luna\+::\+Linear\+Eigensystem}}
+\subsubsection{\texorpdfstring{$\sim$\+Linear\+Eigensystem()}{~LinearEigensystem()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classLuna_1_1LinearEigensystem}{Luna\+::\+Linear\+Eigensystem}$<$ T $>$\+::$\sim$\hyperlink{classLuna_1_1LinearEigensystem}{Linear\+Eigensystem} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Destructor. 
+
+
+
+Definition at line 50 of file Linear\+Eigensystem.\+h.
+
+
+
+References Luna\+::\+Linear\+Eigensystem$<$ T $>$\+::compute\+\_\+real(), Luna\+::\+Linear\+Eigensystem$<$ T $>$\+::compute\+\_\+real\+\_\+symmetric(), Luna\+::\+Linear\+Eigensystem$<$ T $>$\+::compute\+\_\+real\+\_\+symmetric\+\_\+tridiagonal(), Luna\+::\+Linear\+Eigensystem$<$ T $>$\+::eigenvalues(), Luna\+::\+Linear\+Eigensystem$<$ T $>$\+::eigenvector\+\_\+matrix(), Luna\+::\+Linear\+Eigensystem$<$ T $>$\+::eigenvectors(), Heat\+\_\+plot\+::t, Heat\+\_\+plot\+::u, Heat\+\_\+plot\+::x, and y.
+
+
+\begin{DoxyCode}
+50 \{\}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classLuna_1_1LinearEigensystem_ab303a80cc2cf6bfe232b9d62efe13109}\label{classLuna_1_1LinearEigensystem_ab303a80cc2cf6bfe232b9d62efe13109}} 
+\index{Luna\+::\+Linear\+Eigensystem@{Luna\+::\+Linear\+Eigensystem}!compute\+\_\+real@{compute\+\_\+real}}
+\index{compute\+\_\+real@{compute\+\_\+real}!Luna\+::\+Linear\+Eigensystem@{Luna\+::\+Linear\+Eigensystem}}
+\subsubsection{\texorpdfstring{compute\+\_\+real()}{compute\_real()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+void \hyperlink{classLuna_1_1LinearEigensystem}{Luna\+::\+Linear\+Eigensystem}$<$ T $>$\+::compute\+\_\+real (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Matrix}{Matrix}$<$ double $>$ \&}]{a,  }\item[{bool}]{compute\+\_\+evecs = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Solve a \hyperlink{classLuna_1_1LinearEigensystem}{Linear\+Eigensystem} A$\ast$v=lambda$\ast$v where A is a real \hyperlink{classLuna_1_1Matrix}{Matrix} to give the eigenvalues ( and optionally the eigenvectors ) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The \hyperlink{classLuna_1_1Matrix}{Matrix} A in the eigensystem \\
+\hline
+{\em compute\+\_\+evecs} & True if the eigenvectors are to be computed too \\
+\hline
+\end{DoxyParams}
+
+
+Referenced by main(), and Luna\+::\+Linear\+Eigensystem$<$ T $>$\+::$\sim$\+Linear\+Eigensystem().
+
+\mbox{\Hypertarget{classLuna_1_1LinearEigensystem_a0aa01a39e1b44cc2cf225c8566d6bd95}\label{classLuna_1_1LinearEigensystem_a0aa01a39e1b44cc2cf225c8566d6bd95}} 
+\index{Luna\+::\+Linear\+Eigensystem@{Luna\+::\+Linear\+Eigensystem}!compute\+\_\+real@{compute\+\_\+real}}
+\index{compute\+\_\+real@{compute\+\_\+real}!Luna\+::\+Linear\+Eigensystem@{Luna\+::\+Linear\+Eigensystem}}
+\subsubsection{\texorpdfstring{compute\+\_\+real()}{compute\_real()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$$>$ \\
+void \hyperlink{classLuna_1_1LinearEigensystem}{Luna\+::\+Linear\+Eigensystem}$<$ double $>$\+::compute\+\_\+real (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Matrix}{Matrix}$<$ double $>$ \&}]{a,  }\item[{bool}]{compute\+\_\+evecs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 334 of file Linear\+Eigensystem.\+h.
+
+
+
+References Luna\+::\+Matrix$<$ T $>$\+::cols(), and Luna\+::\+Matrix$<$ T $>$\+::rows().
+
+
+\begin{DoxyCode}
+336   \{
+337     \textcolor{keywordflow}{if} ( a.\hyperlink{classLuna_1_1Matrix_ae7b0b30c3e22ba252d660f093757295e}{rows}() != a.\hyperlink{classLuna_1_1Matrix_aa7472f90f4c470535e722f3a389a19b1}{cols}() )
+338     \{
+339       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"compute\_real error: Matrix is not square."});
+340     \}
+341     A = a;
+342     \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} = a.\hyperlink{classLuna_1_1Matrix_ae7b0b30c3e22ba252d660f093757295e}{rows}();
+343     balance();
+344     elmhes();
+345     \textcolor{keywordflow}{if} ( compute\_evecs ) \{
+346       EIGENVECTORS.resize( \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}, \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} );
+347       EIGENVECTORS.fill( 1.0 );
+348       eltran();
+349       hqr2();
+350       balbak();
+351       sortvecs();
+352       EIGENVALUES\_COMPUTED = \textcolor{keyword}{true};
+353       EIGENVECTORS\_COMPUTED = \textcolor{keyword}{true};
+354     \} \textcolor{keywordflow}{else} \{
+355       hqr();
+356       sort\_unsymm();
+357       EIGENVALUES\_COMPUTED = \textcolor{keyword}{true};
+358     \}
+359   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1LinearEigensystem_ae109e1012fda347ac9c1da4fa30313f6}\label{classLuna_1_1LinearEigensystem_ae109e1012fda347ac9c1da4fa30313f6}} 
+\index{Luna\+::\+Linear\+Eigensystem@{Luna\+::\+Linear\+Eigensystem}!compute\+\_\+real\+\_\+symmetric@{compute\+\_\+real\+\_\+symmetric}}
+\index{compute\+\_\+real\+\_\+symmetric@{compute\+\_\+real\+\_\+symmetric}!Luna\+::\+Linear\+Eigensystem@{Luna\+::\+Linear\+Eigensystem}}
+\subsubsection{\texorpdfstring{compute\+\_\+real\+\_\+symmetric()}{compute\_real\_symmetric()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+void \hyperlink{classLuna_1_1LinearEigensystem}{Luna\+::\+Linear\+Eigensystem}$<$ T $>$\+::compute\+\_\+real\+\_\+symmetric (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Matrix}{Matrix}$<$ double $>$ \&}]{a,  }\item[{bool}]{compute\+\_\+evecs = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Solve a \hyperlink{classLuna_1_1LinearEigensystem}{Linear\+Eigensystem} A$\ast$v=lambda$\ast$v where A is a real symmetric \hyperlink{classLuna_1_1Matrix}{Matrix} to give the eigenvalues ( and optionally the eigenvectors ) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The \hyperlink{classLuna_1_1Matrix}{Matrix} A in the eigensystem \\
+\hline
+{\em compute\+\_\+evecs} & True if the eigenvectors are to be computed \\
+\hline
+\end{DoxyParams}
+
+
+Referenced by main(), and Luna\+::\+Linear\+Eigensystem$<$ T $>$\+::$\sim$\+Linear\+Eigensystem().
+
+\mbox{\Hypertarget{classLuna_1_1LinearEigensystem_a239e3ff62330c51c94d0112de0318249}\label{classLuna_1_1LinearEigensystem_a239e3ff62330c51c94d0112de0318249}} 
+\index{Luna\+::\+Linear\+Eigensystem@{Luna\+::\+Linear\+Eigensystem}!compute\+\_\+real\+\_\+symmetric@{compute\+\_\+real\+\_\+symmetric}}
+\index{compute\+\_\+real\+\_\+symmetric@{compute\+\_\+real\+\_\+symmetric}!Luna\+::\+Linear\+Eigensystem@{Luna\+::\+Linear\+Eigensystem}}
+\subsubsection{\texorpdfstring{compute\+\_\+real\+\_\+symmetric()}{compute\_real\_symmetric()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$$>$ \\
+void \hyperlink{classLuna_1_1LinearEigensystem}{Luna\+::\+Linear\+Eigensystem}$<$ double $>$\+::compute\+\_\+real\+\_\+symmetric (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Matrix}{Matrix}$<$ double $>$ \&}]{a,  }\item[{bool}]{compute\+\_\+evecs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 270 of file Linear\+Eigensystem.\+h.
+
+
+
+References Luna\+::\+Matrix$<$ T $>$\+::cols(), Luna\+::\+Vector$<$ T $>$\+::resize(), and Luna\+::\+Matrix$<$ T $>$\+::rows().
+
+
+\begin{DoxyCode}
+272   \{
+273     \textcolor{keywordflow}{if} ( a.\hyperlink{classLuna_1_1Matrix_ae7b0b30c3e22ba252d660f093757295e}{rows}() != a.\hyperlink{classLuna_1_1Matrix_aa7472f90f4c470535e722f3a389a19b1}{cols}() )
+274     \{
+275       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"compute\_real\_symmetric error: Matrix is not square."});
+276     \}
+277     Matrix<double> z( a );
+278     Vector<double> diag, off\_diag;
+279     tred2( z, diag, off\_diag, compute\_evecs );
+280     tqli( z, diag, off\_diag, compute\_evecs );
+281     sort( diag, z, compute\_evecs );
+282 
+283     std::size\_t n( z.rows() );
+284     EIGENVALUES.\hyperlink{classLuna_1_1Vector_ae1394f960d5cac3e60f6b1561f38e453}{resize}( n );
+285     EIGENVECTORS.resize( n, n );
+286     \textcolor{keywordflow}{for} ( std::size\_t i = 0; i < n; i++ )
+287     \{
+288       EIGENVALUES[ i ] = diag[ i ];
+289     \}
+290     EIGENVALUES\_COMPUTED = \textcolor{keyword}{true};
+291     \textcolor{keywordflow}{if} ( compute\_evecs )
+292     \{
+293       EIGENVECTORS = z;
+294       EIGENVECTORS\_COMPUTED = \textcolor{keyword}{true};
+295     \}
+296   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1LinearEigensystem_a91ac311c3fe4226c4652b6bf41fc0d91}\label{classLuna_1_1LinearEigensystem_a91ac311c3fe4226c4652b6bf41fc0d91}} 
+\index{Luna\+::\+Linear\+Eigensystem@{Luna\+::\+Linear\+Eigensystem}!compute\+\_\+real\+\_\+symmetric\+\_\+tridiagonal@{compute\+\_\+real\+\_\+symmetric\+\_\+tridiagonal}}
+\index{compute\+\_\+real\+\_\+symmetric\+\_\+tridiagonal@{compute\+\_\+real\+\_\+symmetric\+\_\+tridiagonal}!Luna\+::\+Linear\+Eigensystem@{Luna\+::\+Linear\+Eigensystem}}
+\subsubsection{\texorpdfstring{compute\+\_\+real\+\_\+symmetric\+\_\+tridiagonal()}{compute\_real\_symmetric\_tridiagonal()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+void \hyperlink{classLuna_1_1LinearEigensystem}{Luna\+::\+Linear\+Eigensystem}$<$ T $>$\+::compute\+\_\+real\+\_\+symmetric\+\_\+tridiagonal (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ double $>$ \&}]{diag,  }\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ double $>$ \&}]{off\+\_\+diag,  }\item[{bool}]{compute\+\_\+evecs = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Solve a \hyperlink{classLuna_1_1LinearEigensystem}{Linear\+Eigensystem} A$\ast$v=lambda$\ast$v where A is a real symmetric tridiagonal \hyperlink{classLuna_1_1Matrix}{Matrix} to give the eigenvalues ( and optionally the eigenvectors ) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em diag} & The \hyperlink{classLuna_1_1Vector}{Vector} of main diagonal entries in the A \hyperlink{classLuna_1_1Matrix}{Matrix} \\
+\hline
+{\em off\+\_\+diag} & The \hyperlink{classLuna_1_1Vector}{Vector} of off-\/diagonal entries in the A \hyperlink{classLuna_1_1Matrix}{Matrix} \\
+\hline
+{\em compute\+\_\+evecs} & True if the eigenvectors are to be computed \\
+\hline
+\end{DoxyParams}
+
+
+Referenced by main(), and Luna\+::\+Linear\+Eigensystem$<$ T $>$\+::$\sim$\+Linear\+Eigensystem().
+
+\mbox{\Hypertarget{classLuna_1_1LinearEigensystem_a080e0fe1d3baa1f6c5b56b9ae8082ae6}\label{classLuna_1_1LinearEigensystem_a080e0fe1d3baa1f6c5b56b9ae8082ae6}} 
+\index{Luna\+::\+Linear\+Eigensystem@{Luna\+::\+Linear\+Eigensystem}!compute\+\_\+real\+\_\+symmetric\+\_\+tridiagonal@{compute\+\_\+real\+\_\+symmetric\+\_\+tridiagonal}}
+\index{compute\+\_\+real\+\_\+symmetric\+\_\+tridiagonal@{compute\+\_\+real\+\_\+symmetric\+\_\+tridiagonal}!Luna\+::\+Linear\+Eigensystem@{Luna\+::\+Linear\+Eigensystem}}
+\subsubsection{\texorpdfstring{compute\+\_\+real\+\_\+symmetric\+\_\+tridiagonal()}{compute\_real\_symmetric\_tridiagonal()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$$>$ \\
+void \hyperlink{classLuna_1_1LinearEigensystem}{Luna\+::\+Linear\+Eigensystem}$<$ double $>$\+::compute\+\_\+real\+\_\+symmetric\+\_\+tridiagonal (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ double $>$ \&}]{diag,  }\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ double $>$ \&}]{off\+\_\+diag,  }\item[{bool}]{compute\+\_\+evecs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 299 of file Linear\+Eigensystem.\+h.
+
+
+
+References Luna\+::\+Vector$<$ T $>$\+::push\+\_\+front(), Luna\+::\+Vector$<$ T $>$\+::resize(), and Luna\+::\+Vector$<$ T $>$\+::size().
+
+
+\begin{DoxyCode}
+302   \{
+303     \textcolor{keywordflow}{if} ( diag.\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}() != off\_diag.\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}() + 1 )
+304     \{
+305       std::string problem;
+306       problem = \textcolor{stringliteral}{"compute\_real\_symmetric\_tridiagonal error: "};
+307       problem += \textcolor{stringliteral}{"size of Vectors are incompatible."};
+308       \textcolor{keywordflow}{throw} Error( problem );
+309     \}
+310     std::size\_t n( diag.\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}() );
+311     Matrix<double> z( n, n, 0.0 );
+312     z.eye();
+313 
+314     Vector<double> diag\_temp( diag ), off\_diag\_temp( off\_diag );
+315     off\_diag\_temp.push\_front( 0.0 );
+316     tqli( z, diag\_temp, off\_diag\_temp, compute\_evecs );
+317     sort( diag\_temp, z, compute\_evecs );
+318 
+319     EIGENVALUES.\hyperlink{classLuna_1_1Vector_ae1394f960d5cac3e60f6b1561f38e453}{resize}( n );
+320     EIGENVECTORS.resize( n, n );
+321     \textcolor{keywordflow}{for} ( std::size\_t i = 0; i < n; i++ )
+322     \{
+323       EIGENVALUES[ i ] = diag\_temp[ i ];
+324     \}
+325     EIGENVALUES\_COMPUTED = \textcolor{keyword}{true};
+326     \textcolor{keywordflow}{if} ( compute\_evecs )
+327     \{
+328       EIGENVECTORS = z;
+329       EIGENVECTORS\_COMPUTED = \textcolor{keyword}{true};
+330     \}
+331   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1LinearEigensystem_ad74f60a4830eefb2858ab92765dc0ae4}\label{classLuna_1_1LinearEigensystem_ad74f60a4830eefb2858ab92765dc0ae4}} 
+\index{Luna\+::\+Linear\+Eigensystem@{Luna\+::\+Linear\+Eigensystem}!eigenvalues@{eigenvalues}}
+\index{eigenvalues@{eigenvalues}!Luna\+::\+Linear\+Eigensystem@{Luna\+::\+Linear\+Eigensystem}}
+\subsubsection{\texorpdfstring{eigenvalues()}{eigenvalues()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ std\+::complex$<$ double $>$ $>$ \hyperlink{classLuna_1_1LinearEigensystem}{Luna\+::\+Linear\+Eigensystem}$<$ T $>$\+::eigenvalues (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the eigenvalues. 
+
+\begin{DoxyReturn}{Returns}
+The eigenvalues as a \hyperlink{classLuna_1_1Vector}{Vector} of std\+::complex$<$double$>$ 
+\end{DoxyReturn}
+
+
+Definition at line 363 of file Linear\+Eigensystem.\+h.
+
+
+
+Referenced by main(), and Luna\+::\+Linear\+Eigensystem$<$ T $>$\+::$\sim$\+Linear\+Eigensystem().
+
+
+\begin{DoxyCode}
+364   \{
+365     \textcolor{keywordflow}{if} ( EIGENVALUES\_COMPUTED ) \{ \textcolor{keywordflow}{return} EIGENVALUES; \}
+366     \textcolor{keywordflow}{else} \{ \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Eigensystem: eigenvalues not computed."} ); \}
+367   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1LinearEigensystem_ab68a36f7f1c1ecf9da83df84be6e49e9}\label{classLuna_1_1LinearEigensystem_ab68a36f7f1c1ecf9da83df84be6e49e9}} 
+\index{Luna\+::\+Linear\+Eigensystem@{Luna\+::\+Linear\+Eigensystem}!eigenvector\+\_\+matrix@{eigenvector\+\_\+matrix}}
+\index{eigenvector\+\_\+matrix@{eigenvector\+\_\+matrix}!Luna\+::\+Linear\+Eigensystem@{Luna\+::\+Linear\+Eigensystem}}
+\subsubsection{\texorpdfstring{eigenvector\+\_\+matrix()}{eigenvector\_matrix()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Matrix}{Matrix}$<$ T $>$ \hyperlink{classLuna_1_1LinearEigensystem}{Luna\+::\+Linear\+Eigensystem}$<$ T $>$\+::eigenvector\+\_\+matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return a \hyperlink{classLuna_1_1Matrix}{Matrix} containing the eigenvectors. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classLuna_1_1Matrix}{Matrix} where each column is an eigenvector 
+\end{DoxyReturn}
+
+
+Definition at line 370 of file Linear\+Eigensystem.\+h.
+
+
+
+Referenced by main(), and Luna\+::\+Linear\+Eigensystem$<$ T $>$\+::$\sim$\+Linear\+Eigensystem().
+
+
+\begin{DoxyCode}
+371   \{
+372     \textcolor{keywordflow}{if} ( EIGENVECTORS\_COMPUTED ) \{ \textcolor{keywordflow}{return} EIGENVECTORS; \}
+373     \textcolor{keywordflow}{else} \{ \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Eigensystem: eigenvectors not computed."} ); \}
+374   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1LinearEigensystem_a34fd0e8eef6dc0e85a13d1cb78beb32f}\label{classLuna_1_1LinearEigensystem_a34fd0e8eef6dc0e85a13d1cb78beb32f}} 
+\index{Luna\+::\+Linear\+Eigensystem@{Luna\+::\+Linear\+Eigensystem}!eigenvectors@{eigenvectors}}
+\index{eigenvectors@{eigenvectors}!Luna\+::\+Linear\+Eigensystem@{Luna\+::\+Linear\+Eigensystem}}
+\subsubsection{\texorpdfstring{eigenvectors()}{eigenvectors()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::vector$<$ \hyperlink{classLuna_1_1Vector}{Vector}$<$ \hyperlink{namespaceLuna_af3257e90072a78a8ffb16a16773aa18e}{cmplx} $>$ $>$ \hyperlink{classLuna_1_1LinearEigensystem}{Luna\+::\+Linear\+Eigensystem}$<$ T $>$\+::eigenvectors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return an std\+::vector of eigenvectors. 
+
+\begin{DoxyReturn}{Returns}
+An std\+::vector$<$\hyperlink{classLuna_1_1Vector}{Vector}$<$std\+::complex$<$double$>$$>$$>$ where each entry in the std\+::vector is an eigenvector 
+\end{DoxyReturn}
+
+
+Definition at line 378 of file Linear\+Eigensystem.\+h.
+
+
+
+References Luna\+::\+Vector$<$ T $>$\+::assign(), f, Luna\+::\+Vector$<$ T $>$\+::push\+\_\+back(), Luna\+::\+Vector$<$ T $>$\+::resize(), Luna\+::\+Matrix$<$ T $>$\+::rows(), Luna\+::\+Vector$<$ T $>$\+::size(), Heat\+\_\+plot\+::t, Heat\+\_\+plot\+::u, Heat\+\_\+plot\+::x, and y.
+
+
+
+Referenced by main(), and Luna\+::\+Linear\+Eigensystem$<$ T $>$\+::$\sim$\+Linear\+Eigensystem().
+
+
+\begin{DoxyCode}
+379   \{
+380     \textcolor{keywordflow}{if} ( EIGENVECTORS\_COMPUTED )
+381     \{
+382       std::vector< Vector< std::complex<double> > > evecs;
+383       std::size\_t rows = EIGENVECTORS.rows();
+384       std::size\_t cols = EIGENVECTORS.cols();
+385 
+386       \textcolor{keywordflow}{for} (std::size\_t j = 0; j < cols; ++j )
+387       \{
+388           Vector< std::complex<double> > evec;
+389           \textcolor{keywordflow}{for} (std::size\_t i=0; i<rows; ++i)
+390           \{
+391               evec.push\_back( EIGENVECTORS( i, j ) );
+392           \}
+393           evecs.push\_back( evec );
+394       \}
+395       \textcolor{keywordflow}{return} evecs;
+396     \}
+397     \textcolor{keywordflow}{else} \{ \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Eigensystem: eigenvectors not computed."} ); \}
+398   \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Luna/\hyperlink{LinearEigensystem_8h}{Linear\+Eigensystem.\+h}\end{DoxyCompactItemize}

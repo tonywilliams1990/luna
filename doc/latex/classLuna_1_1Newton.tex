@@ -1,0 +1,431 @@
+\hypertarget{classLuna_1_1Newton}{}\section{Luna\+:\+:Newton$<$ T $>$ Class Template Reference}
+\label{classLuna_1_1Newton}\index{Luna\+::\+Newton$<$ T $>$@{Luna\+::\+Newton$<$ T $>$}}
+
+
+A templated \hyperlink{classLuna_1_1Newton}{Newton} iteration class.  
+
+
+
+
+{\ttfamily \#include $<$Newton.\+h$>$}
+
+
+
+Inheritance diagram for Luna\+:\+:Newton$<$ T $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=189pt]{classLuna_1_1Newton__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Luna\+:\+:Newton$<$ T $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{classLuna_1_1Newton__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classLuna_1_1Newton_a062c2b36d5e7d345173c0b2b525b3f9d}{Newton} (\hyperlink{classLuna_1_1Residual}{Residual}$<$ T $>$ $\ast$ptr\+\_\+residual, std\+::size\+\_\+t max\+\_\+iter=20, double tolerance=1.\+0e-\/8, double delta\+\_\+step=1.\+0e-\/8)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Newton_ad714e7ff295362a3e89bf3cff26dc2da}{$\sim$\+Newton} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Newton_a3de816dba7a950702b6f93fc710d4f03}{iterate} (\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&x\+\_\+0)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classLuna_1_1Newton}{Newton} iterate using intial guess x\+\_\+0 (stores the solution in x\+\_\+0) \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Newton_a1d5ebdbfd8910c40ed58244f6348b13e}{solve} (\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&x\+\_\+0)
+\begin{DoxyCompactList}\small\item\em Solve the system using \hyperlink{classLuna_1_1Newton}{Newton} iteration (points to iterate) \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Newton_ac300f6b5744bf66fd2f385c678d24dcf}{arclength\+\_\+solve} (\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&x)
+\begin{DoxyCompactList}\small\item\em Arc-\/length solve the system (init\+\_\+arc must be called first) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classLuna_1_1Residual}{Residual}$<$ T $>$ $\ast$ \hyperlink{classLuna_1_1Newton_a5cb2983ea8e24c4832a3fb0bdde84b8f}{ptr\+\_\+\+R\+E\+S\+I\+D\+U\+AL}
+\item 
+std\+::size\+\_\+t \hyperlink{classLuna_1_1Newton_ac8245444273c58c656a78ab0544833ce}{M\+A\+X\+\_\+\+I\+T\+ER}
+\item 
+double \hyperlink{classLuna_1_1Newton_a13234002150648ac70297ef68a41c9c7}{T\+OL}
+\item 
+double \hyperlink{classLuna_1_1Newton_ad4862420392d9eb80d135b9c28dd47cb}{D\+E\+L\+TA}
+\item 
+std\+::size\+\_\+t \hyperlink{classLuna_1_1Newton_a7d549b60ff6d4285d8cbbf6f958c7d88}{O\+R\+D\+ER}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class T$>$\newline
+class Luna\+::\+Newton$<$ T $>$}
+
+A templated \hyperlink{classLuna_1_1Newton}{Newton} iteration class. 
+
+Definition at line 24 of file Newton.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classLuna_1_1Newton_a062c2b36d5e7d345173c0b2b525b3f9d}\label{classLuna_1_1Newton_a062c2b36d5e7d345173c0b2b525b3f9d}} 
+\index{Luna\+::\+Newton@{Luna\+::\+Newton}!Newton@{Newton}}
+\index{Newton@{Newton}!Luna\+::\+Newton@{Luna\+::\+Newton}}
+\subsubsection{\texorpdfstring{Newton()}{Newton()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classLuna_1_1Newton}{Luna\+::\+Newton}$<$ T $>$\+::\hyperlink{classLuna_1_1Newton}{Newton} (\begin{DoxyParamCaption}\item[{\hyperlink{classLuna_1_1Residual}{Residual}$<$ T $>$ $\ast$}]{ptr\+\_\+residual,  }\item[{std\+::size\+\_\+t}]{max\+\_\+iter = {\ttfamily 20},  }\item[{double}]{tolerance = {\ttfamily 1.0e-\/8},  }\item[{double}]{delta\+\_\+step = {\ttfamily 1.0e-\/8} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ptr\+\_\+residual} & Pointer to the residual object \\
+\hline
+{\em max\+\_\+iter} & Maximum number of iterations \\
+\hline
+{\em tolerance} & Convergence tolerance \\
+\hline
+{\em delta\+\_\+step} & Finite-\/difference derivative step \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 39 of file Newton.\+h.
+
+
+\begin{DoxyCode}
+40                                                                       :
+41       \hyperlink{classLuna_1_1Newton_a5cb2983ea8e24c4832a3fb0bdde84b8f}{ptr\_RESIDUAL}( ptr\_residual ),
+42       \hyperlink{classLuna_1_1Newton_ac8245444273c58c656a78ab0544833ce}{MAX\_ITER}( max\_iter ),
+43       \hyperlink{classLuna_1_1Newton_a13234002150648ac70297ef68a41c9c7}{TOL}( tolerance )
+44       \{
+45         \hyperlink{classLuna_1_1Newton_a5cb2983ea8e24c4832a3fb0bdde84b8f}{ptr\_RESIDUAL} -> delta() = delta\_step;
+46         \hyperlink{classLuna_1_1Newton_ad4862420392d9eb80d135b9c28dd47cb}{DELTA} = delta\_step;
+47         \hyperlink{classLuna_1_1Newton_a7d549b60ff6d4285d8cbbf6f958c7d88}{ORDER} = \hyperlink{classLuna_1_1Newton_a5cb2983ea8e24c4832a3fb0bdde84b8f}{ptr\_RESIDUAL} -> get\_order();
+48       \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Newton_ad714e7ff295362a3e89bf3cff26dc2da}\label{classLuna_1_1Newton_ad714e7ff295362a3e89bf3cff26dc2da}} 
+\index{Luna\+::\+Newton@{Luna\+::\+Newton}!````~Newton@{$\sim$\+Newton}}
+\index{````~Newton@{$\sim$\+Newton}!Luna\+::\+Newton@{Luna\+::\+Newton}}
+\subsubsection{\texorpdfstring{$\sim$\+Newton()}{~Newton()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classLuna_1_1Newton}{Luna\+::\+Newton}$<$ T $>$\+::$\sim$\hyperlink{classLuna_1_1Newton}{Newton} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Destructor. 
+
+
+
+Definition at line 51 of file Newton.\+h.
+
+
+
+References Luna\+::\+Newton$<$ T $>$\+::iterate().
+
+
+\begin{DoxyCode}
+51 \{\}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classLuna_1_1Newton_ac300f6b5744bf66fd2f385c678d24dcf}\label{classLuna_1_1Newton_ac300f6b5744bf66fd2f385c678d24dcf}} 
+\index{Luna\+::\+Newton@{Luna\+::\+Newton}!arclength\+\_\+solve@{arclength\+\_\+solve}}
+\index{arclength\+\_\+solve@{arclength\+\_\+solve}!Luna\+::\+Newton@{Luna\+::\+Newton}}
+\subsubsection{\texorpdfstring{arclength\+\_\+solve()}{arclength\_solve()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classLuna_1_1Newton}{Luna\+::\+Newton}$<$ T $>$\+::arclength\+\_\+solve (\begin{DoxyParamCaption}\item[{\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Arc-\/length solve the system (init\+\_\+arc must be called first) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The current state \hyperlink{classLuna_1_1Vector}{Vector} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 107 of file Newton.\+h.
+
+
+
+References Luna\+::\+Arclength$<$ T $>$\+::arclength\+\_\+residual(), Luna\+::\+Arclength$<$ T $>$\+::\+A\+R\+C\+S\+T\+E\+P\+\_\+\+M\+U\+L\+T\+I\+P\+L\+I\+ER, Luna\+::\+Newton$<$ T $>$\+::\+D\+E\+L\+TA, Luna\+::\+Vector$<$ T $>$\+::dot(), Luna\+::\+Arclength$<$ T $>$\+::\+DS, Luna\+::\+Arclength$<$ T $>$\+::\+I\+N\+I\+T\+I\+A\+L\+I\+S\+ED, Heat\+\_\+plot\+::J, Luna\+::\+Arclength$<$ T $>$\+::\+Jac\+\_\+arclength\+\_\+residual(), Luna\+::\+Arclength$<$ T $>$\+::\+L\+A\+S\+T\+\_\+\+P\+A\+R\+AM, Luna\+::\+Arclength$<$ T $>$\+::\+L\+A\+S\+T\+\_\+X, Luna\+::\+Arclength$<$ T $>$\+::\+M\+A\+X\+\_\+\+DS, Luna\+::\+Newton$<$ T $>$\+::\+M\+A\+X\+\_\+\+I\+T\+ER, Luna\+::\+Vector$<$ T $>$\+::norm\+\_\+inf(), Luna\+::\+Newton$<$ T $>$\+::\+O\+R\+D\+ER, Luna\+::\+Arclength$<$ T $>$\+::\+P\+A\+R\+A\+M\+\_\+\+D\+E\+R\+I\+V\+\_\+S, Luna\+::\+Arclength$<$ T $>$\+::ptr\+\_\+\+P\+A\+R\+AM, Luna\+::\+Newton$<$ T $>$\+::ptr\+\_\+\+R\+E\+S\+I\+D\+U\+AL, Luna\+::\+Matrix$<$ T $>$\+::solve(), Luna\+::\+Newton$<$ T $>$\+::\+T\+OL, Luna\+::\+Arclength$<$ T $>$\+::update(), Luna\+::\+Arclength$<$ T $>$\+::\+X\+\_\+\+D\+E\+R\+I\+V\+\_\+S, and y.
+
+
+
+Referenced by main(), and Luna\+::\+Newton$<$ T $>$\+::solve().
+
+
+\begin{DoxyCode}
+108     \{
+109         \textcolor{keywordflow}{if} ( !this->\hyperlink{classLuna_1_1Arclength_a9bf5e636e7a0772f3ba5476ec2c83f6a}{INITIALISED} ) \textcolor{comment}{// Error if init\_arc has not been called}
+110         \{
+111             \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Newton arclength\_solve error: not initialised."} );
+112         \}
+113         Vector<T> backup\_state( \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x} );
+114         T backup\_parameter( *(this->\hyperlink{classLuna_1_1Arclength_a984cead721a38abf1ab2a489052461e0}{ptr\_PARAM}) );
+115         \textcolor{keywordtype}{bool} step\_succeeded( \textcolor{keyword}{false} );
+116         std::size\_t itn( 0 );
+117         \textcolor{comment}{// Guess the next solution}
+118         *( this->\hyperlink{classLuna_1_1Arclength_a984cead721a38abf1ab2a489052461e0}{ptr\_PARAM} ) = this->\hyperlink{classLuna_1_1Arclength_a98e8241f24a16ea9f12e514d8d8f841b}{LAST\_PARAM} + this->
+      \hyperlink{classLuna_1_1Arclength_a5a02856595774b4a96e4d8add5d9baa4}{PARAM\_DERIV\_S} * this->\hyperlink{classLuna_1_1Arclength_a6797d7b76d3e27c00b9c4c6ab9970405}{DS};
+119         \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x} = this->\hyperlink{classLuna_1_1Arclength_a6d6ba83245b4dd616d265609a93035a2}{LAST\_X} + this->\hyperlink{classLuna_1_1Arclength_a0108e51178f63927883af0b0022c29ad}{X\_DERIV\_S} * this->\hyperlink{classLuna_1_1Arclength_a6797d7b76d3e27c00b9c4c6ab9970405}{DS};
+120 
+121         Matrix<T> \hyperlink{namespaceHeat__plot_a3cafcec38d886f33b35756791964bb58}{J}( \hyperlink{classLuna_1_1Newton_a7d549b60ff6d4285d8cbbf6f958c7d88}{ORDER}, \hyperlink{classLuna_1_1Newton_a7d549b60ff6d4285d8cbbf6f958c7d88}{ORDER}, 0.0 );
+122         Vector<T> R1( \hyperlink{classLuna_1_1Newton_a7d549b60ff6d4285d8cbbf6f958c7d88}{ORDER}, 0.0 );
+123         Vector<T> R2( \hyperlink{classLuna_1_1Newton_a7d549b60ff6d4285d8cbbf6f958c7d88}{ORDER}, 0.0 );
+124         Vector<T> dR\_dp( \hyperlink{classLuna_1_1Newton_a7d549b60ff6d4285d8cbbf6f958c7d88}{ORDER}, 0.0 );
+125         Vector<T> \hyperlink{ODE__BVP__test_8cpp_adf764cbdea00d65edcd07bb9953ad2b7ae1f9fdb8b786c63efc4ce44eeacd17f2}{y}( \hyperlink{classLuna_1_1Newton_a7d549b60ff6d4285d8cbbf6f958c7d88}{ORDER}, 0.0 );
+126         Vector<T> z( \hyperlink{classLuna_1_1Newton_a7d549b60ff6d4285d8cbbf6f958c7d88}{ORDER}, 0.0 );
+127         Vector<T> JacE;
+128 
+129         \textcolor{keywordflow}{do}
+130         \{
+131             this->\hyperlink{classLuna_1_1Newton_a5cb2983ea8e24c4832a3fb0bdde84b8f}{ptr\_RESIDUAL} -> \hyperlink{classLuna_1_1Arclength_a8941ac2150d8a53aaefbf5825553c86b}{update}( \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x} );              \textcolor{comment}{// Update the residual}
+132             \hyperlink{namespaceHeat__plot_a3cafcec38d886f33b35756791964bb58}{J} = this->\hyperlink{classLuna_1_1Newton_a5cb2983ea8e24c4832a3fb0bdde84b8f}{ptr\_RESIDUAL} -> jacobian();           \textcolor{comment}{// Get the Jacobian}
+133             R1 = this->\hyperlink{classLuna_1_1Newton_a5cb2983ea8e24c4832a3fb0bdde84b8f}{ptr\_RESIDUAL} -> residual();          \textcolor{comment}{// Get the residual}
+134             \textcolor{keywordtype}{double} E1 = \textcolor{keyword}{this} -> \hyperlink{classLuna_1_1Arclength_af47a50bb4ce666b505fe990ab44063db}{arclength\_residual}( \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x} );    \textcolor{comment}{// Arclength residual}
+135             \textcolor{comment}{// Compute derivatives wrt the parameter}
+136             *(this->\hyperlink{classLuna_1_1Arclength_a984cead721a38abf1ab2a489052461e0}{ptr\_PARAM}) += this->\hyperlink{classLuna_1_1Newton_ad4862420392d9eb80d135b9c28dd47cb}{DELTA};
+137             this->\hyperlink{classLuna_1_1Newton_a5cb2983ea8e24c4832a3fb0bdde84b8f}{ptr\_RESIDUAL} -> residual\_fn( \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x}, R2 );
+138             \textcolor{keywordtype}{double} E2 = \textcolor{keyword}{this} -> \hyperlink{classLuna_1_1Arclength_af47a50bb4ce666b505fe990ab44063db}{arclength\_residual}( \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x} );
+139             *(this->\hyperlink{classLuna_1_1Arclength_a984cead721a38abf1ab2a489052461e0}{ptr\_PARAM}) -= this->\hyperlink{classLuna_1_1Newton_ad4862420392d9eb80d135b9c28dd47cb}{DELTA};
+140             dR\_dp = ( R2 - R1 ) / this->\hyperlink{classLuna_1_1Newton_ad4862420392d9eb80d135b9c28dd47cb}{DELTA};
+141             T dE\_dp = ( E2 - E1 ) / this->\hyperlink{classLuna_1_1Newton_ad4862420392d9eb80d135b9c28dd47cb}{DELTA};
+142             \textcolor{comment}{// Bordering algorithm}
+143             \hyperlink{ODE__BVP__test_8cpp_adf764cbdea00d65edcd07bb9953ad2b7ae1f9fdb8b786c63efc4ce44eeacd17f2}{y} = \hyperlink{namespaceHeat__plot_a3cafcec38d886f33b35756791964bb58}{J}.solve( -R1 );
+144             z = \hyperlink{namespaceHeat__plot_a3cafcec38d886f33b35756791964bb58}{J}.solve( -dR\_dp );
+145             JacE = this->\hyperlink{classLuna_1_1Arclength_a3bffa2fa38c73cd97155289bc902ccc6}{Jac\_arclength\_residual}( \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x} );
+146             T delta\_p = -( E1 + JacE.dot( \hyperlink{ODE__BVP__test_8cpp_adf764cbdea00d65edcd07bb9953ad2b7ae1f9fdb8b786c63efc4ce44eeacd17f2}{y} ) ) / ( dE\_dp + JacE.dot( z ) );
+147             Vector<T> delta\_x = \hyperlink{ODE__BVP__test_8cpp_adf764cbdea00d65edcd07bb9953ad2b7ae1f9fdb8b786c63efc4ce44eeacd17f2}{y} + z * delta\_p;
+148             \textcolor{keywordtype}{double} max\_correction = std::max( delta\_x.norm\_inf(),
+149                                                                                 std::abs( delta\_p ) );
+150             \textcolor{keywordflow}{if} ( max\_correction < this->\hyperlink{classLuna_1_1Newton_a13234002150648ac70297ef68a41c9c7}{TOL} )
+151             \{
+152                 step\_succeeded = \textcolor{keyword}{true};
+153                 \textcolor{keywordflow}{break};
+154             \}
+155             \textcolor{comment}{// Add the corrections to the state variables}
+156             \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x} += delta\_x;
+157             *(this->\hyperlink{classLuna_1_1Arclength_a984cead721a38abf1ab2a489052461e0}{ptr\_PARAM}) += delta\_p;
+158             ++itn;
+159             \textcolor{keywordflow}{if} ( itn > \hyperlink{classLuna_1_1Newton_ac8245444273c58c656a78ab0544833ce}{MAX\_ITER} )
+160             \{
+161                 step\_succeeded = \textcolor{keyword}{false};
+162                 \textcolor{keywordflow}{break};
+163             \}
+164         \}\textcolor{keywordflow}{while}( \textcolor{keyword}{true} );
+165 
+166         \textcolor{keywordflow}{if} ( !step\_succeeded )
+167         \{
+168             \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x} = backup\_state;                               \textcolor{comment}{// Restore state}
+169             *(this->\hyperlink{classLuna_1_1Arclength_a984cead721a38abf1ab2a489052461e0}{ptr\_PARAM}) = backup\_parameter;          \textcolor{comment}{// Restore the parameter}
+170             this->\hyperlink{classLuna_1_1Newton_a5cb2983ea8e24c4832a3fb0bdde84b8f}{ptr\_RESIDUAL}->update( \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x} );                \textcolor{comment}{// Restore the residual}
+171             this->DS /= this->\hyperlink{classLuna_1_1Arclength_ae1ff8d41d3e81d9ce335d19de4a269cc}{ARCSTEP\_MULTIPLIER};           \textcolor{comment}{// Reduce our step length}
+172 
+173         \}
+174         \textcolor{keywordflow}{else}
+175         \{
+176             this->\hyperlink{classLuna_1_1Arclength_a8941ac2150d8a53aaefbf5825553c86b}{update}( \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x} );
+177             \textcolor{keywordflow}{if} ( itn >= 7 )                                 \textcolor{comment}{// Converging to slowly}
+178             \{
+179                 this->DS /= this->\hyperlink{classLuna_1_1Arclength_ae1ff8d41d3e81d9ce335d19de4a269cc}{ARCSTEP\_MULTIPLIER};
+180             \}
+181             \textcolor{keywordflow}{if} ( itn <= 2 )                                 \textcolor{comment}{// Converging to quickly}
+182             \{
+183                 \textcolor{keywordflow}{if} ( std::abs( this->DS * this->\hyperlink{classLuna_1_1Arclength_ae1ff8d41d3e81d9ce335d19de4a269cc}{ARCSTEP\_MULTIPLIER} ) < this->
+      \hyperlink{classLuna_1_1Arclength_a8fcd2b977d7ce78342f113d4e69ad8f1}{MAX\_DS} )
+184                 \{
+185                     this->DS *= this->\hyperlink{classLuna_1_1Arclength_ae1ff8d41d3e81d9ce335d19de4a269cc}{ARCSTEP\_MULTIPLIER};
+186                 \}
+187             \}
+188         \}
+189     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Newton_a3de816dba7a950702b6f93fc710d4f03}\label{classLuna_1_1Newton_a3de816dba7a950702b6f93fc710d4f03}} 
+\index{Luna\+::\+Newton@{Luna\+::\+Newton}!iterate@{iterate}}
+\index{iterate@{iterate}!Luna\+::\+Newton@{Luna\+::\+Newton}}
+\subsubsection{\texorpdfstring{iterate()}{iterate()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classLuna_1_1Newton}{Luna\+::\+Newton}$<$ T $>$\+::iterate (\begin{DoxyParamCaption}\item[{\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{x\+\_\+0 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\hyperlink{classLuna_1_1Newton}{Newton} iterate using intial guess x\+\_\+0 (stores the solution in x\+\_\+0) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+\_\+0} & The initial guess \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 73 of file Newton.\+h.
+
+
+
+References Heat\+\_\+plot\+::J, Luna\+::\+Newton$<$ T $>$\+::\+M\+A\+X\+\_\+\+I\+T\+ER, Luna\+::\+Vector$<$ T $>$\+::norm\+\_\+inf(), Luna\+::\+Newton$<$ T $>$\+::\+O\+R\+D\+ER, Luna\+::\+Newton$<$ T $>$\+::ptr\+\_\+\+R\+E\+S\+I\+D\+U\+AL, Luna\+::\+Vector$<$ T $>$\+::size(), Luna\+::\+Matrix$<$ T $>$\+::solve(), Luna\+::\+Newton$<$ T $>$\+::\+T\+OL, and Luna\+::\+Arclength$<$ T $>$\+::update().
+
+
+
+Referenced by Luna\+::\+Newton$<$ T $>$\+::solve(), and Luna\+::\+Newton$<$ T $>$\+::$\sim$\+Newton().
+
+
+\begin{DoxyCode}
+74     \{
+75         \textcolor{comment}{//TODO determinant monitoring etc}
+76         \textcolor{keywordflow}{if} ( x\_0.size() != \hyperlink{classLuna_1_1Newton_a7d549b60ff6d4285d8cbbf6f958c7d88}{ORDER} )
+77         \{
+78             \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Newton error: size does not agree."} );
+79         \}
+80         Vector<T> F( \hyperlink{classLuna_1_1Newton_a7d549b60ff6d4285d8cbbf6f958c7d88}{ORDER}, 0.0 );               \textcolor{comment}{// Residual function evaluation}
+81         Matrix<T> \hyperlink{namespaceHeat__plot_a3cafcec38d886f33b35756791964bb58}{J}( \hyperlink{classLuna_1_1Newton_a7d549b60ff6d4285d8cbbf6f958c7d88}{ORDER}, \hyperlink{classLuna_1_1Newton_a7d549b60ff6d4285d8cbbf6f958c7d88}{ORDER}, 0.0 );        \textcolor{comment}{// Jacobian matrix}
+82         Vector<T> dx( \hyperlink{classLuna_1_1Newton_a7d549b60ff6d4285d8cbbf6f958c7d88}{ORDER}, 0.0 );              \textcolor{comment}{// Increment vector}
+83         std::size\_t iter( 0 );
+84         \textcolor{keywordtype}{double} max\_residual;
+85 
+86         \textcolor{keywordflow}{do}
+87         \{
+88             ++iter;
+89             \hyperlink{classLuna_1_1Newton_a5cb2983ea8e24c4832a3fb0bdde84b8f}{ptr\_RESIDUAL} -> \hyperlink{classLuna_1_1Arclength_a8941ac2150d8a53aaefbf5825553c86b}{update}( x\_0 );
+90             F = \hyperlink{classLuna_1_1Newton_a5cb2983ea8e24c4832a3fb0bdde84b8f}{ptr\_RESIDUAL} -> residual();
+91             max\_residual = F.norm\_inf();
+92             \hyperlink{namespaceHeat__plot_a3cafcec38d886f33b35756791964bb58}{J} = \hyperlink{classLuna_1_1Newton_a5cb2983ea8e24c4832a3fb0bdde84b8f}{ptr\_RESIDUAL} -> jacobian();
+93 
+94             dx = \hyperlink{namespaceHeat__plot_a3cafcec38d886f33b35756791964bb58}{J}.solve( -F );
+95             x\_0 += dx;
+96         \}\textcolor{keywordflow}{while}( iter < MAX\_ITER && max\_residual > \hyperlink{classLuna_1_1Newton_a13234002150648ac70297ef68a41c9c7}{TOL} );
+97 
+98         \textcolor{keywordflow}{if} ( iter == \hyperlink{classLuna_1_1Newton_ac8245444273c58c656a78ab0544833ce}{MAX\_ITER} )
+99         \{
+100             std::string warning;
+101             warning = \textcolor{stringliteral}{"NEWTON WARNING! MAXIMUM NUMBER OF ITERATIONS REACHED."};
+102             std::cout << warning << std::endl;
+103         \}
+104     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Newton_a1d5ebdbfd8910c40ed58244f6348b13e}\label{classLuna_1_1Newton_a1d5ebdbfd8910c40ed58244f6348b13e}} 
+\index{Luna\+::\+Newton@{Luna\+::\+Newton}!solve@{solve}}
+\index{solve@{solve}!Luna\+::\+Newton@{Luna\+::\+Newton}}
+\subsubsection{\texorpdfstring{solve()}{solve()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+void \hyperlink{classLuna_1_1Newton}{Luna\+::\+Newton}$<$ T $>$\+::solve (\begin{DoxyParamCaption}\item[{\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{x\+\_\+0 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Solve the system using \hyperlink{classLuna_1_1Newton}{Newton} iteration (points to iterate) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+\_\+0} & The initial guess \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classLuna_1_1Arclength_a0829d51bb49011f5ed56c25b7554d115}{Luna\+::\+Arclength$<$ T $>$}.
+
+
+
+Definition at line 61 of file Newton.\+h.
+
+
+
+References Luna\+::\+Newton$<$ T $>$\+::arclength\+\_\+solve(), Luna\+::\+Newton$<$ T $>$\+::iterate(), and Heat\+\_\+plot\+::x.
+
+
+
+Referenced by main().
+
+
+\begin{DoxyCode}
+62       \{
+63         \hyperlink{classLuna_1_1Newton_a3de816dba7a950702b6f93fc710d4f03}{iterate}( x\_0 );
+64       \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classLuna_1_1Newton_ad4862420392d9eb80d135b9c28dd47cb}\label{classLuna_1_1Newton_ad4862420392d9eb80d135b9c28dd47cb}} 
+\index{Luna\+::\+Newton@{Luna\+::\+Newton}!D\+E\+L\+TA@{D\+E\+L\+TA}}
+\index{D\+E\+L\+TA@{D\+E\+L\+TA}!Luna\+::\+Newton@{Luna\+::\+Newton}}
+\subsubsection{\texorpdfstring{D\+E\+L\+TA}{DELTA}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+double \hyperlink{classLuna_1_1Newton}{Luna\+::\+Newton}$<$ T $>$\+::D\+E\+L\+TA\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 30 of file Newton.\+h.
+
+
+
+Referenced by Luna\+::\+Newton$<$ T $>$\+::arclength\+\_\+solve().
+
+\mbox{\Hypertarget{classLuna_1_1Newton_ac8245444273c58c656a78ab0544833ce}\label{classLuna_1_1Newton_ac8245444273c58c656a78ab0544833ce}} 
+\index{Luna\+::\+Newton@{Luna\+::\+Newton}!M\+A\+X\+\_\+\+I\+T\+ER@{M\+A\+X\+\_\+\+I\+T\+ER}}
+\index{M\+A\+X\+\_\+\+I\+T\+ER@{M\+A\+X\+\_\+\+I\+T\+ER}!Luna\+::\+Newton@{Luna\+::\+Newton}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+I\+T\+ER}{MAX\_ITER}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+std\+::size\+\_\+t \hyperlink{classLuna_1_1Newton}{Luna\+::\+Newton}$<$ T $>$\+::M\+A\+X\+\_\+\+I\+T\+ER\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 28 of file Newton.\+h.
+
+
+
+Referenced by Luna\+::\+Newton$<$ T $>$\+::arclength\+\_\+solve(), and Luna\+::\+Newton$<$ T $>$\+::iterate().
+
+\mbox{\Hypertarget{classLuna_1_1Newton_a7d549b60ff6d4285d8cbbf6f958c7d88}\label{classLuna_1_1Newton_a7d549b60ff6d4285d8cbbf6f958c7d88}} 
+\index{Luna\+::\+Newton@{Luna\+::\+Newton}!O\+R\+D\+ER@{O\+R\+D\+ER}}
+\index{O\+R\+D\+ER@{O\+R\+D\+ER}!Luna\+::\+Newton@{Luna\+::\+Newton}}
+\subsubsection{\texorpdfstring{O\+R\+D\+ER}{ORDER}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+std\+::size\+\_\+t \hyperlink{classLuna_1_1Newton}{Luna\+::\+Newton}$<$ T $>$\+::O\+R\+D\+ER\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 31 of file Newton.\+h.
+
+
+
+Referenced by Luna\+::\+Newton$<$ T $>$\+::arclength\+\_\+solve(), and Luna\+::\+Newton$<$ T $>$\+::iterate().
+
+\mbox{\Hypertarget{classLuna_1_1Newton_a5cb2983ea8e24c4832a3fb0bdde84b8f}\label{classLuna_1_1Newton_a5cb2983ea8e24c4832a3fb0bdde84b8f}} 
+\index{Luna\+::\+Newton@{Luna\+::\+Newton}!ptr\+\_\+\+R\+E\+S\+I\+D\+U\+AL@{ptr\+\_\+\+R\+E\+S\+I\+D\+U\+AL}}
+\index{ptr\+\_\+\+R\+E\+S\+I\+D\+U\+AL@{ptr\+\_\+\+R\+E\+S\+I\+D\+U\+AL}!Luna\+::\+Newton@{Luna\+::\+Newton}}
+\subsubsection{\texorpdfstring{ptr\+\_\+\+R\+E\+S\+I\+D\+U\+AL}{ptr\_RESIDUAL}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classLuna_1_1Residual}{Residual}$<$T$>$$\ast$ \hyperlink{classLuna_1_1Newton}{Luna\+::\+Newton}$<$ T $>$\+::ptr\+\_\+\+R\+E\+S\+I\+D\+U\+AL\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 27 of file Newton.\+h.
+
+
+
+Referenced by Luna\+::\+Newton$<$ T $>$\+::arclength\+\_\+solve(), and Luna\+::\+Newton$<$ T $>$\+::iterate().
+
+\mbox{\Hypertarget{classLuna_1_1Newton_a13234002150648ac70297ef68a41c9c7}\label{classLuna_1_1Newton_a13234002150648ac70297ef68a41c9c7}} 
+\index{Luna\+::\+Newton@{Luna\+::\+Newton}!T\+OL@{T\+OL}}
+\index{T\+OL@{T\+OL}!Luna\+::\+Newton@{Luna\+::\+Newton}}
+\subsubsection{\texorpdfstring{T\+OL}{TOL}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+double \hyperlink{classLuna_1_1Newton}{Luna\+::\+Newton}$<$ T $>$\+::T\+OL\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 29 of file Newton.\+h.
+
+
+
+Referenced by Luna\+::\+Newton$<$ T $>$\+::arclength\+\_\+solve(), and Luna\+::\+Newton$<$ T $>$\+::iterate().
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Luna/\hyperlink{Newton_8h}{Newton.\+h}\end{DoxyCompactItemize}

@@ -1,0 +1,5 @@
+<map id="include/Luna/Residual.h" name="include/Luna/Residual.h">
+<area shape="rect" id="node4" href="$Matrix_8h.html" title="A templated matrix class which constructs a Matrix as an std::vector of Vectors. " alt="" coords="307,80,377,107"/>
+<area shape="rect" id="node11" href="$Error_8h.html" title="Defines a class for simple error handling. " alt="" coords="93,229,154,256"/>
+<area shape="rect" id="node13" href="$Vector_8h.html" title="A templated numeric Vector class that encapsulates std::vector. " alt="" coords="541,155,612,181"/>
+</map>

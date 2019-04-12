@@ -1,0 +1,109 @@
+\hypertarget{Eigen__test_8cpp}{}\section{Examples/\+Eigen\+\_\+test.cpp File Reference}
+\label{Eigen__test_8cpp}\index{Examples/\+Eigen\+\_\+test.\+cpp@{Examples/\+Eigen\+\_\+test.\+cpp}}
+
+
+T\+O\+DO description / rename file.  
+
+
+{\ttfamily \#include \char`\"{}Luna/\+Core\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Luna/\+Eigen\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Luna/\+Sparse\char`\"{}}\newline
+Include dependency graph for Eigen\+\_\+test.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=315pt]{Eigen__test_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{Eigen__test_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+T\+O\+DO description / rename file. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{Eigen__test_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{Eigen__test_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}} 
+\index{Eigen\+\_\+test.\+cpp@{Eigen\+\_\+test.\+cpp}!main@{main}}
+\index{main@{main}!Eigen\+\_\+test.\+cpp@{Eigen\+\_\+test.\+cpp}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 12 of file Eigen\+\_\+test.\+cpp.
+
+
+
+References Luna\+::\+Linear\+Eigensystem$<$ T $>$\+::compute\+\_\+real(), Luna\+::\+Linear\+Eigensystem$<$ T $>$\+::compute\+\_\+real\+\_\+symmetric(), Luna\+::\+Linear\+Eigensystem$<$ T $>$\+::compute\+\_\+real\+\_\+symmetric\+\_\+tridiagonal(), Luna\+::\+Linear\+Eigensystem$<$ T $>$\+::eigenvalues(), Luna\+::\+Linear\+Eigensystem$<$ T $>$\+::eigenvector\+\_\+matrix(), Luna\+::\+Linear\+Eigensystem$<$ T $>$\+::eigenvectors(), and Luna\+::\+Vector$<$ T $>$\+::real().
+
+
+\begin{DoxyCode}
+13 \{
+14   cout << \textcolor{stringliteral}{"----------------------- Eigensystems ----------------------"} << endl;
+15 
+16   \hyperlink{classLuna_1_1LinearEigensystem}{LinearEigensystem<double>} eig\_sys;
+17 
+18   cout << \textcolor{stringliteral}{" * Compute the eigenvalues and eigenvectors of a real"} << endl
+19        << \textcolor{stringliteral}{" * symmetric matrix."} << endl;
+20 
+21   std::size\_t n( 4 );
+22   \hyperlink{classLuna_1_1Matrix}{Matrix<double>} A( n, n, 0.0 );
+23   \textcolor{comment}{// Lehmer matrix}
+24   \textcolor{keywordflow}{for} ( std::size\_t i = 0; i < n; i++ )
+25   \{
+26     \textcolor{keywordflow}{for} ( std::size\_t j = 0; j < n; j++ )
+27     \{
+28       \textcolor{keywordflow}{if} ( j >= i )\{
+29         A( i, j ) = 1. * ( i + 1 ) / ( j + 1 );
+30       \} \textcolor{keywordflow}{else} \{
+31         A( i, j ) = 1. * ( j + 1 ) / ( i + 1 );
+32       \}
+33     \}
+34   \}
+35 
+36   cout << \textcolor{stringliteral}{" * A = "} << A << endl;
+37 
+38   eig\_sys.\hyperlink{classLuna_1_1LinearEigensystem_ae109e1012fda347ac9c1da4fa30313f6}{compute\_real\_symmetric}( A );
+39 
+40   cout << \textcolor{stringliteral}{" * evals = "} << eig\_sys.\hyperlink{classLuna_1_1LinearEigensystem_ad74f60a4830eefb2858ab92765dc0ae4}{eigenvalues}().\hyperlink{classLuna_1_1Vector_a39fa58d9f5fdca76b6ffa6cc481f9284}{real}() << endl;
+41   cout << \textcolor{stringliteral}{" * evecs = "} << eig\_sys.\hyperlink{classLuna_1_1LinearEigensystem_ab68a36f7f1c1ecf9da83df84be6e49e9}{eigenvector\_matrix}() << endl;
+42 
+43   \hyperlink{classLuna_1_1Vector}{Vector<double>} evec\_0 = eig\_sys.\hyperlink{classLuna_1_1LinearEigensystem_a34fd0e8eef6dc0e85a13d1cb78beb32f}{eigenvectors}()[ 0 ].real();
+44   \textcolor{keywordtype}{double} eval\_0 = eig\_sys.\hyperlink{classLuna_1_1LinearEigensystem_ad74f60a4830eefb2858ab92765dc0ae4}{eigenvalues}().\hyperlink{classLuna_1_1Vector_a39fa58d9f5fdca76b6ffa6cc481f9284}{real}()[ 0 ];
+45 
+46 
+47   cout << \textcolor{stringliteral}{" * A * evec\_0 - eval\_0 * evec\_0 = ["}
+48        << A * evec\_0 - eval\_0 * evec\_0 << \textcolor{stringliteral}{"]^T"} << endl;
+49 
+50   cout << \textcolor{stringliteral}{" * Computer the eigenvalues and eigenvectors of a real "} << endl
+51        << \textcolor{stringliteral}{" * symmetric tridiagonal matrix with main diagonal "} << endl;
+52   \hyperlink{classLuna_1_1Vector}{Vector<double>} diag( 4, 1.0 );
+53   diag[ 0 ] = diag[ 2 ] = 2.0;
+54   cout << \textcolor{stringliteral}{" * diag = "} << diag << endl;
+55   cout << \textcolor{stringliteral}{" * and off diagonals "} << endl;
+56   \hyperlink{classLuna_1_1Vector}{Vector<double>} offdiag( 3, -1.0 );
+57   offdiag[ 1 ] = - 2.0; offdiag[ 2 ] = - 3.0;
+58   cout << \textcolor{stringliteral}{" * offdiag = "} << offdiag << endl;
+59   eig\_sys.\hyperlink{classLuna_1_1LinearEigensystem_a91ac311c3fe4226c4652b6bf41fc0d91}{compute\_real\_symmetric\_tridiagonal}( diag, offdiag );
+60   cout << \textcolor{stringliteral}{" * evals = "} << eig\_sys.\hyperlink{classLuna_1_1LinearEigensystem_ad74f60a4830eefb2858ab92765dc0ae4}{eigenvalues}().\hyperlink{classLuna_1_1Vector_a39fa58d9f5fdca76b6ffa6cc481f9284}{real}() << endl;
+61   cout << \textcolor{stringliteral}{" * evecs = "} << eig\_sys.\hyperlink{classLuna_1_1LinearEigensystem_ab68a36f7f1c1ecf9da83df84be6e49e9}{eigenvector\_matrix}() << endl;
+62 
+63   cout << \textcolor{stringliteral}{" * Compute the eigenvalues of a real nonsymmetric matrix. "} << endl;
+64   \hyperlink{classLuna_1_1Matrix}{Matrix<double>} B( 3, 3, 1.0 );
+65   B( 0, 1 ) = B( 1, 2 ) = B( 2, 0 ) = 2.0;
+66   B( 0, 2 ) = B( 1, 0 ) = B( 2, 1 ) = 3.0;
+67   cout << \textcolor{stringliteral}{" * B = "} << B << endl;
+68 
+69   eig\_sys.\hyperlink{classLuna_1_1LinearEigensystem_ab303a80cc2cf6bfe232b9d62efe13109}{compute\_real}( B, \textcolor{keyword}{false} );
+70   cout << \textcolor{stringliteral}{" * evals = "} << eig\_sys.\hyperlink{classLuna_1_1LinearEigensystem_ad74f60a4830eefb2858ab92765dc0ae4}{eigenvalues}() << endl;
+71 
+72 
+73   cout << \textcolor{stringliteral}{"--- FINISHED ---"} << endl;
+74 \}
+\end{DoxyCode}

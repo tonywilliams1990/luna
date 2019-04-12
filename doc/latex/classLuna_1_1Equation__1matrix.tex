@@ -1,0 +1,250 @@
+\hypertarget{classLuna_1_1Equation__1matrix}{}\section{Luna\+:\+:Equation\+\_\+1matrix$<$ T, X $>$ Class Template Reference}
+\label{classLuna_1_1Equation__1matrix}\index{Luna\+::\+Equation\+\_\+1matrix$<$ T, X $>$@{Luna\+::\+Equation\+\_\+1matrix$<$ T, X $>$}}
+
+
+{\ttfamily \#include $<$Equation\+\_\+1matrix.\+h$>$}
+
+
+
+Inheritance diagram for Luna\+:\+:Equation\+\_\+1matrix$<$ T, X $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=199pt]{classLuna_1_1Equation__1matrix__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Luna\+:\+:Equation\+\_\+1matrix$<$ T, X $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{classLuna_1_1Equation__1matrix__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classLuna_1_1Equation__1matrix_af76f7d2d3a138e8071390eb579fd2c4e}{Equation\+\_\+1matrix} (const unsigned \&order)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+virtual \hyperlink{classLuna_1_1Equation__1matrix_a5f6241862fa31bb048be2e535df3eb94}{$\sim$\+Equation\+\_\+1matrix} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Equation__1matrix_a08f510d89ae39ed46752cddea5376ae8}{update} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&\hyperlink{classLuna_1_1Residual_a41d9f863aa529f16c5d78fb19b4906bd}{state})
+\begin{DoxyCompactList}\small\item\em Update the \hyperlink{classLuna_1_1Equation}{Equation} object for the current set of state variables. \end{DoxyCompactList}\item 
+const \hyperlink{classLuna_1_1Matrix}{Matrix}$<$ T $>$ \& \hyperlink{classLuna_1_1Equation__1matrix_a7e0adf303491e67602d5e34ab7ec3ada}{matrix0} () const
+\begin{DoxyCompactList}\small\item\em Return a handle to the matrix. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classLuna_1_1Equation__1matrix_ad2ddee223f6c9dfd0c95a867699bbd24}{get\+\_\+jacobian\+\_\+of\+\_\+matrix0\+\_\+mult\+\_\+vector} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&\hyperlink{classLuna_1_1Residual_a41d9f863aa529f16c5d78fb19b4906bd}{state}, const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&vec, \hyperlink{classLuna_1_1Matrix}{Matrix}$<$ T $>$ \&h) const
+\begin{DoxyCompactList}\small\item\em Return the product of the Jacobian-\/of-\/the-\/matrix and a vector \textquotesingle{}vec\textquotesingle{} when the equation has a given \textquotesingle{}state\textquotesingle{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classLuna_1_1Equation__1matrix_a2501535a6e92abc491bc491b3f64dc06}{matrix0} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&x, \hyperlink{classLuna_1_1Matrix}{Matrix}$<$ T $>$ \&m) const
+\begin{DoxyCompactList}\small\item\em Define the matrix in terms of the current state vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename T, typename X = double$>$\newline
+class Luna\+::\+Equation\+\_\+1matrix$<$ T, X $>$}
+
+
+
+Definition at line 21 of file Equation\+\_\+1matrix.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classLuna_1_1Equation__1matrix_af76f7d2d3a138e8071390eb579fd2c4e}\label{classLuna_1_1Equation__1matrix_af76f7d2d3a138e8071390eb579fd2c4e}} 
+\index{Luna\+::\+Equation\+\_\+1matrix@{Luna\+::\+Equation\+\_\+1matrix}!Equation\+\_\+1matrix@{Equation\+\_\+1matrix}}
+\index{Equation\+\_\+1matrix@{Equation\+\_\+1matrix}!Luna\+::\+Equation\+\_\+1matrix@{Luna\+::\+Equation\+\_\+1matrix}}
+\subsubsection{\texorpdfstring{Equation\+\_\+1matrix()}{Equation\_1matrix()}}
+{\footnotesize\ttfamily template$<$typename T , typename X $>$ \\
+\hyperlink{classLuna_1_1Equation__1matrix}{Luna\+::\+Equation\+\_\+1matrix}$<$ T, X $>$\+::\hyperlink{classLuna_1_1Equation__1matrix}{Equation\+\_\+1matrix} (\begin{DoxyParamCaption}\item[{const unsigned \&}]{order }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em order} & The order of the system \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 69 of file Equation\+\_\+1matrix.\+h.
+
+
+\begin{DoxyCode}
+69                                                                  :
+70        Residual\_with\_coords<T, X>( order, 1 )
+71  \{
+72    \textcolor{keywordtype}{unsigned} sys\_order( \textcolor{keyword}{this} -> \hyperlink{classLuna_1_1Residual_a7facf1267eb277d84aeea8beba2cb200}{ORDER\_OF\_SYSTEM} );
+73    MATRIX0\_AT\_LAST\_STATE = Matrix<T>( sys\_order, sys\_order, 0.0 );
+74  \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Equation__1matrix_a5f6241862fa31bb048be2e535df3eb94}\label{classLuna_1_1Equation__1matrix_a5f6241862fa31bb048be2e535df3eb94}} 
+\index{Luna\+::\+Equation\+\_\+1matrix@{Luna\+::\+Equation\+\_\+1matrix}!````~Equation\+\_\+1matrix@{$\sim$\+Equation\+\_\+1matrix}}
+\index{````~Equation\+\_\+1matrix@{$\sim$\+Equation\+\_\+1matrix}!Luna\+::\+Equation\+\_\+1matrix@{Luna\+::\+Equation\+\_\+1matrix}}
+\subsubsection{\texorpdfstring{$\sim$\+Equation\+\_\+1matrix()}{~Equation\_1matrix()}}
+{\footnotesize\ttfamily template$<$typename T , typename X $>$ \\
+\hyperlink{classLuna_1_1Equation__1matrix}{Luna\+::\+Equation\+\_\+1matrix}$<$ T, X $>$\+::$\sim$\hyperlink{classLuna_1_1Equation__1matrix}{Equation\+\_\+1matrix} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Destructor. 
+
+
+
+Definition at line 77 of file Equation\+\_\+1matrix.\+h.
+
+
+\begin{DoxyCode}
+78  \{\}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classLuna_1_1Equation__1matrix_ad2ddee223f6c9dfd0c95a867699bbd24}\label{classLuna_1_1Equation__1matrix_ad2ddee223f6c9dfd0c95a867699bbd24}} 
+\index{Luna\+::\+Equation\+\_\+1matrix@{Luna\+::\+Equation\+\_\+1matrix}!get\+\_\+jacobian\+\_\+of\+\_\+matrix0\+\_\+mult\+\_\+vector@{get\+\_\+jacobian\+\_\+of\+\_\+matrix0\+\_\+mult\+\_\+vector}}
+\index{get\+\_\+jacobian\+\_\+of\+\_\+matrix0\+\_\+mult\+\_\+vector@{get\+\_\+jacobian\+\_\+of\+\_\+matrix0\+\_\+mult\+\_\+vector}!Luna\+::\+Equation\+\_\+1matrix@{Luna\+::\+Equation\+\_\+1matrix}}
+\subsubsection{\texorpdfstring{get\+\_\+jacobian\+\_\+of\+\_\+matrix0\+\_\+mult\+\_\+vector()}{get\_jacobian\_of\_matrix0\_mult\_vector()}}
+{\footnotesize\ttfamily template$<$typename T, typename X $>$ \\
+void \hyperlink{classLuna_1_1Equation__1matrix}{Luna\+::\+Equation\+\_\+1matrix}$<$ T, X $>$\+::get\+\_\+jacobian\+\_\+of\+\_\+matrix0\+\_\+mult\+\_\+vector (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{state,  }\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{vec,  }\item[{\hyperlink{classLuna_1_1Matrix}{Matrix}$<$ T $>$ \&}]{h }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Return the product of the Jacobian-\/of-\/the-\/matrix and a vector \textquotesingle{}vec\textquotesingle{} when the equation has a given \textquotesingle{}state\textquotesingle{}. 
+
+The user should overload this if concerned about performance of the solver. If not overloaded, the default is to finite difference the Jacobian-\/of-\/the-\/matrix. 
+\begin{DoxyParams}{Parameters}
+{\em state} & The current state variables \\
+\hline
+{\em vec} & The vector which is multiplied by the Jacobian of the matrix \\
+\hline
+{\em h} & The resulting 2D matrix \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 94 of file Equation\+\_\+1matrix.\+h.
+
+
+\begin{DoxyCode}
+96  \{
+97    \textcolor{comment}{// We dont need state in the default implementation as its already been set}
+98    \textcolor{comment}{// by the update method. You do need it for the user to overload this method}
+99    \textcolor{comment}{// with an explicit analytical version however.}
+100 
+101    Vector<T> copy\_of\_state( \textcolor{keyword}{this} -> \hyperlink{classLuna_1_1Residual_abcfc99f00aa4cf3616b32dfd5315dece}{LAST\_STATE} );
+102    Matrix<T> copy\_of\_matrix( MATRIX0\_AT\_LAST\_STATE );
+103    std::vector< Matrix<T> > jacmatrix;
+104    \textcolor{comment}{// update the Jacobian of the mass matrix}
+105    \textcolor{keywordflow}{for} ( std::size\_t i = 0; i < \textcolor{keyword}{this} -> \hyperlink{classLuna_1_1Residual_a7facf1267eb277d84aeea8beba2cb200}{ORDER\_OF\_SYSTEM}; ++i )
+106    \{
+107      copy\_of\_state[ i ] += \textcolor{keyword}{this} -> \hyperlink{classLuna_1_1Residual_a1bf38ddfa149797de560dcb11c975fef}{DELTA};
+108      \hyperlink{classLuna_1_1Equation__1matrix_a7e0adf303491e67602d5e34ab7ec3ada}{matrix0}( copy\_of\_state, copy\_of\_matrix );
+109      copy\_of\_state[ i ] -= \textcolor{keyword}{this} -> \hyperlink{classLuna_1_1Residual_a1bf38ddfa149797de560dcb11c975fef}{DELTA};
+110      copy\_of\_matrix -= MATRIX0\_AT\_LAST\_STATE;
+111      copy\_of\_matrix *= ( 1. / \textcolor{keyword}{this} -> \hyperlink{classLuna_1_1Residual_a1bf38ddfa149797de560dcb11c975fef}{DELTA} );
+112      \textcolor{comment}{// the 3D object that represents the Jacobian of the mass matrix}
+113      jacmatrix.push\_back( copy\_of\_matrix );
+114    \}
+115    \textcolor{comment}{// evaluate the jacabian of mass contribution}
+116    \textcolor{keywordflow}{for} ( \textcolor{keywordtype}{unsigned} i = 0; i < \textcolor{keyword}{this} -> \hyperlink{classLuna_1_1Residual_a7facf1267eb277d84aeea8beba2cb200}{ORDER\_OF\_SYSTEM}; ++i )
+117    \{
+118      \textcolor{keywordflow}{for} ( \textcolor{keywordtype}{unsigned} j = 0; j < \textcolor{keyword}{this} -> \hyperlink{classLuna_1_1Residual_a7facf1267eb277d84aeea8beba2cb200}{ORDER\_OF\_SYSTEM}; ++j )
+119      \{
+120        h( i, j ) = jacmatrix[ j ][ i ].dot( vec );
+121      \}
+122    \}
+123  \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Equation__1matrix_a7e0adf303491e67602d5e34ab7ec3ada}\label{classLuna_1_1Equation__1matrix_a7e0adf303491e67602d5e34ab7ec3ada}} 
+\index{Luna\+::\+Equation\+\_\+1matrix@{Luna\+::\+Equation\+\_\+1matrix}!matrix0@{matrix0}}
+\index{matrix0@{matrix0}!Luna\+::\+Equation\+\_\+1matrix@{Luna\+::\+Equation\+\_\+1matrix}}
+\subsubsection{\texorpdfstring{matrix0()}{matrix0()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T , typename X $>$ \\
+const \hyperlink{classLuna_1_1Matrix}{Matrix}$<$ T $>$ \& \hyperlink{classLuna_1_1Equation__1matrix}{Luna\+::\+Equation\+\_\+1matrix}$<$ T, X $>$\+::matrix0 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return a handle to the matrix. 
+
+
+
+Definition at line 88 of file Equation\+\_\+1matrix.\+h.
+
+
+\begin{DoxyCode}
+89  \{
+90    \textcolor{keywordflow}{return} MATRIX0\_AT\_LAST\_STATE;
+91  \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Equation__1matrix_a2501535a6e92abc491bc491b3f64dc06}\label{classLuna_1_1Equation__1matrix_a2501535a6e92abc491bc491b3f64dc06}} 
+\index{Luna\+::\+Equation\+\_\+1matrix@{Luna\+::\+Equation\+\_\+1matrix}!matrix0@{matrix0}}
+\index{matrix0@{matrix0}!Luna\+::\+Equation\+\_\+1matrix@{Luna\+::\+Equation\+\_\+1matrix}}
+\subsubsection{\texorpdfstring{matrix0()}{matrix0()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T, typename X = double$>$ \\
+virtual void \hyperlink{classLuna_1_1Equation__1matrix}{Luna\+::\+Equation\+\_\+1matrix}$<$ T, X $>$\+::matrix0 (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{x,  }\item[{\hyperlink{classLuna_1_1Matrix}{Matrix}$<$ T $>$ \&}]{m }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Define the matrix in terms of the current state vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The current state vector. \\
+\hline
+{\em m} & The matrix. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \hyperlink{classLuna_1_1nonlinear__equation_a467d48cbfdb69fddc877e00dc24a397a}{Luna\+::nonlinear\+\_\+equation}, and \hyperlink{classLuna_1_1test__equation_a955940cd7cc59fbaef213151075f1838}{Luna\+::test\+\_\+equation}.
+
+
+
+Definition at line 54 of file Equation\+\_\+1matrix.\+h.
+
+
+\begin{DoxyCode}
+55    \{
+56      std::string problem;
+57      problem = \textcolor{stringliteral}{"The equation::matrix0 method has not been implemented!\(\backslash\)n"};
+58      problem += \textcolor{stringliteral}{"You have to implement this method to define the equation.\(\backslash\)n"};
+59      \textcolor{keywordflow}{throw} Error( problem );
+60    \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Equation__1matrix_a08f510d89ae39ed46752cddea5376ae8}\label{classLuna_1_1Equation__1matrix_a08f510d89ae39ed46752cddea5376ae8}} 
+\index{Luna\+::\+Equation\+\_\+1matrix@{Luna\+::\+Equation\+\_\+1matrix}!update@{update}}
+\index{update@{update}!Luna\+::\+Equation\+\_\+1matrix@{Luna\+::\+Equation\+\_\+1matrix}}
+\subsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily template$<$typename T, typename X $>$ \\
+void \hyperlink{classLuna_1_1Equation__1matrix}{Luna\+::\+Equation\+\_\+1matrix}$<$ T, X $>$\+::update (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{state }\end{DoxyParamCaption})}
+
+
+
+Update the \hyperlink{classLuna_1_1Equation}{Equation} object for the current set of state variables. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & The state vector at which to set the equation object \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 81 of file Equation\+\_\+1matrix.\+h.
+
+
+\begin{DoxyCode}
+82  \{
+83      \hyperlink{classLuna_1_1Residual_ac1f39e77c729e6a4a1e10ac951f6c704}{Residual\_with\_coords<T, X>::update}( \hyperlink{classLuna_1_1Residual_a41d9f863aa529f16c5d78fb19b4906bd}{state} );
+84      \hyperlink{classLuna_1_1Equation__1matrix_a7e0adf303491e67602d5e34ab7ec3ada}{matrix0}( \hyperlink{classLuna_1_1Residual_a41d9f863aa529f16c5d78fb19b4906bd}{state}, MATRIX0\_AT\_LAST\_STATE );
+85  \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Luna/\hyperlink{Equation__1matrix_8h}{Equation\+\_\+1matrix.\+h}\end{DoxyCompactItemize}

@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['n',['N',['../namespaceHeat__plot.html#a7d050092798e28458a263710837bda77',1,'Heat_plot']]],
+  ['nargs',['nargs',['../namespaceHeat__plot.html#a2b3b44d5236c0a84aefd66e9fbd8f174',1,'Heat_plot']]],
+  ['newton',['Newton',['../classLuna_1_1Newton.html',1,'Luna::Newton&lt; T &gt;'],['../classLuna_1_1Newton.html#a062c2b36d5e7d345173c0b2b525b3f9d',1,'Luna::Newton::Newton()']]],
+  ['newton_2eh',['Newton.h',['../Newton_8h.html',1,'']]],
+  ['nnodes',['nnodes',['../classLuna_1_1Mesh1D.html#a83cb9003736324ec955fb091c20dee4b',1,'Luna::Mesh1D']]],
+  ['nodes',['nodes',['../classLuna_1_1Mesh1D.html#a628f377e1a2d66a8ff53d052dcc697e2',1,'Luna::Mesh1D']]],
+  ['nonlinear_5fequation',['nonlinear_equation',['../classLuna_1_1nonlinear__equation.html',1,'Luna::nonlinear_equation'],['../classLuna_1_1nonlinear__equation.html#ad9742a2d1179a22a9bf369f1ed1ce8ff',1,'Luna::nonlinear_equation::nonlinear_equation()']]],
+  ['nonlinear_5fode_5fbvp_2ecpp',['Nonlinear_ODE_BVP.cpp',['../Nonlinear__ODE__BVP_8cpp.html',1,'']]],
+  ['nonlinear_5fode_5fbvp_5fplot',['Nonlinear_ODE_BVP_plot',['../namespaceNonlinear__ODE__BVP__plot.html',1,'']]],
+  ['nonlinear_5fode_5fbvp_5fplot_2epy',['Nonlinear_ODE_BVP_plot.py',['../Nonlinear__ODE__BVP__plot_8py.html',1,'']]],
+  ['nonzero',['nonzero',['../classLuna_1_1SparseMatrix.html#a84c317800c26bc9548c66db99af09b56',1,'Luna::SparseMatrix']]],
+  ['norm_5f1',['norm_1',['../classLuna_1_1Matrix.html#a7a687e4f0eab389331d2ba90f41acdba',1,'Luna::Matrix::norm_1()'],['../classLuna_1_1Vector.html#a7f36db8f617c64ebe772e2af28c3e475',1,'Luna::Vector::norm_1()']]],
+  ['norm_5f2',['norm_2',['../classLuna_1_1Vector.html#a1b06ed062a50b1006f991ffad6b9b8f4',1,'Luna::Vector']]],
+  ['norm_5ffrob',['norm_frob',['../classLuna_1_1Matrix.html#a5c760c22fd59b5cb21a81ccb8468b6c2',1,'Luna::Matrix']]],
+  ['norm_5finf',['norm_inf',['../classLuna_1_1Matrix.html#a9fb259d76d733da0bb722efe9ce9bcd2',1,'Luna::Matrix::norm_inf()'],['../classLuna_1_1Vector.html#a54e835cea735921c7487fb2451bca258',1,'Luna::Vector::norm_inf()']]],
+  ['norm_5fmax',['norm_max',['../classLuna_1_1Matrix.html#a1db72e57e9efbd1de2c34ea405184292',1,'Luna::Matrix']]],
+  ['norm_5fp',['norm_p',['../classLuna_1_1Matrix.html#a95e7a5a0afb0abb419c4cfb8e1c27b57',1,'Luna::Matrix::norm_p()'],['../classLuna_1_1Vector.html#a3cc614bd51c84050cffc07f61b5238b2',1,'Luna::Vector::norm_p()']]],
+  ['number_5fof_5fvars',['NUMBER_OF_VARS',['../classLuna_1_1Residual.html#a8e7a52a94a49d900ba2784e621a35668',1,'Luna::Residual']]],
+  ['numel',['numel',['../classLuna_1_1Matrix.html#a2e697f673d6bc9b38dc1a07bac56aac5',1,'Luna::Matrix']]],
+  ['nump',['nump',['../structLuna_1_1Bessel.html#a01ee09f3e4275f102df4c3b83fad1776',1,'Luna::Bessel']]],
+  ['numq',['numq',['../structLuna_1_1Bessel.html#aa126082495f16ae7d353f0b0623c80b8',1,'Luna::Bessel']]],
+  ['nvars',['nvars',['../classLuna_1_1Mesh1D.html#a6cf5a08c5464bc7de45376cf3f5c1a68',1,'Luna::Mesh1D']]]
+];

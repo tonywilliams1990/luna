@@ -30,7 +30,6 @@ Luna aims to be a header-only library of numerical routines written in C++.
 13. MonteCarlo - a class for utilising Monte Carlo methods  		              []
 14. Quadrature - Numerical integration of functions  			                    []
 15. Utility - General utility functions 				                              []
-16. Chebyshev - a class Chebyshev approximation and related methods	          []
 
 --- Sparse ---
 1. Tridiagonal - a tridiagonal matrix class (including solver)    	         [x]
@@ -53,7 +52,6 @@ Luna aims to be a header-only library of numerical routines written in C++.
 --- PDE ---
 1. PDE_IBVP - PDE initial boundary value problem class                        []
 2. Poisson - a class for solving Poisson problems                             []
-3. Spectral - a class for solving PDEs using spectral methods		              []
 
 --- Automatic-differentiation ---
 1. Dual - a class defining dual numbers                                       []
@@ -62,6 +60,17 @@ Luna aims to be a header-only library of numerical routines written in C++.
 
 --- Quaternions ---
 1. Quaternion - a class defining quaternions				                          []
+
+--- Spectral ---
+1. Basis - a base class defining basis functions to be inherited              []
+2. Chebyshev - a class defining Chebyshev polynomials (inherit from basis)	  []
+3. Spectral - a class defining spectral solutions (basis + coefficients)      []
+4. solve method in ODE_BVP for solving using spectral methods                 []
+5. solve PDEs using spectral method                                           []
+6. Fourier - a class defining a Fourier basis (inherit from basis)            []
+7. method in Vector to create collocation points                              []
+8. solve eigenvalue problems using spectral method                            []
+
 
 
 ***** Examples *****

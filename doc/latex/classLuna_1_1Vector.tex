@@ -1,0 +1,2456 @@
+\hypertarget{classLuna_1_1Vector}{}\section{Luna\+:\+:Vector$<$ T $>$ Class Template Reference}
+\label{classLuna_1_1Vector}\index{Luna\+::\+Vector$<$ T $>$@{Luna\+::\+Vector$<$ T $>$}}
+
+
+A \hyperlink{classLuna_1_1Vector}{Vector} class for use with double and std\+::complex$<$double$>$  
+
+
+
+
+{\ttfamily \#include $<$Vector.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\+::vector$<$ T $>$\+::iterator \hyperlink{classLuna_1_1Vector_aa6c4164f0cd114da31acfde53a36d65e}{iter}
+\item 
+typedef std\+::vector$<$ T $>$\+::const\+\_\+iterator \hyperlink{classLuna_1_1Vector_a90cff5eab2782bc1c6aaa879ce18a2b8}{citer}
+\item 
+typedef std\+::vector$<$ T $>$\+::reverse\+\_\+iterator \hyperlink{classLuna_1_1Vector_a6db6c6b09df2c68bbfd1960c56bb20d5}{riter}
+\item 
+typedef std\+::vector$<$ T $>$\+::const\+\_\+reverse\+\_\+iterator \hyperlink{classLuna_1_1Vector_a66e997f05169640055703449672be075}{criter}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classLuna_1_1Vector_a8dd08d46db516e9b06501f83fc01c22c}{Vector} ()
+\begin{DoxyCompactList}\small\item\em Constructor for an empty \hyperlink{classLuna_1_1Vector}{Vector} of unspecified size. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector_a6f7d89a8dfbf7fd0543c843b897a6b05}{Vector} (const std\+::size\+\_\+t \&\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size})
+\begin{DoxyCompactList}\small\item\em Constructor for a \hyperlink{classLuna_1_1Vector}{Vector} of specified size. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector_a0041d60c76553a0d51a2c5c7b9df557f}{Vector} (const std\+::size\+\_\+t \&\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}, const T \&elem)
+\begin{DoxyCompactList}\small\item\em Constructor of specified size and elements. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector_acb8301bdca059a3880eb3478f52fca2d}{Vector} (const std\+::initializer\+\_\+list$<$ T $>$ \&list)
+\begin{DoxyCompactList}\small\item\em Constructor from a list of elements. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector_aa6a0a3ba8b22ee42e3ffd5087950644d}{Vector} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&source)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector_ab2453cc67935af9a0dd0b86292bd47d8}{$\sim$\+Vector} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+const T \& \hyperlink{classLuna_1_1Vector_adb31a846162021be5bc13b33cdbabc1c}{operator\mbox{[}$\,$\mbox{]}} (const std\+::size\+\_\+t \&i) const
+\begin{DoxyCompactList}\small\item\em Indexing operator ( read only ) \end{DoxyCompactList}\item 
+T \& \hyperlink{classLuna_1_1Vector_ae4e2ff0ca1e504e31453f436f6f733c1}{operator\mbox{[}$\,$\mbox{]}} (const std\+::size\+\_\+t \&i)
+\begin{DoxyCompactList}\small\item\em Indexing operator ( read / write ) \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \& \hyperlink{classLuna_1_1Vector_af2ee9028f1c40a21a2a4055e63b70b2c}{operator=} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&original)
+\begin{DoxyCompactList}\small\item\em Copy assignment. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Vector_a98436d0360c521cc7200f3f65201230e}{operator+} () const
+\begin{DoxyCompactList}\small\item\em Unary +. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Vector_a8b2f1a6d3c51d317243c2e832411f26d}{operator-\/} () const
+\begin{DoxyCompactList}\small\item\em Unary -\/. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Vector_a4250a1034080a224eed0c2cd8ee0fcd2}{operator+} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&v\+\_\+plus) const
+\begin{DoxyCompactList}\small\item\em Binary +. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Vector_a6fe350a0e81289f65f9d364d669d434d}{operator-\/} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&v\+\_\+minus) const
+\begin{DoxyCompactList}\small\item\em Binary -\/. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Vector_a2d6abef72879a5ef40ce068271eb145f}{operator$\ast$} (const T \&scalar) const
+\begin{DoxyCompactList}\small\item\em Scalar multiplication. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Vector_aabb416e2f6237ad98c24c7059fc742eb}{operator/} (const T \&divisor) const
+\begin{DoxyCompactList}\small\item\em Scalar division. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \& \hyperlink{classLuna_1_1Vector_a80a9509a146aeab507f93f994fd7eff9}{operator+=} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&v\+\_\+plus)
+\begin{DoxyCompactList}\small\item\em Addition assignment. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \& \hyperlink{classLuna_1_1Vector_a1be4f350f70c6bd70032da8d5a2329ef}{operator-\/=} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&v\+\_\+minus)
+\begin{DoxyCompactList}\small\item\em Subtraction assignment. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \& \hyperlink{classLuna_1_1Vector_aad04978d7a710d8091bbbb0497173547}{operator$\ast$=} (const T \&scalar)
+\begin{DoxyCompactList}\small\item\em Scalar multiplication assignment. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \& \hyperlink{classLuna_1_1Vector_a27dfb8d1b326a6bc7fd482fecb922f64}{operator/=} (const T \&divisor)
+\begin{DoxyCompactList}\small\item\em Scalar division assigment. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \& \hyperlink{classLuna_1_1Vector_adba6b93c812f8201980b29d3eaeca671}{operator+=} (const T \&add)
+\begin{DoxyCompactList}\small\item\em Constant addition assignment. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \& \hyperlink{classLuna_1_1Vector_a407921bee5f382c34030217e3d2a2417}{operator-\/=} (const T \&minus)
+\begin{DoxyCompactList}\small\item\em Constant subtraction assignment. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Vector_aafaaa4c508431ed078c1599bcb7608be}{operator()} (const T \&new\+\_\+elem)
+\begin{DoxyCompactList}\small\item\em Push a new element into the end of the \hyperlink{classLuna_1_1Vector}{Vector} (overload () to push\+\_\+back) \end{DoxyCompactList}\item 
+std\+::size\+\_\+t \hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size} () const
+\begin{DoxyCompactList}\small\item\em Size of the \hyperlink{classLuna_1_1Vector}{Vector}. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Vector_abf2693db9286f81cf68693fc4fb9fd18}{push\+\_\+back} (const T \&new\+\_\+elem)
+\begin{DoxyCompactList}\small\item\em Push a new element into the end of the \hyperlink{classLuna_1_1Vector}{Vector}. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Vector_a5361abffa2009f603103aed197743554}{push\+\_\+front} (const T \&new\+\_\+elem)
+\begin{DoxyCompactList}\small\item\em Push a new element into the front of the \hyperlink{classLuna_1_1Vector}{Vector}. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Vector_a5d6821d9dd958423379cafbc6658853f}{insert} (const std\+::size\+\_\+t \&pos, const T \&new\+\_\+elem, const std\+::size\+\_\+t \&num=1)
+\begin{DoxyCompactList}\small\item\em Insert new elements into the \hyperlink{classLuna_1_1Vector}{Vector} at a specified position. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Vector_afd5c648a6a46b09e75ba94f8e7bc65ba}{pop\+\_\+back} ()
+\begin{DoxyCompactList}\small\item\em Remove the last element in the \hyperlink{classLuna_1_1Vector}{Vector}. \end{DoxyCompactList}\item 
+std\+::size\+\_\+t \hyperlink{classLuna_1_1Vector_a3400289dadcbd252a7cc5401e81a7dbb}{find} (const T \&val)
+\begin{DoxyCompactList}\small\item\em Find the first element in the \hyperlink{classLuna_1_1Vector}{Vector} that is equal to a given value. \end{DoxyCompactList}\item 
+bool \hyperlink{classLuna_1_1Vector_afdb918d5b0eb66b94f8f9201b8bb7e45}{empty} () const
+\begin{DoxyCompactList}\small\item\em Returns whether the \hyperlink{classLuna_1_1Vector}{Vector} is empty. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Vector_ae1394f960d5cac3e60f6b1561f38e453}{resize} (const std\+::size\+\_\+t \&\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size})
+\begin{DoxyCompactList}\small\item\em Resize the \hyperlink{classLuna_1_1Vector}{Vector}. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Vector_ae0f59108f43c00b44a12aef3c722fb1d}{reserve} (const std\+::size\+\_\+t \&\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size})
+\begin{DoxyCompactList}\small\item\em Request a change in capacity. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Vector_a7d2f6fca261feba2660cfb2b4819e5e1}{clear} ()
+\begin{DoxyCompactList}\small\item\em Clear all the elements from the \hyperlink{classLuna_1_1Vector}{Vector}. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ double $>$ \hyperlink{classLuna_1_1Vector_a1fe66d19f6641be9e301a306fdb58cbe}{abs} () const
+\begin{DoxyCompactList}\small\item\em Absolute values. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Vector_af910058597a627cc4257ea668e916b90}{swap} (const std\+::size\+\_\+t \&i, const std\+::size\+\_\+t \&j)
+\begin{DoxyCompactList}\small\item\em Swap elements i and j. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Vector_a0e051d73b35c094dddef2ea46b4935df}{reverse} ()
+\begin{DoxyCompactList}\small\item\em Reverse the order of the elements. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Vector_ac543e0e7e7add55358f976f0baabbae3}{assign} (const std\+::size\+\_\+t n, const T elem)
+\begin{DoxyCompactList}\small\item\em Assign new contents to the \hyperlink{classLuna_1_1Vector}{Vector}. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ double $>$ \hyperlink{classLuna_1_1Vector_a39fa58d9f5fdca76b6ffa6cc481f9284}{real} () const
+\begin{DoxyCompactList}\small\item\em Real part of the elements of the \hyperlink{classLuna_1_1Vector}{Vector}. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ double $>$ \hyperlink{classLuna_1_1Vector_afde9791d85dd530a0e1c9794e8c6534e}{imag} () const
+\begin{DoxyCompactList}\small\item\em Imaginary part of the elements of the \hyperlink{classLuna_1_1Vector}{Vector}. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Vector_a17316bfedb7386a960206e0b0f22ecb4}{conjugate} () const
+\begin{DoxyCompactList}\small\item\em Conjugate of the elements of the \hyperlink{classLuna_1_1Vector}{Vector}. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Vector_a275847fc0bddea86c66651201a6db82e}{linspace} (const double \&a, const double \&b, const std\+::size\+\_\+t \&n)
+\begin{DoxyCompactList}\small\item\em Create a linearly spaced \hyperlink{classLuna_1_1Vector}{Vector} (of doubles) with n elements. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Vector_a8073a13aaee8bf6602a543d912193626}{powspace} (const double \&a, const double \&b, const std\+::size\+\_\+t \&n, const double \&p)
+\begin{DoxyCompactList}\small\item\em Create a nonuniform \hyperlink{classLuna_1_1Vector}{Vector} using a power law with exponent p (1-\/$>$linear) \end{DoxyCompactList}\item 
+T \hyperlink{classLuna_1_1Vector_a25e7062ee4ef547ac7ad54bd63605e60}{product} (const std\+::size\+\_\+t \&start, const std\+::size\+\_\+t \&\hyperlink{classLuna_1_1Vector_a94f0c4fd25cb841b21d7bf7be4d6004f}{end})
+\begin{DoxyCompactList}\small\item\em Product of the elements in the \hyperlink{classLuna_1_1Vector}{Vector} (from index start to end) \end{DoxyCompactList}\item 
+T \hyperlink{classLuna_1_1Vector_ac5b4435a746e0894b8b4caa893b53619}{product} ()
+\item 
+T \hyperlink{classLuna_1_1Vector_a2d8df886780b81d237c11fda4c310cab}{sum} (const std\+::size\+\_\+t \&start, const std\+::size\+\_\+t \&\hyperlink{classLuna_1_1Vector_a94f0c4fd25cb841b21d7bf7be4d6004f}{end})
+\begin{DoxyCompactList}\small\item\em Sum of the elements in the \hyperlink{classLuna_1_1Vector}{Vector} (from index start to end) \end{DoxyCompactList}\item 
+T \hyperlink{classLuna_1_1Vector_a3f9422b246093b153a55577a6ca97e26}{sum} ()
+\begin{DoxyCompactList}\small\item\em Sum of the elements in the \hyperlink{classLuna_1_1Vector}{Vector}. \end{DoxyCompactList}\item 
+T \hyperlink{classLuna_1_1Vector_a0c54499efcc61b644a88f59a07b68105}{dot} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&w)
+\begin{DoxyCompactList}\small\item\em Dot product of two Vectors v.\+dot(w) \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Vector_aac601f8185b989cc0865fdc0c86483ca}{output} (std\+::string filename, int precision=12)
+\begin{DoxyCompactList}\small\item\em Output the \hyperlink{classLuna_1_1Vector}{Vector} to a file. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Vector_ac88b73bb16a6052fb68a8994ce2c7e94}{read} (std\+::string filename, int precision=12)
+\begin{DoxyCompactList}\small\item\em Read the \hyperlink{classLuna_1_1Vector}{Vector} from a file. \end{DoxyCompactList}\item 
+T \hyperlink{classLuna_1_1Vector_aaf2ae5f1e98f1f93c2f6262ea3c574b8}{max} ()
+\begin{DoxyCompactList}\small\item\em Maximum element. \end{DoxyCompactList}\item 
+T \hyperlink{classLuna_1_1Vector_a6d60809efe2e6d25d16ffa27303bd474}{min} ()
+\begin{DoxyCompactList}\small\item\em Minimum element. \end{DoxyCompactList}\item 
+std\+::size\+\_\+t \hyperlink{classLuna_1_1Vector_af7de15d570fa6cc999b5c900c220aaa5}{max\+\_\+index} ()
+\begin{DoxyCompactList}\small\item\em Maximum element index. \end{DoxyCompactList}\item 
+std\+::size\+\_\+t \hyperlink{classLuna_1_1Vector_abb6b63a716faec0dacce220eb82424f8}{min\+\_\+index} ()
+\begin{DoxyCompactList}\small\item\em Minimum element index. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Vector_a60f8017f50e602151c84686ac081af66}{square} () const
+\begin{DoxyCompactList}\small\item\em Square all the elements in the \hyperlink{classLuna_1_1Vector}{Vector}. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Vector_ad691f671733f78bbf3bdbaf46fcbc5a0}{power} (const double \&p) const
+\begin{DoxyCompactList}\small\item\em Raise all the elements in the \hyperlink{classLuna_1_1Vector}{Vector} to the power p. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Vector_af5d145bb808403eca4a2ea4edd1132c2}{random} ()
+\begin{DoxyCompactList}\small\item\em Fill the \hyperlink{classLuna_1_1Vector}{Vector} with random elements (between -\/1 and 1) \end{DoxyCompactList}\item 
+T \& \hyperlink{classLuna_1_1Vector_add6be56568d90c49e5f616e334275786}{back} ()
+\begin{DoxyCompactList}\small\item\em A reference to the last element in the \hyperlink{classLuna_1_1Vector}{Vector}. \end{DoxyCompactList}\item 
+const T \& \hyperlink{classLuna_1_1Vector_a33f7acdc6965592629b2bb375c99cdc4}{back} () const
+\begin{DoxyCompactList}\small\item\em A ( read only ) reference to the last element in the \hyperlink{classLuna_1_1Vector}{Vector}. \end{DoxyCompactList}\item 
+double \hyperlink{classLuna_1_1Vector_a7f36db8f617c64ebe772e2af28c3e475}{norm\+\_\+1} () const
+\begin{DoxyCompactList}\small\item\em L1 norm\+: sum of absolute values. \end{DoxyCompactList}\item 
+double \hyperlink{classLuna_1_1Vector_a1b06ed062a50b1006f991ffad6b9b8f4}{norm\+\_\+2} () const
+\begin{DoxyCompactList}\small\item\em L2 norm\+: square root of the sum of the squares. \end{DoxyCompactList}\item 
+double \hyperlink{classLuna_1_1Vector_a3cc614bd51c84050cffc07f61b5238b2}{norm\+\_\+p} (const double \&p) const
+\begin{DoxyCompactList}\small\item\em Lp norm\+: p-\/th root of the sum of the absolute values to the power p. \end{DoxyCompactList}\item 
+double \hyperlink{classLuna_1_1Vector_a54e835cea735921c7487fb2451bca258}{norm\+\_\+inf} () const
+\begin{DoxyCompactList}\small\item\em Inf norm\+: largest absolute value element (p -\/$>$ infinity) \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector_aa6c4164f0cd114da31acfde53a36d65e}{iter} \hyperlink{classLuna_1_1Vector_a88e47962286f0dd912fb19849731e67a}{begin} ()
+\begin{DoxyCompactList}\small\item\em Pass through the std\+::vector begin iterator. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector_a6db6c6b09df2c68bbfd1960c56bb20d5}{riter} \hyperlink{classLuna_1_1Vector_ac7d078c9f67745df2865f50577722926}{rbegin} ()
+\begin{DoxyCompactList}\small\item\em Pass through the std\+::vector begin reverse iterator. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector_a90cff5eab2782bc1c6aaa879ce18a2b8}{citer} \hyperlink{classLuna_1_1Vector_ad4ac7dad7a59a052ca549319f1b1d5a6}{begin} () const
+\begin{DoxyCompactList}\small\item\em Pass through the std\+::vector begin constant iterator. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector_a66e997f05169640055703449672be075}{criter} \hyperlink{classLuna_1_1Vector_a62b4a362a308d2348c2d035c0d245f0c}{rbegin} () const
+\begin{DoxyCompactList}\small\item\em Pass through the std\+::vector begin constant reverse iterator. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector_aa6c4164f0cd114da31acfde53a36d65e}{iter} \hyperlink{classLuna_1_1Vector_a94f0c4fd25cb841b21d7bf7be4d6004f}{end} ()
+\begin{DoxyCompactList}\small\item\em Pass through the std\+::vector end iterator. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector_a6db6c6b09df2c68bbfd1960c56bb20d5}{riter} \hyperlink{classLuna_1_1Vector_a830d3e3c9668a6e112086feeb06516e4}{rend} ()
+\begin{DoxyCompactList}\small\item\em Pass through the std\+::vector end reverse iterator. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector_a90cff5eab2782bc1c6aaa879ce18a2b8}{citer} \hyperlink{classLuna_1_1Vector_aeb718e0c6a0d8cc3687481d544867f95}{end} () const
+\begin{DoxyCompactList}\small\item\em Pass through the std\+::vector end constant iterator. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector_a66e997f05169640055703449672be075}{criter} \hyperlink{classLuna_1_1Vector_a8be51612ac896a7c9fde8479332c6a91}{rend} () const
+\begin{DoxyCompactList}\small\item\em Pass through the std\+::vector end constant reverse iterator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$$>$ }\\void \hyperlink{classLuna_1_1Vector_adfa42b44de71e22c33c11e1b64947043}{linspace} (const double \&a, const double \&b, const std\+::size\+\_\+t \&n)
+\item 
+{\footnotesize template$<$$>$ }\\void \hyperlink{classLuna_1_1Vector_a3661efcaa52933187623fae94602f21b}{powspace} (const double \&a, const double \&b, const std\+::size\+\_\+t \&n, const double \&p)
+\item 
+{\footnotesize template$<$$>$ }\\void \hyperlink{classLuna_1_1Vector_a0a853cbc32fbc152c90b08f37aa14a10}{random} ()
+\item 
+{\footnotesize template$<$$>$ }\\void \hyperlink{classLuna_1_1Vector_ada5c7a79b4011f3cae60ae198a6c240a}{random} ()
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classLuna_1_1Vector_a17fc06682c9f9c46f1e0e38b7af25b80}{Matrix$<$ T $>$}
+\item 
+class \hyperlink{classLuna_1_1Vector_abe8021c8bfcc7f40c69097469d597830}{Polynomial$<$ T $>$}
+\item 
+class \hyperlink{classLuna_1_1Vector_a25dda511be44f42c60e3c7117aac3f2a}{Sparse\+Matrix$<$ T $>$}
+\item 
+{\footnotesize template$<$class Type $>$ }\\std\+::ostream \& \hyperlink{classLuna_1_1Vector_aa45a6e2bb9fbdb53db42d652a26eaac7}{operator$<$$<$} (std\+::ostream \&os, const \hyperlink{classLuna_1_1Vector}{Vector}$<$ Type $>$ \&vec)
+\begin{DoxyCompactList}\small\item\em Output operator $<$$<$. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Vector_a29f70258ec21b100141b45b009416f66}{operator$\ast$} (const T \&scalar, \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&vec)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class T$>$\newline
+class Luna\+::\+Vector$<$ T $>$}
+
+A \hyperlink{classLuna_1_1Vector}{Vector} class for use with double and std\+::complex$<$double$>$ 
+
+Definition at line 41 of file Vector.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classLuna_1_1Vector_a90cff5eab2782bc1c6aaa879ce18a2b8}\label{classLuna_1_1Vector_a90cff5eab2782bc1c6aaa879ce18a2b8}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!citer@{citer}}
+\index{citer@{citer}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{citer}{citer}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+typedef std\+::vector$<$T$>$\+::const\+\_\+iterator \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::\hyperlink{classLuna_1_1Vector_a90cff5eab2782bc1c6aaa879ce18a2b8}{citer}}
+
+
+
+Definition at line 345 of file Vector.\+h.
+
+\mbox{\Hypertarget{classLuna_1_1Vector_a66e997f05169640055703449672be075}\label{classLuna_1_1Vector_a66e997f05169640055703449672be075}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!criter@{criter}}
+\index{criter@{criter}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{criter}{criter}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+typedef std\+::vector$<$T$>$\+::const\+\_\+reverse\+\_\+iterator \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::\hyperlink{classLuna_1_1Vector_a66e997f05169640055703449672be075}{criter}}
+
+
+
+Definition at line 347 of file Vector.\+h.
+
+\mbox{\Hypertarget{classLuna_1_1Vector_aa6c4164f0cd114da31acfde53a36d65e}\label{classLuna_1_1Vector_aa6c4164f0cd114da31acfde53a36d65e}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!iter@{iter}}
+\index{iter@{iter}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{iter}{iter}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+typedef std\+::vector$<$T$>$\+::iterator \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::\hyperlink{classLuna_1_1Vector_aa6c4164f0cd114da31acfde53a36d65e}{iter}}
+
+
+
+Definition at line 344 of file Vector.\+h.
+
+\mbox{\Hypertarget{classLuna_1_1Vector_a6db6c6b09df2c68bbfd1960c56bb20d5}\label{classLuna_1_1Vector_a6db6c6b09df2c68bbfd1960c56bb20d5}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!riter@{riter}}
+\index{riter@{riter}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{riter}{riter}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+typedef std\+::vector$<$T$>$\+::reverse\+\_\+iterator \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::\hyperlink{classLuna_1_1Vector_a6db6c6b09df2c68bbfd1960c56bb20d5}{riter}}
+
+
+
+Definition at line 346 of file Vector.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classLuna_1_1Vector_a8dd08d46db516e9b06501f83fc01c22c}\label{classLuna_1_1Vector_a8dd08d46db516e9b06501f83fc01c22c}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!Vector@{Vector}}
+\index{Vector@{Vector}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{Vector()}{Vector()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::\hyperlink{classLuna_1_1Vector}{Vector} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for an empty \hyperlink{classLuna_1_1Vector}{Vector} of unspecified size. 
+
+
+
+Definition at line 54 of file Vector.\+h.
+
+
+
+Referenced by Luna\+::\+Vector$<$ X $>$\+::\+Vector().
+
+
+\begin{DoxyCode}
+54 \{\}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a6f7d89a8dfbf7fd0543c843b897a6b05}\label{classLuna_1_1Vector_a6f7d89a8dfbf7fd0543c843b897a6b05}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!Vector@{Vector}}
+\index{Vector@{Vector}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{Vector()}{Vector()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::\hyperlink{classLuna_1_1Vector}{Vector} (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t \&}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for a \hyperlink{classLuna_1_1Vector}{Vector} of specified size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & Size of the \hyperlink{classLuna_1_1Vector}{Vector} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 408 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+409   \{
+410     VECTOR.resize( \hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size} );
+411   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a0041d60c76553a0d51a2c5c7b9df557f}\label{classLuna_1_1Vector_a0041d60c76553a0d51a2c5c7b9df557f}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!Vector@{Vector}}
+\index{Vector@{Vector}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{Vector()}{Vector()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+\hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::\hyperlink{classLuna_1_1Vector}{Vector} (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t \&}]{size,  }\item[{const T \&}]{elem }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor of specified size and elements. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & Size of the \hyperlink{classLuna_1_1Vector}{Vector} \\
+\hline
+{\em elem} & Element to fill each entry of the \hyperlink{classLuna_1_1Vector}{Vector} with \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 414 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+415                                             : VECTOR( \hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}, elem )
+416   \{\}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_acb8301bdca059a3880eb3478f52fca2d}\label{classLuna_1_1Vector_acb8301bdca059a3880eb3478f52fca2d}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!Vector@{Vector}}
+\index{Vector@{Vector}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{Vector()}{Vector()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+\hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::\hyperlink{classLuna_1_1Vector}{Vector} (\begin{DoxyParamCaption}\item[{const std\+::initializer\+\_\+list$<$ T $>$ \&}]{list }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor from a list of elements. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & A list of elements to store in the \hyperlink{classLuna_1_1Vector}{Vector} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 419 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+420   \{
+421     \textcolor{keywordflow}{for} ( \textcolor{keyword}{auto} i = list.begin(); i != list.end(); ++i )
+422     \{
+423       VECTOR.push\_back( *i );
+424     \}
+425   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_aa6a0a3ba8b22ee42e3ffd5087950644d}\label{classLuna_1_1Vector_aa6a0a3ba8b22ee42e3ffd5087950644d}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!Vector@{Vector}}
+\index{Vector@{Vector}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{Vector()}{Vector()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+\hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::\hyperlink{classLuna_1_1Vector}{Vector} (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{source }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Copy constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source} & \hyperlink{classLuna_1_1Vector}{Vector} to be copied when initialising \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 428 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+429   \{
+430     VECTOR = source.VECTOR;
+431   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_ab2453cc67935af9a0dd0b86292bd47d8}\label{classLuna_1_1Vector_ab2453cc67935af9a0dd0b86292bd47d8}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!````~Vector@{$\sim$\+Vector}}
+\index{````~Vector@{$\sim$\+Vector}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{$\sim$\+Vector()}{~Vector()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::$\sim$\hyperlink{classLuna_1_1Vector}{Vector} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Destructor. 
+
+
+
+Definition at line 74 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+74 \{\}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classLuna_1_1Vector_a1fe66d19f6641be9e301a306fdb58cbe}\label{classLuna_1_1Vector_a1fe66d19f6641be9e301a306fdb58cbe}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!abs@{abs}}
+\index{abs@{abs}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{abs()}{abs()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ double $>$ \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::abs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Absolute values. 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{classLuna_1_1Vector}{Vector} absolute of values of the elements 
+\end{DoxyReturn}
+
+
+Definition at line 677 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+678   \{
+679     Vector<double> abs\_vals;
+680     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i=0; i < this->\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}(); ++i)
+681     \{
+682       abs\_vals.push\_back( std::abs( VECTOR[ i ] ) ) ;
+683     \}
+684     \textcolor{keywordflow}{return} abs\_vals;
+685   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_ac543e0e7e7add55358f976f0baabbae3}\label{classLuna_1_1Vector_ac543e0e7e7add55358f976f0baabbae3}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!assign@{assign}}
+\index{assign@{assign}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{assign()}{assign()}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+void \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::assign (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t}]{n,  }\item[{const T}]{elem }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Assign new contents to the \hyperlink{classLuna_1_1Vector}{Vector}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & The number of elements to assign \\
+\hline
+{\em elem} & The element to be assigned \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 703 of file Vector.\+h.
+
+
+
+Referenced by Luna\+::\+Vector$<$ X $>$\+::assign(), and Luna\+::\+Linear\+Eigensystem$<$ T $>$\+::eigenvectors().
+
+
+\begin{DoxyCode}
+704   \{
+705     VECTOR.assign( n, elem );
+706   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_add6be56568d90c49e5f616e334275786}\label{classLuna_1_1Vector_add6be56568d90c49e5f616e334275786}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!back@{back}}
+\index{back@{back}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{back()}{back()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T \& \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::back (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+A reference to the last element in the \hyperlink{classLuna_1_1Vector}{Vector}. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the last element 
+\end{DoxyReturn}
+
+
+Definition at line 940 of file Vector.\+h.
+
+
+
+Referenced by Luna\+::\+Vector$<$ X $>$\+::back(), and Luna\+::\+Mesh1\+D$<$ T, X $>$\+::remesh().
+
+
+\begin{DoxyCode}
+941   \{
+942     \textcolor{keywordflow}{return} VECTOR.back();
+943   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a33f7acdc6965592629b2bb375c99cdc4}\label{classLuna_1_1Vector_a33f7acdc6965592629b2bb375c99cdc4}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!back@{back}}
+\index{back@{back}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{back()}{back()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+const T \& \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::back (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+A ( read only ) reference to the last element in the \hyperlink{classLuna_1_1Vector}{Vector}. 
+
+\begin{DoxyReturn}{Returns}
+The last element in the \hyperlink{classLuna_1_1Vector}{Vector} 
+\end{DoxyReturn}
+
+
+Definition at line 946 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+947   \{
+948     \textcolor{keywordflow}{return} VECTOR.back();
+949   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a88e47962286f0dd912fb19849731e67a}\label{classLuna_1_1Vector_a88e47962286f0dd912fb19849731e67a}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!begin@{begin}}
+\index{begin@{begin}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{begin()}{begin()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classLuna_1_1Vector_aa6c4164f0cd114da31acfde53a36d65e}{iter} \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Pass through the std\+::vector begin iterator. 
+
+\begin{DoxyReturn}{Returns}
+An iterator pointing to the first element 
+\end{DoxyReturn}
+
+
+Definition at line 351 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+352     \{
+353       \textcolor{keywordflow}{return} VECTOR.begin();
+354     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_ad4ac7dad7a59a052ca549319f1b1d5a6}\label{classLuna_1_1Vector_ad4ac7dad7a59a052ca549319f1b1d5a6}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!begin@{begin}}
+\index{begin@{begin}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{begin()}{begin()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classLuna_1_1Vector_a90cff5eab2782bc1c6aaa879ce18a2b8}{citer} \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Pass through the std\+::vector begin constant iterator. 
+
+\begin{DoxyReturn}{Returns}
+A constant iterator pointing to the first element 
+\end{DoxyReturn}
+
+
+Definition at line 365 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+366     \{
+367       \textcolor{keywordflow}{return} VECTOR.begin();
+368     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a7d2f6fca261feba2660cfb2b4819e5e1}\label{classLuna_1_1Vector_a7d2f6fca261feba2660cfb2b4819e5e1}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!clear@{clear}}
+\index{clear@{clear}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Clear all the elements from the \hyperlink{classLuna_1_1Vector}{Vector}. 
+
+
+
+Definition at line 671 of file Vector.\+h.
+
+
+
+Referenced by Luna\+::\+Vector$<$ X $>$\+::clear().
+
+
+\begin{DoxyCode}
+672   \{
+673     VECTOR.clear();
+674   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a17316bfedb7386a960206e0b0f22ecb4}\label{classLuna_1_1Vector_a17316bfedb7386a960206e0b0f22ecb4}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!conjugate@{conjugate}}
+\index{conjugate@{conjugate}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{conjugate()}{conjugate()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::conjugate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Conjugate of the elements of the \hyperlink{classLuna_1_1Vector}{Vector}. 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{classLuna_1_1Vector}{Vector} of conjugates of the elements 
+\end{DoxyReturn}
+
+
+Definition at line 731 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+732   \{
+733      Vector<T> \hyperlink{classLuna_1_1Vector_a17316bfedb7386a960206e0b0f22ecb4}{conjugate}( *\textcolor{keyword}{this} );
+734      \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i=0; i < \hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}(); ++i)
+735      \{
+736        \hyperlink{classLuna_1_1Vector_a17316bfedb7386a960206e0b0f22ecb4}{conjugate}.VECTOR[ i ] = std::conj( VECTOR[ i ] ) ;
+737      \}
+738      \textcolor{keywordflow}{return} \hyperlink{classLuna_1_1Vector_a17316bfedb7386a960206e0b0f22ecb4}{conjugate};
+739   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a0c54499efcc61b644a88f59a07b68105}\label{classLuna_1_1Vector_a0c54499efcc61b644a88f59a07b68105}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!dot@{dot}}
+\index{dot@{dot}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{dot()}{dot()}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+T \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::dot (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Dot product of two Vectors v.\+dot(w) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em w} & The \hyperlink{classLuna_1_1Vector}{Vector} to be dotted with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The dot product of two vectors 
+\end{DoxyReturn}
+
+
+Definition at line 810 of file Vector.\+h.
+
+
+
+Referenced by Luna\+::\+O\+D\+E\+\_\+\+B\+V\+P$<$ T, X $>$\+::adapt\+\_\+until(), Luna\+::\+Newton$<$ T $>$\+::arclength\+\_\+solve(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::solve\+\_\+\+Bi\+C\+G\+S\+T\+A\+B(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::solve\+\_\+\+C\+G(), and Luna\+::\+Sparse\+Matrix$<$ T $>$\+::solve\+\_\+\+Q\+M\+R().
+
+
+\begin{DoxyCode}
+811   \{
+812     \textcolor{keywordflow}{if} ( \hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}() != w.size() )   \{
+813       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Vector dot product: size error"} );
+814     \}
+815     T init( 0.0 );
+816     \textcolor{keywordflow}{return} std::inner\_product ( VECTOR.cbegin(), VECTOR.cend(),
+817                      w.VECTOR.begin(), init );
+818   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_afdb918d5b0eb66b94f8f9201b8bb7e45}\label{classLuna_1_1Vector_afdb918d5b0eb66b94f8f9201b8bb7e45}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!empty@{empty}}
+\index{empty@{empty}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{empty()}{empty()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns whether the \hyperlink{classLuna_1_1Vector}{Vector} is empty. 
+
+\begin{DoxyReturn}{Returns}
+true if the \hyperlink{classLuna_1_1Vector}{Vector} is size 0 and false otherwise 
+\end{DoxyReturn}
+
+
+Definition at line 653 of file Vector.\+h.
+
+
+
+Referenced by Luna\+::\+Vector$<$ X $>$\+::empty().
+
+
+\begin{DoxyCode}
+654   \{
+655     \textcolor{keywordflow}{return} VECTOR.empty();
+656   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a94f0c4fd25cb841b21d7bf7be4d6004f}\label{classLuna_1_1Vector_a94f0c4fd25cb841b21d7bf7be4d6004f}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!end@{end}}
+\index{end@{end}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{end()}{end()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classLuna_1_1Vector_aa6c4164f0cd114da31acfde53a36d65e}{iter} \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::end (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Pass through the std\+::vector end iterator. 
+
+\begin{DoxyReturn}{Returns}
+An iterator referring to the past-\/the-\/end element 
+\end{DoxyReturn}
+
+
+Definition at line 379 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+380     \{
+381       \textcolor{keywordflow}{return} VECTOR.end();
+382     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_aeb718e0c6a0d8cc3687481d544867f95}\label{classLuna_1_1Vector_aeb718e0c6a0d8cc3687481d544867f95}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!end@{end}}
+\index{end@{end}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{end()}{end()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classLuna_1_1Vector_a90cff5eab2782bc1c6aaa879ce18a2b8}{citer} \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::end (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Pass through the std\+::vector end constant iterator. 
+
+\begin{DoxyReturn}{Returns}
+A constant iterator referring to the past-\/the-\/end element 
+\end{DoxyReturn}
+
+
+Definition at line 393 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+394     \{
+395       \textcolor{keywordflow}{return} VECTOR.end();
+396     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a3400289dadcbd252a7cc5401e81a7dbb}\label{classLuna_1_1Vector_a3400289dadcbd252a7cc5401e81a7dbb}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!find@{find}}
+\index{find@{find}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{find()}{find()}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+std\+::size\+\_\+t \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::find (\begin{DoxyParamCaption}\item[{const T \&}]{val }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Find the first element in the \hyperlink{classLuna_1_1Vector}{Vector} that is equal to a given value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em val} & The value to find \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The index of the value in the \hyperlink{classLuna_1_1Vector}{Vector} (if not found returns last) 
+\end{DoxyReturn}
+
+
+Definition at line 639 of file Vector.\+h.
+
+
+
+Referenced by Luna\+::\+Sparse\+Matrix$<$ T $>$\+::insert().
+
+
+\begin{DoxyCode}
+640   \{
+641     std::size\_t index( 0 );
+642     std::vector<std::size\_t>::iterator it;
+643     it = std::find( VECTOR.begin(), VECTOR.end(), val );
+644     \textcolor{keywordflow}{for} ( std::vector<std::size\_t>::iterator i = VECTOR.begin();
+645           i != it; i++ )
+646     \{
+647       index++;
+648     \}
+649     \textcolor{keywordflow}{return} index;
+650   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_afde9791d85dd530a0e1c9794e8c6534e}\label{classLuna_1_1Vector_afde9791d85dd530a0e1c9794e8c6534e}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!imag@{imag}}
+\index{imag@{imag}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{imag()}{imag()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ double $>$ \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::imag (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Imaginary part of the elements of the \hyperlink{classLuna_1_1Vector}{Vector}. 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{classLuna_1_1Vector}{Vector} of imaginary parts of the elements 
+\end{DoxyReturn}
+
+
+Definition at line 720 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+721   \{
+722     Vector<double> imag\_part( \hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}() );
+723     \textcolor{keywordflow}{for} ( std::size\_t i = 0; i < \hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}(); ++i )
+724     \{
+725       imag\_part[ i ] = std::imag( VECTOR[ i ] ) ;
+726     \}
+727     \textcolor{keywordflow}{return} imag\_part;
+728   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a5d6821d9dd958423379cafbc6658853f}\label{classLuna_1_1Vector_a5d6821d9dd958423379cafbc6658853f}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!insert@{insert}}
+\index{insert@{insert}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+void \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::insert (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t \&}]{pos,  }\item[{const T \&}]{new\+\_\+elem,  }\item[{const std\+::size\+\_\+t \&}]{num = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Insert new elements into the \hyperlink{classLuna_1_1Vector}{Vector} at a specified position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & The position to insert the elements \\
+\hline
+{\em new\+\_\+elem} & The new element to be inserted \\
+\hline
+{\em num} & The number of new elements to be inserted ( 1 by default ) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 626 of file Vector.\+h.
+
+
+
+Referenced by Luna\+::\+Sparse\+Matrix$<$ T $>$\+::insert(), Luna\+::\+Vector$<$ X $>$\+::insert(), main(), and Luna\+::\+Vector$<$ X $>$\+::push\+\_\+front().
+
+
+\begin{DoxyCode}
+628   \{
+629     VECTOR.insert( VECTOR.begin() + pos, num, new\_elem );
+630   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a275847fc0bddea86c66651201a6db82e}\label{classLuna_1_1Vector_a275847fc0bddea86c66651201a6db82e}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!linspace@{linspace}}
+\index{linspace@{linspace}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{linspace()}{linspace()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+void \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::linspace (\begin{DoxyParamCaption}\item[{const double \&}]{a,  }\item[{const double \&}]{b,  }\item[{const std\+::size\+\_\+t \&}]{n }\end{DoxyParamCaption})}
+
+
+
+Create a linearly spaced \hyperlink{classLuna_1_1Vector}{Vector} (of doubles) with n elements. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Start value \\
+\hline
+{\em b} & End value \\
+\hline
+{\em n} & Number of elements \\
+\hline
+\end{DoxyParams}
+
+
+Referenced by main().
+
+\mbox{\Hypertarget{classLuna_1_1Vector_adfa42b44de71e22c33c11e1b64947043}\label{classLuna_1_1Vector_adfa42b44de71e22c33c11e1b64947043}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!linspace@{linspace}}
+\index{linspace@{linspace}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{linspace()}{linspace()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$$>$ \\
+void \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ double $>$\+::linspace (\begin{DoxyParamCaption}\item[{const double \&}]{a,  }\item[{const double \&}]{b,  }\item[{const std\+::size\+\_\+t \&}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 742 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+744     \{
+745         VECTOR.resize( n );
+746         \textcolor{keyword}{const} \textcolor{keywordtype}{double} h = ( b - a ) / (n - 1)  ;
+747         \textcolor{keywordflow}{for} ( std::size\_t i=0; i < n; ++i )
+748         \{
+749             VECTOR[ i ] = a + h * i;
+750         \}
+751     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_aaf2ae5f1e98f1f93c2f6262ea3c574b8}\label{classLuna_1_1Vector_aaf2ae5f1e98f1f93c2f6262ea3c574b8}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!max@{max}}
+\index{max@{max}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{max()}{max()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::max (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Maximum element. 
+
+\begin{DoxyReturn}{Returns}
+The maximum element in the \hyperlink{classLuna_1_1Vector}{Vector} 
+\end{DoxyReturn}
+
+
+Definition at line 855 of file Vector.\+h.
+
+
+
+Referenced by Luna\+::\+Vector$<$ X $>$\+::norm\+\_\+inf().
+
+
+\begin{DoxyCode}
+856   \{
+857     \textcolor{keywordflow}{return} VECTOR[ this-> \hyperlink{classLuna_1_1Vector_af7de15d570fa6cc999b5c900c220aaa5}{max\_index}() ];
+858   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_af7de15d570fa6cc999b5c900c220aaa5}\label{classLuna_1_1Vector_af7de15d570fa6cc999b5c900c220aaa5}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!max\+\_\+index@{max\+\_\+index}}
+\index{max\+\_\+index@{max\+\_\+index}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{max\+\_\+index()}{max\_index()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::size\+\_\+t \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::max\+\_\+index (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Maximum element index. 
+
+\begin{DoxyReturn}{Returns}
+The index of the largest element (first index if more than one) 
+\end{DoxyReturn}
+
+
+Definition at line 867 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+868   \{
+869     \textcolor{keywordflow}{return} std::distance( VECTOR.begin(),
+870                            std::max\_element( VECTOR.begin(), VECTOR.end() ) );
+871   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a6d60809efe2e6d25d16ffa27303bd474}\label{classLuna_1_1Vector_a6d60809efe2e6d25d16ffa27303bd474}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!min@{min}}
+\index{min@{min}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{min()}{min()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::min (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Minimum element. 
+
+\begin{DoxyReturn}{Returns}
+The minimum element in the \hyperlink{classLuna_1_1Vector}{Vector} 
+\end{DoxyReturn}
+
+
+Definition at line 861 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+862   \{
+863     \textcolor{keywordflow}{return} VECTOR[ this-> \hyperlink{classLuna_1_1Vector_abb6b63a716faec0dacce220eb82424f8}{min\_index}() ];
+864   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_abb6b63a716faec0dacce220eb82424f8}\label{classLuna_1_1Vector_abb6b63a716faec0dacce220eb82424f8}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!min\+\_\+index@{min\+\_\+index}}
+\index{min\+\_\+index@{min\+\_\+index}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{min\+\_\+index()}{min\_index()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::size\+\_\+t \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::min\+\_\+index (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Minimum element index. 
+
+\begin{DoxyReturn}{Returns}
+The index of the smallest element (first index if more than one) 
+\end{DoxyReturn}
+
+
+Definition at line 874 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+875   \{
+876     \textcolor{keywordflow}{return} std::distance( VECTOR.begin(),
+877                            std::min\_element( VECTOR.begin(), VECTOR.end() ) );
+878   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a7f36db8f617c64ebe772e2af28c3e475}\label{classLuna_1_1Vector_a7f36db8f617c64ebe772e2af28c3e475}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!norm\+\_\+1@{norm\+\_\+1}}
+\index{norm\+\_\+1@{norm\+\_\+1}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{norm\+\_\+1()}{norm\_1()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+double \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::norm\+\_\+1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+L1 norm\+: sum of absolute values. 
+
+\begin{DoxyReturn}{Returns}
+The L1 norm of the \hyperlink{classLuna_1_1Vector}{Vector} 
+\end{DoxyReturn}
+
+
+Definition at line 954 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+955   \{
+956     \textcolor{keywordflow}{return} ( this->\hyperlink{classLuna_1_1Vector_a1fe66d19f6641be9e301a306fdb58cbe}{abs}() ).sum();
+957   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a1b06ed062a50b1006f991ffad6b9b8f4}\label{classLuna_1_1Vector_a1b06ed062a50b1006f991ffad6b9b8f4}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!norm\+\_\+2@{norm\+\_\+2}}
+\index{norm\+\_\+2@{norm\+\_\+2}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{norm\+\_\+2()}{norm\_2()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+double \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::norm\+\_\+2 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+L2 norm\+: square root of the sum of the squares. 
+
+\begin{DoxyReturn}{Returns}
+The L2 norm of the \hyperlink{classLuna_1_1Vector}{Vector} 
+\end{DoxyReturn}
+
+
+Definition at line 960 of file Vector.\+h.
+
+
+
+Referenced by main(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::solve\+\_\+\+Bi\+C\+G(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::solve\+\_\+\+Bi\+C\+G\+S\+T\+A\+B(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::solve\+\_\+\+C\+G(), and Luna\+::\+Sparse\+Matrix$<$ T $>$\+::solve\+\_\+\+Q\+M\+R().
+
+
+\begin{DoxyCode}
+961   \{
+962     \textcolor{keywordflow}{return} std::sqrt( ( this->\hyperlink{classLuna_1_1Vector_a1fe66d19f6641be9e301a306fdb58cbe}{abs}() ).\hyperlink{classLuna_1_1Vector_a60f8017f50e602151c84686ac081af66}{square}().\hyperlink{classLuna_1_1Vector_a3f9422b246093b153a55577a6ca97e26}{sum}() );
+963   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a54e835cea735921c7487fb2451bca258}\label{classLuna_1_1Vector_a54e835cea735921c7487fb2451bca258}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!norm\+\_\+inf@{norm\+\_\+inf}}
+\index{norm\+\_\+inf@{norm\+\_\+inf}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{norm\+\_\+inf()}{norm\_inf()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+double \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::norm\+\_\+inf (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Inf norm\+: largest absolute value element (p -\/$>$ infinity) 
+
+\begin{DoxyReturn}{Returns}
+The infinity norm of the \hyperlink{classLuna_1_1Vector}{Vector} 
+\end{DoxyReturn}
+
+
+Definition at line 972 of file Vector.\+h.
+
+
+
+Referenced by Luna\+::\+O\+D\+E\+\_\+\+B\+V\+P$<$ T, X $>$\+::adapt(), Luna\+::\+Newton$<$ T $>$\+::arclength\+\_\+solve(), Luna\+::\+Newton$<$ T $>$\+::iterate(), and Luna\+::\+O\+D\+E\+\_\+\+B\+V\+P$<$ T, X $>$\+::solve\+\_\+bvp().
+
+
+\begin{DoxyCode}
+973   \{
+974     \textcolor{keywordflow}{return} ( this->\hyperlink{classLuna_1_1Vector_a1fe66d19f6641be9e301a306fdb58cbe}{abs}() ).max();
+975   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a3cc614bd51c84050cffc07f61b5238b2}\label{classLuna_1_1Vector_a3cc614bd51c84050cffc07f61b5238b2}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!norm\+\_\+p@{norm\+\_\+p}}
+\index{norm\+\_\+p@{norm\+\_\+p}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{norm\+\_\+p()}{norm\_p()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+double \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::norm\+\_\+p (\begin{DoxyParamCaption}\item[{const double \&}]{p }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Lp norm\+: p-\/th root of the sum of the absolute values to the power p. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & The exponent for the p-\/norm \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Lp norm of the \hyperlink{classLuna_1_1Vector}{Vector} 
+\end{DoxyReturn}
+
+
+Definition at line 966 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+967   \{
+968     \textcolor{keywordflow}{return} std::pow( ( this->\hyperlink{classLuna_1_1Vector_a1fe66d19f6641be9e301a306fdb58cbe}{abs}() ).\hyperlink{classLuna_1_1Vector_ad691f671733f78bbf3bdbaf46fcbc5a0}{power}( p ).\hyperlink{classLuna_1_1Vector_a3f9422b246093b153a55577a6ca97e26}{sum}(), 1.0 / p );
+969   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_aafaaa4c508431ed078c1599bcb7608be}\label{classLuna_1_1Vector_aafaaa4c508431ed078c1599bcb7608be}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!operator()@{operator()}}
+\index{operator()@{operator()}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+void \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::operator() (\begin{DoxyParamCaption}\item[{const T \&}]{new\+\_\+elem }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Push a new element into the end of the \hyperlink{classLuna_1_1Vector}{Vector} (overload () to push\+\_\+back) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+elem} & New element to be appended to the end of the \hyperlink{classLuna_1_1Vector}{Vector} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 600 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+601   \{
+602     VECTOR.push\_back( new\_elem );
+603   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a2d6abef72879a5ef40ce068271eb145f}\label{classLuna_1_1Vector_a2d6abef72879a5ef40ce068271eb145f}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const T \&}]{scalar }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Scalar multiplication. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & The scalar to multiply the \hyperlink{classLuna_1_1Vector}{Vector} by \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The \hyperlink{classLuna_1_1Vector}{Vector} multiplied by the scalar 
+\end{DoxyReturn}
+
+
+Definition at line 518 of file Vector.\+h.
+
+
+
+Referenced by Luna\+::\+Vector$<$ X $>$\+::$\sim$\+Vector().
+
+
+\begin{DoxyCode}
+519   \{
+520     Vector<T> temp( *\textcolor{keyword}{this} );
+521     \hyperlink{namespaceHeat__plot_aeaa6785bedcad63b4bd40e8cb1bad8a0}{std::transform} ( temp.VECTOR.cbegin(), temp.VECTOR.cend(),
+522                      temp.VECTOR.begin(),
+523                      std::bind( std::multiplies<T>(),
+524                                 std::placeholders::\_1, scalar ) );
+525     \textcolor{keywordflow}{return} temp;
+526   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_aad04978d7a710d8091bbbb0497173547}\label{classLuna_1_1Vector_aad04978d7a710d8091bbbb0497173547}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{operator$\ast$=()}{operator*=()}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \& \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::operator$\ast$= (\begin{DoxyParamCaption}\item[{const T \&}]{scalar }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Scalar multiplication assignment. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & The scalar to multiply the \hyperlink{classLuna_1_1Vector}{Vector} by \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the \hyperlink{classLuna_1_1Vector}{Vector} after multiplication by a scalar 
+\end{DoxyReturn}
+
+
+Definition at line 566 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+567   \{
+568     \hyperlink{namespaceHeat__plot_aeaa6785bedcad63b4bd40e8cb1bad8a0}{std::transform} ( VECTOR.cbegin(), VECTOR.cend(), VECTOR.begin(),
+569                      std::bind( std::multiplies<T>(),
+570                                 std::placeholders::\_1, scalar ) );
+571     \textcolor{keywordflow}{return} *\textcolor{keyword}{this};
+572   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a98436d0360c521cc7200f3f65201230e}\label{classLuna_1_1Vector_a98436d0360c521cc7200f3f65201230e}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!operator+@{operator+}}
+\index{operator+@{operator+}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{operator+()}{operator+()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::operator+ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Unary +. 
+
+\begin{DoxyReturn}{Returns}
+The \hyperlink{classLuna_1_1Vector}{Vector} 
+\end{DoxyReturn}
+
+
+Definition at line 475 of file Vector.\+h.
+
+
+
+Referenced by Luna\+::\+Vector$<$ X $>$\+::$\sim$\+Vector().
+
+
+\begin{DoxyCode}
+476   \{
+477     \textcolor{keywordflow}{return} *\textcolor{keyword}{this};
+478   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a4250a1034080a224eed0c2cd8ee0fcd2}\label{classLuna_1_1Vector_a4250a1034080a224eed0c2cd8ee0fcd2}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!operator+@{operator+}}
+\index{operator+@{operator+}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{operator+()}{operator+()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::operator+ (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{v\+\_\+plus }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Binary +. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v\+\_\+plus} & The \hyperlink{classLuna_1_1Vector}{Vector} to be added \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The sum of this \hyperlink{classLuna_1_1Vector}{Vector} and v\+\_\+plus 
+\end{DoxyReturn}
+
+
+Definition at line 490 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+491   \{
+492     Vector<T> temp( *\textcolor{keyword}{this} );
+493     \textcolor{keywordflow}{if} ( v\_plus.VECTOR.size() != temp.VECTOR.size() )
+494     \{
+495       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Vector dimension error in + operator."} );
+496     \}
+497     \hyperlink{namespaceHeat__plot_aeaa6785bedcad63b4bd40e8cb1bad8a0}{std::transform} ( temp.VECTOR.cbegin(), temp.VECTOR.cend(),
+498                      v\_plus.VECTOR.begin(), temp.VECTOR.begin(),
+499                      std::plus<T>() );
+500     \textcolor{keywordflow}{return} temp;
+501   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a80a9509a146aeab507f93f994fd7eff9}\label{classLuna_1_1Vector_a80a9509a146aeab507f93f994fd7eff9}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{operator+=()}{operator+=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \& \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::operator+= (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{v\+\_\+plus }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Addition assignment. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v\+\_\+plus} & The \hyperlink{classLuna_1_1Vector}{Vector} to be added \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the \hyperlink{classLuna_1_1Vector}{Vector} after addition by v\+\_\+plus 
+\end{DoxyReturn}
+
+
+Definition at line 540 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+541   \{
+542     \textcolor{keywordflow}{if} ( v\_plus.VECTOR.size() != VECTOR.size() )
+543     \{
+544       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Vector dimension error in += operator."} );
+545     \}
+546     \hyperlink{namespaceHeat__plot_aeaa6785bedcad63b4bd40e8cb1bad8a0}{std::transform} ( VECTOR.cbegin(), VECTOR.cend(),
+547                      v\_plus.VECTOR.begin(), VECTOR.begin(),
+548                      std::plus<T>() );
+549     \textcolor{keywordflow}{return} *\textcolor{keyword}{this};
+550   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_adba6b93c812f8201980b29d3eaeca671}\label{classLuna_1_1Vector_adba6b93c812f8201980b29d3eaeca671}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{operator+=()}{operator+=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \& \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::operator+= (\begin{DoxyParamCaption}\item[{const T \&}]{add }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constant addition assignment. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em add} & The constant to be added to each element \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the \hyperlink{classLuna_1_1Vector}{Vector} after addition by a constant 
+\end{DoxyReturn}
+
+
+Definition at line 584 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+585   \{
+586     \hyperlink{namespaceHeat__plot_aeaa6785bedcad63b4bd40e8cb1bad8a0}{std::transform} ( VECTOR.cbegin(), VECTOR.cend(), VECTOR.begin(),
+587                      std::bind( std::plus<T>(), std::placeholders::\_1, add ) );
+588     \textcolor{keywordflow}{return} *\textcolor{keyword}{this};
+589   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a8b2f1a6d3c51d317243c2e832411f26d}\label{classLuna_1_1Vector_a8b2f1a6d3c51d317243c2e832411f26d}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::operator-\/ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Unary -\/. 
+
+\begin{DoxyReturn}{Returns}
+The negation of the \hyperlink{classLuna_1_1Vector}{Vector} 
+\end{DoxyReturn}
+
+
+Definition at line 481 of file Vector.\+h.
+
+
+
+Referenced by Luna\+::\+Vector$<$ X $>$\+::$\sim$\+Vector().
+
+
+\begin{DoxyCode}
+482   \{
+483     Vector<T> temp( *\textcolor{keyword}{this} );
+484     \hyperlink{namespaceHeat__plot_aeaa6785bedcad63b4bd40e8cb1bad8a0}{std::transform} ( temp.VECTOR.cbegin(), temp.VECTOR.cend(),
+485                      temp.VECTOR.begin(), std::negate<T>() );
+486     \textcolor{keywordflow}{return} temp;
+487   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a6fe350a0e81289f65f9d364d669d434d}\label{classLuna_1_1Vector_a6fe350a0e81289f65f9d364d669d434d}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::operator-\/ (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{v\+\_\+minus }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Binary -\/. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v\+\_\+minus} & The \hyperlink{classLuna_1_1Vector}{Vector} to be subtracted \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The subtraction of v\+\_\+minus from this \hyperlink{classLuna_1_1Vector}{Vector} 
+\end{DoxyReturn}
+
+
+Definition at line 504 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+505   \{
+506     Vector<T> temp( *\textcolor{keyword}{this} );
+507     \textcolor{keywordflow}{if} ( v\_minus.VECTOR.size() != temp.VECTOR.size() )
+508     \{
+509       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Vector dimension error in - operator."} );
+510     \}
+511     \hyperlink{namespaceHeat__plot_aeaa6785bedcad63b4bd40e8cb1bad8a0}{std::transform} ( temp.VECTOR.cbegin(), temp.VECTOR.cend(),
+512                      v\_minus.VECTOR.begin(), temp.VECTOR.begin(),
+513                      std::minus<T>() );
+514     \textcolor{keywordflow}{return} temp;
+515   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a1be4f350f70c6bd70032da8d5a2329ef}\label{classLuna_1_1Vector_a1be4f350f70c6bd70032da8d5a2329ef}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{operator-\/=()}{operator-=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \& \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::operator-\/= (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{v\+\_\+minus }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Subtraction assignment. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v\+\_\+minus} & The \hyperlink{classLuna_1_1Vector}{Vector} to be subtracted \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the \hyperlink{classLuna_1_1Vector}{Vector} after subtraction by v\+\_\+minus 
+\end{DoxyReturn}
+
+
+Definition at line 553 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+554   \{
+555     \textcolor{keywordflow}{if} ( v\_minus.VECTOR.size() != VECTOR.size() )
+556     \{
+557       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Vector dimension error in -= operator."} );
+558     \}
+559     \hyperlink{namespaceHeat__plot_aeaa6785bedcad63b4bd40e8cb1bad8a0}{std::transform} ( VECTOR.cbegin(), VECTOR.cend(),
+560                      v\_minus.VECTOR.begin(), VECTOR.begin(),
+561                      std::minus<T>() );
+562     \textcolor{keywordflow}{return} *\textcolor{keyword}{this};
+563   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a407921bee5f382c34030217e3d2a2417}\label{classLuna_1_1Vector_a407921bee5f382c34030217e3d2a2417}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{operator-\/=()}{operator-=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \& \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::operator-\/= (\begin{DoxyParamCaption}\item[{const T \&}]{minus }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constant subtraction assignment. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em minus} & The constant to be subtracted from each element \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the \hyperlink{classLuna_1_1Vector}{Vector} after subtraction by a constant 
+\end{DoxyReturn}
+
+
+Definition at line 592 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+593   \{
+594     \hyperlink{namespaceHeat__plot_aeaa6785bedcad63b4bd40e8cb1bad8a0}{std::transform} ( VECTOR.cbegin(), VECTOR.cend(), VECTOR.begin(),
+595                      std::bind( std::minus<T>(), std::placeholders::\_1, minus ));
+596     \textcolor{keywordflow}{return} *\textcolor{keyword}{this};
+597   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_aabb416e2f6237ad98c24c7059fc742eb}\label{classLuna_1_1Vector_aabb416e2f6237ad98c24c7059fc742eb}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!operator/@{operator/}}
+\index{operator/@{operator/}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{operator/()}{operator/()}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::operator/ (\begin{DoxyParamCaption}\item[{const T \&}]{divisor }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Scalar division. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & The divisor to divide the \hyperlink{classLuna_1_1Vector}{Vector} by \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The \hyperlink{classLuna_1_1Vector}{Vector} divided by the divisor 
+\end{DoxyReturn}
+
+
+Definition at line 529 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+530   \{
+531     Vector<T> temp( *\textcolor{keyword}{this} );
+532     \hyperlink{namespaceHeat__plot_aeaa6785bedcad63b4bd40e8cb1bad8a0}{std::transform} ( temp.VECTOR.cbegin(), temp.VECTOR.cend(),
+533                      temp.VECTOR.begin(),
+534                      std::bind( std::divides<T>(),
+535                                 std::placeholders::\_1, divisor ) );
+536     \textcolor{keywordflow}{return} temp;
+537   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a27dfb8d1b326a6bc7fd482fecb922f64}\label{classLuna_1_1Vector_a27dfb8d1b326a6bc7fd482fecb922f64}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!operator/=@{operator/=}}
+\index{operator/=@{operator/=}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{operator/=()}{operator/=()}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \& \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::operator/= (\begin{DoxyParamCaption}\item[{const T \&}]{divisor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Scalar division assigment. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & The divisor to divide the \hyperlink{classLuna_1_1Vector}{Vector} by \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the \hyperlink{classLuna_1_1Vector}{Vector} after division by a divisor 
+\end{DoxyReturn}
+
+
+Definition at line 575 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+576   \{
+577     \hyperlink{namespaceHeat__plot_aeaa6785bedcad63b4bd40e8cb1bad8a0}{std::transform} ( VECTOR.cbegin(), VECTOR.cend(), VECTOR.begin(),
+578                      std::bind( std::divides<T>(),
+579                                 std::placeholders::\_1, divisor ) );
+580     \textcolor{keywordflow}{return} *\textcolor{keyword}{this};
+581   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_af2ee9028f1c40a21a2a4055e63b70b2c}\label{classLuna_1_1Vector_af2ee9028f1c40a21a2a4055e63b70b2c}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!operator=@{operator=}}
+\index{operator=@{operator=}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \& \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{original }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Copy assignment. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em original} & \hyperlink{classLuna_1_1Vector}{Vector} to be copied \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The new \hyperlink{classLuna_1_1Vector}{Vector} 
+\end{DoxyReturn}
+
+
+Definition at line 467 of file Vector.\+h.
+
+
+
+Referenced by Luna\+::\+Vector$<$ X $>$\+::$\sim$\+Vector().
+
+
+\begin{DoxyCode}
+468   \{
+469     \textcolor{keywordflow}{if} ( \textcolor{keyword}{this} == &original )\{ \textcolor{keywordflow}{return} *\textcolor{keyword}{this}; \}
+470     VECTOR = original.VECTOR;
+471     \textcolor{keywordflow}{return} *\textcolor{keyword}{this};
+472   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_adb31a846162021be5bc13b33cdbabc1c}\label{classLuna_1_1Vector_adb31a846162021be5bc13b33cdbabc1c}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{operator[]()}{operator[]()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+const T \& \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t \&}]{i }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Indexing operator ( read only ) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A constant reference to the element located at the given index 
+\end{DoxyReturn}
+
+
+Definition at line 447 of file Vector.\+h.
+
+
+
+Referenced by Luna\+::\+Vector$<$ X $>$\+::$\sim$\+Vector().
+
+
+\begin{DoxyCode}
+448   \{
+449     \textcolor{keywordflow}{if} ( i < 0 || VECTOR.size() <= i )
+450     \{
+451       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Vector operator [] range error"} );
+452     \}
+453     \textcolor{keywordflow}{return} VECTOR[ i ];
+454   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_ae4e2ff0ca1e504e31453f436f6f733c1}\label{classLuna_1_1Vector_ae4e2ff0ca1e504e31453f436f6f733c1}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{operator[]()}{operator[]()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T \& \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t \&}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Indexing operator ( read / write ) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the element located at the given index 
+\end{DoxyReturn}
+
+
+Definition at line 457 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+458   \{
+459     \textcolor{keywordflow}{if} ( i < 0 || VECTOR.size() <= i )
+460     \{
+461       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Vector operator [] range error"} );
+462     \}
+463     \textcolor{keywordflow}{return} VECTOR[ i ];
+464   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_aac601f8185b989cc0865fdc0c86483ca}\label{classLuna_1_1Vector_aac601f8185b989cc0865fdc0c86483ca}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!output@{output}}
+\index{output@{output}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{output()}{output()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::output (\begin{DoxyParamCaption}\item[{std\+::string}]{filename,  }\item[{int}]{precision = {\ttfamily 12} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Output the \hyperlink{classLuna_1_1Vector}{Vector} to a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The name of the file to output the \hyperlink{classLuna_1_1Vector}{Vector} to \\
+\hline
+{\em precision} & The precision of the elements to be stored \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 821 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+822   \{
+823     std::ofstream out;
+824     out.open( filename.c\_str() );
+825     out.precision( precision );
+826     out.setf( std::ios::showpoint );
+827     out.setf( std::ios::showpos );
+828     out.setf( std::ios::scientific );
+829     \textcolor{keywordflow}{for} ( std::size\_t i = 0; i < \hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}(); ++i )
+830     \{
+831       out << VECTOR[ i ] << std::endl;
+832     \}
+833   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_afd5c648a6a46b09e75ba94f8e7bc65ba}\label{classLuna_1_1Vector_afd5c648a6a46b09e75ba94f8e7bc65ba}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!pop\+\_\+back@{pop\+\_\+back}}
+\index{pop\+\_\+back@{pop\+\_\+back}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{pop\+\_\+back()}{pop\_back()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::pop\+\_\+back (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Remove the last element in the \hyperlink{classLuna_1_1Vector}{Vector}. 
+
+
+
+Definition at line 633 of file Vector.\+h.
+
+
+
+Referenced by Luna\+::\+Vector$<$ X $>$\+::pop\+\_\+back().
+
+
+\begin{DoxyCode}
+634   \{
+635     VECTOR.pop\_back();
+636   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_ad691f671733f78bbf3bdbaf46fcbc5a0}\label{classLuna_1_1Vector_ad691f671733f78bbf3bdbaf46fcbc5a0}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!power@{power}}
+\index{power@{power}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{power()}{power()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::power (\begin{DoxyParamCaption}\item[{const double \&}]{p }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Raise all the elements in the \hyperlink{classLuna_1_1Vector}{Vector} to the power p. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & The exponent to raise each of the elements to \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{classLuna_1_1Vector}{Vector} of the elements raised to the power p 
+\end{DoxyReturn}
+
+
+Definition at line 892 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+893   \{
+894     Vector<T> \hyperlink{classLuna_1_1Vector_ad691f671733f78bbf3bdbaf46fcbc5a0}{power};
+895     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i=0; i < \hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}(); ++i)
+896     \{
+897       power.VECTOR.push\_back( std::pow( VECTOR[ i ], p ) );
+898     \}
+899     \textcolor{keywordflow}{return} \hyperlink{classLuna_1_1Vector_ad691f671733f78bbf3bdbaf46fcbc5a0}{power};
+900   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a8073a13aaee8bf6602a543d912193626}\label{classLuna_1_1Vector_a8073a13aaee8bf6602a543d912193626}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!powspace@{powspace}}
+\index{powspace@{powspace}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{powspace()}{powspace()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+void \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::powspace (\begin{DoxyParamCaption}\item[{const double \&}]{a,  }\item[{const double \&}]{b,  }\item[{const std\+::size\+\_\+t \&}]{n,  }\item[{const double \&}]{p }\end{DoxyParamCaption})}
+
+
+
+Create a nonuniform \hyperlink{classLuna_1_1Vector}{Vector} using a power law with exponent p (1-\/$>$linear) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Start value \\
+\hline
+{\em b} & End value \\
+\hline
+{\em n} & Number of elements \\
+\hline
+{\em p} & Exponent \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classLuna_1_1Vector_a3661efcaa52933187623fae94602f21b}\label{classLuna_1_1Vector_a3661efcaa52933187623fae94602f21b}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!powspace@{powspace}}
+\index{powspace@{powspace}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{powspace()}{powspace()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$$>$ \\
+void \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ double $>$\+::powspace (\begin{DoxyParamCaption}\item[{const double \&}]{a,  }\item[{const double \&}]{b,  }\item[{const std\+::size\+\_\+t \&}]{n,  }\item[{const double \&}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 754 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+756   \{
+757     VECTOR.resize( n );
+758     \textcolor{keywordflow}{for} ( std::size\_t i = 0; i < n; ++i )
+759     \{
+760       VECTOR[ i ] = a + ( b - a ) * std::pow( ( \textcolor{keywordtype}{double} )i / ( n - 1 ), p );
+761     \}
+762   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a25e7062ee4ef547ac7ad54bd63605e60}\label{classLuna_1_1Vector_a25e7062ee4ef547ac7ad54bd63605e60}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!product@{product}}
+\index{product@{product}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{product()}{product()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::product (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t \&}]{start,  }\item[{const std\+::size\+\_\+t \&}]{end }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Product of the elements in the \hyperlink{classLuna_1_1Vector}{Vector} (from index start to end) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & Start index \\
+\hline
+{\em end} & End index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Product of the elements in the \hyperlink{classLuna_1_1Vector}{Vector} 
+\end{DoxyReturn}
+
+
+Definition at line 765 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+767   \{
+768     \textcolor{keywordflow}{if} ( start > \hyperlink{classLuna_1_1Vector_a94f0c4fd25cb841b21d7bf7be4d6004f}{end} )   \{ \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Vector product: start > end"} );\}
+769     \textcolor{keywordflow}{if} ( start<0 || \hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}()<=start ) \{
+770       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Vector product method range error"} );\}
+771     \textcolor{keywordflow}{if} ( \hyperlink{classLuna_1_1Vector_a94f0c4fd25cb841b21d7bf7be4d6004f}{end}<0 || \hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}()<=\hyperlink{classLuna_1_1Vector_a94f0c4fd25cb841b21d7bf7be4d6004f}{end} )   \{
+772       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Vector product method range error"} );\}
+773     T prod( VECTOR[ start ] );
+774     \textcolor{keywordflow}{for} ( std::size\_t i=start+1; i<=\hyperlink{classLuna_1_1Vector_a94f0c4fd25cb841b21d7bf7be4d6004f}{end}; ++i )
+775     \{
+776       prod *= VECTOR[ i ];
+777     \}
+778     \textcolor{keywordflow}{return} prod;
+779   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_ac5b4435a746e0894b8b4caa893b53619}\label{classLuna_1_1Vector_ac5b4435a746e0894b8b4caa893b53619}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!product@{product}}
+\index{product@{product}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{product()}{product()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::product (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+Product of the elements in the \hyperlink{classLuna_1_1Vector}{Vector} 
+\end{DoxyReturn}
+
+
+Definition at line 782 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+783   \{
+784     \textcolor{keywordflow}{return} this->\hyperlink{classLuna_1_1Vector_ac5b4435a746e0894b8b4caa893b53619}{product}( 0, \hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}() - 1 );
+785   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_abf2693db9286f81cf68693fc4fb9fd18}\label{classLuna_1_1Vector_abf2693db9286f81cf68693fc4fb9fd18}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!push\+\_\+back@{push\+\_\+back}}
+\index{push\+\_\+back@{push\+\_\+back}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{push\+\_\+back()}{push\_back()}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+void \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::push\+\_\+back (\begin{DoxyParamCaption}\item[{const T \&}]{new\+\_\+elem }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Push a new element into the end of the \hyperlink{classLuna_1_1Vector}{Vector}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+elem} & New element to be appended to the end of the \hyperlink{classLuna_1_1Vector}{Vector} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 614 of file Vector.\+h.
+
+
+
+Referenced by Luna\+::\+Vector$<$ X $>$\+::abs(), Luna\+::\+O\+D\+E\+\_\+\+B\+V\+P$<$ T, X $>$\+::adapt(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::col\+\_\+index(), Luna\+::\+Linear\+Eigensystem$<$ T $>$\+::eigenvectors(), Luna\+::\+Mesh1\+D$<$ T, X $>$\+::get\+\_\+nodes\+\_\+vars(), Luna\+::\+Mesh2\+D$<$ T $>$\+::get\+\_\+nodes\+\_\+vars(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::insert(), main(), Luna\+::\+Matrix$<$ double $>$\+::multiply(), Luna\+::\+Vector$<$ X $>$\+::operator()(), Luna\+::\+Vector$<$ X $>$\+::push\+\_\+back(), Luna\+::\+Tridiagonal$<$ T $>$\+::solve(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::\+Sparse\+Matrix(), and Luna\+::\+Vector$<$ X $>$\+::\+Vector().
+
+
+\begin{DoxyCode}
+615   \{
+616     VECTOR.push\_back( new\_elem );
+617   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a5361abffa2009f603103aed197743554}\label{classLuna_1_1Vector_a5361abffa2009f603103aed197743554}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!push\+\_\+front@{push\+\_\+front}}
+\index{push\+\_\+front@{push\+\_\+front}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{push\+\_\+front()}{push\_front()}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+void \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::push\+\_\+front (\begin{DoxyParamCaption}\item[{const T \&}]{new\+\_\+elem }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Push a new element into the front of the \hyperlink{classLuna_1_1Vector}{Vector}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+elem} & New element to be added to the front of the \hyperlink{classLuna_1_1Vector}{Vector} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 620 of file Vector.\+h.
+
+
+
+Referenced by Luna\+::\+Linear\+Eigensystem$<$ T $>$\+::compute\+\_\+real\+\_\+symmetric\+\_\+tridiagonal(), and Luna\+::\+Tridiagonal$<$ T $>$\+::solve().
+
+
+\begin{DoxyCode}
+621   \{
+622     VECTOR.insert( VECTOR.begin(), new\_elem );
+623   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_af5d145bb808403eca4a2ea4edd1132c2}\label{classLuna_1_1Vector_af5d145bb808403eca4a2ea4edd1132c2}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!random@{random}}
+\index{random@{random}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{random()}{random()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+void \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::random (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Fill the \hyperlink{classLuna_1_1Vector}{Vector} with random elements (between -\/1 and 1) 
+
+
+
+Referenced by main().
+
+\mbox{\Hypertarget{classLuna_1_1Vector_a0a853cbc32fbc152c90b08f37aa14a10}\label{classLuna_1_1Vector_a0a853cbc32fbc152c90b08f37aa14a10}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!random@{random}}
+\index{random@{random}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{random()}{random()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$$>$ \\
+void \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ double $>$\+::random (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 903 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+904   \{
+905     std::mt19937\_64 rng;
+906     \textcolor{comment}{// initialize the random number generator with time-dependent seed}
+907     \textcolor{keyword}{auto} start = std::chrono::high\_resolution\_clock::now();
+908     uint64\_t timeSeed = start.time\_since\_epoch().count();
+909     std::seed\_seq ss\{uint32\_t(timeSeed & 0xffffffff), uint32\_t(timeSeed>>32)\};
+910     rng.seed(ss);
+911     \textcolor{comment}{// initialize a uniform distribution between -1 and 1}
+912     std::uniform\_real\_distribution<double> unif(-1, 1);
+913     \textcolor{keywordflow}{for} ( std::size\_t i = 0; i < VECTOR.size(); ++i )
+914     \{
+915       \textcolor{keywordtype}{double} num( unif(rng) );
+916       VECTOR[ i ] = num;
+917     \}
+918   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_ada5c7a79b4011f3cae60ae198a6c240a}\label{classLuna_1_1Vector_ada5c7a79b4011f3cae60ae198a6c240a}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!random@{random}}
+\index{random@{random}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{random()}{random()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$$>$ \\
+void \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ std\+::complex$<$ double $>$ $>$\+::random (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 921 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+922   \{
+923     std::mt19937\_64 rng;
+924     \textcolor{comment}{// initialize the random number generator with time-dependent seed}
+925     \textcolor{keyword}{auto} start = std::chrono::high\_resolution\_clock::now();
+926     uint64\_t timeSeed = start.time\_since\_epoch().count();
+927     std::seed\_seq ss\{uint32\_t(timeSeed & 0xffffffff), uint32\_t(timeSeed>>32)\};
+928     rng.seed(ss);
+929     \textcolor{comment}{// initialize a uniform distribution between -1 and 1}
+930     std::uniform\_real\_distribution<double> unif(-1, 1);
+931     \textcolor{keywordflow}{for} ( std::size\_t i = 0; i < VECTOR.size(); ++i )
+932     \{
+933       \textcolor{keywordtype}{double} \hyperlink{classLuna_1_1Vector_a39fa58d9f5fdca76b6ffa6cc481f9284}{real}( unif(rng) );
+934       \textcolor{keywordtype}{double} \hyperlink{classLuna_1_1Vector_afde9791d85dd530a0e1c9794e8c6534e}{imag}( unif(rng) );
+935       VECTOR[ i ] = std::complex<double> ( \hyperlink{classLuna_1_1Vector_a39fa58d9f5fdca76b6ffa6cc481f9284}{real}, \hyperlink{classLuna_1_1Vector_afde9791d85dd530a0e1c9794e8c6534e}{imag} );
+936     \}
+937   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_ac7d078c9f67745df2865f50577722926}\label{classLuna_1_1Vector_ac7d078c9f67745df2865f50577722926}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!rbegin@{rbegin}}
+\index{rbegin@{rbegin}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{rbegin()}{rbegin()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classLuna_1_1Vector_a6db6c6b09df2c68bbfd1960c56bb20d5}{riter} \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::rbegin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Pass through the std\+::vector begin reverse iterator. 
+
+\begin{DoxyReturn}{Returns}
+A reverse iterator pointing to the last element 
+\end{DoxyReturn}
+
+
+Definition at line 358 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+359     \{
+360       \textcolor{keywordflow}{return} VECTOR.rbegin();
+361     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a62b4a362a308d2348c2d035c0d245f0c}\label{classLuna_1_1Vector_a62b4a362a308d2348c2d035c0d245f0c}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!rbegin@{rbegin}}
+\index{rbegin@{rbegin}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{rbegin()}{rbegin()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classLuna_1_1Vector_a66e997f05169640055703449672be075}{criter} \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::rbegin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Pass through the std\+::vector begin constant reverse iterator. 
+
+\begin{DoxyReturn}{Returns}
+A constant reverse iterator pointing to the last element 
+\end{DoxyReturn}
+
+
+Definition at line 372 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+373     \{
+374       \textcolor{keywordflow}{return} VECTOR.rbegin();
+375     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_ac88b73bb16a6052fb68a8994ce2c7e94}\label{classLuna_1_1Vector_ac88b73bb16a6052fb68a8994ce2c7e94}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!read@{read}}
+\index{read@{read}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::read (\begin{DoxyParamCaption}\item[{std\+::string}]{filename,  }\item[{int}]{precision = {\ttfamily 12} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Read the \hyperlink{classLuna_1_1Vector}{Vector} from a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The name of the file to read the \hyperlink{classLuna_1_1Vector}{Vector} from \\
+\hline
+{\em precision} & The precision of the elements to be read in \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 836 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+837   \{
+838     std::ifstream inFile;
+839         inFile.open( filename.c\_str() );
+840         inFile.precision( precision );
+841         inFile.setf( std::ios::showpoint );
+842         inFile.setf( std::ios::showpos );
+843         inFile.setf( std::ios::scientific );
+844         \textcolor{keywordflow}{if} (!inFile) \{ \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Vector.read() unable to open file"} ); \}
+845     VECTOR.resize( 0 );
+846     T val;
+847     \textcolor{keywordflow}{while} ( inFile >> val )
+848     \{
+849       VECTOR.push\_back( val );
+850     \}
+851     inFile.close();
+852   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a39fa58d9f5fdca76b6ffa6cc481f9284}\label{classLuna_1_1Vector_a39fa58d9f5fdca76b6ffa6cc481f9284}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!real@{real}}
+\index{real@{real}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{real()}{real()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ double $>$ \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::real (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Real part of the elements of the \hyperlink{classLuna_1_1Vector}{Vector}. 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{classLuna_1_1Vector}{Vector} of real parts of the elements 
+\end{DoxyReturn}
+
+
+Definition at line 709 of file Vector.\+h.
+
+
+
+Referenced by Luna\+::\+Mesh1\+D$<$ T, X $>$\+::get\+\_\+interpolated\+\_\+vars(), and main().
+
+
+\begin{DoxyCode}
+710   \{
+711     Vector<double> real\_part( \hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}() );
+712     \textcolor{keywordflow}{for} ( std::size\_t i = 0; i < \hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}(); ++i )
+713     \{
+714       real\_part[ i ] = std::real( VECTOR[ i ] ) ;
+715     \}
+716     \textcolor{keywordflow}{return} real\_part;
+717   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a830d3e3c9668a6e112086feeb06516e4}\label{classLuna_1_1Vector_a830d3e3c9668a6e112086feeb06516e4}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!rend@{rend}}
+\index{rend@{rend}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{rend()}{rend()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classLuna_1_1Vector_a6db6c6b09df2c68bbfd1960c56bb20d5}{riter} \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::rend (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Pass through the std\+::vector end reverse iterator. 
+
+\begin{DoxyReturn}{Returns}
+A reverse iterator pointing to the element before the first 
+\end{DoxyReturn}
+
+
+Definition at line 386 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+387     \{
+388       \textcolor{keywordflow}{return} VECTOR.rend();
+389     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a8be51612ac896a7c9fde8479332c6a91}\label{classLuna_1_1Vector_a8be51612ac896a7c9fde8479332c6a91}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!rend@{rend}}
+\index{rend@{rend}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{rend()}{rend()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classLuna_1_1Vector_a66e997f05169640055703449672be075}{criter} \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::rend (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Pass through the std\+::vector end constant reverse iterator. 
+
+\begin{DoxyReturn}{Returns}
+A constant reverse iterator pointing to the element before the first 
+\end{DoxyReturn}
+
+
+Definition at line 400 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+401     \{
+402       \textcolor{keywordflow}{return} VECTOR.rend();
+403     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_ae0f59108f43c00b44a12aef3c722fb1d}\label{classLuna_1_1Vector_ae0f59108f43c00b44a12aef3c722fb1d}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!reserve@{reserve}}
+\index{reserve@{reserve}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{reserve()}{reserve()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::reserve (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t \&}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Request a change in capacity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & Minimum capacity for the \hyperlink{classLuna_1_1Vector}{Vector} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 665 of file Vector.\+h.
+
+
+
+Referenced by Luna\+::\+Matrix$<$ double $>$\+::multiply(), and Luna\+::\+Vector$<$ X $>$\+::reserve().
+
+
+\begin{DoxyCode}
+666   \{
+667     VECTOR.reserve( \hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size} );
+668   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_ae1394f960d5cac3e60f6b1561f38e453}\label{classLuna_1_1Vector_ae1394f960d5cac3e60f6b1561f38e453}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!resize@{resize}}
+\index{resize@{resize}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{resize()}{resize()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::resize (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t \&}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Resize the \hyperlink{classLuna_1_1Vector}{Vector}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & New size of the \hyperlink{classLuna_1_1Vector}{Vector} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 659 of file Vector.\+h.
+
+
+
+Referenced by Luna\+::\+Linear\+Eigensystem$<$ T $>$\+::compute\+\_\+real\+\_\+symmetric(), Luna\+::\+Linear\+Eigensystem$<$ T $>$\+::compute\+\_\+real\+\_\+symmetric\+\_\+tridiagonal(), Luna\+::\+Banded\+Matrix$<$ T $>$\+::det(), Luna\+::\+Linear\+Eigensystem$<$ T $>$\+::eigenvectors(), Luna\+::gamma(), Luna\+::\+Vector$<$ X $>$\+::linspace(), main(), Luna\+::\+Vector$<$ X $>$\+::powspace(), Luna\+::\+Vector$<$ X $>$\+::resize(), and Luna\+::\+Banded\+Matrix$<$ T $>$\+::solve().
+
+
+\begin{DoxyCode}
+660   \{
+661     VECTOR.resize( \hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size} );
+662   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a0e051d73b35c094dddef2ea46b4935df}\label{classLuna_1_1Vector_a0e051d73b35c094dddef2ea46b4935df}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!reverse@{reverse}}
+\index{reverse@{reverse}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{reverse()}{reverse()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::reverse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reverse the order of the elements. 
+
+
+
+Definition at line 697 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+698   \{
+699     std::reverse( VECTOR.begin(), VECTOR.end() );
+700   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}\label{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!size@{size}}
+\index{size@{size}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::size\+\_\+t \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Size of the \hyperlink{classLuna_1_1Vector}{Vector}. 
+
+\begin{DoxyReturn}{Returns}
+The number of elements in the \hyperlink{classLuna_1_1Vector}{Vector} 
+\end{DoxyReturn}
+
+
+Definition at line 608 of file Vector.\+h.
+
+
+
+Referenced by Luna\+::\+Arclength$<$ T $>$\+::arclength\+\_\+residual(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::col\+\_\+index(), Luna\+::\+Linear\+Eigensystem$<$ T $>$\+::compute\+\_\+real\+\_\+symmetric\+\_\+tridiagonal(), Luna\+::\+Vector$<$ X $>$\+::dot(), Luna\+::\+Linear\+Eigensystem$<$ T $>$\+::eigenvectors(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::get(), Luna\+::\+Mesh1\+D$<$ T, X $>$\+::get\+\_\+interpolated\+\_\+vars(), Luna\+::\+Mesh1\+D$<$ T, X $>$\+::get\+\_\+nodes\+\_\+vars(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::insert(), Luna\+::\+Mesh1\+D$<$ T, X $>$\+::integral(), Luna\+::\+Newton$<$ T $>$\+::iterate(), Luna\+::\+Arclength$<$ T $>$\+::\+Jac\+\_\+arclength\+\_\+residual(), main(), Luna\+::\+Mesh1\+D$<$ T, X $>$\+::\+Mesh1\+D(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::multiply(), Luna\+::\+Matrix$<$ double $>$\+::multiply(), Luna\+::\+Mesh1\+D$<$ T, X $>$\+::nnodes(), Luna\+::\+Banded\+Matrix$<$ T $>$\+::operator$\ast$(), Luna\+::\+Tridiagonal$<$ T $>$\+::operator$\ast$(), Luna\+::\+Mesh1\+D$<$ T, X $>$\+::output(), Luna\+::\+Polynomial$<$ T $>$\+::\+Polynomial(), Luna\+::\+Mesh1\+D$<$ T, X $>$\+::read(), Luna\+::\+Mesh2\+D$<$ T $>$\+::remesh(), Luna\+::\+Mesh1\+D$<$ T, X $>$\+::remesh(), Luna\+::\+Tridiagonal$<$ T $>$\+::set\+\_\+main(), Luna\+::\+Mesh1\+D$<$ T, X $>$\+::set\+\_\+nodes\+\_\+vars(), Luna\+::\+Mesh2\+D$<$ T $>$\+::set\+\_\+nodes\+\_\+vars(), Luna\+::\+Matrix$<$ double $>$\+::set\+\_\+row(), Luna\+::\+Tridiagonal$<$ T $>$\+::set\+\_\+sub(), Luna\+::\+Tridiagonal$<$ T $>$\+::set\+\_\+super(), Luna\+::\+Mesh1\+D$<$ T, X $>$\+::set\+\_\+vars\+\_\+from\+\_\+vector(), Luna\+::\+Vector$<$ X $>$\+::size(), Luna\+::\+Banded\+Matrix$<$ T $>$\+::solve(), Luna\+::\+Tridiagonal$<$ T $>$\+::solve(), Luna\+::\+Matrix$<$ double $>$\+::solve\+\_\+basic(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::solve\+\_\+\+Bi\+C\+G(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::solve\+\_\+\+Bi\+C\+G\+S\+T\+A\+B(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::solve\+\_\+\+C\+G(), Luna\+::\+Matrix$<$ double $>$\+::solve\+\_\+\+L\+U(), Luna\+::\+Matrix$<$ double $>$\+::solve\+\_\+\+Q\+R(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::\+Sparse\+Matrix(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::transpose\+\_\+multiply(), Luna\+::\+Tridiagonal$<$ T $>$\+::\+Tridiagonal(), Luna\+::\+Arclength$<$ T $>$\+::update\+\_\+theta(), and Luna\+::\+Vector$<$ X $>$\+::\+Vector().
+
+
+\begin{DoxyCode}
+609   \{
+610     \textcolor{keywordflow}{return} VECTOR.size();
+611   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a60f8017f50e602151c84686ac081af66}\label{classLuna_1_1Vector_a60f8017f50e602151c84686ac081af66}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!square@{square}}
+\index{square@{square}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{square()}{square()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::square (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Square all the elements in the \hyperlink{classLuna_1_1Vector}{Vector}. 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{classLuna_1_1Vector}{Vector} of squares of the elements 
+\end{DoxyReturn}
+
+
+Definition at line 881 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+882   \{
+883     Vector<T> \hyperlink{classLuna_1_1Vector_a60f8017f50e602151c84686ac081af66}{square};
+884     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i=0; i < \hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}(); ++i)
+885     \{
+886       square.VECTOR.push\_back( VECTOR[ i ] * VECTOR[ i ] );
+887     \}
+888     \textcolor{keywordflow}{return} \hyperlink{classLuna_1_1Vector_a60f8017f50e602151c84686ac081af66}{square};
+889   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a2d8df886780b81d237c11fda4c310cab}\label{classLuna_1_1Vector_a2d8df886780b81d237c11fda4c310cab}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!sum@{sum}}
+\index{sum@{sum}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{sum()}{sum()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::sum (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t \&}]{start,  }\item[{const std\+::size\+\_\+t \&}]{end }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sum of the elements in the \hyperlink{classLuna_1_1Vector}{Vector} (from index start to end) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & Start index \\
+\hline
+{\em end} & End index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Sum of the elements in the \hyperlink{classLuna_1_1Vector}{Vector} 
+\end{DoxyReturn}
+
+
+Definition at line 788 of file Vector.\+h.
+
+
+
+Referenced by Luna\+::\+Vector$<$ X $>$\+::norm\+\_\+1().
+
+
+\begin{DoxyCode}
+789   \{
+790     \textcolor{keywordflow}{if} ( start > \hyperlink{classLuna_1_1Vector_a94f0c4fd25cb841b21d7bf7be4d6004f}{end} )   \{ \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Vector sum: start > end"} );\}
+791     \textcolor{keywordflow}{if} ( start<0 || \hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}()<=start ) \{
+792       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Vector sum method range error"} );\}
+793     \textcolor{keywordflow}{if} ( \hyperlink{classLuna_1_1Vector_a94f0c4fd25cb841b21d7bf7be4d6004f}{end}<0 || \hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}()<=\hyperlink{classLuna_1_1Vector_a94f0c4fd25cb841b21d7bf7be4d6004f}{end} )   \{
+794       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Vector sum method range error"} );\}
+795     T Sum( VECTOR[ start ] );
+796     \textcolor{keywordflow}{for} ( std::size\_t i=start+1; i<=\hyperlink{classLuna_1_1Vector_a94f0c4fd25cb841b21d7bf7be4d6004f}{end}; ++i )
+797     \{
+798       Sum += VECTOR[ i ];
+799     \}
+800     \textcolor{keywordflow}{return} Sum;
+801   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_a3f9422b246093b153a55577a6ca97e26}\label{classLuna_1_1Vector_a3f9422b246093b153a55577a6ca97e26}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!sum@{sum}}
+\index{sum@{sum}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{sum()}{sum()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::sum (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sum of the elements in the \hyperlink{classLuna_1_1Vector}{Vector}. 
+
+\begin{DoxyReturn}{Returns}
+Sum of the elements in the \hyperlink{classLuna_1_1Vector}{Vector} 
+\end{DoxyReturn}
+
+
+Definition at line 804 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+805   \{
+806     \textcolor{keywordflow}{return} this->\hyperlink{classLuna_1_1Vector_a3f9422b246093b153a55577a6ca97e26}{sum}( 0, \hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}() - 1 );
+807   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_af910058597a627cc4257ea668e916b90}\label{classLuna_1_1Vector_af910058597a627cc4257ea668e916b90}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!swap@{swap}}
+\index{swap@{swap}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{swap()}{swap()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classLuna_1_1Vector}{Luna\+::\+Vector}$<$ T $>$\+::swap (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t \&}]{i,  }\item[{const std\+::size\+\_\+t \&}]{j }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Swap elements i and j. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & The index of the first element to swap \\
+\hline
+{\em j} & The index of the second element to swap \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 688 of file Vector.\+h.
+
+
+
+Referenced by Luna\+::\+Matrix$<$ double $>$\+::inverse().
+
+
+\begin{DoxyCode}
+689   \{
+690     \textcolor{keywordflow}{if} ( i<0 || \hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}()<=i ) \{ \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"swap method Vector range error"} );\}
+691     \textcolor{keywordflow}{if} ( j<0 || \hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}()<=j ) \{ \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"swap method Vector range error"} );\}
+692     \textcolor{keywordflow}{if} ( i == j ) \{ \textcolor{keywordflow}{return}; \}
+693     std::swap<T>( VECTOR[ i ], VECTOR[ j ] );
+694   \}
+\end{DoxyCode}
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classLuna_1_1Vector_a17fc06682c9f9c46f1e0e38b7af25b80}\label{classLuna_1_1Vector_a17fc06682c9f9c46f1e0e38b7af25b80}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!Matrix$<$ T $>$@{Matrix$<$ T $>$}}
+\index{Matrix$<$ T $>$@{Matrix$<$ T $>$}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{Matrix$<$ T $>$}{Matrix< T >}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+friend class \hyperlink{classLuna_1_1Matrix}{Matrix}$<$ T $>$\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line 47 of file Vector.\+h.
+
+\mbox{\Hypertarget{classLuna_1_1Vector_a29f70258ec21b100141b45b009416f66}\label{classLuna_1_1Vector_a29f70258ec21b100141b45b009416f66}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{operator$\ast$}{operator*}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$T$>$ operator$\ast$ (\begin{DoxyParamCaption}\item[{const T \&}]{scalar,  }\item[{\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line 120 of file Vector.\+h.
+
+
+\begin{DoxyCode}
+121     \{
+122       \textcolor{keywordflow}{return} vec * scalar;
+123     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_aa45a6e2bb9fbdb53db42d652a26eaac7}\label{classLuna_1_1Vector_aa45a6e2bb9fbdb53db42d652a26eaac7}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+template$<$class Type $>$ \\
+std\+::ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ Type $>$ \&}]{vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Output operator $<$$<$. 
+
+
+
+Definition at line 436 of file Vector.\+h.
+
+
+
+Referenced by Luna\+::\+Vector$<$ X $>$\+::$\sim$\+Vector().
+
+
+\begin{DoxyCode}
+437   \{
+438     \textcolor{keywordflow}{for} (std::size\_t i = 0; i < vec.VECTOR.size(); ++i )
+439     \{
+440       os << std::setw( 6 ) << std::setprecision( 2 ) << std::fixed
+441          << vec.VECTOR[ i ] << \textcolor{stringliteral}{" "};
+442     \}
+443     \textcolor{keywordflow}{return} os;
+444   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Vector_abe8021c8bfcc7f40c69097469d597830}\label{classLuna_1_1Vector_abe8021c8bfcc7f40c69097469d597830}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!Polynomial$<$ T $>$@{Polynomial$<$ T $>$}}
+\index{Polynomial$<$ T $>$@{Polynomial$<$ T $>$}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{Polynomial$<$ T $>$}{Polynomial< T >}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+friend class \hyperlink{classLuna_1_1Polynomial}{Polynomial}$<$ T $>$\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line 48 of file Vector.\+h.
+
+\mbox{\Hypertarget{classLuna_1_1Vector_a25dda511be44f42c60e3c7117aac3f2a}\label{classLuna_1_1Vector_a25dda511be44f42c60e3c7117aac3f2a}} 
+\index{Luna\+::\+Vector@{Luna\+::\+Vector}!Sparse\+Matrix$<$ T $>$@{Sparse\+Matrix$<$ T $>$}}
+\index{Sparse\+Matrix$<$ T $>$@{Sparse\+Matrix$<$ T $>$}!Luna\+::\+Vector@{Luna\+::\+Vector}}
+\subsubsection{\texorpdfstring{Sparse\+Matrix$<$ T $>$}{SparseMatrix< T >}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+friend class \hyperlink{classLuna_1_1SparseMatrix}{Sparse\+Matrix}$<$ T $>$\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line 49 of file Vector.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Luna/\hyperlink{Vector_8h}{Vector.\+h}\end{DoxyCompactItemize}

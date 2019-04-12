@@ -1,0 +1,78 @@
+\hypertarget{Heat__plot_8py}{}\section{Plotting/\+Heat\+\_\+plot.py File Reference}
+\label{Heat__plot_8py}\index{Plotting/\+Heat\+\_\+plot.\+py@{Plotting/\+Heat\+\_\+plot.\+py}}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceHeat__plot}{Heat\+\_\+plot}
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespaceHeat__plot_ab2e339067dfc8209cc8d2898d4207005}{Heat\+\_\+plot.\+parser} = Argument\+Parser()
+\item 
+\hyperlink{namespaceHeat__plot_aa83cfaa0b72d1fc27839aca50eaf9b68}{Heat\+\_\+plot.\+metavar}
+\item 
+\hyperlink{namespaceHeat__plot_ac6fe7a70a5ebe30ccb91e2255db50868}{Heat\+\_\+plot.\+type}
+\item 
+\hyperlink{namespaceHeat__plot_ac721620fed23609e47f849d804f29546}{Heat\+\_\+plot.\+int}
+\item 
+\hyperlink{namespaceHeat__plot_a2b3b44d5236c0a84aefd66e9fbd8f174}{Heat\+\_\+plot.\+nargs}
+\item 
+\hyperlink{namespaceHeat__plot_a01958ac77133cf99292b5a2cf0107f09}{Heat\+\_\+plot.\+help}
+\item 
+\hyperlink{namespaceHeat__plot_a91091fe60dbdb0842f9b23f99fab028b}{Heat\+\_\+plot.\+args} = parser.\+parse\+\_\+args()
+\item 
+\hyperlink{namespaceHeat__plot_a3cafcec38d886f33b35756791964bb58}{Heat\+\_\+plot.\+J} = args.\+integers\mbox{[}0\mbox{]}
+\item 
+\hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{Heat\+\_\+plot.\+N} = args.\+integers\mbox{[}1\mbox{]}
+\item 
+int \hyperlink{namespaceHeat__plot_a116214d215b6a0e66aefae82e2bbd4ef}{Heat\+\_\+plot.\+slowdown} = 5
+\item 
+\hyperlink{namespaceHeat__plot_a5f174ddffb3702db438b5922b832de2d}{Heat\+\_\+plot.\+data} = np.\+loadtxt( \char`\"{}./D\+A\+TA/Heat\+\_\+equation\+\_\+\+J\+\_\+\char`\"{}+ str(J) + \char`\"{}\+\_\+\+N\+\_\+\char`\"{} + str(N) + \char`\"{}.dat\char`\"{} )
+\item 
+\hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{Heat\+\_\+plot.\+x} = data\mbox{[}\+:,0\mbox{]}
+\item 
+\hyperlink{namespaceHeat__plot_a25a93a2226128530145cc611f350163b}{Heat\+\_\+plot.\+t} = data\mbox{[}\+:,1\mbox{]}
+\item 
+\hyperlink{namespaceHeat__plot_ae622b86afa46daa3e9b887624ab1bf26}{Heat\+\_\+plot.\+u} = data\mbox{[}\+:,2\mbox{]}
+\item 
+\hyperlink{namespaceHeat__plot_a08bd2784d6b3bce18bb7f5edc54df897}{Heat\+\_\+plot.\+x\+\_\+axis} = x\mbox{[}0\+:J+1\mbox{]}
+\item 
+\hyperlink{namespaceHeat__plot_a05e6ef830fa9da56c9ca594a34b644be}{Heat\+\_\+plot.\+time} = t\mbox{[}0\+:(J+1)$\ast$(N+1)\+:J+1\mbox{]}
+\item 
+\hyperlink{namespaceHeat__plot_ab03c1902ecb064f92219fa9cd5f140d1}{Heat\+\_\+plot.\+dt} = time\mbox{[}1\mbox{]} -\/ time\mbox{[}0\mbox{]}
+\item 
+\hyperlink{namespaceHeat__plot_a4af99e02cb1eac65ec68fab8d5446c4a}{Heat\+\_\+plot.\+Tmax} = time\mbox{[}-\/1\mbox{]}
+\item 
+\hyperlink{namespaceHeat__plot_ac64208169da71f343eff0b7f550ccdc0}{Heat\+\_\+plot.\+shape}
+\item 
+list \hyperlink{namespaceHeat__plot_a301b7278a9fd50c9e155fa008f74452f}{Heat\+\_\+plot.\+files} = \mbox{[}$\,$\mbox{]}
+\item 
+\hyperlink{namespaceHeat__plot_acaf53b467a0a1fb124babb16a64f4d1b}{Heat\+\_\+plot.\+axes} = plt.\+gca()
+\item 
+string \hyperlink{namespaceHeat__plot_a018d451c743d64974f5a36b0e031e02e}{Heat\+\_\+plot.\+title} = \textquotesingle{}Heat equation\textquotesingle{}
+\item 
+string \hyperlink{namespaceHeat__plot_aabc2a130604c7629b0aafa54317bbd73}{Heat\+\_\+plot.\+time\+\_\+str} = \textquotesingle{}t=\%1.\+2f\textquotesingle{} \%time\mbox{[}i\mbox{]}
+\item 
+\hyperlink{namespaceHeat__plot_ae47186a7b326f77755c609346bee51aa}{Heat\+\_\+plot.\+horizontalalignment}
+\item 
+\hyperlink{namespaceHeat__plot_aeaa6785bedcad63b4bd40e8cb1bad8a0}{Heat\+\_\+plot.\+transform}
+\item 
+\hyperlink{namespaceHeat__plot_abfde0ea5b1da0c081d5643f0bce5aa3c}{Heat\+\_\+plot.\+label}
+\item 
+\hyperlink{namespaceHeat__plot_aa109fec5bb7f2e730396a2cb623b2ad2}{Heat\+\_\+plot.\+loc}
+\item 
+string \hyperlink{namespaceHeat__plot_a276f032cea9a4b8cf77208d165379e83}{Heat\+\_\+plot.\+fname} = \textquotesingle{}\+\_\+tmp\%03d.\+png\textquotesingle{} \% i
+\item 
+\hyperlink{namespaceHeat__plot_a72be6747bea28a4edbd944d4f76fec68}{Heat\+\_\+plot.\+fps} = N / (Tmax $\ast$ slowdown)
+\item 
+\hyperlink{namespaceHeat__plot_aa171991dbe2271ffea72d0f8b97d2876}{Heat\+\_\+plot.\+F\+N\+U\+LL} = open(os.\+devnull, \textquotesingle{}w\textquotesingle{})
+\item 
+\hyperlink{namespaceHeat__plot_ae6ae986b39e93cfae8063da8f1ac65f7}{Heat\+\_\+plot.\+shell}
+\item 
+\hyperlink{namespaceHeat__plot_a05e302d2a0017c90ec20981f7474cc46}{Heat\+\_\+plot.\+True}
+\item 
+\hyperlink{namespaceHeat__plot_a234d0e0e9df8fdb1fb7d9f280b7949d1}{Heat\+\_\+plot.\+stdout}
+\item 
+\hyperlink{namespaceHeat__plot_a67f420128d52c92a8f2e47e60a49efcc}{Heat\+\_\+plot.\+stderr}
+\end{DoxyCompactItemize}

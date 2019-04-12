@@ -1,0 +1,488 @@
+\hypertarget{classLuna_1_1Triplet}{}\section{Luna\+:\+:Triplet$<$ T $>$ Class Template Reference}
+\label{classLuna_1_1Triplet}\index{Luna\+::\+Triplet$<$ T $>$@{Luna\+::\+Triplet$<$ T $>$}}
+
+
+A templated class to define triplets.  
+
+
+
+
+{\ttfamily \#include $<$Triplet.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classLuna_1_1Triplet_a28f240b4dbca519a16bbe7de02710576}{Triplet} ()
+\begin{DoxyCompactList}\small\item\em Constructor for an unspecified \hyperlink{classLuna_1_1Triplet}{Triplet}. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Triplet_a18671ffc604a9999c3a4e1b0256d61af}{Triplet} (const std\+::size\+\_\+t \&\hyperlink{classLuna_1_1Triplet_aea4263baad8dcba4eb238c404f1ad2e7}{row}, const std\+::size\+\_\+t \&\hyperlink{classLuna_1_1Triplet_a5797cd45bf76a6baf60f7aa4741ffec2}{col}, const T \&\hyperlink{classLuna_1_1Triplet_a622ca1a37e1661cb4e2a5932fb6806a9}{val})
+\begin{DoxyCompactList}\small\item\em Constructor for a \hyperlink{classLuna_1_1Triplet}{Triplet} with specified values. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Triplet_ad7e7c8465cacde874a5f675310e30b6b}{Triplet} (const \hyperlink{classLuna_1_1Triplet}{Triplet}$<$ T $>$ \&source)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Triplet_a59099a7ab671a6c357e9ae6570b0697a}{$\sim$\+Triplet} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Triplet_a8432f4643175af9ef2cf3054f0284693}{operator()} (const std\+::size\+\_\+t \&\hyperlink{classLuna_1_1Triplet_aea4263baad8dcba4eb238c404f1ad2e7}{row}, const std\+::size\+\_\+t \&\hyperlink{classLuna_1_1Triplet_a5797cd45bf76a6baf60f7aa4741ffec2}{col}, const T \&\hyperlink{classLuna_1_1Triplet_a622ca1a37e1661cb4e2a5932fb6806a9}{val})
+\begin{DoxyCompactList}\small\item\em Access operator (write) \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Triplet}{Triplet}$<$ T $>$ \& \hyperlink{classLuna_1_1Triplet_accc460545742021e7c723e5c2db7338f}{operator=} (const \hyperlink{classLuna_1_1Triplet}{Triplet}$<$ T $>$ \&original)
+\begin{DoxyCompactList}\small\item\em Copy assignment. \end{DoxyCompactList}\item 
+std\+::size\+\_\+t \& \hyperlink{classLuna_1_1Triplet_aea4263baad8dcba4eb238c404f1ad2e7}{row} ()
+\begin{DoxyCompactList}\small\item\em The row index of the \hyperlink{classLuna_1_1Triplet}{Triplet}. \end{DoxyCompactList}\item 
+std\+::size\+\_\+t \& \hyperlink{classLuna_1_1Triplet_a5797cd45bf76a6baf60f7aa4741ffec2}{col} ()
+\begin{DoxyCompactList}\small\item\em The column index of the \hyperlink{classLuna_1_1Triplet}{Triplet}. \end{DoxyCompactList}\item 
+T \& \hyperlink{classLuna_1_1Triplet_a622ca1a37e1661cb4e2a5932fb6806a9}{val} ()
+\begin{DoxyCompactList}\small\item\em The value stored in the \hyperlink{classLuna_1_1Triplet}{Triplet}. \end{DoxyCompactList}\item 
+std\+::size\+\_\+t \hyperlink{classLuna_1_1Triplet_a78f98c86e79867cccbf5429945366036}{get\+\_\+row} () const
+\begin{DoxyCompactList}\small\item\em The row index of the \hyperlink{classLuna_1_1Triplet}{Triplet} (read only) \end{DoxyCompactList}\item 
+std\+::size\+\_\+t \hyperlink{classLuna_1_1Triplet_a7d5bdd021a6191f49e349795a304db60}{get\+\_\+col} () const
+\begin{DoxyCompactList}\small\item\em The column index of the \hyperlink{classLuna_1_1Triplet}{Triplet} (read only) \end{DoxyCompactList}\item 
+T \hyperlink{classLuna_1_1Triplet_ab0b45980f9930e0cade9c2ad5f254c87}{get\+\_\+val} () const
+\begin{DoxyCompactList}\small\item\em The value stored in the \hyperlink{classLuna_1_1Triplet}{Triplet} (read only) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class Type $>$ }\\std\+::ostream \& \hyperlink{classLuna_1_1Triplet_ad729c9b68955dcc5154d6bbd54a37a38}{operator$<$$<$} (std\+::ostream \&os, const \hyperlink{classLuna_1_1Triplet}{Triplet}$<$ Type $>$ \&trip)
+\begin{DoxyCompactList}\small\item\em Output operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class Type $>$ }\\bool \hyperlink{classLuna_1_1Triplet_a2742a8732adbcb3f14119b23efae19e6}{operator$<$} (const \hyperlink{classLuna_1_1Triplet}{Triplet}$<$ Type $>$ \&t\+\_\+1, const \hyperlink{classLuna_1_1Triplet}{Triplet}$<$ Type $>$ \&t\+\_\+2)
+\begin{DoxyCompactList}\small\item\em Compare indices for column major sorting. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class T$>$\newline
+class Luna\+::\+Triplet$<$ T $>$}
+
+A templated class to define triplets. 
+
+Definition at line 20 of file Triplet.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classLuna_1_1Triplet_a28f240b4dbca519a16bbe7de02710576}\label{classLuna_1_1Triplet_a28f240b4dbca519a16bbe7de02710576}} 
+\index{Luna\+::\+Triplet@{Luna\+::\+Triplet}!Triplet@{Triplet}}
+\index{Triplet@{Triplet}!Luna\+::\+Triplet@{Luna\+::\+Triplet}}
+\subsubsection{\texorpdfstring{Triplet()}{Triplet()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classLuna_1_1Triplet}{Luna\+::\+Triplet}$<$ T $>$\+::\hyperlink{classLuna_1_1Triplet}{Triplet} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for an unspecified \hyperlink{classLuna_1_1Triplet}{Triplet}. 
+
+
+
+Definition at line 30 of file Triplet.\+h.
+
+
+
+Referenced by Luna\+::\+Triplet$<$ T $>$\+::\+Triplet().
+
+
+\begin{DoxyCode}
+30 : ROW( 0 ), COL( 0 ), VAL( 0 ) \{\}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Triplet_a18671ffc604a9999c3a4e1b0256d61af}\label{classLuna_1_1Triplet_a18671ffc604a9999c3a4e1b0256d61af}} 
+\index{Luna\+::\+Triplet@{Luna\+::\+Triplet}!Triplet@{Triplet}}
+\index{Triplet@{Triplet}!Luna\+::\+Triplet@{Luna\+::\+Triplet}}
+\subsubsection{\texorpdfstring{Triplet()}{Triplet()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classLuna_1_1Triplet}{Luna\+::\+Triplet}$<$ T $>$\+::\hyperlink{classLuna_1_1Triplet}{Triplet} (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t \&}]{row,  }\item[{const std\+::size\+\_\+t \&}]{col,  }\item[{const T \&}]{val }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for a \hyperlink{classLuna_1_1Triplet}{Triplet} with specified values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & Row index \\
+\hline
+{\em col} & Column index \\
+\hline
+{\em val} & Value \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 36 of file Triplet.\+h.
+
+
+
+References Luna\+::\+Triplet$<$ T $>$\+::\+Triplet().
+
+
+\begin{DoxyCode}
+37                 : ROW( \hyperlink{classLuna_1_1Triplet_aea4263baad8dcba4eb238c404f1ad2e7}{row} ), COL( \hyperlink{classLuna_1_1Triplet_a5797cd45bf76a6baf60f7aa4741ffec2}{col} ), VAL( \hyperlink{classLuna_1_1Triplet_a622ca1a37e1661cb4e2a5932fb6806a9}{val} ) \{\}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Triplet_ad7e7c8465cacde874a5f675310e30b6b}\label{classLuna_1_1Triplet_ad7e7c8465cacde874a5f675310e30b6b}} 
+\index{Luna\+::\+Triplet@{Luna\+::\+Triplet}!Triplet@{Triplet}}
+\index{Triplet@{Triplet}!Luna\+::\+Triplet@{Luna\+::\+Triplet}}
+\subsubsection{\texorpdfstring{Triplet()}{Triplet()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Triplet}{Luna\+::\+Triplet}$<$ T $>$\+::\hyperlink{classLuna_1_1Triplet}{Triplet} (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Triplet}{Triplet}$<$ T $>$ \&}]{source }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Copy constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source} & The source \hyperlink{classLuna_1_1Triplet}{Triplet} to be copied \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 101 of file Triplet.\+h.
+
+
+\begin{DoxyCode}
+102   \{
+103     *\textcolor{keyword}{this} = source;
+104   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Triplet_a59099a7ab671a6c357e9ae6570b0697a}\label{classLuna_1_1Triplet_a59099a7ab671a6c357e9ae6570b0697a}} 
+\index{Luna\+::\+Triplet@{Luna\+::\+Triplet}!````~Triplet@{$\sim$\+Triplet}}
+\index{````~Triplet@{$\sim$\+Triplet}!Luna\+::\+Triplet@{Luna\+::\+Triplet}}
+\subsubsection{\texorpdfstring{$\sim$\+Triplet()}{~Triplet()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classLuna_1_1Triplet}{Luna\+::\+Triplet}$<$ T $>$\+::$\sim$\hyperlink{classLuna_1_1Triplet}{Triplet} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Destructor. 
+
+
+
+Definition at line 44 of file Triplet.\+h.
+
+
+
+References Luna\+::\+Triplet$<$ T $>$\+::col(), Luna\+::\+Triplet$<$ T $>$\+::get\+\_\+col(), Luna\+::\+Triplet$<$ T $>$\+::get\+\_\+row(), Luna\+::\+Triplet$<$ T $>$\+::get\+\_\+val(), Luna\+::\+Triplet$<$ T $>$\+::operator()(), Luna\+::\+Triplet$<$ T $>$\+::operator$<$$<$, Luna\+::\+Triplet$<$ T $>$\+::operator=(), Luna\+::\+Triplet$<$ T $>$\+::row(), and Luna\+::\+Triplet$<$ T $>$\+::val().
+
+
+\begin{DoxyCode}
+44 \{\}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classLuna_1_1Triplet_a5797cd45bf76a6baf60f7aa4741ffec2}\label{classLuna_1_1Triplet_a5797cd45bf76a6baf60f7aa4741ffec2}} 
+\index{Luna\+::\+Triplet@{Luna\+::\+Triplet}!col@{col}}
+\index{col@{col}!Luna\+::\+Triplet@{Luna\+::\+Triplet}}
+\subsubsection{\texorpdfstring{col()}{col()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::size\+\_\+t \& \hyperlink{classLuna_1_1Triplet}{Luna\+::\+Triplet}$<$ T $>$\+::col (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The column index of the \hyperlink{classLuna_1_1Triplet}{Triplet}. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the column index 
+\end{DoxyReturn}
+
+
+Definition at line 164 of file Triplet.\+h.
+
+
+
+Referenced by Luna\+::\+Triplet$<$ T $>$\+::operator()(), and Luna\+::\+Triplet$<$ T $>$\+::$\sim$\+Triplet().
+
+
+\begin{DoxyCode}
+165     \{
+166         \textcolor{keywordflow}{return} COL;
+167     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Triplet_a7d5bdd021a6191f49e349795a304db60}\label{classLuna_1_1Triplet_a7d5bdd021a6191f49e349795a304db60}} 
+\index{Luna\+::\+Triplet@{Luna\+::\+Triplet}!get\+\_\+col@{get\+\_\+col}}
+\index{get\+\_\+col@{get\+\_\+col}!Luna\+::\+Triplet@{Luna\+::\+Triplet}}
+\subsubsection{\texorpdfstring{get\+\_\+col()}{get\_col()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::size\+\_\+t \hyperlink{classLuna_1_1Triplet}{Luna\+::\+Triplet}$<$ T $>$\+::get\+\_\+col (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The column index of the \hyperlink{classLuna_1_1Triplet}{Triplet} (read only) 
+
+\begin{DoxyReturn}{Returns}
+The column index 
+\end{DoxyReturn}
+
+
+Definition at line 182 of file Triplet.\+h.
+
+
+
+Referenced by Luna\+::\+Triplet$<$ T $>$\+::$\sim$\+Triplet().
+
+
+\begin{DoxyCode}
+183     \{
+184         \textcolor{keywordflow}{return} COL;
+185     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Triplet_a78f98c86e79867cccbf5429945366036}\label{classLuna_1_1Triplet_a78f98c86e79867cccbf5429945366036}} 
+\index{Luna\+::\+Triplet@{Luna\+::\+Triplet}!get\+\_\+row@{get\+\_\+row}}
+\index{get\+\_\+row@{get\+\_\+row}!Luna\+::\+Triplet@{Luna\+::\+Triplet}}
+\subsubsection{\texorpdfstring{get\+\_\+row()}{get\_row()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::size\+\_\+t \hyperlink{classLuna_1_1Triplet}{Luna\+::\+Triplet}$<$ T $>$\+::get\+\_\+row (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The row index of the \hyperlink{classLuna_1_1Triplet}{Triplet} (read only) 
+
+\begin{DoxyReturn}{Returns}
+The row index 
+\end{DoxyReturn}
+
+
+Definition at line 176 of file Triplet.\+h.
+
+
+
+Referenced by Luna\+::\+Triplet$<$ T $>$\+::$\sim$\+Triplet().
+
+
+\begin{DoxyCode}
+177     \{
+178         \textcolor{keywordflow}{return} ROW;
+179     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Triplet_ab0b45980f9930e0cade9c2ad5f254c87}\label{classLuna_1_1Triplet_ab0b45980f9930e0cade9c2ad5f254c87}} 
+\index{Luna\+::\+Triplet@{Luna\+::\+Triplet}!get\+\_\+val@{get\+\_\+val}}
+\index{get\+\_\+val@{get\+\_\+val}!Luna\+::\+Triplet@{Luna\+::\+Triplet}}
+\subsubsection{\texorpdfstring{get\+\_\+val()}{get\_val()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T \hyperlink{classLuna_1_1Triplet}{Luna\+::\+Triplet}$<$ T $>$\+::get\+\_\+val (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The value stored in the \hyperlink{classLuna_1_1Triplet}{Triplet} (read only) 
+
+\begin{DoxyReturn}{Returns}
+The stored value 
+\end{DoxyReturn}
+
+
+Definition at line 188 of file Triplet.\+h.
+
+
+
+Referenced by Luna\+::\+Triplet$<$ T $>$\+::$\sim$\+Triplet().
+
+
+\begin{DoxyCode}
+189     \{
+190         \textcolor{keywordflow}{return} VAL;
+191     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Triplet_a8432f4643175af9ef2cf3054f0284693}\label{classLuna_1_1Triplet_a8432f4643175af9ef2cf3054f0284693}} 
+\index{Luna\+::\+Triplet@{Luna\+::\+Triplet}!operator()@{operator()}}
+\index{operator()@{operator()}!Luna\+::\+Triplet@{Luna\+::\+Triplet}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classLuna_1_1Triplet}{Luna\+::\+Triplet}$<$ T $>$\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t \&}]{row,  }\item[{const std\+::size\+\_\+t \&}]{col,  }\item[{const T \&}]{val }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Access operator (write) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & Row index \\
+\hline
+{\em col} & Column index \\
+\hline
+{\em val} & Value \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 116 of file Triplet.\+h.
+
+
+
+References Luna\+::\+Triplet$<$ T $>$\+::col(), Luna\+::\+Triplet$<$ T $>$\+::row(), and Luna\+::\+Triplet$<$ T $>$\+::val().
+
+
+
+Referenced by Luna\+::\+Triplet$<$ T $>$\+::$\sim$\+Triplet().
+
+
+\begin{DoxyCode}
+118     \{
+119         ROW = \hyperlink{classLuna_1_1Triplet_aea4263baad8dcba4eb238c404f1ad2e7}{row};
+120         COL = \hyperlink{classLuna_1_1Triplet_a5797cd45bf76a6baf60f7aa4741ffec2}{col};
+121         VAL = \hyperlink{classLuna_1_1Triplet_a622ca1a37e1661cb4e2a5932fb6806a9}{val};
+122     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Triplet_accc460545742021e7c723e5c2db7338f}\label{classLuna_1_1Triplet_accc460545742021e7c723e5c2db7338f}} 
+\index{Luna\+::\+Triplet@{Luna\+::\+Triplet}!operator=@{operator=}}
+\index{operator=@{operator=}!Luna\+::\+Triplet@{Luna\+::\+Triplet}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Triplet}{Triplet}$<$ T $>$ \& \hyperlink{classLuna_1_1Triplet}{Luna\+::\+Triplet}$<$ T $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Triplet}{Triplet}$<$ T $>$ \&}]{original }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Copy assignment. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em original} & \hyperlink{classLuna_1_1Triplet}{Triplet} to be copied \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The new \hyperlink{classLuna_1_1Triplet}{Triplet} 
+\end{DoxyReturn}
+
+
+Definition at line 125 of file Triplet.\+h.
+
+
+
+Referenced by Luna\+::\+Triplet$<$ T $>$\+::$\sim$\+Triplet().
+
+
+\begin{DoxyCode}
+126   \{
+127     \textcolor{keywordflow}{if} ( \textcolor{keyword}{this} == &original )\{ \textcolor{keywordflow}{return} *\textcolor{keyword}{this}; \}
+128     ROW = original.ROW;
+129         COL = original.COL;
+130         VAL = original.VAL;
+131     \textcolor{keywordflow}{return} *\textcolor{keyword}{this};
+132   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Triplet_aea4263baad8dcba4eb238c404f1ad2e7}\label{classLuna_1_1Triplet_aea4263baad8dcba4eb238c404f1ad2e7}} 
+\index{Luna\+::\+Triplet@{Luna\+::\+Triplet}!row@{row}}
+\index{row@{row}!Luna\+::\+Triplet@{Luna\+::\+Triplet}}
+\subsubsection{\texorpdfstring{row()}{row()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::size\+\_\+t \& \hyperlink{classLuna_1_1Triplet}{Luna\+::\+Triplet}$<$ T $>$\+::row (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The row index of the \hyperlink{classLuna_1_1Triplet}{Triplet}. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the row index 
+\end{DoxyReturn}
+
+
+Definition at line 158 of file Triplet.\+h.
+
+
+
+Referenced by Luna\+::\+Triplet$<$ T $>$\+::operator()(), and Luna\+::\+Triplet$<$ T $>$\+::$\sim$\+Triplet().
+
+
+\begin{DoxyCode}
+159     \{
+160         \textcolor{keywordflow}{return} ROW;
+161     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Triplet_a622ca1a37e1661cb4e2a5932fb6806a9}\label{classLuna_1_1Triplet_a622ca1a37e1661cb4e2a5932fb6806a9}} 
+\index{Luna\+::\+Triplet@{Luna\+::\+Triplet}!val@{val}}
+\index{val@{val}!Luna\+::\+Triplet@{Luna\+::\+Triplet}}
+\subsubsection{\texorpdfstring{val()}{val()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T \& \hyperlink{classLuna_1_1Triplet}{Luna\+::\+Triplet}$<$ T $>$\+::val (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The value stored in the \hyperlink{classLuna_1_1Triplet}{Triplet}. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the stored value 
+\end{DoxyReturn}
+
+
+Definition at line 170 of file Triplet.\+h.
+
+
+
+Referenced by Luna\+::\+Triplet$<$ T $>$\+::operator()(), and Luna\+::\+Triplet$<$ T $>$\+::$\sim$\+Triplet().
+
+
+\begin{DoxyCode}
+171     \{
+172         \textcolor{keywordflow}{return} VAL;
+173     \}
+\end{DoxyCode}
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classLuna_1_1Triplet_a2742a8732adbcb3f14119b23efae19e6}\label{classLuna_1_1Triplet_a2742a8732adbcb3f14119b23efae19e6}} 
+\index{Luna\+::\+Triplet@{Luna\+::\+Triplet}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Luna\+::\+Triplet@{Luna\+::\+Triplet}}
+\subsubsection{\texorpdfstring{operator$<$}{operator<}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+template$<$class Type $>$ \\
+bool operator$<$ (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Triplet}{Triplet}$<$ Type $>$ \&}]{t\+\_\+1,  }\item[{const \hyperlink{classLuna_1_1Triplet}{Triplet}$<$ Type $>$ \&}]{t\+\_\+2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Compare indices for column major sorting. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+1} & The first \hyperlink{classLuna_1_1Triplet}{Triplet} \\
+\hline
+{\em t\+\_\+2} & The second \hyperlink{classLuna_1_1Triplet}{Triplet} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 135 of file Triplet.\+h.
+
+
+\begin{DoxyCode}
+136     \{
+137         \textcolor{keywordtype}{bool} compare;
+138         \textcolor{keywordflow}{if} ( t\_1.COL < t\_2.COL )
+139         \{
+140             compare = \textcolor{keyword}{true};
+141         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} ( t\_1.COL == t\_2.COL ) \{
+142             \textcolor{keywordflow}{if} ( t\_1.ROW < t\_2.ROW )
+143             \{
+144                 compare = \textcolor{keyword}{true};
+145             \} \textcolor{keywordflow}{else} \{
+146                 compare = \textcolor{keyword}{false};
+147             \}
+148         \} \textcolor{keywordflow}{else} \{
+149             compare = \textcolor{keyword}{false};
+150         \}
+151         \textcolor{keywordflow}{return} compare;
+152     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Triplet_ad729c9b68955dcc5154d6bbd54a37a38}\label{classLuna_1_1Triplet_ad729c9b68955dcc5154d6bbd54a37a38}} 
+\index{Luna\+::\+Triplet@{Luna\+::\+Triplet}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Luna\+::\+Triplet@{Luna\+::\+Triplet}}
+\subsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+template$<$class Type $>$ \\
+std\+::ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \hyperlink{classLuna_1_1Triplet}{Triplet}$<$ Type $>$ \&}]{trip }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Output operator. 
+
+
+
+Definition at line 109 of file Triplet.\+h.
+
+
+
+Referenced by Luna\+::\+Triplet$<$ T $>$\+::$\sim$\+Triplet().
+
+
+\begin{DoxyCode}
+110   \{
+111         os << \textcolor{stringliteral}{"( "} << trip.ROW << \textcolor{stringliteral}{", "} << trip.COL << \textcolor{stringliteral}{", "} << trip.VAL << \textcolor{stringliteral}{" )"};
+112     \textcolor{keywordflow}{return} os;
+113   \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Luna/\hyperlink{Triplet_8h}{Triplet.\+h}\end{DoxyCompactItemize}

@@ -1,0 +1,453 @@
+\hypertarget{classLuna_1_1Timer}{}\section{Luna\+:\+:Timer Class Reference}
+\label{classLuna_1_1Timer}\index{Luna\+::\+Timer@{Luna\+::\+Timer}}
+
+
+A simple timer class for timing methods.  
+
+
+
+
+{\ttfamily \#include $<$Timer.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classLuna_1_1Timer_a8505121ba140f41121a57e4404e1d251}{Timer} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Timer_af53efaf19a32dd49cc3c84671603d352}{$\sim$\+Timer} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+bool \hyperlink{classLuna_1_1Timer_acd735003d27555b69bc3c54e8cd4a301}{is\+\_\+started} ()
+\begin{DoxyCompactList}\small\item\em Check if the timer has started. \end{DoxyCompactList}\item 
+bool \hyperlink{classLuna_1_1Timer_aa028fb717dce42cbf9806ce604ba09b6}{is\+\_\+stopped} ()
+\begin{DoxyCompactList}\small\item\em Check if the timer is stopped. \end{DoxyCompactList}\item 
+bool \hyperlink{classLuna_1_1Timer_a006199b985e14e421d7dc1ef5d6e08a8}{is\+\_\+paused} ()
+\begin{DoxyCompactList}\small\item\em Check if the timer is paused. \end{DoxyCompactList}\item 
+bool \hyperlink{classLuna_1_1Timer_a025d787c4a3c7cc94e920e0ae480488f}{is\+\_\+active} ()
+\begin{DoxyCompactList}\small\item\em Check if the timer is active. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Timer_af2663caeb132da9375669733ac826cc8}{pause} ()
+\begin{DoxyCompactList}\small\item\em Pause the timer. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Timer_abf0e92e9d430cdf42c0ebe21e8220c91}{resume} ()
+\begin{DoxyCompactList}\small\item\em Resume the timer. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Timer_ab074740a502b02be0bb64ef3320733b3}{start} ()
+\begin{DoxyCompactList}\small\item\em Start the timer. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Timer_ad8ba9deb09bfe422cfaadba04a776662}{stop} ()
+\begin{DoxyCompactList}\small\item\em Stop the timer. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Timer_a7aee89c76f083206cb1ce7fd150f4e81}{reset} ()
+\begin{DoxyCompactList}\small\item\em Reset the timer. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Timer_ac0292bd7a6e45b269919fc2fe160a8bf}{print} () const
+\begin{DoxyCompactList}\small\item\em Output the time to the screen. \end{DoxyCompactList}\item 
+double \hyperlink{classLuna_1_1Timer_ac8b59a9f3d149ec56156af6f74a6d1a9}{get\+\_\+time} () const
+\begin{DoxyCompactList}\small\item\em Return the time in milliseconds. \end{DoxyCompactList}\item 
+clock\+\_\+t \hyperlink{classLuna_1_1Timer_a7b9ca4a1299e21bb5690aa960612ae9e}{get\+\_\+ticks} ()
+\begin{DoxyCompactList}\small\item\em Return the number of clock ticks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A simple timer class for timing methods. 
+
+Definition at line 13 of file Timer.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classLuna_1_1Timer_a8505121ba140f41121a57e4404e1d251}\label{classLuna_1_1Timer_a8505121ba140f41121a57e4404e1d251}} 
+\index{Luna\+::\+Timer@{Luna\+::\+Timer}!Timer@{Timer}}
+\index{Timer@{Timer}!Luna\+::\+Timer@{Luna\+::\+Timer}}
+\subsubsection{\texorpdfstring{Timer()}{Timer()}}
+{\footnotesize\ttfamily Luna\+::\+Timer\+::\+Timer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor. 
+
+
+
+Definition at line 27 of file Timer.\+h.
+
+
+\begin{DoxyCode}
+27                 : START\_TIME( 0 ), PAUSED\_TIME( 0 ), STARTED( \textcolor{keyword}{false} ), PAUSED( \textcolor{keyword}{false} )
+28         \{\}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Timer_af53efaf19a32dd49cc3c84671603d352}\label{classLuna_1_1Timer_af53efaf19a32dd49cc3c84671603d352}} 
+\index{Luna\+::\+Timer@{Luna\+::\+Timer}!````~Timer@{$\sim$\+Timer}}
+\index{````~Timer@{$\sim$\+Timer}!Luna\+::\+Timer@{Luna\+::\+Timer}}
+\subsubsection{\texorpdfstring{$\sim$\+Timer()}{~Timer()}}
+{\footnotesize\ttfamily Luna\+::\+Timer\+::$\sim$\+Timer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Destructor. 
+
+
+
+Definition at line 31 of file Timer.\+h.
+
+
+
+References get\+\_\+ticks(), get\+\_\+time(), is\+\_\+active(), is\+\_\+paused(), is\+\_\+started(), is\+\_\+stopped(), pause(), print(), reset(), resume(), start(), and stop().
+
+
+\begin{DoxyCode}
+32         \{\}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classLuna_1_1Timer_a7b9ca4a1299e21bb5690aa960612ae9e}\label{classLuna_1_1Timer_a7b9ca4a1299e21bb5690aa960612ae9e}} 
+\index{Luna\+::\+Timer@{Luna\+::\+Timer}!get\+\_\+ticks@{get\+\_\+ticks}}
+\index{get\+\_\+ticks@{get\+\_\+ticks}!Luna\+::\+Timer@{Luna\+::\+Timer}}
+\subsubsection{\texorpdfstring{get\+\_\+ticks()}{get\_ticks()}}
+{\footnotesize\ttfamily clock\+\_\+t Luna\+::\+Timer\+::get\+\_\+ticks (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the number of clock ticks. 
+
+\begin{DoxyReturn}{Returns}
+The number of clock ticks 
+\end{DoxyReturn}
+
+
+Definition at line 165 of file Timer.\+h.
+
+
+
+Referenced by get\+\_\+time(), and $\sim$\+Timer().
+
+
+\begin{DoxyCode}
+166     \{
+167         \textcolor{keywordflow}{if}( !STARTED )
+168         \{
+169             \textcolor{keywordflow}{return} 0;
+170         \}
+171 
+172         \textcolor{keywordflow}{if}( PAUSED )
+173         \{
+174             \textcolor{keywordflow}{return} PAUSED\_TIME - START\_TIME;
+175         \}
+176 
+177         \textcolor{keywordflow}{return} clock() - START\_TIME;
+178     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Timer_ac8b59a9f3d149ec56156af6f74a6d1a9}\label{classLuna_1_1Timer_ac8b59a9f3d149ec56156af6f74a6d1a9}} 
+\index{Luna\+::\+Timer@{Luna\+::\+Timer}!get\+\_\+time@{get\+\_\+time}}
+\index{get\+\_\+time@{get\+\_\+time}!Luna\+::\+Timer@{Luna\+::\+Timer}}
+\subsubsection{\texorpdfstring{get\+\_\+time()}{get\_time()}}
+{\footnotesize\ttfamily double Luna\+::\+Timer\+::get\+\_\+time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the time in milliseconds. 
+
+\begin{DoxyReturn}{Returns}
+The time in ms 
+\end{DoxyReturn}
+
+
+Definition at line 159 of file Timer.\+h.
+
+
+
+References get\+\_\+ticks().
+
+
+
+Referenced by main(), print(), and $\sim$\+Timer().
+
+
+\begin{DoxyCode}
+160     \{
+161         \hyperlink{classLuna_1_1Timer_a8505121ba140f41121a57e4404e1d251}{Timer} temp( *\textcolor{keyword}{this} );
+162         \textcolor{keywordflow}{return} 1.e3 * temp.get\_ticks() / CLOCKS\_PER\_SEC;
+163     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Timer_a025d787c4a3c7cc94e920e0ae480488f}\label{classLuna_1_1Timer_a025d787c4a3c7cc94e920e0ae480488f}} 
+\index{Luna\+::\+Timer@{Luna\+::\+Timer}!is\+\_\+active@{is\+\_\+active}}
+\index{is\+\_\+active@{is\+\_\+active}!Luna\+::\+Timer@{Luna\+::\+Timer}}
+\subsubsection{\texorpdfstring{is\+\_\+active()}{is\_active()}}
+{\footnotesize\ttfamily bool Luna\+::\+Timer\+::is\+\_\+active (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check if the timer is active. 
+
+\begin{DoxyReturn}{Returns}
+true if the timer is still active and false otherwise 
+\end{DoxyReturn}
+
+
+Definition at line 97 of file Timer.\+h.
+
+
+
+Referenced by $\sim$\+Timer().
+
+
+\begin{DoxyCode}
+98     \{
+99         \textcolor{keywordflow}{return} !PAUSED & STARTED;
+100     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Timer_a006199b985e14e421d7dc1ef5d6e08a8}\label{classLuna_1_1Timer_a006199b985e14e421d7dc1ef5d6e08a8}} 
+\index{Luna\+::\+Timer@{Luna\+::\+Timer}!is\+\_\+paused@{is\+\_\+paused}}
+\index{is\+\_\+paused@{is\+\_\+paused}!Luna\+::\+Timer@{Luna\+::\+Timer}}
+\subsubsection{\texorpdfstring{is\+\_\+paused()}{is\_paused()}}
+{\footnotesize\ttfamily bool Luna\+::\+Timer\+::is\+\_\+paused (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check if the timer is paused. 
+
+\begin{DoxyReturn}{Returns}
+true if the timer is paused and false otherwise 
+\end{DoxyReturn}
+
+
+Definition at line 92 of file Timer.\+h.
+
+
+
+Referenced by $\sim$\+Timer().
+
+
+\begin{DoxyCode}
+93     \{
+94         \textcolor{keywordflow}{return} PAUSED;
+95     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Timer_acd735003d27555b69bc3c54e8cd4a301}\label{classLuna_1_1Timer_acd735003d27555b69bc3c54e8cd4a301}} 
+\index{Luna\+::\+Timer@{Luna\+::\+Timer}!is\+\_\+started@{is\+\_\+started}}
+\index{is\+\_\+started@{is\+\_\+started}!Luna\+::\+Timer@{Luna\+::\+Timer}}
+\subsubsection{\texorpdfstring{is\+\_\+started()}{is\_started()}}
+{\footnotesize\ttfamily bool Luna\+::\+Timer\+::is\+\_\+started (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check if the timer has started. 
+
+\begin{DoxyReturn}{Returns}
+true if the time has been started and false otherwise 
+\end{DoxyReturn}
+
+
+Definition at line 82 of file Timer.\+h.
+
+
+
+Referenced by $\sim$\+Timer().
+
+
+\begin{DoxyCode}
+83     \{
+84         \textcolor{keywordflow}{return} STARTED;
+85     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Timer_aa028fb717dce42cbf9806ce604ba09b6}\label{classLuna_1_1Timer_aa028fb717dce42cbf9806ce604ba09b6}} 
+\index{Luna\+::\+Timer@{Luna\+::\+Timer}!is\+\_\+stopped@{is\+\_\+stopped}}
+\index{is\+\_\+stopped@{is\+\_\+stopped}!Luna\+::\+Timer@{Luna\+::\+Timer}}
+\subsubsection{\texorpdfstring{is\+\_\+stopped()}{is\_stopped()}}
+{\footnotesize\ttfamily bool Luna\+::\+Timer\+::is\+\_\+stopped (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check if the timer is stopped. 
+
+\begin{DoxyReturn}{Returns}
+true if the timer is stopped and false otherwise 
+\end{DoxyReturn}
+
+
+Definition at line 87 of file Timer.\+h.
+
+
+
+Referenced by $\sim$\+Timer().
+
+
+\begin{DoxyCode}
+88     \{
+89         \textcolor{keywordflow}{return} !STARTED;
+90     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Timer_af2663caeb132da9375669733ac826cc8}\label{classLuna_1_1Timer_af2663caeb132da9375669733ac826cc8}} 
+\index{Luna\+::\+Timer@{Luna\+::\+Timer}!pause@{pause}}
+\index{pause@{pause}!Luna\+::\+Timer@{Luna\+::\+Timer}}
+\subsubsection{\texorpdfstring{pause()}{pause()}}
+{\footnotesize\ttfamily void Luna\+::\+Timer\+::pause (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Pause the timer. 
+
+
+
+Definition at line 102 of file Timer.\+h.
+
+
+
+Referenced by $\sim$\+Timer().
+
+
+\begin{DoxyCode}
+103     \{
+104         \textcolor{keywordflow}{if}( PAUSED || !STARTED )
+105         \{
+106             \textcolor{keywordflow}{return};
+107         \}
+108         PAUSED = \textcolor{keyword}{true};
+109         PAUSED\_TIME = clock();
+110     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Timer_ac0292bd7a6e45b269919fc2fe160a8bf}\label{classLuna_1_1Timer_ac0292bd7a6e45b269919fc2fe160a8bf}} 
+\index{Luna\+::\+Timer@{Luna\+::\+Timer}!print@{print}}
+\index{print@{print}!Luna\+::\+Timer@{Luna\+::\+Timer}}
+\subsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily void Luna\+::\+Timer\+::print (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Output the time to the screen. 
+
+
+
+Definition at line 144 of file Timer.\+h.
+
+
+
+References get\+\_\+time().
+
+
+
+Referenced by main(), and $\sim$\+Timer().
+
+
+\begin{DoxyCode}
+145     \{
+146         std::cout.precision(4);
+147         \hyperlink{classLuna_1_1Timer_a8505121ba140f41121a57e4404e1d251}{Timer} temp( *\textcolor{keyword}{this} );
+148         \textcolor{keyword}{const} \textcolor{keywordtype}{double} elapsed\_time\_in\_ms( temp.get\_time() );
+149         \textcolor{keywordflow}{if} ( elapsed\_time\_in\_ms > 1000 )
+150         \{
+151           std::cout << \textcolor{stringliteral}{"  * TOTAL CPU time taken = "} << elapsed\_time\_in\_ms / 1000. << \textcolor{stringliteral}{" s\(\backslash\)n"};
+152         \}
+153         \textcolor{keywordflow}{else}
+154         \{
+155          std::cout << \textcolor{stringliteral}{"  * TOTAL CPU time taken = "} << elapsed\_time\_in\_ms << \textcolor{stringliteral}{" ms\(\backslash\)n"};
+156         \}
+157     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Timer_a7aee89c76f083206cb1ce7fd150f4e81}\label{classLuna_1_1Timer_a7aee89c76f083206cb1ce7fd150f4e81}} 
+\index{Luna\+::\+Timer@{Luna\+::\+Timer}!reset@{reset}}
+\index{reset@{reset}!Luna\+::\+Timer@{Luna\+::\+Timer}}
+\subsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily void Luna\+::\+Timer\+::reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reset the timer. 
+
+
+
+Definition at line 138 of file Timer.\+h.
+
+
+
+Referenced by $\sim$\+Timer().
+
+
+\begin{DoxyCode}
+139     \{
+140         PAUSED = \textcolor{keyword}{false};
+141         START\_TIME = clock();
+142     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Timer_abf0e92e9d430cdf42c0ebe21e8220c91}\label{classLuna_1_1Timer_abf0e92e9d430cdf42c0ebe21e8220c91}} 
+\index{Luna\+::\+Timer@{Luna\+::\+Timer}!resume@{resume}}
+\index{resume@{resume}!Luna\+::\+Timer@{Luna\+::\+Timer}}
+\subsubsection{\texorpdfstring{resume()}{resume()}}
+{\footnotesize\ttfamily void Luna\+::\+Timer\+::resume (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Resume the timer. 
+
+
+
+Definition at line 112 of file Timer.\+h.
+
+
+
+Referenced by $\sim$\+Timer().
+
+
+\begin{DoxyCode}
+113     \{
+114         \textcolor{keywordflow}{if}( !PAUSED )
+115         \{
+116             \textcolor{keywordflow}{return};
+117         \}
+118         PAUSED = \textcolor{keyword}{false};
+119         START\_TIME += clock() - PAUSED\_TIME;
+120     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Timer_ab074740a502b02be0bb64ef3320733b3}\label{classLuna_1_1Timer_ab074740a502b02be0bb64ef3320733b3}} 
+\index{Luna\+::\+Timer@{Luna\+::\+Timer}!start@{start}}
+\index{start@{start}!Luna\+::\+Timer@{Luna\+::\+Timer}}
+\subsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily void Luna\+::\+Timer\+::start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Start the timer. 
+
+
+
+Definition at line 122 of file Timer.\+h.
+
+
+
+Referenced by main(), and $\sim$\+Timer().
+
+
+\begin{DoxyCode}
+123     \{
+124         \textcolor{keywordflow}{if}( STARTED )
+125         \{
+126             \textcolor{keywordflow}{return};
+127         \}
+128         STARTED = \textcolor{keyword}{true};
+129         PAUSED = \textcolor{keyword}{false};
+130         START\_TIME = clock();
+131     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Timer_ad8ba9deb09bfe422cfaadba04a776662}\label{classLuna_1_1Timer_ad8ba9deb09bfe422cfaadba04a776662}} 
+\index{Luna\+::\+Timer@{Luna\+::\+Timer}!stop@{stop}}
+\index{stop@{stop}!Luna\+::\+Timer@{Luna\+::\+Timer}}
+\subsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily void Luna\+::\+Timer\+::stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Stop the timer. 
+
+
+
+Definition at line 133 of file Timer.\+h.
+
+
+
+Referenced by main(), and $\sim$\+Timer().
+
+
+\begin{DoxyCode}
+134     \{
+135         STARTED = \textcolor{keyword}{false};
+136     \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Luna/\hyperlink{Timer_8h}{Timer.\+h}\end{DoxyCompactItemize}

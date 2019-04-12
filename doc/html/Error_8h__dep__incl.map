@@ -1,0 +1,20 @@
+<map id="include/Luna/Error.h" name="include/Luna/Error.h">
+<area shape="rect" id="node2" href="$Vector_8h.html" title="A templated numeric Vector class that encapsulates std::vector. " alt="" coords="1221,80,1369,107"/>
+<area shape="rect" id="node3" href="$Arclength_8h.html" title="A base class for arc length solvers. " alt="" coords="5,155,171,181"/>
+<area shape="rect" id="node4" href="$Newton_8h.html" title="A class for using Newton&#39;s method for solving systems of nonlinear equations of the form &#160;where &#160;is a..." alt="" coords="408,311,563,338"/>
+<area shape="rect" id="node5" href="$ODE__BVP_8h.html" title="A class for solving a system of &#160;first&#45;order ordinary differential equations subject to &#160;boundary con..." alt="" coords="1239,483,1412,509"/>
+<area shape="rect" id="node6" href="$BandedMatrix_8h.html" title="A templated banded matrix class. " alt="" coords="1363,229,1554,256"/>
+<area shape="rect" id="node7" href="$Matrix_8h.html" title="A templated matrix class which constructs a Matrix as an std::vector of Vectors. " alt="" coords="827,155,973,181"/>
+<area shape="rect" id="node8" href="$Residual_8h.html" title="A residual class for use with Newton for solving systems of non&#45;linear equations of the form F(x) = 0..." alt="" coords="523,229,685,256"/>
+<area shape="rect" id="node12" href="$LinearEigensystem_8h.html" title="A templated class for solving linear eigenvalue problems of the form A*v=lambda*v where A is a matrix..." alt="" coords="227,229,448,256"/>
+<area shape="rect" id="node13" href="$Mesh2D_8h.html" title="A class specifying a two dimensional mesh object used for storing and manipulating data..." alt="" coords="1578,229,1737,256"/>
+<area shape="rect" id="node14" href="$Tridiagonal_8h.html" title="A templated Tridiagonal matrix class which constructs a matrix as three Vectors for the main..." alt="" coords="963,229,1136,256"/>
+<area shape="rect" id="node15" href="$Mesh1D_8h.html" title="A class specifying a one dimensional mesh object used for storing and manipulating data..." alt="" coords="1566,155,1725,181"/>
+<area shape="rect" id="node16" href="$Polynomial_8h.html" title="A class for defining and evaluating polynomials and finding the roots of polynomial equations..." alt="" coords="1801,155,1975,181"/>
+<area shape="rect" id="node17" href="$SparseMatrix_8h.html" title="A templated sparse matrix class for solving sparse linear systems. " alt="" coords="2228,229,2415,256"/>
+<area shape="rect" id="node18" href="$Triplet_8h.html" title="A class for defining Triplets of the form (i,j,value) where i and j are indices. " alt="" coords="2228,155,2375,181"/>
+<area shape="rect" id="node19" href="$Special_8h.html" title="A file specifying some special mathematical functions not contained in the standard library..." alt="" coords="1999,155,2153,181"/>
+<area shape="rect" id="node9" href="$Residual__with__coords_8h.html" title="A specification of a residual class that defines a vector residual of a vector of state variables..." alt="" coords="862,304,1013,345"/>
+<area shape="rect" id="node10" href="$Equation_8h.html" title="A templated class for equations that can be inherited from to allow instantiation of ODE/PDE objects ..." alt="" coords="1081,401,1242,427"/>
+<area shape="rect" id="node11" href="$Equation__1matrix_8h.html" title="A templated class for equations that can be inherited from to allow instantiation of ODE/PDE objects ..." alt="" coords="862,393,1013,435"/>
+</map>

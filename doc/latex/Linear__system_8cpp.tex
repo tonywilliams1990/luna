@@ -1,0 +1,147 @@
+\hypertarget{Linear__system_8cpp}{}\section{Examples/\+Linear\+\_\+system.cpp File Reference}
+\label{Linear__system_8cpp}\index{Examples/\+Linear\+\_\+system.\+cpp@{Examples/\+Linear\+\_\+system.\+cpp}}
+
+
+Solve some linear systems of equations.  
+
+
+{\ttfamily \#include \char`\"{}Luna/\+Core\char`\"{}}\newline
+Include dependency graph for Linear\+\_\+system.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{Linear__system_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{Linear__system_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Solve some linear systems of equations. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{Linear__system_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{Linear__system_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{Linear\+\_\+system.\+cpp@{Linear\+\_\+system.\+cpp}!main@{main}}
+\index{main@{main}!Linear\+\_\+system.\+cpp@{Linear\+\_\+system.\+cpp}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Definition at line 10 of file Linear\+\_\+system.\+cpp.
+
+
+
+References Luna\+::\+Matrix$<$ T $>$\+::det(), Luna\+::\+Timer\+::get\+\_\+time(), Luna\+::\+Matrix$<$ T $>$\+::inverse(), Luna\+::\+Matrix$<$ T $>$\+::\+L\+U\+\_\+decomp(), Heat\+\_\+plot\+::N, Luna\+::\+Matrix$<$ T $>$\+::random(), Luna\+::\+Vector$<$ T $>$\+::resize(), Luna\+::\+Matrix$<$ T $>$\+::resize(), Luna\+::\+Matrix$<$ T $>$\+::solve\+\_\+basic(), Luna\+::\+Timer\+::start(), Luna\+::\+Timer\+::stop(), Heat\+\_\+plot\+::x, and y.
+
+
+\begin{DoxyCode}
+11 \{
+12   cout << \textcolor{stringliteral}{"---------------- Linear system ----------------"} << endl;
+13 
+14   \hyperlink{classLuna_1_1Matrix}{Matrix<double>} A( 3, 3, 0.0 );
+15   \hyperlink{classLuna_1_1Vector}{Vector<double>} b( 3, 0.0 );
+16   \hyperlink{classLuna_1_1Vector}{Vector<double>} \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x};
+17 
+18   cout << \textcolor{stringliteral}{"  * Solve the linear system Ax=b for x where"} << endl;
+19 
+20   A( 0, 0 ) = 1.0; A( 0, 1 ) = 1.0; A( 0, 2 ) =   1.0;
+21   A( 1, 0 ) = 0.0; A( 1, 1 ) = 2.0; A( 1, 2 ) =   5.0;
+22   A( 2, 0 ) = 2.0; A( 2, 1 ) = 5.0; A( 2, 2 ) = - 1.0;
+23   cout << \textcolor{stringliteral}{"  * A = "} << A << endl;
+24 
+25   b[ 0 ] = 6.0; b[ 1 ] = - 4.0; b[ 2 ] = 27.0;
+26   cout << \textcolor{stringliteral}{"  * b^T = "} << b << endl;
+27   cout << \textcolor{stringliteral}{"  * gives the solution vector "} << endl;
+28 
+29   x = A.solve\_basic( b );
+30   cout << \textcolor{stringliteral}{"  * x^T = "} << x << endl;
+31 
+32   cout << \textcolor{stringliteral}{"-----------------------------------------------"} << endl;
+33 
+34   cout << \textcolor{stringliteral}{"  * Solve the complex linear system CX=B for X "} << endl;
+35   cout << \textcolor{stringliteral}{"  * where C, X and B are complex matrices. "} << endl;
+36 
+37   \hyperlink{classLuna_1_1Matrix}{Matrix< std::complex<double>} > C( 2, 2, 0.0 );
+38   \hyperlink{classLuna_1_1Matrix}{Matrix< std::complex<double>} > B( 2, 3, 0.0 );
+39   \hyperlink{classLuna_1_1Matrix}{Matrix< std::complex<double>} > X( 2, 3, 0.0 );
+40 
+41   C.random();
+42   cout << \textcolor{stringliteral}{"  * C = "} << C << endl;
+43 
+44   B.random();
+45   cout << \textcolor{stringliteral}{"  * B = "} << B << endl;
+46 
+47   cout << \textcolor{stringliteral}{"  * gives the solution matrix "} << endl;
+48   X = C.solve\_basic( B );
+49   cout << \textcolor{stringliteral}{"  * X = "} << X << endl;
+50 
+51   cout << \textcolor{stringliteral}{"  * This solution may easily be checked i.e. "} << endl;
+52   cout << \textcolor{stringliteral}{"  * CX - B = "} << C * X - B << endl;
+53 
+54   cout << \textcolor{stringliteral}{"-----------------------------------------------"} << endl;
+55 
+56   cout << \textcolor{stringliteral}{"  * In theory we may solve systems of any size"} << endl;
+57   cout << \textcolor{stringliteral}{"  * but in practice this can be time consuming. "} << endl;
+58 
+59   \hyperlink{classLuna_1_1Timer}{Timer} timer;
+60   \textcolor{keywordtype}{double} time\_in\_ms;
+61   std::size\_t \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}( 16 );
+62   \hyperlink{classLuna_1_1Matrix}{Matrix<double>} D( \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}, \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}, 0.0 );
+63 
+64   cout << \textcolor{stringliteral}{"  * For example: "} << endl;
+65 
+66   \textcolor{keywordflow}{for} ( std::size\_t i = 0; i < 7; ++i )
+67   \{
+68     D.resize( \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}, \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} );
+69     D.random();
+70     x.\hyperlink{classLuna_1_1Vector_ae1394f960d5cac3e60f6b1561f38e453}{resize}( \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} );
+71     \hyperlink{classLuna_1_1Vector}{Vector<double>} \hyperlink{ODE__BVP__test_8cpp_adf764cbdea00d65edcd07bb9953ad2b7ae1f9fdb8b786c63efc4ce44eeacd17f2}{y}( \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}, 1.0 );
+72 
+73     timer.\hyperlink{classLuna_1_1Timer_ab074740a502b02be0bb64ef3320733b3}{start}();
+74     x = D.solve\_basic( \hyperlink{ODE__BVP__test_8cpp_adf764cbdea00d65edcd07bb9953ad2b7ae1f9fdb8b786c63efc4ce44eeacd17f2}{y} );
+75     time\_in\_ms = timer.\hyperlink{classLuna_1_1Timer_ac8b59a9f3d149ec56156af6f74a6d1a9}{get\_time}();
+76     timer.\hyperlink{classLuna_1_1Timer_ad8ba9deb09bfe422cfaadba04a776662}{stop}();
+77 
+78     cout << \textcolor{stringliteral}{"  * solving a "} << \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} << \textcolor{stringliteral}{"x"} << \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} << \textcolor{stringliteral}{" system takes "}
+79          << time\_in\_ms << \textcolor{stringliteral}{" ms. "} << endl;
+80     \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} *= 2;
+81   \}
+82 
+83   cout << \textcolor{stringliteral}{"-----------------------------------------------"} << endl;
+84   cout << \textcolor{stringliteral}{"  * Calculate the LU decomposition of a 3x3  "} << endl;
+85   cout << \textcolor{stringliteral}{"  * matrix with partial pivoting ( PA = LU )."} << endl;
+86   A( 0, 0 ) = 2.0; A( 0, 1 ) =   4.0; A( 0, 2 ) =  1.0;
+87   A( 1, 0 ) = 4.0; A( 1, 1 ) = -10.0; A( 1, 2 ) =  2.0;
+88   A( 2, 0 ) = 1.0; A( 2, 1 ) =   2.0; A( 2, 2 ) =  4.0;
+89   \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} = 3;
+90   cout << \textcolor{stringliteral}{"  * A = "} << A << endl;
+91 
+92   \hyperlink{classLuna_1_1Matrix}{Matrix<double>} L( \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}, \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}, 0.0 );
+93   \hyperlink{classLuna_1_1Matrix}{Matrix<double>} U( \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}, \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}, 0.0 );
+94   \hyperlink{classLuna_1_1Matrix}{Matrix<double>} P( \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}, \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}, 0.0 );
+95 
+96   A.LU\_decomp( L, U, P );
+97 
+98   cout << \textcolor{stringliteral}{"  * L = "} << L << endl;
+99   cout << \textcolor{stringliteral}{"  * U = "} << U << endl;
+100   cout << \textcolor{stringliteral}{"  * P = "} << P << endl;
+101   cout << \textcolor{stringliteral}{"  * Check that the decomposition has worked."} << endl;
+102   cout << \textcolor{stringliteral}{"  * PA - LU = "} << P * A - L * U << endl;
+103   cout << \textcolor{stringliteral}{"  * Now caluculate the determinant of the matrix."} << endl;
+104   cout << \textcolor{stringliteral}{"  * A.det() = "} << A.det() << endl;
+105   \hyperlink{classLuna_1_1Matrix}{Matrix<double>} Inv( \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}, \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}, 0.0 );
+106   Inv = A.inverse();
+107   cout << \textcolor{stringliteral}{"  * Also calculate the inverse and check it."} << endl;
+108   cout << \textcolor{stringliteral}{"  * A.inverse() = "} << Inv << endl;
+109   cout << \textcolor{stringliteral}{"  * AA^\{-1\} = "} << A * Inv << endl;
+110 
+111   cout << \textcolor{stringliteral}{"------------------ FINISHED ------------------"} << endl;
+112 \}
+\end{DoxyCode}

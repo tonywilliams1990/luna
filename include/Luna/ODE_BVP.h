@@ -1,7 +1,29 @@
 /// \file ODE_BVP.h
-/// A templated object for boundary-value problems as systems of first-order
-/// ordinary differential equations.
-/// TODO more of description (mention double template), method of solution
+/// A class for solving a system of \f$ n \f$ first-order ordinary differential
+/// equations subject to \f$ n \f$ boundary conditions defined at the ends of
+/// the domain \f$ x = x_{left} \f$ or \f$ x_{right} \f$. The system is defined
+/// by \f[ M_0 \frac{d \mathbf{f}}{dx} = \mathbf{R} \f] where
+/// \f$ \mathbf{f}=\mathbf{f}(x) \f$ is the vector on unknowns,
+/// \f$ \mathbf{R} = \mathbf{R}(\mathbf{f}, x) \f$ is the vector of residuals
+/// and \f$ M_0 = M_0(\mathbf{f}, x) \f$ is a matrix.
+///
+/// The system is solved via Newton iteration by splitting the solution into a
+/// known part \f$ \mathbf{f}^g \f$ and a correction \f$ \mathbf{f}^c \f$ such
+/// that \f$ \mathbf{f} =\mathbf{f}^g + \mathbf{f}^c \f$. The matrix \f$ M_0 \f$
+/// and the residual \f$ \mathbf{R} \f$ are exapanded about the known solution
+/// such that \f[ \mathbf{R}(\mathbf{f}, x) = \mathbf{R}(\mathbf{f}^g, x) +
+/// \frac{\partial \mathbf{R}}{\partial \mathbf{f}} \bigg\vert_{\mathbf{f}^g}
+/// \mathbf{f}^c + O((\mathbf{f}^c)^2), \hspace{0.5cm} M_0(\mathbf{f}, x) =
+/// M_0(\mathbf{f}^g, x) + \frac{\partial M_0}{\partial \mathbf{f}}
+/// \bigg\vert_{\mathbf{f}^g} \mathbf{f}^c + O((\mathbf{f}^c)^2).\f]
+/// The system is linearised for the corrections such that \f[ M_0(\mathbf{f}^g,
+/// x) \frac{d \mathbf{f}^c}{d x} + \left(\frac{\partial M_0}{\partial
+/// \mathbf{f}} \bigg\vert_{\mathbf{f}^g} - \frac{\partial \mathbf{R}}{\partial
+/// \mathbf{f}} \bigg\vert_{\mathbf{f}^g} \right) \mathbf{f}^c = \mathbf{R}
+/// - M_0(\mathbf{f}^g, x) \frac{d \mathbf{f}^g}{d x}. \f] The system is then
+/// solved for the correction \f$ \mathbf{f}^c \f$ which is used to update the
+/// known solution \f$ \mathbf{f}^g \f$, this is repeated until convergence is
+/// achieved.  
 
 #ifndef ODE_BVP_H
 #define ODE_BVP_H
@@ -24,7 +46,8 @@ namespace Luna
 	// Doubly templated class
 	template <class T, class X = double>
 
-  /// A Vector class for use with double and std::complex<double>
+	/// A templated object for boundary-value problems as systems of first-order
+	/// ordinary differential equations.
   class ODE_BVP //TODO : public Arclength<T>
   {
   private:

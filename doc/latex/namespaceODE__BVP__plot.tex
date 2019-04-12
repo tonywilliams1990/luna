@@ -1,0 +1,204 @@
+\hypertarget{namespaceODE__BVP__plot}{}\section{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot Namespace Reference}
+\label{namespaceODE__BVP__plot}\index{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespaceODE__BVP__plot_a622c61e641f1695a3b9cc06bed3fbb3e}{data\+\_\+exact} = np.\+loadtxt( \char`\"{}./D\+A\+TA/O\+D\+E\+\_\+\+B\+V\+P\+\_\+exact\+\_\+solution.\+dat\char`\"{} )
+\item 
+\hyperlink{namespaceODE__BVP__plot_ad4ab2d9ae63df8f94362a1abefb1b540}{data\+\_\+numerical} = np.\+loadtxt( \char`\"{}./D\+A\+TA/O\+D\+E\+\_\+\+B\+V\+P\+\_\+numerical\+\_\+solution.\+dat\char`\"{} )
+\item 
+\hyperlink{namespaceODE__BVP__plot_a466900eb1eeddc06d487396821e1e00f}{x} = \hyperlink{namespaceODE__BVP__plot_a622c61e641f1695a3b9cc06bed3fbb3e}{data\+\_\+exact}\mbox{[}\+:,0\mbox{]}
+\item 
+\hyperlink{namespaceODE__BVP__plot_af37cba4830d7dec912ee2028d4d32f54}{y\+\_\+exact} = \hyperlink{namespaceODE__BVP__plot_a622c61e641f1695a3b9cc06bed3fbb3e}{data\+\_\+exact}\mbox{[}\+:,1\mbox{]}
+\item 
+\hyperlink{namespaceODE__BVP__plot_a391db2f2f7f3511be763c10ed7451340}{ydash\+\_\+exact} = \hyperlink{namespaceODE__BVP__plot_a622c61e641f1695a3b9cc06bed3fbb3e}{data\+\_\+exact}\mbox{[}\+:,2\mbox{]}
+\item 
+\hyperlink{namespaceODE__BVP__plot_a2c83010c60bfd7d0f8d05c96300c8a5f}{y\+\_\+numerical} = \hyperlink{namespaceODE__BVP__plot_ad4ab2d9ae63df8f94362a1abefb1b540}{data\+\_\+numerical}\mbox{[}\+:,1\mbox{]}
+\item 
+\hyperlink{namespaceODE__BVP__plot_a321cad715aaa19b55082e3163d7cf2ee}{ydash\+\_\+numerical} = \hyperlink{namespaceODE__BVP__plot_ad4ab2d9ae63df8f94362a1abefb1b540}{data\+\_\+numerical}\mbox{[}\+:,2\mbox{]}
+\item 
+\hyperlink{namespaceODE__BVP__plot_a8db68424e12aa3dfa6fd2c118cba6e7c}{y\+\_\+error} = np.\+abs( \hyperlink{namespaceODE__BVP__plot_af37cba4830d7dec912ee2028d4d32f54}{y\+\_\+exact} -\/ \hyperlink{namespaceODE__BVP__plot_a2c83010c60bfd7d0f8d05c96300c8a5f}{y\+\_\+numerical} )
+\item 
+\hyperlink{namespaceODE__BVP__plot_a32b60056578e16000892cd7c6286aa07}{ydash\+\_\+error} = np.\+abs( \hyperlink{namespaceODE__BVP__plot_a391db2f2f7f3511be763c10ed7451340}{ydash\+\_\+exact} -\/ \hyperlink{namespaceODE__BVP__plot_a321cad715aaa19b55082e3163d7cf2ee}{ydash\+\_\+numerical} )
+\item 
+\hyperlink{namespaceODE__BVP__plot_aa6f0b58debc64720190d4915f760aa5a}{max\+\_\+y\+\_\+error} = np.\+max( \hyperlink{namespaceODE__BVP__plot_a8db68424e12aa3dfa6fd2c118cba6e7c}{y\+\_\+error} )
+\item 
+\hyperlink{namespaceODE__BVP__plot_ade414a5474caac41479cea546028f37b}{max\+\_\+ydash\+\_\+error} = np.\+max( \hyperlink{namespaceODE__BVP__plot_a32b60056578e16000892cd7c6286aa07}{ydash\+\_\+error} )
+\item 
+\hyperlink{namespaceODE__BVP__plot_af98eda3ba188f29a21f5f2f124a2e88a}{max\+\_\+error} = np.\+max( np.\+concatenate( ( \hyperlink{namespaceODE__BVP__plot_a8db68424e12aa3dfa6fd2c118cba6e7c}{y\+\_\+error}, \hyperlink{namespaceODE__BVP__plot_a32b60056578e16000892cd7c6286aa07}{ydash\+\_\+error} ) ) )
+\item 
+\hyperlink{namespaceODE__BVP__plot_a950605ac9efe3d57c5d08a1d684f357b}{f}
+\item 
+\hyperlink{namespaceODE__BVP__plot_a2227a5a01082d2f53f4867a32fef5d46}{axarr}
+\item 
+\hyperlink{namespaceODE__BVP__plot_a620ccfcfcbdfd074ab8a58bc1dd78cd2}{sharex}
+\item 
+\hyperlink{namespaceODE__BVP__plot_ad00bb42d6367c0969af70cd2ab13f464}{axes} = plt.\+gca()
+\end{DoxyCompactItemize}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespaceODE__BVP__plot_a2227a5a01082d2f53f4867a32fef5d46}\label{namespaceODE__BVP__plot_a2227a5a01082d2f53f4867a32fef5d46}} 
+\index{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!axarr@{axarr}}
+\index{axarr@{axarr}!O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{axarr}{axarr}}
+{\footnotesize\ttfamily O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+axarr}
+
+
+
+Definition at line 19 of file O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceODE__BVP__plot_ad00bb42d6367c0969af70cd2ab13f464}\label{namespaceODE__BVP__plot_ad00bb42d6367c0969af70cd2ab13f464}} 
+\index{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!axes@{axes}}
+\index{axes@{axes}!O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{axes}{axes}}
+{\footnotesize\ttfamily O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+axes = plt.\+gca()}
+
+
+
+Definition at line 27 of file O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceODE__BVP__plot_a622c61e641f1695a3b9cc06bed3fbb3e}\label{namespaceODE__BVP__plot_a622c61e641f1695a3b9cc06bed3fbb3e}} 
+\index{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!data\+\_\+exact@{data\+\_\+exact}}
+\index{data\+\_\+exact@{data\+\_\+exact}!O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{data\+\_\+exact}{data\_exact}}
+{\footnotesize\ttfamily O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+data\+\_\+exact = np.\+loadtxt( \char`\"{}./D\+A\+TA/O\+D\+E\+\_\+\+B\+V\+P\+\_\+exact\+\_\+solution.\+dat\char`\"{} )}
+
+
+
+Definition at line 4 of file O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceODE__BVP__plot_ad4ab2d9ae63df8f94362a1abefb1b540}\label{namespaceODE__BVP__plot_ad4ab2d9ae63df8f94362a1abefb1b540}} 
+\index{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!data\+\_\+numerical@{data\+\_\+numerical}}
+\index{data\+\_\+numerical@{data\+\_\+numerical}!O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{data\+\_\+numerical}{data\_numerical}}
+{\footnotesize\ttfamily O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+data\+\_\+numerical = np.\+loadtxt( \char`\"{}./D\+A\+TA/O\+D\+E\+\_\+\+B\+V\+P\+\_\+numerical\+\_\+solution.\+dat\char`\"{} )}
+
+
+
+Definition at line 5 of file O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceODE__BVP__plot_a950605ac9efe3d57c5d08a1d684f357b}\label{namespaceODE__BVP__plot_a950605ac9efe3d57c5d08a1d684f357b}} 
+\index{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!f@{f}}
+\index{f@{f}!O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{f}{f}}
+{\footnotesize\ttfamily O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+f}
+
+
+
+Definition at line 19 of file O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+
+
+
+Referenced by Luna\+::\+Polynomial$<$ T $>$.\+cubic\+\_\+solve(), Luna\+::\+Polynomial$<$ T $>$.\+derivatives(), Luna\+::\+Tridiagonal$<$ T $>$.\+det(), Luna\+::\+Linear\+Eigensystem$<$ T $>$.\+eigenvectors(), Luna\+::\+Utility.\+file\+\_\+exists(), and main().
+
+\mbox{\Hypertarget{namespaceODE__BVP__plot_af98eda3ba188f29a21f5f2f124a2e88a}\label{namespaceODE__BVP__plot_af98eda3ba188f29a21f5f2f124a2e88a}} 
+\index{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!max\+\_\+error@{max\+\_\+error}}
+\index{max\+\_\+error@{max\+\_\+error}!O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{max\+\_\+error}{max\_error}}
+{\footnotesize\ttfamily O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+max\+\_\+error = np.\+max( np.\+concatenate( ( \hyperlink{namespaceODE__BVP__plot_a8db68424e12aa3dfa6fd2c118cba6e7c}{y\+\_\+error}, \hyperlink{namespaceODE__BVP__plot_a32b60056578e16000892cd7c6286aa07}{ydash\+\_\+error} ) ) )}
+
+
+
+Definition at line 16 of file O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceODE__BVP__plot_aa6f0b58debc64720190d4915f760aa5a}\label{namespaceODE__BVP__plot_aa6f0b58debc64720190d4915f760aa5a}} 
+\index{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!max\+\_\+y\+\_\+error@{max\+\_\+y\+\_\+error}}
+\index{max\+\_\+y\+\_\+error@{max\+\_\+y\+\_\+error}!O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{max\+\_\+y\+\_\+error}{max\_y\_error}}
+{\footnotesize\ttfamily O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+max\+\_\+y\+\_\+error = np.\+max( \hyperlink{namespaceODE__BVP__plot_a8db68424e12aa3dfa6fd2c118cba6e7c}{y\+\_\+error} )}
+
+
+
+Definition at line 14 of file O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceODE__BVP__plot_ade414a5474caac41479cea546028f37b}\label{namespaceODE__BVP__plot_ade414a5474caac41479cea546028f37b}} 
+\index{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!max\+\_\+ydash\+\_\+error@{max\+\_\+ydash\+\_\+error}}
+\index{max\+\_\+ydash\+\_\+error@{max\+\_\+ydash\+\_\+error}!O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{max\+\_\+ydash\+\_\+error}{max\_ydash\_error}}
+{\footnotesize\ttfamily O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+max\+\_\+ydash\+\_\+error = np.\+max( \hyperlink{namespaceODE__BVP__plot_a32b60056578e16000892cd7c6286aa07}{ydash\+\_\+error} )}
+
+
+
+Definition at line 15 of file O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceODE__BVP__plot_a620ccfcfcbdfd074ab8a58bc1dd78cd2}\label{namespaceODE__BVP__plot_a620ccfcfcbdfd074ab8a58bc1dd78cd2}} 
+\index{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!sharex@{sharex}}
+\index{sharex@{sharex}!O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{sharex}{sharex}}
+{\footnotesize\ttfamily O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+sharex}
+
+
+
+Definition at line 19 of file O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceODE__BVP__plot_a466900eb1eeddc06d487396821e1e00f}\label{namespaceODE__BVP__plot_a466900eb1eeddc06d487396821e1e00f}} 
+\index{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!x@{x}}
+\index{x@{x}!O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+x = \hyperlink{namespaceODE__BVP__plot_a622c61e641f1695a3b9cc06bed3fbb3e}{data\+\_\+exact}\mbox{[}\+:,0\mbox{]}}
+
+
+
+Definition at line 7 of file O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceODE__BVP__plot_a8db68424e12aa3dfa6fd2c118cba6e7c}\label{namespaceODE__BVP__plot_a8db68424e12aa3dfa6fd2c118cba6e7c}} 
+\index{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!y\+\_\+error@{y\+\_\+error}}
+\index{y\+\_\+error@{y\+\_\+error}!O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{y\+\_\+error}{y\_error}}
+{\footnotesize\ttfamily O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+y\+\_\+error = np.\+abs( \hyperlink{namespaceODE__BVP__plot_af37cba4830d7dec912ee2028d4d32f54}{y\+\_\+exact} -\/ \hyperlink{namespaceODE__BVP__plot_a2c83010c60bfd7d0f8d05c96300c8a5f}{y\+\_\+numerical} )}
+
+
+
+Definition at line 12 of file O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceODE__BVP__plot_af37cba4830d7dec912ee2028d4d32f54}\label{namespaceODE__BVP__plot_af37cba4830d7dec912ee2028d4d32f54}} 
+\index{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!y\+\_\+exact@{y\+\_\+exact}}
+\index{y\+\_\+exact@{y\+\_\+exact}!O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{y\+\_\+exact}{y\_exact}}
+{\footnotesize\ttfamily O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+y\+\_\+exact = \hyperlink{namespaceODE__BVP__plot_a622c61e641f1695a3b9cc06bed3fbb3e}{data\+\_\+exact}\mbox{[}\+:,1\mbox{]}}
+
+
+
+Definition at line 8 of file O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceODE__BVP__plot_a2c83010c60bfd7d0f8d05c96300c8a5f}\label{namespaceODE__BVP__plot_a2c83010c60bfd7d0f8d05c96300c8a5f}} 
+\index{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!y\+\_\+numerical@{y\+\_\+numerical}}
+\index{y\+\_\+numerical@{y\+\_\+numerical}!O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{y\+\_\+numerical}{y\_numerical}}
+{\footnotesize\ttfamily O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+y\+\_\+numerical = \hyperlink{namespaceODE__BVP__plot_ad4ab2d9ae63df8f94362a1abefb1b540}{data\+\_\+numerical}\mbox{[}\+:,1\mbox{]}}
+
+
+
+Definition at line 10 of file O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceODE__BVP__plot_a32b60056578e16000892cd7c6286aa07}\label{namespaceODE__BVP__plot_a32b60056578e16000892cd7c6286aa07}} 
+\index{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!ydash\+\_\+error@{ydash\+\_\+error}}
+\index{ydash\+\_\+error@{ydash\+\_\+error}!O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{ydash\+\_\+error}{ydash\_error}}
+{\footnotesize\ttfamily O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+ydash\+\_\+error = np.\+abs( \hyperlink{namespaceODE__BVP__plot_a391db2f2f7f3511be763c10ed7451340}{ydash\+\_\+exact} -\/ \hyperlink{namespaceODE__BVP__plot_a321cad715aaa19b55082e3163d7cf2ee}{ydash\+\_\+numerical} )}
+
+
+
+Definition at line 13 of file O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceODE__BVP__plot_a391db2f2f7f3511be763c10ed7451340}\label{namespaceODE__BVP__plot_a391db2f2f7f3511be763c10ed7451340}} 
+\index{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!ydash\+\_\+exact@{ydash\+\_\+exact}}
+\index{ydash\+\_\+exact@{ydash\+\_\+exact}!O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{ydash\+\_\+exact}{ydash\_exact}}
+{\footnotesize\ttfamily O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+ydash\+\_\+exact = \hyperlink{namespaceODE__BVP__plot_a622c61e641f1695a3b9cc06bed3fbb3e}{data\+\_\+exact}\mbox{[}\+:,2\mbox{]}}
+
+
+
+Definition at line 9 of file O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceODE__BVP__plot_a321cad715aaa19b55082e3163d7cf2ee}\label{namespaceODE__BVP__plot_a321cad715aaa19b55082e3163d7cf2ee}} 
+\index{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!ydash\+\_\+numerical@{ydash\+\_\+numerical}}
+\index{ydash\+\_\+numerical@{ydash\+\_\+numerical}!O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{ydash\+\_\+numerical}{ydash\_numerical}}
+{\footnotesize\ttfamily O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+ydash\+\_\+numerical = \hyperlink{namespaceODE__BVP__plot_ad4ab2d9ae63df8f94362a1abefb1b540}{data\+\_\+numerical}\mbox{[}\+:,2\mbox{]}}
+
+
+
+Definition at line 11 of file O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+

@@ -1,0 +1,97 @@
+\hypertarget{classLuna_1_1test__residual}{}\section{Luna\+:\+:test\+\_\+residual Class Reference}
+\label{classLuna_1_1test__residual}\index{Luna\+::test\+\_\+residual@{Luna\+::test\+\_\+residual}}
+
+
+Inheritance diagram for Luna\+:\+:test\+\_\+residual\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=208pt]{classLuna_1_1test__residual__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Luna\+:\+:test\+\_\+residual\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classLuna_1_1test__residual__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classLuna_1_1test__residual_a5642e22c7c46d4d0e24fabb55a03e410}{test\+\_\+residual} ()
+\item 
+void \hyperlink{classLuna_1_1test__residual_abf5e77702d2ffec8bf2ffdc6728a8473}{residual\+\_\+fn} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ double $>$ \&x, \hyperlink{classLuna_1_1Vector}{Vector}$<$ double $>$ \&F) const
+\begin{DoxyCompactList}\small\item\em The residual function to be defined later. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 13 of file Root\+\_\+finding.\+cpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classLuna_1_1test__residual_a5642e22c7c46d4d0e24fabb55a03e410}\label{classLuna_1_1test__residual_a5642e22c7c46d4d0e24fabb55a03e410}} 
+\index{Luna\+::test\+\_\+residual@{Luna\+::test\+\_\+residual}!test\+\_\+residual@{test\+\_\+residual}}
+\index{test\+\_\+residual@{test\+\_\+residual}!Luna\+::test\+\_\+residual@{Luna\+::test\+\_\+residual}}
+\subsubsection{\texorpdfstring{test\+\_\+residual()}{test\_residual()}}
+{\footnotesize\ttfamily Luna\+::test\+\_\+residual\+::test\+\_\+residual (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 17 of file Root\+\_\+finding.\+cpp.
+
+
+\begin{DoxyCode}
+17 : \hyperlink{classLuna_1_1Residual}{Residual<double>} ( 2 ) \{\}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classLuna_1_1test__residual_abf5e77702d2ffec8bf2ffdc6728a8473}\label{classLuna_1_1test__residual_abf5e77702d2ffec8bf2ffdc6728a8473}} 
+\index{Luna\+::test\+\_\+residual@{Luna\+::test\+\_\+residual}!residual\+\_\+fn@{residual\+\_\+fn}}
+\index{residual\+\_\+fn@{residual\+\_\+fn}!Luna\+::test\+\_\+residual@{Luna\+::test\+\_\+residual}}
+\subsubsection{\texorpdfstring{residual\+\_\+fn()}{residual\_fn()}}
+{\footnotesize\ttfamily void Luna\+::test\+\_\+residual\+::residual\+\_\+fn (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ double $>$ \&}]{state,  }\item[{\hyperlink{classLuna_1_1Vector}{Vector}$<$ double $>$ \&}]{f }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The residual function to be defined later. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & The current state \hyperlink{classLuna_1_1Vector}{Vector} \\
+\hline
+{\em f} & The function \hyperlink{classLuna_1_1Vector}{Vector} to be updated \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classLuna_1_1Residual_ae1b1ebe3314c788b176bcac7b328de5c}{Luna\+::\+Residual$<$ double $>$}.
+
+
+
+Definition at line 20 of file Root\+\_\+finding.\+cpp.
+
+
+\begin{DoxyCode}
+21             \{
+22                 F[ 0 ] = std::pow( \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x}[ 0 ], 3.0 ) + \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x}[ 1 ] - 1;
+23                 F[ 1 ] = std::pow( \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x}[ 1 ], 3.0 ) - \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x}[ 0 ] + 1;
+24                 \textcolor{comment}{/*}
+25 \textcolor{comment}{                    x^3 + y - 1 = 0,}
+26 \textcolor{comment}{                    y^3 - x + 1 = 0,}
+27 \textcolor{comment}{                    (x,y) = (1,0) is the only (real) solution}
+28 \textcolor{comment}{                */}
+29             \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Examples/\hyperlink{Root__finding_8cpp}{Root\+\_\+finding.\+cpp}\end{DoxyCompactItemize}

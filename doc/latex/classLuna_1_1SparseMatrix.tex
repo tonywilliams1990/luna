@@ -1,0 +1,1491 @@
+\hypertarget{classLuna_1_1SparseMatrix}{}\section{Luna\+:\+:Sparse\+Matrix$<$ T $>$ Class Template Reference}
+\label{classLuna_1_1SparseMatrix}\index{Luna\+::\+Sparse\+Matrix$<$ T $>$@{Luna\+::\+Sparse\+Matrix$<$ T $>$}}
+
+
+A \hyperlink{classLuna_1_1SparseMatrix}{Sparse\+Matrix} class for use with double and std\+::complex$<$double$>$  
+
+
+
+
+{\ttfamily \#include $<$Sparse\+Matrix.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classLuna_1_1SparseMatrix_a147a686225e3df44b5a54bc63148406e}{Sparse\+Matrix} ()
+\item 
+\hyperlink{classLuna_1_1SparseMatrix_a8d3269958ed81af2b9b17bb79806cec1}{Sparse\+Matrix} (const std\+::size\+\_\+t \&\hyperlink{classLuna_1_1SparseMatrix_a970319496e5f0b963e4810f2ecbd93b6}{rows}, const std\+::size\+\_\+t \&\hyperlink{classLuna_1_1SparseMatrix_aff9e25ce05b5d11c3490f37fcd2ccfb0}{cols}, const std\+::size\+\_\+t \&n)
+\item 
+\hyperlink{classLuna_1_1SparseMatrix_ab698bd7ea02f6ab52f6b874fdefa84df}{Sparse\+Matrix} (const std\+::size\+\_\+t \&\hyperlink{classLuna_1_1SparseMatrix_a970319496e5f0b963e4810f2ecbd93b6}{rows}, const std\+::size\+\_\+t \&\hyperlink{classLuna_1_1SparseMatrix_aff9e25ce05b5d11c3490f37fcd2ccfb0}{cols}, \hyperlink{classLuna_1_1Vector}{Vector}$<$ \hyperlink{classLuna_1_1Triplet}{Triplet}$<$ T $>$ $>$ \&triplets)
+\begin{DoxyCompactList}\small\item\em Constructor from \hyperlink{classLuna_1_1Vector}{Vector} of Triplets. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1SparseMatrix_a06f2dbd99a7fb6c37f4bacdd886bf411}{Sparse\+Matrix} (const std\+::size\+\_\+t \&\hyperlink{classLuna_1_1SparseMatrix_a970319496e5f0b963e4810f2ecbd93b6}{rows}, const std\+::size\+\_\+t \&\hyperlink{classLuna_1_1SparseMatrix_aff9e25ce05b5d11c3490f37fcd2ccfb0}{cols}, const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&\hyperlink{classLuna_1_1SparseMatrix_ac22d87e2fb618c6140c579bc72dd503b}{val}, const \hyperlink{classLuna_1_1Vector}{Vector}$<$ std\+::size\+\_\+t $>$ \&\hyperlink{classLuna_1_1SparseMatrix_a3a430b487f83ac9ef35ed322e1b94c29}{row\+\_\+index}, const \hyperlink{classLuna_1_1Vector}{Vector}$<$ std\+::size\+\_\+t $>$ \&\hyperlink{classLuna_1_1SparseMatrix_a5183843e7b13b0b359a9c98a91b30f6a}{col\+\_\+start})
+\begin{DoxyCompactList}\small\item\em Constructor from Vectors. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1SparseMatrix_a34b67d3b42dcc132e0806a8d9958b4b2}{Sparse\+Matrix} (const \hyperlink{classLuna_1_1SparseMatrix}{Sparse\+Matrix}$<$ T $>$ \&source)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1SparseMatrix_a19932e29b8a65748e44025611c587ccc}{$\sim$\+Sparse\+Matrix} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+std\+::size\+\_\+t \hyperlink{classLuna_1_1SparseMatrix_a970319496e5f0b963e4810f2ecbd93b6}{rows} () const
+\begin{DoxyCompactList}\small\item\em Return the number of rows in the \hyperlink{classLuna_1_1SparseMatrix}{Sparse\+Matrix}. \end{DoxyCompactList}\item 
+std\+::size\+\_\+t \hyperlink{classLuna_1_1SparseMatrix_aff9e25ce05b5d11c3490f37fcd2ccfb0}{cols} () const
+\begin{DoxyCompactList}\small\item\em Return the number of columns in the \hyperlink{classLuna_1_1SparseMatrix}{Sparse\+Matrix}. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1SparseMatrix_ac22d87e2fb618c6140c579bc72dd503b}{val} () const
+\begin{DoxyCompactList}\small\item\em Return the \hyperlink{classLuna_1_1Vector}{Vector} of nonzero values. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ std\+::size\+\_\+t $>$ \hyperlink{classLuna_1_1SparseMatrix_a3a430b487f83ac9ef35ed322e1b94c29}{row\+\_\+index} () const
+\begin{DoxyCompactList}\small\item\em Return the \hyperlink{classLuna_1_1Vector}{Vector} of row indices. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ std\+::size\+\_\+t $>$ \hyperlink{classLuna_1_1SparseMatrix_a5183843e7b13b0b359a9c98a91b30f6a}{col\+\_\+start} () const
+\begin{DoxyCompactList}\small\item\em Return the \hyperlink{classLuna_1_1Vector}{Vector} of column start pointers. \end{DoxyCompactList}\item 
+std\+::size\+\_\+t \hyperlink{classLuna_1_1SparseMatrix_a84c317800c26bc9548c66db99af09b56}{nonzero} ()
+\begin{DoxyCompactList}\small\item\em Return the number of nonzero values. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ std\+::size\+\_\+t $>$ \hyperlink{classLuna_1_1SparseMatrix_ae7f456c12b3075f21b15bb4ee114d8af}{col\+\_\+index} () const
+\begin{DoxyCompactList}\small\item\em The \hyperlink{classLuna_1_1Vector}{Vector} of column indices ( triplet form ) \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ std\+::size\+\_\+t $>$ \hyperlink{classLuna_1_1SparseMatrix_aff245e8e7b0609dd7dc5c2a533c43c87}{col\+\_\+start\+\_\+from\+\_\+index} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ std\+::size\+\_\+t $>$ \&\hyperlink{classLuna_1_1SparseMatrix_ae7f456c12b3075f21b15bb4ee114d8af}{col\+\_\+index})
+\begin{DoxyCompactList}\small\item\em Calculate column start \hyperlink{classLuna_1_1Vector}{Vector} for a given column index \hyperlink{classLuna_1_1Vector}{Vector}. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1SparseMatrix_a88b48b128919c77faa81616a2e5942af}{insert} (const std\+::size\+\_\+t \&row, const std\+::size\+\_\+t \&col, const T \&\hyperlink{classLuna_1_1SparseMatrix_ac22d87e2fb618c6140c579bc72dd503b}{val})
+\begin{DoxyCompactList}\small\item\em Insert a nonzero element into the \hyperlink{classLuna_1_1SparseMatrix}{Sparse\+Matrix}. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1SparseMatrix_aacf1e09ba5c58c5d925323ae2a8996d0}{scale} (const T \&scalar)
+\begin{DoxyCompactList}\small\item\em Scale the \hyperlink{classLuna_1_1SparseMatrix}{Sparse\+Matrix} by a constant factor. \end{DoxyCompactList}\item 
+const T \& \hyperlink{classLuna_1_1SparseMatrix_a2d19f0b3329cfde15c6c852ecb6e27c7}{get} (const std\+::size\+\_\+t \&row, const std\+::size\+\_\+t \&col) const
+\begin{DoxyCompactList}\small\item\em Get a specific value if it exists. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1SparseMatrix_a532c8a8b80b0accf950a642344e7954f}{multiply} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&x)
+\begin{DoxyCompactList}\small\item\em Multiply the \hyperlink{classLuna_1_1SparseMatrix}{Sparse\+Matrix} A by a \hyperlink{classLuna_1_1Vector}{Vector} to the right. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1SparseMatrix_a64e3d0328b1eaba4f2f75e70b4fe1bb8}{transpose\+\_\+multiply} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&x)
+\begin{DoxyCompactList}\small\item\em Multiply the transpose of the \hyperlink{classLuna_1_1SparseMatrix}{Sparse\+Matrix} A$^\wedge$T by a \hyperlink{classLuna_1_1Vector}{Vector} to the right. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1SparseMatrix}{Sparse\+Matrix}$<$ T $>$ \hyperlink{classLuna_1_1SparseMatrix_a7d7f39bd0b3ef94abc483ccbfe81dcf2}{transpose} () const
+\begin{DoxyCompactList}\small\item\em Return the transpose of the \hyperlink{classLuna_1_1SparseMatrix}{Sparse\+Matrix}. \end{DoxyCompactList}\item 
+int \hyperlink{classLuna_1_1SparseMatrix_a297ae5c1478fec5792b11ea51a62b120}{solve\+\_\+\+Bi\+CG} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&b, \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&x, int \&max\+\_\+iter, double \&tol, int itol=1)
+\begin{DoxyCompactList}\small\item\em Solve the system of equations Ax=b using the biconjugate gradient method. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1SparseMatrix_a121eb7123d978c34b9597748f50410cd}{diagonal\+\_\+preconditioner} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&b, \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&x)
+\begin{DoxyCompactList}\small\item\em Diagonal preconditioner for the solve\+\_\+\+Bi\+CG method. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1SparseMatrix_ac196d00210b58f3f62352054f4241411}{identity\+\_\+preconditioner} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&b, \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&x)
+\begin{DoxyCompactList}\small\item\em Identity preconditioner for the solve\+\_\+\+Bi\+CG method. \end{DoxyCompactList}\item 
+int \hyperlink{classLuna_1_1SparseMatrix_a8fe4fe6d60878d4b23a6895f1a5dc59d}{solve\+\_\+\+Bi\+C\+G\+S\+T\+AB} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&b, \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&x, int \&max\+\_\+iter, double \&tol)
+\begin{DoxyCompactList}\small\item\em Solve the system of equations Ax=b using the stabilised biconjugate gradient method Bi\+C\+G\+S\+T\+AB. \end{DoxyCompactList}\item 
+int \hyperlink{classLuna_1_1SparseMatrix_a163219e4a5009de66aa538a6be304249}{solve\+\_\+\+CG} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&b, \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&x, int \&max\+\_\+iter, double \&tol)
+\begin{DoxyCompactList}\small\item\em Solve the system of equations Ax=b using the conjugate gradient method. \end{DoxyCompactList}\item 
+int \hyperlink{classLuna_1_1SparseMatrix_a45bef00e3aaeae37b3faf7de22e5e6f0}{solve\+\_\+\+Q\+MR} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&b, \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&x, int \&max\+\_\+iter, double \&tol)
+\begin{DoxyCompactList}\small\item\em Solve the system of equations Ax=b using the Quasi-\/minimal residual method. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class T$>$\newline
+class Luna\+::\+Sparse\+Matrix$<$ T $>$}
+
+A \hyperlink{classLuna_1_1SparseMatrix}{Sparse\+Matrix} class for use with double and std\+::complex$<$double$>$ 
+
+Definition at line 27 of file Sparse\+Matrix.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classLuna_1_1SparseMatrix_a147a686225e3df44b5a54bc63148406e}\label{classLuna_1_1SparseMatrix_a147a686225e3df44b5a54bc63148406e}} 
+\index{Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}!Sparse\+Matrix@{Sparse\+Matrix}}
+\index{Sparse\+Matrix@{Sparse\+Matrix}!Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}}
+\subsubsection{\texorpdfstring{Sparse\+Matrix()}{SparseMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classLuna_1_1SparseMatrix}{Luna\+::\+Sparse\+Matrix}$<$ T $>$\+::\hyperlink{classLuna_1_1SparseMatrix}{Sparse\+Matrix} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 40 of file Sparse\+Matrix.\+h.
+
+
+
+Referenced by Luna\+::\+Sparse\+Matrix$<$ T $>$\+::\+Sparse\+Matrix().
+
+
+\begin{DoxyCode}
+40                    : ROWS( 0 ), COLS( 0 ), \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}( 0 ),
+41                   COL\_START(), ROW\_INDEX(), VAL()
+42     \{\}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1SparseMatrix_a8d3269958ed81af2b9b17bb79806cec1}\label{classLuna_1_1SparseMatrix_a8d3269958ed81af2b9b17bb79806cec1}} 
+\index{Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}!Sparse\+Matrix@{Sparse\+Matrix}}
+\index{Sparse\+Matrix@{Sparse\+Matrix}!Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}}
+\subsubsection{\texorpdfstring{Sparse\+Matrix()}{SparseMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classLuna_1_1SparseMatrix}{Luna\+::\+Sparse\+Matrix}$<$ T $>$\+::\hyperlink{classLuna_1_1SparseMatrix}{Sparse\+Matrix} (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t \&}]{rows,  }\item[{const std\+::size\+\_\+t \&}]{cols,  }\item[{const std\+::size\+\_\+t \&}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 44 of file Sparse\+Matrix.\+h.
+
+
+
+References Luna\+::\+Sparse\+Matrix$<$ T $>$\+::col\+\_\+start(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::cols(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::row\+\_\+index(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::rows(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::\+Sparse\+Matrix(), and Luna\+::\+Sparse\+Matrix$<$ T $>$\+::val().
+
+
+\begin{DoxyCode}
+45                                        : ROWS( \hyperlink{classLuna_1_1SparseMatrix_a970319496e5f0b963e4810f2ecbd93b6}{rows} ), COLS( \hyperlink{classLuna_1_1SparseMatrix_aff9e25ce05b5d11c3490f37fcd2ccfb0}{cols} ), \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}( n ),
+46                   COL\_START( \hyperlink{classLuna_1_1SparseMatrix_aff9e25ce05b5d11c3490f37fcd2ccfb0}{cols} + 1, 0 ), ROW\_INDEX( n, 0 ), VAL( n, 0.0 )
+47     \{\}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1SparseMatrix_ab698bd7ea02f6ab52f6b874fdefa84df}\label{classLuna_1_1SparseMatrix_ab698bd7ea02f6ab52f6b874fdefa84df}} 
+\index{Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}!Sparse\+Matrix@{Sparse\+Matrix}}
+\index{Sparse\+Matrix@{Sparse\+Matrix}!Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}}
+\subsubsection{\texorpdfstring{Sparse\+Matrix()}{SparseMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1SparseMatrix}{Luna\+::\+Sparse\+Matrix}$<$ T $>$\+::\hyperlink{classLuna_1_1SparseMatrix}{Sparse\+Matrix} (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t \&}]{rows,  }\item[{const std\+::size\+\_\+t \&}]{cols,  }\item[{\hyperlink{classLuna_1_1Vector}{Vector}$<$ \hyperlink{classLuna_1_1Triplet}{Triplet}$<$ T $>$ $>$ \&}]{triplets }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor from \hyperlink{classLuna_1_1Vector}{Vector} of Triplets. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rows} & The number of rows in the matrix. \\
+\hline
+{\em cols} & The number of columns in the matrix. \\
+\hline
+{\em triplets} & \hyperlink{classLuna_1_1Vector}{Vector} of Triplets \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 206 of file Sparse\+Matrix.\+h.
+
+
+
+References Luna\+::\+Sparse\+Matrix$<$ T $>$\+::col\+\_\+index(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::col\+\_\+start\+\_\+from\+\_\+index(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::cols(), Luna\+::\+Vector$<$ T $>$\+::push\+\_\+back(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::rows(), and Luna\+::\+Sparse\+Matrix$<$ T $>$\+::val().
+
+
+\begin{DoxyCode}
+209   \{
+210     ROWS = \hyperlink{classLuna_1_1SparseMatrix_a970319496e5f0b963e4810f2ecbd93b6}{rows};
+211     COLS = \hyperlink{classLuna_1_1SparseMatrix_aff9e25ce05b5d11c3490f37fcd2ccfb0}{cols};
+212     \textcolor{comment}{// Sort the triplets for column major ordering}
+213     std::sort( triplets.begin(), triplets.end() );
+214     Vector<std::size\_t> \hyperlink{classLuna_1_1SparseMatrix_ae7f456c12b3075f21b15bb4ee114d8af}{col\_index};
+215     std::size\_t row, col;
+216     T \hyperlink{classLuna_1_1SparseMatrix_ac22d87e2fb618c6140c579bc72dd503b}{val};
+217     \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} = 0;
+218 
+219     \textcolor{keywordflow}{for} ( std::size\_t i = 0; i < triplets.size(); i++ )
+220     \{
+221       row = triplets[ i ].get\_row();
+222       col = triplets[ i ].get\_col();
+223       \textcolor{keywordflow}{if} ( row<0 || ROWS<=row ) \{
+224         \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"SparseMatrix range error: dimension 1 in triplets."} );
+225       \}
+226       \textcolor{keywordflow}{if} ( col<0 || COLS<=col ) \{
+227         \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"SparseMatrix range error: dimension 2 in triplets."} );
+228       \}
+229       val = triplets[ i ].get\_val();
+230 
+231       \textcolor{comment}{// Check there are no duplicates (really slows things down)}
+232       \textcolor{comment}{/*for ( std::size\_t k = 0; k < N; k++ )}
+233 \textcolor{comment}{      \{}
+234 \textcolor{comment}{        if ( ROW\_INDEX[ k ] == row && col\_index[ k ] == col )}
+235 \textcolor{comment}{        \{}
+236 \textcolor{comment}{          throw Error( "SparseMatrix: duplicate entry in triplet list." );}
+237 \textcolor{comment}{        \}}
+238 \textcolor{comment}{      \}*/}
+239       \textcolor{comment}{// Push into Vectors}
+240       ROW\_INDEX.\hyperlink{classLuna_1_1Vector_abf2693db9286f81cf68693fc4fb9fd18}{push\_back}( row );
+241       col\_index.push\_back( col );
+242       VAL.push\_back( val );
+243       \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}++;
+244     \}
+245     \textcolor{comment}{// Convert col\_index to COL\_START}
+246     COL\_START = this->\hyperlink{classLuna_1_1SparseMatrix_aff245e8e7b0609dd7dc5c2a533c43c87}{col\_start\_from\_index}( col\_index );
+247   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1SparseMatrix_a06f2dbd99a7fb6c37f4bacdd886bf411}\label{classLuna_1_1SparseMatrix_a06f2dbd99a7fb6c37f4bacdd886bf411}} 
+\index{Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}!Sparse\+Matrix@{Sparse\+Matrix}}
+\index{Sparse\+Matrix@{Sparse\+Matrix}!Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}}
+\subsubsection{\texorpdfstring{Sparse\+Matrix()}{SparseMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1SparseMatrix}{Luna\+::\+Sparse\+Matrix}$<$ T $>$\+::\hyperlink{classLuna_1_1SparseMatrix}{Sparse\+Matrix} (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t \&}]{rows,  }\item[{const std\+::size\+\_\+t \&}]{cols,  }\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{val,  }\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ std\+::size\+\_\+t $>$ \&}]{row\+\_\+index,  }\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ std\+::size\+\_\+t $>$ \&}]{col\+\_\+start }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor from Vectors. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rows} & The number of rows in the matrix. \\
+\hline
+{\em cols} & The number of columns in the matrix. \\
+\hline
+{\em val} & \hyperlink{classLuna_1_1Vector}{Vector} of nonzero values \\
+\hline
+{\em row\+\_\+index} & \hyperlink{classLuna_1_1Vector}{Vector} of row indices \\
+\hline
+{\em col\+\_\+start} & \hyperlink{classLuna_1_1Vector}{Vector} of column start pointers \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 250 of file Sparse\+Matrix.\+h.
+
+
+
+References Luna\+::\+Sparse\+Matrix$<$ T $>$\+::col\+\_\+start(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::cols(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::row\+\_\+index(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::rows(), Luna\+::\+Vector$<$ T $>$\+::size(), and Luna\+::\+Sparse\+Matrix$<$ T $>$\+::val().
+
+
+\begin{DoxyCode}
+254   \{
+255     ROWS = \hyperlink{classLuna_1_1SparseMatrix_a970319496e5f0b963e4810f2ecbd93b6}{rows};
+256     COLS = \hyperlink{classLuna_1_1SparseMatrix_aff9e25ce05b5d11c3490f37fcd2ccfb0}{cols};
+257     VAL = \hyperlink{classLuna_1_1SparseMatrix_ac22d87e2fb618c6140c579bc72dd503b}{val};
+258     ROW\_INDEX = \hyperlink{classLuna_1_1SparseMatrix_a3a430b487f83ac9ef35ed322e1b94c29}{row\_index};
+259     COL\_START = \hyperlink{classLuna_1_1SparseMatrix_a5183843e7b13b0b359a9c98a91b30f6a}{col\_start};
+260     \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} = col\_start[ col\_start.\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}() - 1 ];
+261   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1SparseMatrix_a34b67d3b42dcc132e0806a8d9958b4b2}\label{classLuna_1_1SparseMatrix_a34b67d3b42dcc132e0806a8d9958b4b2}} 
+\index{Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}!Sparse\+Matrix@{Sparse\+Matrix}}
+\index{Sparse\+Matrix@{Sparse\+Matrix}!Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}}
+\subsubsection{\texorpdfstring{Sparse\+Matrix()}{SparseMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1SparseMatrix}{Luna\+::\+Sparse\+Matrix}$<$ T $>$\+::\hyperlink{classLuna_1_1SparseMatrix}{Sparse\+Matrix} (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1SparseMatrix}{Sparse\+Matrix}$<$ T $>$ \&}]{source }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Copy constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source} & The source \hyperlink{classLuna_1_1SparseMatrix}{Sparse\+Matrix} to be copied \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 264 of file Sparse\+Matrix.\+h.
+
+
+\begin{DoxyCode}
+265   \{
+266     *\textcolor{keyword}{this} = source;
+267   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1SparseMatrix_a19932e29b8a65748e44025611c587ccc}\label{classLuna_1_1SparseMatrix_a19932e29b8a65748e44025611c587ccc}} 
+\index{Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}!````~Sparse\+Matrix@{$\sim$\+Sparse\+Matrix}}
+\index{````~Sparse\+Matrix@{$\sim$\+Sparse\+Matrix}!Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}}
+\subsubsection{\texorpdfstring{$\sim$\+Sparse\+Matrix()}{~SparseMatrix()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classLuna_1_1SparseMatrix}{Luna\+::\+Sparse\+Matrix}$<$ T $>$\+::$\sim$\hyperlink{classLuna_1_1SparseMatrix}{Sparse\+Matrix} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Destructor. 
+
+
+
+Definition at line 71 of file Sparse\+Matrix.\+h.
+
+
+
+References Luna\+::\+Sparse\+Matrix$<$ T $>$\+::col\+\_\+index(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::col\+\_\+start(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::col\+\_\+start\+\_\+from\+\_\+index(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::cols(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::diagonal\+\_\+preconditioner(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::identity\+\_\+preconditioner(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::insert(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::multiply(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::nonzero(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::row\+\_\+index(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::rows(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::scale(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::solve\+\_\+\+Bi\+C\+G(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::solve\+\_\+\+Bi\+C\+G\+S\+T\+A\+B(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::solve\+\_\+\+C\+G(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::solve\+\_\+\+Q\+M\+R(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::transpose(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::transpose\+\_\+multiply(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::val(), and Heat\+\_\+plot\+::x.
+
+
+\begin{DoxyCode}
+71 \{\}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classLuna_1_1SparseMatrix_ae7f456c12b3075f21b15bb4ee114d8af}\label{classLuna_1_1SparseMatrix_ae7f456c12b3075f21b15bb4ee114d8af}} 
+\index{Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}!col\+\_\+index@{col\+\_\+index}}
+\index{col\+\_\+index@{col\+\_\+index}!Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}}
+\subsubsection{\texorpdfstring{col\+\_\+index()}{col\_index()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ std\+::size\+\_\+t $>$ \hyperlink{classLuna_1_1SparseMatrix}{Luna\+::\+Sparse\+Matrix}$<$ T $>$\+::col\+\_\+index (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The \hyperlink{classLuna_1_1Vector}{Vector} of column indices ( triplet form ) 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classLuna_1_1Vector}{Vector} of column indices relating to each value 
+\end{DoxyReturn}
+
+
+Definition at line 308 of file Sparse\+Matrix.\+h.
+
+
+
+References Luna\+::\+Vector$<$ T $>$\+::push\+\_\+back(), and Luna\+::\+Vector$<$ T $>$\+::size().
+
+
+
+Referenced by Luna\+::\+Sparse\+Matrix$<$ T $>$\+::diagonal\+\_\+preconditioner(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::get(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::insert(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::\+Sparse\+Matrix(), and Luna\+::\+Sparse\+Matrix$<$ T $>$\+::$\sim$\+Sparse\+Matrix().
+
+
+\begin{DoxyCode}
+309   \{
+310     Vector<std::size\_t> temp;
+311     \textcolor{keywordflow}{if} ( \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} == 0 )\{ \textcolor{keywordflow}{return} temp; \}
+312     \textcolor{keywordflow}{if} ( COL\_START.\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}() < COLS + 1 )
+313     \{
+314       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Some columns have no entries."} );
+315     \}
+316     Vector<std::size\_t> gaps( COL\_START.\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}() - 1 );
+317     \textcolor{keywordflow}{for} ( std::size\_t k = 0; k < gaps.size(); k++ )
+318     \{
+319       gaps[ k ] = COL\_START[ k + 1 ] - COL\_START[ k ];
+320       \textcolor{keywordflow}{for} ( std::size\_t j = 0; j < gaps[ k ]; j ++ )
+321       \{
+322         temp.\hyperlink{classLuna_1_1Vector_abf2693db9286f81cf68693fc4fb9fd18}{push\_back}( k );
+323       \}
+324     \}
+325     \textcolor{keywordflow}{return} temp;
+326   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1SparseMatrix_a5183843e7b13b0b359a9c98a91b30f6a}\label{classLuna_1_1SparseMatrix_a5183843e7b13b0b359a9c98a91b30f6a}} 
+\index{Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}!col\+\_\+start@{col\+\_\+start}}
+\index{col\+\_\+start@{col\+\_\+start}!Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}}
+\subsubsection{\texorpdfstring{col\+\_\+start()}{col\_start()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ std\+::size\+\_\+t $>$ \hyperlink{classLuna_1_1SparseMatrix}{Luna\+::\+Sparse\+Matrix}$<$ T $>$\+::col\+\_\+start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the \hyperlink{classLuna_1_1Vector}{Vector} of column start pointers. 
+
+\begin{DoxyReturn}{Returns}
+The column start \hyperlink{classLuna_1_1Vector}{Vector} 
+\end{DoxyReturn}
+
+
+Definition at line 296 of file Sparse\+Matrix.\+h.
+
+
+
+Referenced by Luna\+::\+Sparse\+Matrix$<$ T $>$\+::col\+\_\+start\+\_\+from\+\_\+index(), main(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::\+Sparse\+Matrix(), and Luna\+::\+Sparse\+Matrix$<$ T $>$\+::$\sim$\+Sparse\+Matrix().
+
+
+\begin{DoxyCode}
+297   \{
+298     \textcolor{keywordflow}{return} COL\_START;
+299   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1SparseMatrix_aff245e8e7b0609dd7dc5c2a533c43c87}\label{classLuna_1_1SparseMatrix_aff245e8e7b0609dd7dc5c2a533c43c87}} 
+\index{Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}!col\+\_\+start\+\_\+from\+\_\+index@{col\+\_\+start\+\_\+from\+\_\+index}}
+\index{col\+\_\+start\+\_\+from\+\_\+index@{col\+\_\+start\+\_\+from\+\_\+index}!Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}}
+\subsubsection{\texorpdfstring{col\+\_\+start\+\_\+from\+\_\+index()}{col\_start\_from\_index()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ std\+::size\+\_\+t $>$ \hyperlink{classLuna_1_1SparseMatrix}{Luna\+::\+Sparse\+Matrix}$<$ T $>$\+::col\+\_\+start\+\_\+from\+\_\+index (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ std\+::size\+\_\+t $>$ \&}]{col\+\_\+index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Calculate column start \hyperlink{classLuna_1_1Vector}{Vector} for a given column index \hyperlink{classLuna_1_1Vector}{Vector}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em col\+\_\+index} & A column index \hyperlink{classLuna_1_1Vector}{Vector} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+col\+\_\+start A column start \hyperlink{classLuna_1_1Vector}{Vector} 
+\end{DoxyReturn}
+
+
+Definition at line 329 of file Sparse\+Matrix.\+h.
+
+
+
+References Luna\+::\+Sparse\+Matrix$<$ T $>$\+::col\+\_\+start().
+
+
+
+Referenced by Luna\+::\+Sparse\+Matrix$<$ T $>$\+::insert(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::\+Sparse\+Matrix(), and Luna\+::\+Sparse\+Matrix$<$ T $>$\+::$\sim$\+Sparse\+Matrix().
+
+
+\begin{DoxyCode}
+331   \{
+332     Vector<std::size\_t> \hyperlink{classLuna_1_1SparseMatrix_a5183843e7b13b0b359a9c98a91b30f6a}{col\_start}( COLS + 1, 0 );
+333     \textcolor{comment}{// Computer number of elements in each column}
+334     \textcolor{keywordflow}{for} ( std::size\_t n = 0; n < \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}; ++n )
+335     \{
+336       \hyperlink{classLuna_1_1SparseMatrix_a5183843e7b13b0b359a9c98a91b30f6a}{col\_start}[ col\_index[ n ] ]++;
+337     \}
+338     std::size\_t sum( 0 );
+339     std::size\_t k;
+340     \textcolor{comment}{// Cumulative sum}
+341     \textcolor{keywordflow}{for} ( k = 0; k < COLS; ++k )
+342     \{
+343       std::size\_t ck = \hyperlink{classLuna_1_1SparseMatrix_a5183843e7b13b0b359a9c98a91b30f6a}{col\_start}[ k ];
+344       \hyperlink{classLuna_1_1SparseMatrix_a5183843e7b13b0b359a9c98a91b30f6a}{col\_start}[ k ] = sum;
+345       sum += ck;
+346     \}
+347     \hyperlink{classLuna_1_1SparseMatrix_a5183843e7b13b0b359a9c98a91b30f6a}{col\_start}[ COLS ] = sum;
+348     \textcolor{keywordflow}{return} \hyperlink{classLuna_1_1SparseMatrix_a5183843e7b13b0b359a9c98a91b30f6a}{col\_start};
+349   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1SparseMatrix_aff9e25ce05b5d11c3490f37fcd2ccfb0}\label{classLuna_1_1SparseMatrix_aff9e25ce05b5d11c3490f37fcd2ccfb0}} 
+\index{Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}!cols@{cols}}
+\index{cols@{cols}!Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}}
+\subsubsection{\texorpdfstring{cols()}{cols()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::size\+\_\+t \hyperlink{classLuna_1_1SparseMatrix}{Luna\+::\+Sparse\+Matrix}$<$ T $>$\+::cols (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the number of columns in the \hyperlink{classLuna_1_1SparseMatrix}{Sparse\+Matrix}. 
+
+\begin{DoxyReturn}{Returns}
+The number of columns in the \hyperlink{classLuna_1_1SparseMatrix}{Sparse\+Matrix} 
+\end{DoxyReturn}
+
+
+Definition at line 278 of file Sparse\+Matrix.\+h.
+
+
+
+Referenced by Luna\+::\+Sparse\+Matrix$<$ T $>$\+::\+Sparse\+Matrix(), and Luna\+::\+Sparse\+Matrix$<$ T $>$\+::$\sim$\+Sparse\+Matrix().
+
+
+\begin{DoxyCode}
+279   \{
+280     \textcolor{keywordflow}{return} COLS;
+281   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1SparseMatrix_a121eb7123d978c34b9597748f50410cd}\label{classLuna_1_1SparseMatrix_a121eb7123d978c34b9597748f50410cd}} 
+\index{Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}!diagonal\+\_\+preconditioner@{diagonal\+\_\+preconditioner}}
+\index{diagonal\+\_\+preconditioner@{diagonal\+\_\+preconditioner}!Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}}
+\subsubsection{\texorpdfstring{diagonal\+\_\+preconditioner()}{diagonal\_preconditioner()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classLuna_1_1SparseMatrix}{Luna\+::\+Sparse\+Matrix}$<$ T $>$\+::diagonal\+\_\+preconditioner (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{b,  }\item[{\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Diagonal preconditioner for the solve\+\_\+\+Bi\+CG method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & Right hand side \hyperlink{classLuna_1_1Vector}{Vector} \\
+\hline
+{\em x} & Solution \hyperlink{classLuna_1_1Vector}{Vector} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 613 of file Sparse\+Matrix.\+h.
+
+
+
+References Luna\+::\+Sparse\+Matrix$<$ T $>$\+::col\+\_\+index().
+
+
+
+Referenced by Luna\+::\+Sparse\+Matrix$<$ T $>$\+::$\sim$\+Sparse\+Matrix().
+
+
+\begin{DoxyCode}
+615   \{
+616     Vector<std::size\_t> \hyperlink{classLuna_1_1SparseMatrix_ae7f456c12b3075f21b15bb4ee114d8af}{col\_index} = this->\hyperlink{classLuna_1_1SparseMatrix_ae7f456c12b3075f21b15bb4ee114d8af}{col\_index}();
+617     \textcolor{keywordflow}{for} ( std::size\_t i = 0; i < ROWS; i++ )
+618     \{
+619       \textcolor{keywordflow}{for} ( std::size\_t k = 0; k < \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}; k++)
+620       \{
+621         \textcolor{keywordflow}{if} ( ROW\_INDEX[ k ] == i && col\_index[ k ] == i ) \{
+622           \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x}[ i ] = b[ i ] / VAL[ k ];
+623         \}
+624         \textcolor{keywordflow}{else} \{
+625           \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x}[ i ] = b[ i ];
+626         \}
+627       \}
+628     \}
+629   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1SparseMatrix_a2d19f0b3329cfde15c6c852ecb6e27c7}\label{classLuna_1_1SparseMatrix_a2d19f0b3329cfde15c6c852ecb6e27c7}} 
+\index{Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}!get@{get}}
+\index{get@{get}!Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}}
+\subsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+const T \& \hyperlink{classLuna_1_1SparseMatrix}{Luna\+::\+Sparse\+Matrix}$<$ T $>$\+::get (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t \&}]{row,  }\item[{const std\+::size\+\_\+t \&}]{col }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get a specific value if it exists. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & The row index \\
+\hline
+{\em col} & The column index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value stored at that location 
+\end{DoxyReturn}
+
+
+Definition at line 410 of file Sparse\+Matrix.\+h.
+
+
+
+References Luna\+::\+Sparse\+Matrix$<$ T $>$\+::col\+\_\+index(), and Luna\+::\+Vector$<$ T $>$\+::size().
+
+
+\begin{DoxyCode}
+412   \{
+413     \textcolor{keywordflow}{if} ( row<0 || ROWS<=row )   \{
+414       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"SparseMatrix range error in get method: dimension 1."} );
+415     \}
+416     \textcolor{keywordflow}{if} ( col<0 || COLS<=col )   \{
+417       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"SparseMatrix range error in get method: dimension 2."} );
+418     \}
+419     \textcolor{keywordflow}{if} ( COL\_START.\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}() < COLS + 1 )
+420     \{
+421       std::string problem;
+422       problem  = \textcolor{stringliteral}{"SparseMatrix get error: Some columns have no entries."};
+423       \textcolor{keywordflow}{throw} Error( problem );
+424     \}
+425 
+426     Vector<std::size\_t> \hyperlink{classLuna_1_1SparseMatrix_ae7f456c12b3075f21b15bb4ee114d8af}{col\_index} = this->\hyperlink{classLuna_1_1SparseMatrix_ae7f456c12b3075f21b15bb4ee114d8af}{col\_index}();
+427 
+428     \textcolor{keywordflow}{for} ( std::size\_t k = 0; k < \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}; k++)
+429     \{
+430       \textcolor{keywordflow}{if} ( ROW\_INDEX[ k ] == row && col\_index[ k ] == col )
+431       \{
+432         \textcolor{keywordflow}{return} VAL[ k ];
+433       \}
+434       \textcolor{keywordflow}{else}
+435       \{
+436         \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"SparseMatrix get error: entry does not exist."} );
+437       \}
+438     \}
+439   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1SparseMatrix_ac196d00210b58f3f62352054f4241411}\label{classLuna_1_1SparseMatrix_ac196d00210b58f3f62352054f4241411}} 
+\index{Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}!identity\+\_\+preconditioner@{identity\+\_\+preconditioner}}
+\index{identity\+\_\+preconditioner@{identity\+\_\+preconditioner}!Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}}
+\subsubsection{\texorpdfstring{identity\+\_\+preconditioner()}{identity\_preconditioner()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classLuna_1_1SparseMatrix}{Luna\+::\+Sparse\+Matrix}$<$ T $>$\+::identity\+\_\+preconditioner (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{b,  }\item[{\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Identity preconditioner for the solve\+\_\+\+Bi\+CG method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & Right hand side \hyperlink{classLuna_1_1Vector}{Vector} \\
+\hline
+{\em x} & Solution \hyperlink{classLuna_1_1Vector}{Vector} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 632 of file Sparse\+Matrix.\+h.
+
+
+
+Referenced by Luna\+::\+Sparse\+Matrix$<$ T $>$\+::solve\+\_\+\+Bi\+C\+G(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::solve\+\_\+\+Bi\+C\+G\+S\+T\+A\+B(), and Luna\+::\+Sparse\+Matrix$<$ T $>$\+::$\sim$\+Sparse\+Matrix().
+
+
+\begin{DoxyCode}
+634   \{
+635     \textcolor{keywordflow}{for} ( std::size\_t i = 0; i < ROWS; i++ )
+636     \{
+637       \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x}[ i ] =  b[ i ];
+638     \}
+639   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1SparseMatrix_a88b48b128919c77faa81616a2e5942af}\label{classLuna_1_1SparseMatrix_a88b48b128919c77faa81616a2e5942af}} 
+\index{Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}!insert@{insert}}
+\index{insert@{insert}!Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}}
+\subsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classLuna_1_1SparseMatrix}{Luna\+::\+Sparse\+Matrix}$<$ T $>$\+::insert (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t \&}]{row,  }\item[{const std\+::size\+\_\+t \&}]{col,  }\item[{const T \&}]{val }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Insert a nonzero element into the \hyperlink{classLuna_1_1SparseMatrix}{Sparse\+Matrix}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & The row index of the element \\
+\hline
+{\em col} & The column index of the element \\
+\hline
+{\em val} & The value of the element \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 352 of file Sparse\+Matrix.\+h.
+
+
+
+References Luna\+::\+Sparse\+Matrix$<$ T $>$\+::col\+\_\+index(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::col\+\_\+start\+\_\+from\+\_\+index(), Luna\+::\+Vector$<$ T $>$\+::find(), Luna\+::\+Vector$<$ T $>$\+::insert(), Luna\+::\+Vector$<$ T $>$\+::push\+\_\+back(), Luna\+::\+Vector$<$ T $>$\+::size(), and Luna\+::\+Sparse\+Matrix$<$ T $>$\+::val().
+
+
+
+Referenced by Luna\+::\+Sparse\+Matrix$<$ T $>$\+::$\sim$\+Sparse\+Matrix().
+
+
+\begin{DoxyCode}
+354   \{
+355     \textcolor{keywordflow}{if} ( row<0 || ROWS<=row )   \{
+356       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"SparseMatrix range error: dimension 1."} );
+357     \}
+358     \textcolor{keywordflow}{if} ( col<0 || COLS<=col )   \{
+359       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"SparseMatrix range error: dimension 2."} );
+360     \}
+361     \textcolor{keywordflow}{if} ( COL\_START.\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}() < COLS + 1 )
+362     \{
+363       std::string problem;
+364       problem  = \textcolor{stringliteral}{"SparseMatrix insert error: Some columns have no entries.\(\backslash\)n"};
+365       problem += \textcolor{stringliteral}{"Use Vector<Triplet> instead."};
+366       \textcolor{keywordflow}{throw} Error( problem );
+367     \}
+368     \textcolor{comment}{// Convert to triplet format}
+369     Vector<std::size\_t> \hyperlink{classLuna_1_1SparseMatrix_ae7f456c12b3075f21b15bb4ee114d8af}{col\_index} = this->\hyperlink{classLuna_1_1SparseMatrix_ae7f456c12b3075f21b15bb4ee114d8af}{col\_index}();
+370     \textcolor{comment}{// Check if element already exists}
+371     \textcolor{keywordflow}{for} ( std::size\_t k = 0; k < \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}; k++)
+372     \{
+373       \textcolor{keywordflow}{if} ( ROW\_INDEX[ k ] == row && col\_index[ k ] == col )
+374       \{
+375         VAL[ k ] = \hyperlink{classLuna_1_1SparseMatrix_ac22d87e2fb618c6140c579bc72dd503b}{val};
+376         \textcolor{keywordflow}{return};
+377       \}
+378     \}
+379     \textcolor{keywordflow}{if} ( N == 0 )
+380     \{
+381       ROW\_INDEX.\hyperlink{classLuna_1_1Vector_abf2693db9286f81cf68693fc4fb9fd18}{push\_back}( row );
+382       VAL.push\_back( \hyperlink{classLuna_1_1SparseMatrix_ac22d87e2fb618c6140c579bc72dd503b}{val} );
+383       COL\_START.\hyperlink{classLuna_1_1Vector_abf2693db9286f81cf68693fc4fb9fd18}{push\_back}( 1 );
+384       N++;
+385       \textcolor{keywordflow}{return};
+386     \}
+387     \textcolor{comment}{// If not insert new element}
+388     std::size\_t find\_col = col\_index.find( col );
+389     col\_index.insert( find\_col, col );
+390     std::size\_t find\_row( find\_col );
+391     \textcolor{keywordflow}{while} ( ROW\_INDEX[ find\_row ] < row )
+392     \{
+393       find\_row++;
+394     \}
+395     ROW\_INDEX.\hyperlink{classLuna_1_1Vector_a5d6821d9dd958423379cafbc6658853f}{insert}( find\_row, row );
+396     VAL.insert( find\_row, \hyperlink{classLuna_1_1SparseMatrix_ac22d87e2fb618c6140c579bc72dd503b}{val} );
+397     \textcolor{comment}{// Convert back to compressed column format}
+398     COL\_START = this->\hyperlink{classLuna_1_1SparseMatrix_aff245e8e7b0609dd7dc5c2a533c43c87}{col\_start\_from\_index}( col\_index );
+399     N++;
+400     \textcolor{keywordflow}{return};
+401   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1SparseMatrix_a532c8a8b80b0accf950a642344e7954f}\label{classLuna_1_1SparseMatrix_a532c8a8b80b0accf950a642344e7954f}} 
+\index{Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}!multiply@{multiply}}
+\index{multiply@{multiply}!Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}}
+\subsubsection{\texorpdfstring{multiply()}{multiply()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1SparseMatrix}{Luna\+::\+Sparse\+Matrix}$<$ T $>$\+::multiply (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Multiply the \hyperlink{classLuna_1_1SparseMatrix}{Sparse\+Matrix} A by a \hyperlink{classLuna_1_1Vector}{Vector} to the right. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The vector which is to be multiplied \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result vector A $\ast$ x 
+\end{DoxyReturn}
+
+
+Definition at line 442 of file Sparse\+Matrix.\+h.
+
+
+
+References Luna\+::\+Vector$<$ T $>$\+::size(), and y.
+
+
+
+Referenced by main(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::solve\+\_\+\+Bi\+C\+G(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::solve\+\_\+\+Bi\+C\+G\+S\+T\+A\+B(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::solve\+\_\+\+C\+G(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::solve\+\_\+\+Q\+M\+R(), and Luna\+::\+Sparse\+Matrix$<$ T $>$\+::$\sim$\+Sparse\+Matrix().
+
+
+\begin{DoxyCode}
+443   \{
+444     \textcolor{keywordflow}{if} ( \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x}.size() != COLS )
+445     \{
+446       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"SparseMatrix multiply: dimensions do not agree."} );
+447     \}
+448     Vector<T> \hyperlink{ODE__BVP__test_8cpp_adf764cbdea00d65edcd07bb9953ad2b7ae1f9fdb8b786c63efc4ce44eeacd17f2}{y}( ROWS, 0 );
+449 
+450     std::size\_t i, j;
+451     T xj;
+452 
+453     \textcolor{keywordflow}{for} ( j = 0; j < COLS; ++j )
+454     \{
+455       xj = \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x}[ j ];
+456       \textcolor{keywordflow}{for} ( i = COL\_START[ j ]; i < COL\_START[ j + 1 ]; ++i )
+457       \{
+458         \hyperlink{ODE__BVP__test_8cpp_adf764cbdea00d65edcd07bb9953ad2b7ae1f9fdb8b786c63efc4ce44eeacd17f2}{y}[ ROW\_INDEX[ i ] ] += VAL[ i ] * xj;
+459       \}
+460     \}
+461     \textcolor{keywordflow}{return} \hyperlink{ODE__BVP__test_8cpp_adf764cbdea00d65edcd07bb9953ad2b7ae1f9fdb8b786c63efc4ce44eeacd17f2}{y};
+462   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1SparseMatrix_a84c317800c26bc9548c66db99af09b56}\label{classLuna_1_1SparseMatrix_a84c317800c26bc9548c66db99af09b56}} 
+\index{Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}!nonzero@{nonzero}}
+\index{nonzero@{nonzero}!Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}}
+\subsubsection{\texorpdfstring{nonzero()}{nonzero()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::size\+\_\+t \hyperlink{classLuna_1_1SparseMatrix}{Luna\+::\+Sparse\+Matrix}$<$ T $>$\+::nonzero (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the number of nonzero values. 
+
+\begin{DoxyReturn}{Returns}
+The number of nonzero values 
+\end{DoxyReturn}
+
+
+Definition at line 302 of file Sparse\+Matrix.\+h.
+
+
+
+Referenced by main(), and Luna\+::\+Sparse\+Matrix$<$ T $>$\+::$\sim$\+Sparse\+Matrix().
+
+
+\begin{DoxyCode}
+303   \{
+304     \textcolor{keywordflow}{return} \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N};
+305   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1SparseMatrix_a3a430b487f83ac9ef35ed322e1b94c29}\label{classLuna_1_1SparseMatrix_a3a430b487f83ac9ef35ed322e1b94c29}} 
+\index{Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}!row\+\_\+index@{row\+\_\+index}}
+\index{row\+\_\+index@{row\+\_\+index}!Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}}
+\subsubsection{\texorpdfstring{row\+\_\+index()}{row\_index()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ std\+::size\+\_\+t $>$ \hyperlink{classLuna_1_1SparseMatrix}{Luna\+::\+Sparse\+Matrix}$<$ T $>$\+::row\+\_\+index (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the \hyperlink{classLuna_1_1Vector}{Vector} of row indices. 
+
+\begin{DoxyReturn}{Returns}
+The \hyperlink{classLuna_1_1Vector}{Vector} of row indices 
+\end{DoxyReturn}
+
+
+Definition at line 290 of file Sparse\+Matrix.\+h.
+
+
+
+Referenced by main(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::\+Sparse\+Matrix(), and Luna\+::\+Sparse\+Matrix$<$ T $>$\+::$\sim$\+Sparse\+Matrix().
+
+
+\begin{DoxyCode}
+291   \{
+292     \textcolor{keywordflow}{return} ROW\_INDEX;
+293   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1SparseMatrix_a970319496e5f0b963e4810f2ecbd93b6}\label{classLuna_1_1SparseMatrix_a970319496e5f0b963e4810f2ecbd93b6}} 
+\index{Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}!rows@{rows}}
+\index{rows@{rows}!Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}}
+\subsubsection{\texorpdfstring{rows()}{rows()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::size\+\_\+t \hyperlink{classLuna_1_1SparseMatrix}{Luna\+::\+Sparse\+Matrix}$<$ T $>$\+::rows (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the number of rows in the \hyperlink{classLuna_1_1SparseMatrix}{Sparse\+Matrix}. 
+
+\begin{DoxyReturn}{Returns}
+The number of rows in the \hyperlink{classLuna_1_1SparseMatrix}{Sparse\+Matrix} 
+\end{DoxyReturn}
+
+
+Definition at line 272 of file Sparse\+Matrix.\+h.
+
+
+
+Referenced by Luna\+::\+Sparse\+Matrix$<$ T $>$\+::\+Sparse\+Matrix(), and Luna\+::\+Sparse\+Matrix$<$ T $>$\+::$\sim$\+Sparse\+Matrix().
+
+
+\begin{DoxyCode}
+273   \{
+274     \textcolor{keywordflow}{return} ROWS;
+275   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1SparseMatrix_aacf1e09ba5c58c5d925323ae2a8996d0}\label{classLuna_1_1SparseMatrix_aacf1e09ba5c58c5d925323ae2a8996d0}} 
+\index{Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}!scale@{scale}}
+\index{scale@{scale}!Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}}
+\subsubsection{\texorpdfstring{scale()}{scale()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classLuna_1_1SparseMatrix}{Luna\+::\+Sparse\+Matrix}$<$ T $>$\+::scale (\begin{DoxyParamCaption}\item[{const T \&}]{scalar }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Scale the \hyperlink{classLuna_1_1SparseMatrix}{Sparse\+Matrix} by a constant factor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & The scalar to multiply the \hyperlink{classLuna_1_1SparseMatrix}{Sparse\+Matrix} by \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 404 of file Sparse\+Matrix.\+h.
+
+
+
+Referenced by Luna\+::\+Sparse\+Matrix$<$ T $>$\+::$\sim$\+Sparse\+Matrix().
+
+
+\begin{DoxyCode}
+405   \{
+406     VAL *= scalar;
+407   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1SparseMatrix_a297ae5c1478fec5792b11ea51a62b120}\label{classLuna_1_1SparseMatrix_a297ae5c1478fec5792b11ea51a62b120}} 
+\index{Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}!solve\+\_\+\+Bi\+CG@{solve\+\_\+\+Bi\+CG}}
+\index{solve\+\_\+\+Bi\+CG@{solve\+\_\+\+Bi\+CG}!Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}}
+\subsubsection{\texorpdfstring{solve\+\_\+\+Bi\+C\+G()}{solve\_BiCG()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+int \hyperlink{classLuna_1_1SparseMatrix}{Luna\+::\+Sparse\+Matrix}$<$ T $>$\+::solve\+\_\+\+Bi\+CG (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{b,  }\item[{\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{x,  }\item[{int \&}]{max\+\_\+iter,  }\item[{double \&}]{tol,  }\item[{int}]{itol = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Solve the system of equations Ax=b using the biconjugate gradient method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & The right-\/hand side \hyperlink{classLuna_1_1Vector}{Vector} of the system of equations \\
+\hline
+{\em x} & Initial guess x\+\_\+0 the solution is also stored here \\
+\hline
+{\em max\+\_\+iter} & The maximum number of iterations to be performed ( the number of iterations actually taken is returned here ) \\
+\hline
+{\em tol} & Tolerance for convergence ( the estimated error is returned here ) \\
+\hline
+{\em itol} & Convergence test specifier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Success or failure code ( 0 = success, 1 = exceeded max\+\_\+iter ) 
+\end{DoxyReturn}
+
+
+Definition at line 525 of file Sparse\+Matrix.\+h.
+
+
+
+References Luna\+::beta(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::identity\+\_\+preconditioner(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::multiply(), Luna\+::\+Vector$<$ T $>$\+::norm\+\_\+2(), Luna\+::\+Vector$<$ T $>$\+::size(), and Luna\+::\+Sparse\+Matrix$<$ T $>$\+::transpose\+\_\+multiply().
+
+
+
+Referenced by main(), and Luna\+::\+Sparse\+Matrix$<$ T $>$\+::$\sim$\+Sparse\+Matrix().
+
+
+\begin{DoxyCode}
+527   \{
+528     \textcolor{keywordflow}{if} ( ROWS != b.size() )
+529     \{
+530       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"solve\_BiCG error: ROWS != b.size() "} );
+531     \}
+532     \textcolor{keywordflow}{if} ( ROWS != COLS )
+533     \{
+534       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"solve\_BiCG error: Matrix is not square."});
+535     \}
+536     \textcolor{keywordflow}{if} ( b.size() != \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x}.size() )
+537     \{
+538       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"solve\_BiCG error: b.size() != x.size() "} );
+539     \}
+540 
+541     T alpha, \hyperlink{namespaceLuna_af542f1c7522ca96017105e160b54df80}{beta}, rho\_1, rho\_2 = 1.0;
+542     \textcolor{keywordtype}{double} bnrm, znrm, err;
+543     \textcolor{keywordtype}{int} j, n = b.size();
+544     Vector<T> p( n ), pp( n ), r( n ), rr( n ), z( n ), zz( n );
+545 
+546     r = this->\hyperlink{classLuna_1_1SparseMatrix_a532c8a8b80b0accf950a642344e7954f}{multiply}( \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x} );
+547     r = b - r;
+548     rr = r;
+549 
+550     \textcolor{keywordflow}{if} ( itol == 1 ) \{
+551       bnrm = b.norm\_2();
+552       \textcolor{comment}{//this->diagonal\_preconditioner( r, z );           // replaces asolve in NR}
+553       this->\hyperlink{classLuna_1_1SparseMatrix_ac196d00210b58f3f62352054f4241411}{identity\_preconditioner}( r, z );
+554     \}
+555     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} ( itol == 2 ) \{
+556       \textcolor{comment}{//this->diagonal\_preconditioner( b, z );}
+557       this->\hyperlink{classLuna_1_1SparseMatrix_ac196d00210b58f3f62352054f4241411}{identity\_preconditioner}( b, z );
+558       bnrm = z.norm\_2();
+559       \textcolor{comment}{//this->diagonal\_preconditioner( r, z );}
+560       this->\hyperlink{classLuna_1_1SparseMatrix_ac196d00210b58f3f62352054f4241411}{identity\_preconditioner}( r, z );
+561     \}
+562     \textcolor{keywordflow}{else} \{
+563       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"SparseMatrix solve\_BiCG error: illegal itol."} );
+564     \}
+565 
+566     \textcolor{comment}{// Main loop}
+567     \textcolor{keywordtype}{int} iter( 0 );
+568     \textcolor{keywordflow}{while} ( iter < max\_iter )
+569     \{
+570       ++iter;
+571       \textcolor{comment}{//this->diagonal\_preconditioner( rr, zz );}
+572       this->\hyperlink{classLuna_1_1SparseMatrix_ac196d00210b58f3f62352054f4241411}{identity\_preconditioner}( rr, zz );
+573 
+574       rho\_1 = z.dot( rr );
+575 
+576       \textcolor{keywordflow}{if} ( iter == 1 ) \{
+577         p = z;
+578         pp = zz;
+579       \} \textcolor{keywordflow}{else} \{
+580         beta = rho\_1 / rho\_2;
+581         p = beta * p + z;
+582         pp = beta * pp + zz;
+583       \}
+584 
+585       z = this->\hyperlink{classLuna_1_1SparseMatrix_a532c8a8b80b0accf950a642344e7954f}{multiply}( p );
+586       alpha = rho\_1 / z.dot( pp );
+587       zz = this->\hyperlink{classLuna_1_1SparseMatrix_a64e3d0328b1eaba4f2f75e70b4fe1bb8}{transpose\_multiply}( pp );
+588       \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x} += alpha * p;
+589       r -= alpha * z;
+590       rr -= alpha * zz;
+591 
+592       \textcolor{comment}{//this->diagonal\_preconditioner( r, z );}
+593       this->\hyperlink{classLuna_1_1SparseMatrix_ac196d00210b58f3f62352054f4241411}{identity\_preconditioner}( r, z );
+594 
+595       rho\_2 = rho\_1;
+596 
+597       \textcolor{keywordflow}{if} ( itol == 1 ) \{
+598         err = r.norm\_2() / bnrm;
+599       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} ( itol == 2 ) \{
+600         err = z.norm\_2() / bnrm;
+601       \}
+602       \textcolor{keywordflow}{if} ( err <= tol )
+603       \{
+604         max\_iter = iter;
+605         tol = err;
+606         \textcolor{keywordflow}{return} 0;
+607       \}
+608     \} \textcolor{comment}{// end of while loop}
+609     \textcolor{keywordflow}{return} 1;
+610   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1SparseMatrix_a8fe4fe6d60878d4b23a6895f1a5dc59d}\label{classLuna_1_1SparseMatrix_a8fe4fe6d60878d4b23a6895f1a5dc59d}} 
+\index{Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}!solve\+\_\+\+Bi\+C\+G\+S\+T\+AB@{solve\+\_\+\+Bi\+C\+G\+S\+T\+AB}}
+\index{solve\+\_\+\+Bi\+C\+G\+S\+T\+AB@{solve\+\_\+\+Bi\+C\+G\+S\+T\+AB}!Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}}
+\subsubsection{\texorpdfstring{solve\+\_\+\+Bi\+C\+G\+S\+T\+A\+B()}{solve\_BiCGSTAB()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+int \hyperlink{classLuna_1_1SparseMatrix}{Luna\+::\+Sparse\+Matrix}$<$ T $>$\+::solve\+\_\+\+Bi\+C\+G\+S\+T\+AB (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{b,  }\item[{\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{x,  }\item[{int \&}]{max\+\_\+iter,  }\item[{double \&}]{tol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Solve the system of equations Ax=b using the stabilised biconjugate gradient method Bi\+C\+G\+S\+T\+AB. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & The right-\/hand side \hyperlink{classLuna_1_1Vector}{Vector} of the system of equations \\
+\hline
+{\em x} & Initial guess x\+\_\+0 the solution is also stored here \\
+\hline
+{\em max\+\_\+iter} & The maximun number of iterations ( the number of iterations performed will also be returned here ) \\
+\hline
+{\em tol} & Tolerance for convergence ( the error residual is also returned here ) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Success or failure code ( 0 = success, 1 = exceeded max\+\_\+iter ) 
+\end{DoxyReturn}
+
+
+Definition at line 642 of file Sparse\+Matrix.\+h.
+
+
+
+References Luna\+::beta(), Luna\+::\+Vector$<$ T $>$\+::dot(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::identity\+\_\+preconditioner(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::multiply(), Luna\+::\+Vector$<$ T $>$\+::norm\+\_\+2(), Luna\+::\+Vector$<$ T $>$\+::size(), and Heat\+\_\+plot\+::t.
+
+
+
+Referenced by main(), and Luna\+::\+Sparse\+Matrix$<$ T $>$\+::$\sim$\+Sparse\+Matrix().
+
+
+\begin{DoxyCode}
+644   \{
+645     \textcolor{comment}{// https://math.nist.gov/iml++}
+646     \textcolor{keywordtype}{double} resid;
+647     Vector<T> p( \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x}.size(), 0.0 ), phat( \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x}.size(), 0.0 );
+648     Vector<T> s( \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x}.size(), 0.0 ), shat( \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x}.size(), 0.0 );
+649     Vector<T> v( \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x}.size(), 0.0 );
+650     Vector<T> temp, \hyperlink{namespaceHeat__plot_a25a93a2226128530145cc611f350163b}{t};
+651 
+652     T rho\_1 = 1.0;
+653     T rho\_2 = 1.0;
+654     T alpha = 1.0;
+655     T \hyperlink{namespaceLuna_af542f1c7522ca96017105e160b54df80}{beta};
+656     T omega = 1.0;
+657 
+658     \textcolor{keywordtype}{double} normb = b.norm\_2();
+659     Vector<T> r;
+660     r = this->\hyperlink{classLuna_1_1SparseMatrix_a532c8a8b80b0accf950a642344e7954f}{multiply}( \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x} );
+661     r = b - r;
+662     Vector<T> rtilde = r;
+663 
+664     \textcolor{keywordflow}{if} ( normb == 0.0 )
+665     \{
+666       normb = 1.;
+667     \}
+668     \textcolor{keywordflow}{if} ( ( resid = r.norm\_2() / normb ) <= tol )
+669     \{
+670       tol = resid;
+671       max\_iter = 0;
+672       \textcolor{keywordflow}{return} 0;
+673     \}
+674 
+675     \textcolor{keywordflow}{for} ( \textcolor{keywordtype}{int} i = 1; i <= max\_iter; i++ )
+676     \{
+677       rho\_1 = rtilde.dot( r );
+678       \textcolor{keywordflow}{if} ( rho\_1 == 0.0 ) \{
+679         tol = r.norm\_2() / normb;
+680         \textcolor{keywordflow}{return} 2;
+681       \}
+682       \textcolor{keywordflow}{if} ( i == 1 ) \{
+683         p = r;
+684       \} \textcolor{keywordflow}{else} \{
+685         beta = ( rho\_1 / rho\_2 ) * ( alpha / omega );
+686         temp = p - omega * v;
+687         p = r + beta * temp;
+688         \textcolor{comment}{//p = r + beta * ( p - omega * v );}
+689       \}
+690       \textcolor{comment}{//phat = p; //could have preconditioner here phat = M.solve(p);}
+691       this->\hyperlink{classLuna_1_1SparseMatrix_ac196d00210b58f3f62352054f4241411}{identity\_preconditioner}( p, phat );
+692       v = this->\hyperlink{classLuna_1_1SparseMatrix_a532c8a8b80b0accf950a642344e7954f}{multiply}( phat );
+693       alpha = rho\_1 / rtilde.dot( v );
+694       s = r - alpha * v;
+695       \textcolor{keywordflow}{if} ( ( resid = s.norm\_2() / normb ) <= tol ) \{
+696         \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x} += alpha * phat;
+697         tol = resid;
+698         max\_iter = i;
+699         \textcolor{keywordflow}{return} 0;
+700       \}
+701       \textcolor{comment}{//shat = s; //could have preconditioner here shat = M.solve(s);}
+702       this->\hyperlink{classLuna_1_1SparseMatrix_ac196d00210b58f3f62352054f4241411}{identity\_preconditioner}( s, shat );
+703       t = this->\hyperlink{classLuna_1_1SparseMatrix_a532c8a8b80b0accf950a642344e7954f}{multiply}( shat );
+704       omega = t.dot( s ) / t.dot( t );
+705       \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x} += alpha * phat;
+706       \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x} += omega * shat;
+707       r = s - omega * \hyperlink{namespaceHeat__plot_a25a93a2226128530145cc611f350163b}{t};
+708 
+709       rho\_2 = rho\_1;
+710 
+711       \textcolor{keywordflow}{if} ( ( resid = r.norm\_2() / normb ) < tol ) \{
+712         tol = resid;
+713         max\_iter = i;
+714         \textcolor{keywordflow}{return} 0;
+715       \}
+716       \textcolor{keywordflow}{if} ( omega == 0.0 ) \{
+717         tol = r.norm\_2() / normb;
+718         \textcolor{keywordflow}{return} 3;
+719       \}
+720     \}
+721 
+722     tol = resid;
+723     \textcolor{keywordflow}{return} 1;
+724   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1SparseMatrix_a163219e4a5009de66aa538a6be304249}\label{classLuna_1_1SparseMatrix_a163219e4a5009de66aa538a6be304249}} 
+\index{Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}!solve\+\_\+\+CG@{solve\+\_\+\+CG}}
+\index{solve\+\_\+\+CG@{solve\+\_\+\+CG}!Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}}
+\subsubsection{\texorpdfstring{solve\+\_\+\+C\+G()}{solve\_CG()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+int \hyperlink{classLuna_1_1SparseMatrix}{Luna\+::\+Sparse\+Matrix}$<$ T $>$\+::solve\+\_\+\+CG (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{b,  }\item[{\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{x,  }\item[{int \&}]{max\+\_\+iter,  }\item[{double \&}]{tol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Solve the system of equations Ax=b using the conjugate gradient method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & The right-\/hand side \hyperlink{classLuna_1_1Vector}{Vector} of the system of equations \\
+\hline
+{\em x} & Initial guess x\+\_\+0 the solution is also stored here \\
+\hline
+{\em max\+\_\+iter} & The maximun number of iterations ( the number of iterations performed will also be returned here ) \\
+\hline
+{\em tol} & Tolerance for convergence ( the error residual is also returned here ) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Success or failure code ( 0 = success, 1 = exceeded max\+\_\+iter ) 
+\end{DoxyReturn}
+
+
+Definition at line 727 of file Sparse\+Matrix.\+h.
+
+
+
+References Luna\+::beta(), Luna\+::\+Vector$<$ T $>$\+::dot(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::multiply(), Luna\+::\+Vector$<$ T $>$\+::norm\+\_\+2(), and Luna\+::\+Vector$<$ T $>$\+::size().
+
+
+
+Referenced by Luna\+::\+Sparse\+Matrix$<$ T $>$\+::$\sim$\+Sparse\+Matrix().
+
+
+\begin{DoxyCode}
+729   \{
+730     \textcolor{keywordtype}{double} resid;
+731     Vector<T> p( \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x}.size(), 0.0 ), z( \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x}.size(), 0.0 ), q( \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x}.size(), 0.0 );
+732     Vector<T> temp;
+733 
+734     T rho = 1.0;
+735     T rho\_1 = 1.0;
+736     T alpha = 1.0;
+737     T \hyperlink{namespaceLuna_af542f1c7522ca96017105e160b54df80}{beta};
+738 
+739     \textcolor{keywordtype}{double} normb = b.norm\_2();
+740     Vector<T> r;
+741     r = this->\hyperlink{classLuna_1_1SparseMatrix_a532c8a8b80b0accf950a642344e7954f}{multiply}( \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x} );
+742     r = b - r;
+743 
+744     \textcolor{keywordflow}{if} ( normb == 0.0 )
+745     \{
+746       normb = 1.;
+747     \}
+748     \textcolor{keywordflow}{if} ( ( resid = r.norm\_2() / normb ) <= tol )
+749     \{
+750       tol = resid;
+751       max\_iter = 0;
+752       \textcolor{keywordflow}{return} 0;
+753     \}
+754 
+755     \textcolor{keywordflow}{for} ( \textcolor{keywordtype}{int} i = 1; i <= max\_iter; i++ )
+756     \{
+757       \textcolor{comment}{//this->diagonal\_preconditioner( r, z );}
+758       \textcolor{comment}{//this->identity\_preconditioner( r, z );}
+759       z = r; \textcolor{comment}{// Could have preconditioner here?}
+760       rho = r.dot( z );
+761 
+762       \textcolor{keywordflow}{if} ( i == 1 ) \{
+763         p = z;
+764       \} \textcolor{keywordflow}{else} \{
+765         beta = rho / rho\_1;
+766         p = z + beta * p;
+767       \}
+768 
+769       q = this->\hyperlink{classLuna_1_1SparseMatrix_a532c8a8b80b0accf950a642344e7954f}{multiply}( p );
+770       alpha = rho / p.dot( q );
+771 
+772       \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x} += alpha * p;
+773       r -= alpha * q;
+774 
+775       \textcolor{keywordflow}{if} ( ( resid = r.norm\_2() / normb ) <= tol )
+776       \{
+777         tol = resid;
+778         max\_iter = i;
+779         \textcolor{keywordflow}{return} 0;
+780       \}
+781 
+782       rho\_1 = rho;
+783     \}
+784 
+785     tol = resid;
+786     \textcolor{keywordflow}{return} 1;
+787   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1SparseMatrix_a45bef00e3aaeae37b3faf7de22e5e6f0}\label{classLuna_1_1SparseMatrix_a45bef00e3aaeae37b3faf7de22e5e6f0}} 
+\index{Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}!solve\+\_\+\+Q\+MR@{solve\+\_\+\+Q\+MR}}
+\index{solve\+\_\+\+Q\+MR@{solve\+\_\+\+Q\+MR}!Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}}
+\subsubsection{\texorpdfstring{solve\+\_\+\+Q\+M\+R()}{solve\_QMR()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+int \hyperlink{classLuna_1_1SparseMatrix}{Luna\+::\+Sparse\+Matrix}$<$ T $>$\+::solve\+\_\+\+Q\+MR (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{b,  }\item[{\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{x,  }\item[{int \&}]{max\+\_\+iter,  }\item[{double \&}]{tol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Solve the system of equations Ax=b using the Quasi-\/minimal residual method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & The right-\/hand side \hyperlink{classLuna_1_1Vector}{Vector} of the system of equations \\
+\hline
+{\em x} & Initial guess x\+\_\+0 the solution is also stored here \\
+\hline
+{\em max\+\_\+iter} & The maximun number of iterations ( the number of iterations performed will also be returned here ) \\
+\hline
+{\em tol} & Tolerance for convergence ( the error residual is also returned here ) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Success or failure code ( 0 = success, 1 = exceeded max\+\_\+iter ) 
+\end{DoxyReturn}
+
+
+Definition at line 790 of file Sparse\+Matrix.\+h.
+
+
+
+References Luna\+::beta(), Luna\+::\+Vector$<$ T $>$\+::dot(), Luna\+::gamma(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::multiply(), Luna\+::\+Vector$<$ T $>$\+::norm\+\_\+2(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::transpose\+\_\+multiply(), and y.
+
+
+
+Referenced by Luna\+::\+Sparse\+Matrix$<$ T $>$\+::$\sim$\+Sparse\+Matrix().
+
+
+\begin{DoxyCode}
+792   \{
+793     \textcolor{keywordtype}{double} resid;
+794 
+795     T rho( 1.0 ), rho\_1( 1.0 ), xi( 1.0 );
+796     T delta( 1.0 ), ep( 1.0 );
+797     T \hyperlink{namespaceLuna_af542f1c7522ca96017105e160b54df80}{beta};
+798 
+799     \textcolor{keywordtype}{double} \hyperlink{namespaceLuna_a4467788060a97debe131fa8f08a00de3}{gamma}, gamma\_1, eta, theta, theta\_1;
+800 
+801     Vector<T> r, v, \hyperlink{ODE__BVP__test_8cpp_adf764cbdea00d65edcd07bb9953ad2b7ae1f9fdb8b786c63efc4ce44eeacd17f2}{y}, w, z;
+802     Vector<T> v\_tld, w\_tld, y\_tld, z\_tld;
+803     Vector<T> p, q, p\_tld, d, s;
+804 
+805     \textcolor{keywordtype}{double} normb = b.norm\_2();
+806     r = this->\hyperlink{classLuna_1_1SparseMatrix_a532c8a8b80b0accf950a642344e7954f}{multiply}( \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x} );
+807     r = b - r;
+808 
+809     \textcolor{keywordflow}{if} ( normb == 0.0 )
+810     \{
+811       normb = 1.0;
+812     \}
+813     \textcolor{keywordflow}{if} ( ( resid = r.norm\_2() / normb ) <= tol )
+814     \{
+815       tol = resid;
+816       max\_iter = 0;
+817       \textcolor{keywordflow}{return} 0;
+818     \}
+819 
+820     v\_tld = r;
+821     y = v\_tld; \textcolor{comment}{// Could have preconditioner here}
+822     rho = y.norm\_2();
+823 
+824     w\_tld = r;
+825     z = w\_tld; \textcolor{comment}{// Could have preconditioner here}
+826     xi = z.norm\_2();
+827 
+828     gamma = 1.0;
+829     eta = - 1.0;
+830     theta = 0.0;
+831 
+832     \textcolor{keywordflow}{for} ( \textcolor{keywordtype}{int} i = 1; i <= max\_iter; i++ )
+833     \{
+834       \textcolor{keywordflow}{if} ( rho == 0.0 )
+835         \textcolor{keywordflow}{return} 2;                     \textcolor{comment}{// Return on breakdown}
+836 
+837       \textcolor{keywordflow}{if} ( xi == 0.0 )
+838         \textcolor{keywordflow}{return} 7;                     \textcolor{comment}{// Return on breakdown}
+839 
+840       v = ( 1. / rho ) * v\_tld;
+841       y = ( 1. / rho ) * y;
+842 
+843       w = ( 1. / xi ) * w\_tld;
+844       z = ( 1. / xi ) * z;
+845 
+846       delta = z.dot( y );
+847       \textcolor{keywordflow}{if} ( delta == 0.0 )
+848         \textcolor{keywordflow}{return} 5;                     \textcolor{comment}{// Return on breakdown}
+849 
+850       y\_tld = \hyperlink{ODE__BVP__test_8cpp_adf764cbdea00d65edcd07bb9953ad2b7ae1f9fdb8b786c63efc4ce44eeacd17f2}{y};
+851       z\_tld = z;  \textcolor{comment}{// Could have preconditioners here}
+852 
+853       \textcolor{keywordflow}{if} (i > 1) \{
+854         p = y\_tld - ( xi * delta / ep ) * p;
+855         q = z\_tld - ( rho * delta / ep ) * q;
+856       \} \textcolor{keywordflow}{else} \{
+857         p = y\_tld;
+858         q = z\_tld;
+859       \}
+860 
+861       p\_tld = this->\hyperlink{classLuna_1_1SparseMatrix_a532c8a8b80b0accf950a642344e7954f}{multiply}( p );
+862       ep = q.dot( p\_tld );
+863       \textcolor{keywordflow}{if} ( ep == 0.0 )
+864         \textcolor{keywordflow}{return} 6;                       \textcolor{comment}{// Return on breakdown}
+865 
+866       beta = ep / delta;
+867       \textcolor{keywordflow}{if} ( beta == 0.0 )
+868         \textcolor{keywordflow}{return} 3;                       \textcolor{comment}{// Return on breakdown}
+869 
+870       v\_tld = p\_tld - beta * v;
+871       y = v\_tld; \textcolor{comment}{// Could have preconditioner here}
+872 
+873       rho\_1 = rho;
+874       rho = y.norm\_2();
+875       w\_tld = this->\hyperlink{classLuna_1_1SparseMatrix_a64e3d0328b1eaba4f2f75e70b4fe1bb8}{transpose\_multiply}( q );
+876       w\_tld -= beta * w;
+877       z = w\_tld; \textcolor{comment}{// Could have preconditioner here}
+878 
+879       xi = z.norm\_2();
+880 
+881       gamma\_1 = \hyperlink{namespaceLuna_a4467788060a97debe131fa8f08a00de3}{gamma};
+882       theta\_1 = theta;
+883 
+884       theta = rho / ( gamma\_1 * \hyperlink{namespaceLuna_af542f1c7522ca96017105e160b54df80}{beta} );
+885       gamma = 1.0 / std::sqrt( 1.0 + theta * theta );
+886 
+887       \textcolor{keywordflow}{if} ( gamma == 0.0 )
+888         \textcolor{keywordflow}{return} 4;                       \textcolor{comment}{// Return on breakdown}
+889 
+890       eta = - eta * rho\_1 * gamma * gamma / ( beta * gamma\_1 * gamma\_1 );
+891 
+892       \textcolor{keywordflow}{if} (i > 1) \{
+893         d = eta * p + ( theta\_1 * theta\_1 * gamma * \hyperlink{namespaceLuna_a4467788060a97debe131fa8f08a00de3}{gamma} ) * d;
+894         s = eta * p\_tld + ( theta\_1 * theta\_1 * gamma * \hyperlink{namespaceLuna_a4467788060a97debe131fa8f08a00de3}{gamma} ) * s;
+895       \} \textcolor{keywordflow}{else} \{
+896         d = eta * p;
+897         s = eta * p\_tld;
+898       \}
+899 
+900       \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x} += d;
+901       r -= s;
+902 
+903       \textcolor{keywordflow}{if} ( ( resid = r.norm\_2() / normb ) <= tol )
+904       \{
+905         tol = resid;
+906         max\_iter = i;
+907         \textcolor{keywordflow}{return} 0;
+908       \}
+909 
+910     \}
+911 
+912     tol = resid;
+913     \textcolor{keywordflow}{return} 1;
+914   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1SparseMatrix_a7d7f39bd0b3ef94abc483ccbfe81dcf2}\label{classLuna_1_1SparseMatrix_a7d7f39bd0b3ef94abc483ccbfe81dcf2}} 
+\index{Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}!transpose@{transpose}}
+\index{transpose@{transpose}!Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}}
+\subsubsection{\texorpdfstring{transpose()}{transpose()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1SparseMatrix}{Sparse\+Matrix}$<$ T $>$ \hyperlink{classLuna_1_1SparseMatrix}{Luna\+::\+Sparse\+Matrix}$<$ T $>$\+::transpose (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the transpose of the \hyperlink{classLuna_1_1SparseMatrix}{Sparse\+Matrix}. 
+
+\begin{DoxyReturn}{Returns}
+The transpose of the \hyperlink{classLuna_1_1SparseMatrix}{Sparse\+Matrix} 
+\end{DoxyReturn}
+
+
+Definition at line 488 of file Sparse\+Matrix.\+h.
+
+
+
+Referenced by Luna\+::\+Sparse\+Matrix$<$ T $>$\+::$\sim$\+Sparse\+Matrix().
+
+
+\begin{DoxyCode}
+489   \{
+490     std::size\_t i, j, k, index, m = ROWS, n = COLS;
+491     SparseMatrix<T> at( n, m, \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} );
+492 
+493     Vector<int> count( m, 0 );
+494     \textcolor{keywordflow}{for} ( i = 0; i < n; i++ )
+495     \{
+496       \textcolor{keywordflow}{for} ( j = COL\_START[ i ]; j < COL\_START[ i + 1 ]; j++ )
+497       \{
+498         k = ROW\_INDEX[ j ];
+499         count[ k ]++;
+500       \}
+501     \}
+502     \textcolor{keywordflow}{for} ( j = 0; j < m; j++ )
+503     \{
+504       at.COL\_START[ j + 1 ] = at.COL\_START[ j ] + count[ j ];
+505     \}
+506     \textcolor{keywordflow}{for} ( j = 0; j < m; j++ )
+507     \{
+508       count[ j ] = 0;
+509     \}
+510     \textcolor{keywordflow}{for} ( i = 0; i < n; i++ )
+511     \{
+512       \textcolor{keywordflow}{for} ( j = COL\_START[ i ]; j < COL\_START[ i + 1 ]; j++ )
+513       \{
+514         k = ROW\_INDEX[ j ];
+515         index = at.COL\_START[ k ] + count[ k ];
+516         at.ROW\_INDEX[ index ] = i;
+517         at.VAL[ index ] = VAL[ j ];
+518         count[ k ]++;
+519       \}
+520     \}
+521     \textcolor{keywordflow}{return} at;
+522   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1SparseMatrix_a64e3d0328b1eaba4f2f75e70b4fe1bb8}\label{classLuna_1_1SparseMatrix_a64e3d0328b1eaba4f2f75e70b4fe1bb8}} 
+\index{Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}!transpose\+\_\+multiply@{transpose\+\_\+multiply}}
+\index{transpose\+\_\+multiply@{transpose\+\_\+multiply}!Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}}
+\subsubsection{\texorpdfstring{transpose\+\_\+multiply()}{transpose\_multiply()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1SparseMatrix}{Luna\+::\+Sparse\+Matrix}$<$ T $>$\+::transpose\+\_\+multiply (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Multiply the transpose of the \hyperlink{classLuna_1_1SparseMatrix}{Sparse\+Matrix} A$^\wedge$T by a \hyperlink{classLuna_1_1Vector}{Vector} to the right. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The vector which is to be multiplied \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result vector A$^\wedge$T $\ast$ x 
+\end{DoxyReturn}
+
+
+Definition at line 465 of file Sparse\+Matrix.\+h.
+
+
+
+References Luna\+::\+Vector$<$ T $>$\+::size(), and y.
+
+
+
+Referenced by Luna\+::\+Sparse\+Matrix$<$ T $>$\+::solve\+\_\+\+Bi\+C\+G(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::solve\+\_\+\+Q\+M\+R(), and Luna\+::\+Sparse\+Matrix$<$ T $>$\+::$\sim$\+Sparse\+Matrix().
+
+
+\begin{DoxyCode}
+466   \{
+467     \textcolor{keywordflow}{if} ( \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x}.size() != ROWS )
+468     \{
+469       std::string problem;
+470       problem  = \textcolor{stringliteral}{"SparseMatrix transpose\_multiply: dimensions do not agree."};
+471       \textcolor{keywordflow}{throw} Error( problem );
+472     \}
+473     Vector<T> \hyperlink{ODE__BVP__test_8cpp_adf764cbdea00d65edcd07bb9953ad2b7ae1f9fdb8b786c63efc4ce44eeacd17f2}{y}( COLS, 0 );
+474 
+475     std::size\_t i, j;
+476 
+477     \textcolor{keywordflow}{for} ( i = 0; i < COLS; i++ )
+478     \{
+479       \textcolor{keywordflow}{for} ( j = COL\_START[ i ]; j < COL\_START[ i + 1 ]; j++ )
+480       \{
+481         \hyperlink{ODE__BVP__test_8cpp_adf764cbdea00d65edcd07bb9953ad2b7ae1f9fdb8b786c63efc4ce44eeacd17f2}{y}[ i ] += VAL[ j ] * \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x}[ ROW\_INDEX[ j ] ];
+482       \}
+483     \}
+484     \textcolor{keywordflow}{return} \hyperlink{ODE__BVP__test_8cpp_adf764cbdea00d65edcd07bb9953ad2b7ae1f9fdb8b786c63efc4ce44eeacd17f2}{y};
+485   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1SparseMatrix_ac22d87e2fb618c6140c579bc72dd503b}\label{classLuna_1_1SparseMatrix_ac22d87e2fb618c6140c579bc72dd503b}} 
+\index{Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}!val@{val}}
+\index{val@{val}!Luna\+::\+Sparse\+Matrix@{Luna\+::\+Sparse\+Matrix}}
+\subsubsection{\texorpdfstring{val()}{val()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1SparseMatrix}{Luna\+::\+Sparse\+Matrix}$<$ T $>$\+::val (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the \hyperlink{classLuna_1_1Vector}{Vector} of nonzero values. 
+
+\begin{DoxyReturn}{Returns}
+The \hyperlink{classLuna_1_1Vector}{Vector} of nonzero values 
+\end{DoxyReturn}
+
+
+Definition at line 284 of file Sparse\+Matrix.\+h.
+
+
+
+Referenced by Luna\+::\+Sparse\+Matrix$<$ T $>$\+::insert(), main(), Luna\+::\+Sparse\+Matrix$<$ T $>$\+::\+Sparse\+Matrix(), and Luna\+::\+Sparse\+Matrix$<$ T $>$\+::$\sim$\+Sparse\+Matrix().
+
+
+\begin{DoxyCode}
+285   \{
+286     \textcolor{keywordflow}{return} VAL;
+287   \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Luna/\hyperlink{SparseMatrix_8h}{Sparse\+Matrix.\+h}\end{DoxyCompactItemize}

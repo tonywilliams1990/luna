@@ -1,0 +1,148 @@
+\hypertarget{Nonlinear__ODE__BVP_8cpp}{}\section{Examples/\+Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+VP.cpp File Reference}
+\label{Nonlinear__ODE__BVP_8cpp}\index{Examples/\+Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P.\+cpp@{Examples/\+Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P.\+cpp}}
+
+
+The equation \[ (f(x)-1)f''(x) + \left( \frac{2}{x^2} - 1 \right)f'(x)^2 = 1 \] is solved subject to the boundary conditions $ f(0) = 2 $ and $ f \left(\frac{\sqrt{3}}{2} \right) = \frac{3}{2}. $ The system is solved as a set of first-\/order equations in the form \[ \begin{pmatrix} 1 & 0 \\ 0 & f(x) - 1 \end{pmatrix} \begin{bmatrix} f(x) \\ f'(x) \end{bmatrix}' = \begin{bmatrix} f'(x) \\ 1 + \left(1 - \frac{2}{x^2} \right)f'(x)^2 \end{bmatrix}, \] The exact solution is given by $ f(x) = 1 + \sqrt{1-x^2}. $.  
+
+
+{\ttfamily \#include \char`\"{}Luna/\+Core\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Luna/\+O\+DE\char`\"{}}\newline
+Include dependency graph for Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{Nonlinear__ODE__BVP_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classLuna_1_1nonlinear__equation}{Luna\+::nonlinear\+\_\+equation}
+\item 
+class \hyperlink{classLuna_1_1left__BC}{Luna\+::left\+\_\+\+BC}
+\item 
+class \hyperlink{classLuna_1_1right__BC}{Luna\+::right\+\_\+\+BC}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceLuna}{Luna}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \hyperlink{Nonlinear__ODE__BVP_8cpp_a06fc87d81c62e9abb8790b6e5713c55ba7ce756344023b99e5ab27b804feb765c}{f}, 
+\hyperlink{Nonlinear__ODE__BVP_8cpp_a06fc87d81c62e9abb8790b6e5713c55ba1e4d60e5b05464d07a30096747025a42}{fd}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{Nonlinear__ODE__BVP_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The equation \[ (f(x)-1)f''(x) + \left( \frac{2}{x^2} - 1 \right)f'(x)^2 = 1 \] is solved subject to the boundary conditions $ f(0) = 2 $ and $ f \left(\frac{\sqrt{3}}{2} \right) = \frac{3}{2}. $ The system is solved as a set of first-\/order equations in the form \[ \begin{pmatrix} 1 & 0 \\ 0 & f(x) - 1 \end{pmatrix} \begin{bmatrix} f(x) \\ f'(x) \end{bmatrix}' = \begin{bmatrix} f'(x) \\ 1 + \left(1 - \frac{2}{x^2} \right)f'(x)^2 \end{bmatrix}, \] The exact solution is given by $ f(x) = 1 + \sqrt{1-x^2}. $. 
+
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{Nonlinear__ODE__BVP_8cpp_a06fc87d81c62e9abb8790b6e5713c55b}\label{Nonlinear__ODE__BVP_8cpp_a06fc87d81c62e9abb8790b6e5713c55b}} 
+\subsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{f@{f}!Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P.\+cpp@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P.\+cpp}}\index{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P.\+cpp@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P.\+cpp}!f@{f}}}\mbox{\Hypertarget{Nonlinear__ODE__BVP_8cpp_a06fc87d81c62e9abb8790b6e5713c55ba7ce756344023b99e5ab27b804feb765c}\label{Nonlinear__ODE__BVP_8cpp_a06fc87d81c62e9abb8790b6e5713c55ba7ce756344023b99e5ab27b804feb765c}} 
+f&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{fd@{fd}!Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P.\+cpp@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P.\+cpp}}\index{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P.\+cpp@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P.\+cpp}!fd@{fd}}}\mbox{\Hypertarget{Nonlinear__ODE__BVP_8cpp_a06fc87d81c62e9abb8790b6e5713c55ba1e4d60e5b05464d07a30096747025a42}\label{Nonlinear__ODE__BVP_8cpp_a06fc87d81c62e9abb8790b6e5713c55ba1e4d60e5b05464d07a30096747025a42}} 
+fd&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 16 of file Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P.\+cpp.
+
+
+\begin{DoxyCode}
+16 \{ \hyperlink{Nonlinear__ODE__BVP_8cpp_a06fc87d81c62e9abb8790b6e5713c55ba7ce756344023b99e5ab27b804feb765c}{f}, \hyperlink{Nonlinear__ODE__BVP_8cpp_a06fc87d81c62e9abb8790b6e5713c55ba1e4d60e5b05464d07a30096747025a42}{fd} \};
+\end{DoxyCode}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{Nonlinear__ODE__BVP_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{Nonlinear__ODE__BVP_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}} 
+\index{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P.\+cpp@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P.\+cpp}!main@{main}}
+\index{main@{main}!Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P.\+cpp@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P.\+cpp}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 71 of file Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P.\+cpp.
+
+
+
+References f, fd, Luna\+::\+Vector$<$ T $>$\+::linspace(), Luna\+::\+O\+D\+E\+\_\+\+B\+V\+P$<$ T, X $>$\+::max\+\_\+iterations(), Heat\+\_\+plot\+::N, Luna\+::\+Mesh1\+D$<$ T, X $>$\+::output(), Luna\+::\+O\+D\+E\+\_\+\+B\+V\+P$<$ T, X $>$\+::set\+\_\+monitor\+\_\+det(), Luna\+::\+Vector$<$ T $>$\+::size(), Luna\+::\+O\+D\+E\+\_\+\+B\+V\+P$<$ T, X $>$\+::solution(), Luna\+::\+O\+D\+E\+\_\+\+B\+V\+P$<$ T, X $>$\+::solve\+\_\+bvp(), Luna\+::\+O\+D\+E\+\_\+\+B\+V\+P$<$ T, X $>$\+::tolerance(), and Heat\+\_\+plot\+::x.
+
+
+\begin{DoxyCode}
+72 \{
+73   cout << \textcolor{stringliteral}{"------------------- Nonlinear\_ODE\_BVP ------------------"} << endl;
+74   \textcolor{comment}{// Setup the domain}
+75   \textcolor{keywordtype}{double} left( 0.0 );                \textcolor{comment}{// Left boundary}
+76   \textcolor{keywordtype}{double} right( sqrt(3.0) / 2.0 );   \textcolor{comment}{// Right boundary}
+77     std::size\_t \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}( 50 );               \textcolor{comment}{// Number of nodes}
+78     \hyperlink{classLuna_1_1Vector}{Vector<double>} nodes;                        \textcolor{comment}{// Vector of nodes ( uniformly spaced )}
+79     nodes.\hyperlink{classLuna_1_1Vector_a275847fc0bddea86c66651201a6db82e}{linspace}( left, right, \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N});
+80 
+81   cout << \textcolor{stringliteral}{" * The nonlinear boundary problem is solved on a uniform"} << endl
+82        << \textcolor{stringliteral}{" * grid in the domain "} << left << \textcolor{stringliteral}{" < x < "} << right
+83        << \textcolor{stringliteral}{" containing N = "} << \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} << endl << \textcolor{stringliteral}{" * nodal points."} << endl;
+84 
+85   \textcolor{comment}{// Create instances of the equation and BCs}
+86   \hyperlink{classLuna_1_1nonlinear__equation}{nonlinear\_equation} equation;
+87   \hyperlink{classLuna_1_1left__BC}{left\_BC} left\_bc;
+88   \hyperlink{classLuna_1_1right__BC}{right\_BC} right\_bc;
+89 
+90   \textcolor{comment}{// Create boundary value problem}
+91   \hyperlink{classLuna_1_1ODE__BVP}{ODE\_BVP<double>} ode( &equation, nodes, &left\_bc, &right\_bc );
+92 
+93   \textcolor{comment}{/* ----- Set the initial guess ----- */}
+94   \textcolor{comment}{// f = 2 - (1/sqrt(3))x (linear fit to boundary conditions)}
+95   \textcolor{keywordtype}{double} gradient( - 1.0 / sqrt(3) );
+96     \textcolor{keywordflow}{for} (std::size\_t j=0; j < \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}; ++j )
+97     \{
+98         \textcolor{keywordtype}{double} \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x} = nodes[ j ];
+99         ode.solution()( j, \hyperlink{Nonlinear__ODE__BVP_8cpp_a06fc87d81c62e9abb8790b6e5713c55ba7ce756344023b99e5ab27b804feb765c}{f} )  = 2.0 + gradient * x;
+100     ode.solution()( j, \hyperlink{Nonlinear__ODE__BVP_8cpp_a06fc87d81c62e9abb8790b6e5713c55ba1e4d60e5b05464d07a30096747025a42}{fd} ) = gradient;
+101     \}
+102 
+103   ode.tolerance() = 1e-8;
+104   ode.max\_iterations() = 50;
+105   ode.set\_monitor\_det( \textcolor{keyword}{false} );
+106 
+107   \textcolor{comment}{// Solve}
+108   ode.solve\_bvp();
+109 
+110   nodes = ode.solution().nodes();
+111   \hyperlink{classLuna_1_1Mesh1D}{Mesh1D<double, double>} exact\_solution( nodes, 2 );
+112   \textcolor{keywordflow}{for} (std::size\_t j=0; j < nodes.\hyperlink{classLuna_1_1Vector_ac9b6ed7a0df401728f27c193fbc8f4d8}{size}(); ++j )
+113     \{
+114         \textcolor{keywordtype}{double} x = nodes[ j ];
+115         exact\_solution( j, \hyperlink{Nonlinear__ODE__BVP_8cpp_a06fc87d81c62e9abb8790b6e5713c55ba7ce756344023b99e5ab27b804feb765c}{f} )  = 1.0 + sqrt( 1.0 - x * x );
+116     exact\_solution( j, \hyperlink{Nonlinear__ODE__BVP_8cpp_a06fc87d81c62e9abb8790b6e5713c55ba1e4d60e5b05464d07a30096747025a42}{fd} ) = - x / sqrt( 1.0 - x * x );
+117     \}
+118 
+119   \textcolor{comment}{// Output the solution data}
+120   ode.solution().output( \textcolor{stringliteral}{"./DATA/ODE\_BVP\_numerical\_solution.dat"} );
+121   exact\_solution.output( \textcolor{stringliteral}{"./DATA/ODE\_BVP\_exact\_solution.dat"} );
+122 
+123   cout << \textcolor{stringliteral}{" * To plot the numerical solution, the exact solution "} << endl
+124        << \textcolor{stringliteral}{" * and the error between the two run:"} << endl
+125        << \textcolor{stringliteral}{"python Plotting/Nonlinear\_ODE\_BVP\_plot.py"} << endl;
+126   cout << \textcolor{stringliteral}{"--- FINISHED ---"} << endl;
+127 \}
+\end{DoxyCode}

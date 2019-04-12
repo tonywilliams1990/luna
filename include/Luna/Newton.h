@@ -1,6 +1,7 @@
 /// \file Newton.h
 /// A class for using Newton's method for solving systems of nonlinear equations
-/// of the form F(x) = 0 where x is a vector and F is vector valued function.
+/// of the form \f$ \mathbf{F}(\mathbf{x}) = 0 \f$ where \f$ \mathbf{x} \f$
+/// is a vector and \f$ \mathbf{F} \f$  is vector valued function.
 
 #ifndef NEWTON_H
 #define NEWTON_H
@@ -123,7 +124,7 @@ namespace Luna
 		Vector<T> dR_dp( ORDER, 0.0 );
 		Vector<T> y( ORDER, 0.0 );
 		Vector<T> z( ORDER, 0.0 );
-		Vector<T> JacE; 
+		Vector<T> JacE;
 
 		do
 		{

@@ -1,0 +1,109 @@
+\hypertarget{Vector__algebra_8cpp}{}\section{Examples/\+Vector\+\_\+algebra.cpp File Reference}
+\label{Vector__algebra_8cpp}\index{Examples/\+Vector\+\_\+algebra.\+cpp@{Examples/\+Vector\+\_\+algebra.\+cpp}}
+
+
+Some simple vector algebra to check the basic functionality.  
+
+
+{\ttfamily \#include \char`\"{}Luna/\+Core\char`\"{}}\newline
+Include dependency graph for Vector\+\_\+algebra.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=227pt]{Vector__algebra_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{Vector__algebra_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Some simple vector algebra to check the basic functionality. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{Vector__algebra_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{Vector__algebra_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}} 
+\index{Vector\+\_\+algebra.\+cpp@{Vector\+\_\+algebra.\+cpp}!main@{main}}
+\index{main@{main}!Vector\+\_\+algebra.\+cpp@{Vector\+\_\+algebra.\+cpp}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 10 of file Vector\+\_\+algebra.\+cpp.
+
+
+
+References Luna\+::\+Timer\+::print(), Luna\+::\+Vector$<$ T $>$\+::push\+\_\+back(), Luna\+::\+Timer\+::start(), and Luna\+::\+Timer\+::stop().
+
+
+\begin{DoxyCode}
+11 \{
+12   cout << \textcolor{stringliteral}{"----- Vector algebra -----"} << endl;
+13 
+14   \hyperlink{classLuna_1_1Timer}{Timer} timer;
+15   timer.\hyperlink{classLuna_1_1Timer_ab074740a502b02be0bb64ef3320733b3}{start}();
+16 
+17   \hyperlink{classLuna_1_1Vector}{Vector<double>} a( 4, 0.0 );                       \textcolor{comment}{// Specified constructor}
+18   \hyperlink{classLuna_1_1Vector}{Vector<double>} b( a );                            \textcolor{comment}{// Copy constructor}
+19   \hyperlink{classLuna_1_1Vector}{Vector<double>} c;                                 \textcolor{comment}{// Empty constructor}
+20 
+21   \textcolor{comment}{// Fill the Vectors}
+22   a[ 0 ] = 1.0; a[ 1 ] = 3.0; a[ 2 ] = 1.0; a[ 3 ] = - 1.0;
+23   b[ 0 ] = 2.0; b[ 1 ] = 1.0; b[ 2 ] = 3.0; b[ 3 ] = 4.0;
+24   cout << \textcolor{stringliteral}{"  * a = "} << a << endl;
+25   cout << \textcolor{stringliteral}{"  * b = "} << b << endl;
+26 
+27   \textcolor{comment}{// Do some basic algebra}
+28   c = a + b;
+29   cout << \textcolor{stringliteral}{"  * c = a + b = "} << c << endl;
+30   c = b - a;
+31   cout << \textcolor{stringliteral}{"  * c = b - a = "} << c << endl;
+32   c = 3 * a;
+33   cout << \textcolor{stringliteral}{"  * c = 3 * a = "} << c << endl;
+34   c = a / 3;
+35   cout << \textcolor{stringliteral}{"  * c = a / 3 = "} << c << endl;
+36 
+37   \textcolor{comment}{// Add some new elements and swap them around}
+38   a.\hyperlink{classLuna_1_1Vector_abf2693db9286f81cf68693fc4fb9fd18}{push\_back}( 2.0 );
+39   b.resize( 5 );
+40   b[ 4 ] = - 3.0;
+41   b.swap( 3, 4 );
+42   cout << \textcolor{stringliteral}{"  * a = "} << a << endl;
+43   cout << \textcolor{stringliteral}{"  * b = "} << b << endl;
+44 
+45   \textcolor{comment}{// Magnitude of the Vectors}
+46   cout << \textcolor{stringliteral}{"  * |a| = "} << a.norm\_2() << endl;
+47   cout << \textcolor{stringliteral}{"  * |b| = "} << b.norm\_p( 2 ) << endl;
+48 
+49   \textcolor{comment}{// Remove elements}
+50   a.pop\_back();
+51   a.pop\_back();
+52   b.resize( 3 );
+53   cout << \textcolor{stringliteral}{"  * a = "} << a << endl;
+54   cout << \textcolor{stringliteral}{"  * b = "} << b << endl;
+55 
+56   \textcolor{comment}{// Angle between the two Vectors}
+57   \textcolor{keywordtype}{double} angle;
+58   angle = a.dot( b ) / ( a.norm\_2() * b.norm\_2() );
+59   angle = std::acos( angle );
+60   angle = angle * 180 / M\_PI;
+61   cout << \textcolor{stringliteral}{"  * angle between a and b = "} << angle << \textcolor{stringliteral}{" degrees "}<< endl;
+62 
+63   \textcolor{comment}{// Create Vectors of spaced elements}
+64   a.linspace( 0, 1, 6 );
+65   b.powspace( 0, 1, 6, 1.5 );
+66   cout << \textcolor{stringliteral}{"  * Linearly spaced elements = "} << a << endl;
+67   cout << \textcolor{stringliteral}{"  * Power law spaced elements (p=1.5) = "} << b << endl;
+68 
+69   timer.\hyperlink{classLuna_1_1Timer_ac0292bd7a6e45b269919fc2fe160a8bf}{print}();
+70   timer.\hyperlink{classLuna_1_1Timer_ad8ba9deb09bfe422cfaadba04a776662}{stop}();
+71 
+72   cout << \textcolor{stringliteral}{"--- FINISHED ---"} << endl;
+73 
+74 \}
+\end{DoxyCode}

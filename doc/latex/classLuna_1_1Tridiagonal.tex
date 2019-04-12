@@ -1,0 +1,1607 @@
+\hypertarget{classLuna_1_1Tridiagonal}{}\section{Luna\+:\+:Tridiagonal$<$ T $>$ Class Template Reference}
+\label{classLuna_1_1Tridiagonal}\index{Luna\+::\+Tridiagonal$<$ T $>$@{Luna\+::\+Tridiagonal$<$ T $>$}}
+
+
+A \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix class for use with double and std\+::complex$<$double$>$  
+
+
+
+
+{\ttfamily \#include $<$Tridiagonal.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classLuna_1_1Tridiagonal_a749d1915ad40623c14046c690c6f16af}{Tridiagonal} ()
+\begin{DoxyCompactList}\small\item\em Constructor for an empty \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix of unspecified size. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Tridiagonal_a34075ccfbb407b9f29e9f867813d1958}{Tridiagonal} (const std\+::size\+\_\+t \&\hyperlink{classLuna_1_1Tridiagonal_ae8586e82968a8c28f7c50008e1f75411}{size})
+\begin{DoxyCompactList}\small\item\em Constructor for a \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix of specified size. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Tridiagonal_ab723eb17bd32e82fb6e27e2170b4cccc}{Tridiagonal} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&sub, const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&\hyperlink{Vector__algebra_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}, const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&super)
+\begin{DoxyCompactList}\small\item\em Constructor for a \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix using specified Vectors. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Tridiagonal_a43f06132888b27c66355ac7971089947}{Tridiagonal} (const T \&sub\+\_\+elem, const T \&main\+\_\+elem, const T \&super\+\_\+elem, const std\+::size\+\_\+t n)
+\begin{DoxyCompactList}\small\item\em Constructor for a \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix using specified elements. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Tridiagonal_a9051546ef7a37559b1edff2a48d9741c}{$\sim$\+Tridiagonal} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+const T \& \hyperlink{classLuna_1_1Tridiagonal_aa94d8c34b275eb5f6de7a840b78b843f}{operator()} (const std\+::size\+\_\+t \&i, const std\+::size\+\_\+t \&j) const
+\begin{DoxyCompactList}\small\item\em Indexing operator ( read only ) \end{DoxyCompactList}\item 
+T \& \hyperlink{classLuna_1_1Tridiagonal_ae5bbfe810d68ead053a4178d742c58ea}{operator()} (const std\+::size\+\_\+t \&i, const std\+::size\+\_\+t \&j)
+\begin{DoxyCompactList}\small\item\em Indexing operator ( read / write ) \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \& \hyperlink{classLuna_1_1Tridiagonal_a0118c1de81c85bd371d166390a4e5d4b}{operator=} (const \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \&original)
+\begin{DoxyCompactList}\small\item\em Copy assignment. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \hyperlink{classLuna_1_1Tridiagonal_a654145a044a7fda0de429ece11915781}{operator+} () const
+\begin{DoxyCompactList}\small\item\em Unary +. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \hyperlink{classLuna_1_1Tridiagonal_a7f92f3637e30a2fcc12fa959e00eefa0}{operator-\/} () const
+\begin{DoxyCompactList}\small\item\em Unary -\/. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \hyperlink{classLuna_1_1Tridiagonal_a8e28947c6514a84755620ee96400c9cb}{operator+} (const \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \&m\+\_\+plus) const
+\begin{DoxyCompactList}\small\item\em Binary +. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \hyperlink{classLuna_1_1Tridiagonal_ada353bc1778051728e37403d71f57a34}{operator-\/} (const \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \&m\+\_\+minus) const
+\begin{DoxyCompactList}\small\item\em Binary -\/. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \hyperlink{classLuna_1_1Tridiagonal_a5dfe657389e0cb8af507ea77a8fda4e1}{operator$\ast$} (const T \&scalar) const
+\begin{DoxyCompactList}\small\item\em Scalar multiplication. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \hyperlink{classLuna_1_1Tridiagonal_a3994e79c15f9848a1c1badb19247c1c7}{operator/} (const T \&divisor) const
+\begin{DoxyCompactList}\small\item\em Scalar division. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \& \hyperlink{classLuna_1_1Tridiagonal_a5f34fd29d4ba9f517897a4c9eafa8157}{operator+=} (const \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \&m\+\_\+plus)
+\begin{DoxyCompactList}\small\item\em Addition assignment. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \& \hyperlink{classLuna_1_1Tridiagonal_ae4371d0bd7267737984ab697968f9eac}{operator-\/=} (const \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \&m\+\_\+minus)
+\begin{DoxyCompactList}\small\item\em Subtraction assignment. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \& \hyperlink{classLuna_1_1Tridiagonal_ad2050805abc012920f7c29cbf93989c3}{operator$\ast$=} (const T \&scalar)
+\begin{DoxyCompactList}\small\item\em Scalar multiplication assignment. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \& \hyperlink{classLuna_1_1Tridiagonal_a0508de0c1797db737adaff1a6ee63763}{operator/=} (const T \&divisor)
+\begin{DoxyCompactList}\small\item\em Scalar division assigment. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \& \hyperlink{classLuna_1_1Tridiagonal_aed6025d2b9420b4eb7488c2a644c1110}{operator+=} (const T \&add)
+\begin{DoxyCompactList}\small\item\em Constant addition assignment. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \& \hyperlink{classLuna_1_1Tridiagonal_a77da1de7d41e6da4e7b99dc5e571a3a3}{operator-\/=} (const T \&minus)
+\begin{DoxyCompactList}\small\item\em Constant subtraction assignment. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Tridiagonal_a5262edb6caa8aac0186c480c3be2dcf2}{operator$\ast$} (\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&x)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix \hyperlink{classLuna_1_1Vector}{Vector} multiplication. \end{DoxyCompactList}\item 
+std\+::size\+\_\+t \hyperlink{classLuna_1_1Tridiagonal_ae8586e82968a8c28f7c50008e1f75411}{size} () const
+\begin{DoxyCompactList}\small\item\em Size of the main diagonal of the matrix. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Tridiagonal_a6d131d4c600e591c49e7825b52a1021c}{set\+\_\+sub} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&sub)
+\begin{DoxyCompactList}\small\item\em Set the subdiagonal of the matrix. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Tridiagonal_a6594e3223659a5e9c7b911cda11ec5b3}{set\+\_\+main} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&\hyperlink{Vector__algebra_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main})
+\begin{DoxyCompactList}\small\item\em Set the main diagonal of the matrix. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Tridiagonal_a875d22427ef3a88accb530fe9806bfa4}{set\+\_\+super} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&super)
+\begin{DoxyCompactList}\small\item\em Set the superdiagonal of the matrix. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Tridiagonal_a288b97194054318128a096aac12a7eef}{set\+\_\+sub} (const T \&sub\+\_\+elem)
+\begin{DoxyCompactList}\small\item\em Set the subdiagonal of the matrix. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Tridiagonal_a2c333c2bd6de2d9432a2325979240c93}{set\+\_\+main} (const T \&main\+\_\+elem)
+\begin{DoxyCompactList}\small\item\em Set the main diagonal of the matrix. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Tridiagonal_a956689dcbe76a4b23fa10192a7e1a8f9}{set\+\_\+super} (const T \&super\+\_\+elem)
+\begin{DoxyCompactList}\small\item\em Set the superdiagonal of the matrix. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Tridiagonal_a00675dffdb07936a5252d2a32ca3d983}{get\+\_\+sub} ()
+\begin{DoxyCompactList}\small\item\em Get the subdiagonal of the matrix. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Tridiagonal_ac95e35aacc68963b5889f0cf6c838315}{get\+\_\+main} ()
+\begin{DoxyCompactList}\small\item\em Get the main diagonal of the matrix. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Tridiagonal_aeb826920a890dec25c7817418ccaa8cb}{get\+\_\+super} ()
+\begin{DoxyCompactList}\small\item\em Get the superdiagonal of the matrix. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Tridiagonal_a4199f825838490b1a708dfa953963ce5}{get\+\_\+row} (const std\+::size\+\_\+t \&row)
+\begin{DoxyCompactList}\small\item\em Get a row of the tridiagonal matrix as a \hyperlink{classLuna_1_1Vector}{Vector}. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Tridiagonal_a97a6ebf42711983a047675211e2a277b}{transpose\+\_\+in\+\_\+place} ()
+\begin{DoxyCompactList}\small\item\em Replace the current \hyperlink{classLuna_1_1Matrix}{Matrix} with its transpose. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \hyperlink{classLuna_1_1Tridiagonal_ad4a4209b7a20a65fce5c66444af3249e}{transpose} () const
+\begin{DoxyCompactList}\small\item\em Return the transpose of the \hyperlink{classLuna_1_1Matrix}{Matrix}. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1Tridiagonal_aafeede93e34d8418725ae97c645e54cc}{resize} (const std\+::size\+\_\+t \&\hyperlink{classLuna_1_1Tridiagonal_ae8586e82968a8c28f7c50008e1f75411}{size})
+\begin{DoxyCompactList}\small\item\em Resize the \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \hyperlink{classLuna_1_1Tridiagonal_a0338abe2f0237df28f96324a7d11d4df}{conjugate} () const
+\begin{DoxyCompactList}\small\item\em Take the complex conjugate of each element of the \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Matrix}{Matrix}$<$ T $>$ \hyperlink{classLuna_1_1Tridiagonal_a08725d56da8a556ebbd7dd810006cea3}{convert} ()
+\begin{DoxyCompactList}\small\item\em Convert the \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix to a dense \hyperlink{classLuna_1_1Matrix}{Matrix}. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Tridiagonal_a760fdf1ceb44e2ff380770eefb13d023}{solve} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&r)
+\begin{DoxyCompactList}\small\item\em Solve the \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} system of equations Tu=r where u and r are Vectors. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Matrix}{Matrix}$<$ T $>$ \hyperlink{classLuna_1_1Tridiagonal_a17ca16d2ddd5dc94cf5bb928d0f32dbb}{solve} (const \hyperlink{classLuna_1_1Matrix}{Matrix}$<$ T $>$ \&R)
+\begin{DoxyCompactList}\small\item\em Solve the \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} system TU=R where U and R are Matrices. \end{DoxyCompactList}\item 
+T \hyperlink{classLuna_1_1Tridiagonal_ab1be45e74b066c5e2ac73d4d1cccb3da}{det} ()
+\begin{DoxyCompactList}\small\item\em Calculate the determinant of the matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class Type $>$ }\\std\+::ostream \& \hyperlink{classLuna_1_1Tridiagonal_aa1c4dcdd1f5d0158cbe438b3e21ff84c}{operator$<$$<$} (std\+::ostream \&os, const \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ Type $>$ \&m)
+\begin{DoxyCompactList}\small\item\em Output operator $<$$<$. \end{DoxyCompactList}\item 
+\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \hyperlink{classLuna_1_1Tridiagonal_abe10d406eb98ff667ab39c57ce8768be}{operator$\ast$} (const T \&scalar, \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \&mat)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class T$>$\newline
+class Luna\+::\+Tridiagonal$<$ T $>$}
+
+A \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix class for use with double and std\+::complex$<$double$>$ 
+
+Definition at line 24 of file Tridiagonal.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_a749d1915ad40623c14046c690c6f16af}\label{classLuna_1_1Tridiagonal_a749d1915ad40623c14046c690c6f16af}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!Tridiagonal@{Tridiagonal}}
+\index{Tridiagonal@{Tridiagonal}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{Tridiagonal()}{Tridiagonal()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for an empty \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix of unspecified size. 
+
+
+
+Definition at line 34 of file Tridiagonal.\+h.
+
+
+
+References main(), and Luna\+::\+Tridiagonal$<$ T $>$\+::size().
+
+
+\begin{DoxyCode}
+34 : \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}( 0 ) \{\}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_a34075ccfbb407b9f29e9f867813d1958}\label{classLuna_1_1Tridiagonal_a34075ccfbb407b9f29e9f867813d1958}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!Tridiagonal@{Tridiagonal}}
+\index{Tridiagonal@{Tridiagonal}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{Tridiagonal()}{Tridiagonal()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t \&}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for a \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix of specified size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & Size of the main diagonal of the matrix \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 238 of file Tridiagonal.\+h.
+
+
+
+References Luna\+::\+Tridiagonal$<$ T $>$\+::size().
+
+
+\begin{DoxyCode}
+239   \{
+240     a.resize( \hyperlink{classLuna_1_1Tridiagonal_ae8586e82968a8c28f7c50008e1f75411}{size} - 1 );
+241     b.resize( \hyperlink{classLuna_1_1Tridiagonal_ae8586e82968a8c28f7c50008e1f75411}{size} );
+242     c.resize( \hyperlink{classLuna_1_1Tridiagonal_ae8586e82968a8c28f7c50008e1f75411}{size} - 1 );
+243     \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} = \hyperlink{classLuna_1_1Tridiagonal_ae8586e82968a8c28f7c50008e1f75411}{size};
+244   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_ab723eb17bd32e82fb6e27e2170b4cccc}\label{classLuna_1_1Tridiagonal_ab723eb17bd32e82fb6e27e2170b4cccc}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!Tridiagonal@{Tridiagonal}}
+\index{Tridiagonal@{Tridiagonal}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{Tridiagonal()}{Tridiagonal()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{sub,  }\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{main,  }\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{super }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for a \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix using specified Vectors. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sub} & The subdiagonal of the matrix as a \hyperlink{classLuna_1_1Vector}{Vector} \\
+\hline
+{\em main} & The main diagonal of the matrix as a \hyperlink{classLuna_1_1Vector}{Vector} \\
+\hline
+{\em super} & The superdiagonal of the matrix as a \hyperlink{classLuna_1_1Vector}{Vector} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 247 of file Tridiagonal.\+h.
+
+
+
+References main(), and Luna\+::\+Vector$<$ T $>$\+::size().
+
+
+\begin{DoxyCode}
+250   \{
+251     \textcolor{keywordflow}{if} ( \hyperlink{Banded__test_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}.size() != sub.size() + 1 || \hyperlink{Banded__test_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}.size() != super.size() + 1 )
+252     \{
+253       std::string problem;
+254       problem = \textcolor{stringliteral}{"Tridiagonal constructor error: "};
+255       problem += \textcolor{stringliteral}{"size of Vectors are incompatible."};
+256       \textcolor{keywordflow}{throw} Error( problem );
+257     \}
+258     a = sub;
+259     b = \hyperlink{Banded__test_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main};
+260     c = super;
+261     \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} = \hyperlink{Banded__test_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}.size();
+262   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_a43f06132888b27c66355ac7971089947}\label{classLuna_1_1Tridiagonal_a43f06132888b27c66355ac7971089947}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!Tridiagonal@{Tridiagonal}}
+\index{Tridiagonal@{Tridiagonal}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{Tridiagonal()}{Tridiagonal()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} (\begin{DoxyParamCaption}\item[{const T \&}]{sub\+\_\+elem,  }\item[{const T \&}]{main\+\_\+elem,  }\item[{const T \&}]{super\+\_\+elem,  }\item[{const std\+::size\+\_\+t}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for a \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix using specified elements. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sub\+\_\+elem} & The element to populate the subdiagonal \\
+\hline
+{\em main\+\_\+elem} & The element to populate the main diagonal \\
+\hline
+{\em super\+\_\+elem} & The element to populate the superdiagonal \\
+\hline
+{\em n} & The size of the main diagonal \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 265 of file Tridiagonal.\+h.
+
+
+\begin{DoxyCode}
+267   \{
+268     a.assign( n - 1, sub\_elem );
+269     b.assign( n, main\_elem );
+270     c.assign( n - 1, super\_elem );
+271     \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} = n;
+272   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_a9051546ef7a37559b1edff2a48d9741c}\label{classLuna_1_1Tridiagonal_a9051546ef7a37559b1edff2a48d9741c}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!````~Tridiagonal@{$\sim$\+Tridiagonal}}
+\index{````~Tridiagonal@{$\sim$\+Tridiagonal}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{$\sim$\+Tridiagonal()}{~Tridiagonal()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::$\sim$\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Destructor. 
+
+
+
+Definition at line 56 of file Tridiagonal.\+h.
+
+
+
+References Luna\+::\+Tridiagonal$<$ T $>$\+::operator()(), Luna\+::\+Tridiagonal$<$ T $>$\+::operator$\ast$(), Luna\+::\+Tridiagonal$<$ T $>$\+::operator+(), Luna\+::\+Tridiagonal$<$ T $>$\+::operator-\/(), Luna\+::\+Tridiagonal$<$ T $>$\+::operator$<$$<$, and Luna\+::\+Tridiagonal$<$ T $>$\+::operator=().
+
+
+\begin{DoxyCode}
+56 \{\}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_a0338abe2f0237df28f96324a7d11d4df}\label{classLuna_1_1Tridiagonal_a0338abe2f0237df28f96324a7d11d4df}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!conjugate@{conjugate}}
+\index{conjugate@{conjugate}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{conjugate()}{conjugate()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::conjugate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Take the complex conjugate of each element of the \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix. 
+
+\begin{DoxyReturn}{Returns}
+The complex conjugate \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix 
+\end{DoxyReturn}
+
+
+Definition at line 673 of file Tridiagonal.\+h.
+
+
+\begin{DoxyCode}
+674   \{
+675     Tridiagonal<T> temp( *\textcolor{keyword}{this} );
+676     temp.a = temp.a.conjugate();
+677     temp.b = temp.b.conjugate();
+678     temp.c = temp.c.conjugate();
+679     \textcolor{keywordflow}{return} temp;
+680   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_a08725d56da8a556ebbd7dd810006cea3}\label{classLuna_1_1Tridiagonal_a08725d56da8a556ebbd7dd810006cea3}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!convert@{convert}}
+\index{convert@{convert}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{convert()}{convert()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Matrix}{Matrix}$<$ T $>$ \hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::convert (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Convert the \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix to a dense \hyperlink{classLuna_1_1Matrix}{Matrix}. 
+
+\begin{DoxyReturn}{Returns}
+The dense \hyperlink{classLuna_1_1Matrix}{Matrix} form of the \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix 
+\end{DoxyReturn}
+
+
+Definition at line 683 of file Tridiagonal.\+h.
+
+
+\begin{DoxyCode}
+684   \{
+685     Matrix<T> dense( \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}, \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}, 0 );
+686     \textcolor{keywordflow}{if} ( \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} == 0 ) \{ \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Tridiagonal error: zero size matrix."} ); \}
+687     \textcolor{keywordflow}{if} ( \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} == 1 ) \{
+688       dense( 0, 0 ) = b[ 0 ];
+689       dense( 0, 1 ) = c[ 0 ];
+690     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} ( \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} == 2 ) \{
+691       dense( 0, 0 ) = b[ 0 ];
+692       dense( 0, 1 ) = c[ 0 ];
+693       dense( \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} - 1, \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} - 2 ) = a[ \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} - 2 ];
+694       dense( \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} - 1, \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} - 1 ) = b[ \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} - 1 ];
+695     \} \textcolor{keywordflow}{else} \{
+696       dense( 0, 0 ) = b[ 0 ];
+697       dense( 0, 1 ) = c[ 0 ];
+698 
+699       \textcolor{keywordflow}{for} ( std::size\_t i = 1; i < \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} - 1; i++ )
+700       \{
+701         dense( i, i - 1 ) = a[ i - 1 ];
+702         dense( i, i ) = b[ i ];
+703         dense( i, i + 1 ) = c[ i ];
+704       \}
+705 
+706       dense( N - 1, N - 2 ) = a[ N - 2 ];
+707       dense( N - 1, N - 1 ) = b[ N - 1 ];
+708     \}
+709     \textcolor{keywordflow}{return} dense;
+710   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_ab1be45e74b066c5e2ac73d4d1cccb3da}\label{classLuna_1_1Tridiagonal_ab1be45e74b066c5e2ac73d4d1cccb3da}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!det@{det}}
+\index{det@{det}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{det()}{det()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T \hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::det (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Calculate the determinant of the matrix. 
+
+\begin{DoxyReturn}{Returns}
+The determinant of the \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix 
+\end{DoxyReturn}
+
+
+Definition at line 774 of file Tridiagonal.\+h.
+
+
+
+References f.
+
+
+\begin{DoxyCode}
+775   \{
+776     Vector<T> \hyperlink{Nonlinear__ODE__BVP_8cpp_a06fc87d81c62e9abb8790b6e5713c55ba7ce756344023b99e5ab27b804feb765c}{f}( \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} + 1 );
+777     \hyperlink{Nonlinear__ODE__BVP_8cpp_a06fc87d81c62e9abb8790b6e5713c55ba7ce756344023b99e5ab27b804feb765c}{f}[ 0 ] = 1;
+778     \hyperlink{Nonlinear__ODE__BVP_8cpp_a06fc87d81c62e9abb8790b6e5713c55ba7ce756344023b99e5ab27b804feb765c}{f}[ 1 ] = b[ 0 ] * \hyperlink{Nonlinear__ODE__BVP_8cpp_a06fc87d81c62e9abb8790b6e5713c55ba7ce756344023b99e5ab27b804feb765c}{f}[ 0 ];
+779 
+780     \textcolor{keywordflow}{for} ( std::size\_t j = 2; j < \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} + 1; j++ )
+781     \{
+782       f[ j ] = b[ j - 1 ] * f[ j - 1 ] - a[ j - 2 ] * c[ j - 2 ] * f[ j - 2];
+783     \}
+784     \textcolor{keywordflow}{return} f[ \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} ];
+785   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_ac95e35aacc68963b5889f0cf6c838315}\label{classLuna_1_1Tridiagonal_ac95e35aacc68963b5889f0cf6c838315}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!get\+\_\+main@{get\+\_\+main}}
+\index{get\+\_\+main@{get\+\_\+main}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{get\+\_\+main()}{get\_main()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::get\+\_\+main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the main diagonal of the matrix. 
+
+\begin{DoxyReturn}{Returns}
+The main diagonal of the matrix as a \hyperlink{classLuna_1_1Vector}{Vector} 
+\end{DoxyReturn}
+
+
+Definition at line 608 of file Tridiagonal.\+h.
+
+
+\begin{DoxyCode}
+609   \{
+610     Vector<T> temp( b );
+611     \textcolor{keywordflow}{return} temp;
+612   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_a4199f825838490b1a708dfa953963ce5}\label{classLuna_1_1Tridiagonal_a4199f825838490b1a708dfa953963ce5}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!get\+\_\+row@{get\+\_\+row}}
+\index{get\+\_\+row@{get\+\_\+row}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{get\+\_\+row()}{get\_row()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::get\+\_\+row (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t \&}]{row }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get a row of the tridiagonal matrix as a \hyperlink{classLuna_1_1Vector}{Vector}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & The row index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classLuna_1_1Vector}{Vector} of the row of the \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix 
+\end{DoxyReturn}
+
+
+Definition at line 622 of file Tridiagonal.\+h.
+
+
+\begin{DoxyCode}
+623   \{
+624     \textcolor{keywordflow}{if} ( row < 0 || \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} <= row )\{
+625       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Tridiagonal range error in get\_row method."} );
+626     \}
+627     Vector<T> temp( \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} );
+628     \textcolor{keywordflow}{if} ( row == 0 )
+629     \{
+630       temp[ 0 ] = b[ 0 ];
+631       temp[ 1 ] = c[ 0 ];
+632     \}
+633     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} ( row == \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} - 1 )
+634     \{
+635       temp[ \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} - 1 ] = b[ \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} - 1 ];
+636       temp[ \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} - 2 ] = a[ \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} - 2 ];
+637     \}
+638     \textcolor{keywordflow}{else}
+639     \{
+640       temp[ row - 1 ] = a[ row - 1 ];
+641       temp[ row ]     = b[ row ];
+642       temp[ row + 1 ] = c[ row ];
+643     \}
+644     \textcolor{keywordflow}{return} temp;
+645   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_a00675dffdb07936a5252d2a32ca3d983}\label{classLuna_1_1Tridiagonal_a00675dffdb07936a5252d2a32ca3d983}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!get\+\_\+sub@{get\+\_\+sub}}
+\index{get\+\_\+sub@{get\+\_\+sub}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{get\+\_\+sub()}{get\_sub()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::get\+\_\+sub (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the subdiagonal of the matrix. 
+
+\begin{DoxyReturn}{Returns}
+The subdiagonal of the matrix as a \hyperlink{classLuna_1_1Vector}{Vector} 
+\end{DoxyReturn}
+
+
+Definition at line 601 of file Tridiagonal.\+h.
+
+
+\begin{DoxyCode}
+602   \{
+603     Vector<T> temp( a );
+604     \textcolor{keywordflow}{return} temp;
+605   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_aeb826920a890dec25c7817418ccaa8cb}\label{classLuna_1_1Tridiagonal_aeb826920a890dec25c7817418ccaa8cb}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!get\+\_\+super@{get\+\_\+super}}
+\index{get\+\_\+super@{get\+\_\+super}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{get\+\_\+super()}{get\_super()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::get\+\_\+super (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the superdiagonal of the matrix. 
+
+\begin{DoxyReturn}{Returns}
+The superdiagonal of the matrix as a \hyperlink{classLuna_1_1Vector}{Vector} 
+\end{DoxyReturn}
+
+
+Definition at line 615 of file Tridiagonal.\+h.
+
+
+\begin{DoxyCode}
+616   \{
+617     Vector<T> temp( c );
+618     \textcolor{keywordflow}{return} temp;
+619   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_aa94d8c34b275eb5f6de7a840b78b843f}\label{classLuna_1_1Tridiagonal_aa94d8c34b275eb5f6de7a840b78b843f}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!operator()@{operator()}}
+\index{operator()@{operator()}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+const T \& \hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t \&}]{i,  }\item[{const std\+::size\+\_\+t \&}]{j }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Indexing operator ( read only ) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Row index \\
+\hline
+{\em j} & Column index \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 308 of file Tridiagonal.\+h.
+
+
+
+Referenced by Luna\+::\+Tridiagonal$<$ T $>$\+::$\sim$\+Tridiagonal().
+
+
+\begin{DoxyCode}
+310   \{
+311     \textcolor{keywordflow}{if} ( i<0 || \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}<=i ) \{ \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Tridiagonal range error: row."} ); \}
+312     \textcolor{keywordflow}{if} ( j<0 || \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}<=j ) \{ \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Tridiagonal range error: column."} ); \}
+313     \textcolor{comment}{// First row}
+314     \textcolor{keywordflow}{if} ( i == 0 )
+315     \{
+316       \textcolor{keywordflow}{if} ( j == 0 ) \{ \textcolor{keywordflow}{return} b[ 0 ]; \}
+317       \textcolor{keywordflow}{if} ( j == 1 ) \{ \textcolor{keywordflow}{return} c[ 0 ]; \}
+318       \textcolor{keywordflow}{else}\{
+319         \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Tridiagonal error: off diagonal entry."} );
+320       \}
+321     \}
+322     \textcolor{comment}{// Last row}
+323     \textcolor{keywordflow}{if} ( i == \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} - 1 )
+324     \{
+325       \textcolor{keywordflow}{if} ( j == \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} - 1 ) \{ \textcolor{keywordflow}{return} b[ \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} - 1 ]; \}
+326       \textcolor{keywordflow}{if} ( j == \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} - 2 ) \{ \textcolor{keywordflow}{return} a[ \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} - 2 ]; \}
+327       \textcolor{keywordflow}{else} \{
+328         \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Tridiagonal error: off diagonal entry."} );
+329       \}
+330     \}
+331     \textcolor{comment}{// Middle rows}
+332     \textcolor{keywordflow}{if} ( i > 0 && i < \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} - 1 )
+333     \{
+334       \textcolor{keywordflow}{if} ( i == j ) \{ \textcolor{keywordflow}{return} b[ j ]; \}
+335       \textcolor{keywordflow}{if} ( i == j + 1 ) \{ \textcolor{keywordflow}{return} a[ j ]; \}
+336       \textcolor{keywordflow}{if} ( i == j - 1 ) \{ \textcolor{keywordflow}{return} c[ i ]; \}
+337       \textcolor{keywordflow}{else} \{
+338         \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Tridiagonal error: off diagonal entry."} );
+339       \}
+340     \}
+341   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_ae5bbfe810d68ead053a4178d742c58ea}\label{classLuna_1_1Tridiagonal_ae5bbfe810d68ead053a4178d742c58ea}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!operator()@{operator()}}
+\index{operator()@{operator()}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T \& \hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t \&}]{i,  }\item[{const std\+::size\+\_\+t \&}]{j }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Indexing operator ( read / write ) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Row index \\
+\hline
+{\em j} & Column index \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 344 of file Tridiagonal.\+h.
+
+
+\begin{DoxyCode}
+346   \{
+347     \textcolor{keywordflow}{if} ( i<0 || \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}<=i ) \{ \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Tridiagonal range error: row."} );\}
+348     \textcolor{keywordflow}{if} ( j<0 || \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}<=j ) \{ \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Tridiagonal range error: column."} );\}
+349     \textcolor{comment}{// First row}
+350     \textcolor{keywordflow}{if} ( i == 0 )
+351     \{
+352       \textcolor{keywordflow}{if} ( j == 0 ) \{ \textcolor{keywordflow}{return} b[ 0 ]; \}
+353       \textcolor{keywordflow}{if} ( j == 1 ) \{ \textcolor{keywordflow}{return} c[ 0 ]; \}
+354       \textcolor{keywordflow}{else}\{
+355         \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Tridiagonal error: off diagonal entry."} );
+356       \}
+357     \}
+358     \textcolor{comment}{// Last row}
+359     \textcolor{keywordflow}{if} ( i == \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} - 1 )
+360     \{
+361       \textcolor{keywordflow}{if} ( j == \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} - 1 ) \{ \textcolor{keywordflow}{return} b[ \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} - 1 ]; \}
+362       \textcolor{keywordflow}{if} ( j == \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} - 2 ) \{ \textcolor{keywordflow}{return} a[ \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} - 2 ]; \}
+363       \textcolor{keywordflow}{else} \{
+364         \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Tridiagonal error: off diagonal entry."} );
+365       \}
+366     \}
+367     \textcolor{comment}{// Middle rows}
+368     \textcolor{keywordflow}{if} ( i > 0 && i < \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} - 1 )
+369     \{
+370       \textcolor{keywordflow}{if} ( i == j ) \{ \textcolor{keywordflow}{return} b[ j ]; \}
+371       \textcolor{keywordflow}{if} ( i == j + 1 ) \{ \textcolor{keywordflow}{return} a[ j ]; \}
+372       \textcolor{keywordflow}{if} ( i == j - 1 ) \{ \textcolor{keywordflow}{return} c[ i ]; \}
+373       \textcolor{keywordflow}{else} \{
+374         \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Tridiagonal error: off diagonal entry."} );
+375       \}
+376     \}
+377   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_a5dfe657389e0cb8af507ea77a8fda4e1}\label{classLuna_1_1Tridiagonal_a5dfe657389e0cb8af507ea77a8fda4e1}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const T \&}]{scalar }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Scalar multiplication. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & The scalar to multiply the \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix by \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix multiplied by the scalar 
+\end{DoxyReturn}
+
+
+Definition at line 441 of file Tridiagonal.\+h.
+
+
+
+Referenced by Luna\+::\+Tridiagonal$<$ T $>$\+::$\sim$\+Tridiagonal().
+
+
+\begin{DoxyCode}
+442   \{
+443     Tridiagonal<T> temp( *\textcolor{keyword}{this} );
+444     temp.a = a * scalar;
+445     temp.b = b * scalar;
+446     temp.c = c * scalar;
+447     \textcolor{keywordflow}{return} temp;
+448   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_a5262edb6caa8aac0186c480c3be2dcf2}\label{classLuna_1_1Tridiagonal_a5262edb6caa8aac0186c480c3be2dcf2}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix \hyperlink{classLuna_1_1Vector}{Vector} multiplication. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The \hyperlink{classLuna_1_1Vector}{Vector} which is to be multiplied \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result vector T $\ast$ x 
+\end{DoxyReturn}
+
+
+Definition at line 526 of file Tridiagonal.\+h.
+
+
+
+References Luna\+::\+Vector$<$ T $>$\+::size().
+
+
+\begin{DoxyCode}
+527   \{
+528     \textcolor{keywordflow}{if} ( \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} != \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x}.size() )
+529     \{
+530       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Tridiagonal: dimensions do not agree in multiply method."} );
+531     \}
+532     Vector<T> result( \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} );
+533     result[ 0 ] = b[ 0 ] * \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x}[ 0 ] + c[ 0 ] * \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x}[ 1 ];
+534     \textcolor{keywordflow}{for} ( std::size\_t i = 1; i < \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} - 1; i++ )
+535     \{
+536       result[ i ] = a[ i - 1 ] * x[ i - 1 ] + b[ i ] * x[ i ]
+537                   + c[ i ] * x[ i + 1 ];
+538     \}
+539     result[ N - 1 ] = a[ N - 2 ] * x[ N - 2 ] + b[ N - 1 ] * x[ N - 1 ];
+540     \textcolor{keywordflow}{return} result;
+541   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_ad2050805abc012920f7c29cbf93989c3}\label{classLuna_1_1Tridiagonal_ad2050805abc012920f7c29cbf93989c3}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{operator$\ast$=()}{operator*=()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \& \hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::operator$\ast$= (\begin{DoxyParamCaption}\item[{const T \&}]{scalar }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Scalar multiplication assignment. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & The scalar to multiply the \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix by \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix after multiplication by a scalar 
+\end{DoxyReturn}
+
+
+Definition at line 490 of file Tridiagonal.\+h.
+
+
+\begin{DoxyCode}
+491   \{
+492     a *= scalar;
+493     b *= scalar;
+494     c *= scalar;
+495     \textcolor{keywordflow}{return} *\textcolor{keyword}{this};
+496   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_a654145a044a7fda0de429ece11915781}\label{classLuna_1_1Tridiagonal_a654145a044a7fda0de429ece11915781}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!operator+@{operator+}}
+\index{operator+@{operator+}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{operator+()}{operator+()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::operator+ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Unary +. 
+
+\begin{DoxyReturn}{Returns}
+The \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix 
+\end{DoxyReturn}
+
+
+Definition at line 395 of file Tridiagonal.\+h.
+
+
+
+Referenced by Luna\+::\+Tridiagonal$<$ T $>$\+::$\sim$\+Tridiagonal().
+
+
+\begin{DoxyCode}
+396   \{
+397     \textcolor{keywordflow}{return} *\textcolor{keyword}{this};
+398   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_a8e28947c6514a84755620ee96400c9cb}\label{classLuna_1_1Tridiagonal_a8e28947c6514a84755620ee96400c9cb}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!operator+@{operator+}}
+\index{operator+@{operator+}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{operator+()}{operator+()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::operator+ (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \&}]{m\+\_\+plus }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Binary +. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m\+\_\+plus} & The \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix to be added \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The sum of this \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix and m\+\_\+plus 
+\end{DoxyReturn}
+
+
+Definition at line 411 of file Tridiagonal.\+h.
+
+
+\begin{DoxyCode}
+413   \{
+414     Tridiagonal<T> temp( *\textcolor{keyword}{this} );
+415     \textcolor{keywordflow}{if} ( m\_plus.N != \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}  )
+416     \{
+417       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Tridiagonal matrix dimension error in + operator."} );
+418     \}
+419     temp.a = a + m\_plus.a;
+420     temp.b = b + m\_plus.b;
+421     temp.c = c + m\_plus.c;
+422     \textcolor{keywordflow}{return} temp;
+423   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_a5f34fd29d4ba9f517897a4c9eafa8157}\label{classLuna_1_1Tridiagonal_a5f34fd29d4ba9f517897a4c9eafa8157}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{operator+=()}{operator+=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \& \hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::operator+= (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \&}]{m\+\_\+plus }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Addition assignment. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m\+\_\+plus} & The \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix to be added \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix after addition by m\+\_\+plus 
+\end{DoxyReturn}
+
+
+Definition at line 462 of file Tridiagonal.\+h.
+
+
+\begin{DoxyCode}
+464   \{
+465     \textcolor{keywordflow}{if} ( m\_plus.N != \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} )
+466     \{
+467       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Tridiagonal matrix dimension error in += operator."} );
+468     \}
+469     a = a + m\_plus.a;
+470     b = b + m\_plus.b;
+471     c = c + m\_plus.c;
+472     \textcolor{keywordflow}{return} *\textcolor{keyword}{this};
+473   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_aed6025d2b9420b4eb7488c2a644c1110}\label{classLuna_1_1Tridiagonal_aed6025d2b9420b4eb7488c2a644c1110}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{operator+=()}{operator+=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \& \hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::operator+= (\begin{DoxyParamCaption}\item[{const T \&}]{add }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constant addition assignment. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em add} & The constant to be added to each element \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix after addition by a constant 
+\end{DoxyReturn}
+
+
+Definition at line 508 of file Tridiagonal.\+h.
+
+
+\begin{DoxyCode}
+509   \{
+510     a += add;
+511     b += add;
+512     c += add;
+513     \textcolor{keywordflow}{return} *\textcolor{keyword}{this};
+514   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_a7f92f3637e30a2fcc12fa959e00eefa0}\label{classLuna_1_1Tridiagonal_a7f92f3637e30a2fcc12fa959e00eefa0}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::operator-\/ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Unary -\/. 
+
+\begin{DoxyReturn}{Returns}
+The negation of the \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix 
+\end{DoxyReturn}
+
+
+Definition at line 401 of file Tridiagonal.\+h.
+
+
+
+Referenced by Luna\+::\+Tridiagonal$<$ T $>$\+::$\sim$\+Tridiagonal().
+
+
+\begin{DoxyCode}
+402   \{
+403     Tridiagonal<T> temp( *\textcolor{keyword}{this} );
+404     temp.a = - a;
+405     temp.b = - b;
+406     temp.c = - c;
+407     \textcolor{keywordflow}{return} temp;
+408   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_ada353bc1778051728e37403d71f57a34}\label{classLuna_1_1Tridiagonal_ada353bc1778051728e37403d71f57a34}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::operator-\/ (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \&}]{m\+\_\+minus }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Binary -\/. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m\+\_\+minus} & The \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix to be subtracted \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The subtraction of m\+\_\+minus from this \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix 
+\end{DoxyReturn}
+
+
+Definition at line 426 of file Tridiagonal.\+h.
+
+
+\begin{DoxyCode}
+428   \{
+429     Tridiagonal<T> temp( *\textcolor{keyword}{this} );
+430     \textcolor{keywordflow}{if} ( m\_minus.N != \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} )
+431     \{
+432       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Tridiagonal matrix dimension error in - operator."} );
+433     \}
+434     temp.a = a - m\_minus.a;
+435     temp.b = b - m\_minus.b;
+436     temp.c = c - m\_minus.c;
+437     \textcolor{keywordflow}{return} temp;
+438   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_ae4371d0bd7267737984ab697968f9eac}\label{classLuna_1_1Tridiagonal_ae4371d0bd7267737984ab697968f9eac}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{operator-\/=()}{operator-=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \& \hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::operator-\/= (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \&}]{m\+\_\+minus }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Subtraction assignment. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m\+\_\+minus} & The \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix to be subtracted \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix after subtraction by m\+\_\+minus 
+\end{DoxyReturn}
+
+
+Definition at line 476 of file Tridiagonal.\+h.
+
+
+\begin{DoxyCode}
+478   \{
+479     \textcolor{keywordflow}{if} ( m\_minus.N != \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} )
+480     \{
+481       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Tridiagonal matrix dimension error in -= operator."} );
+482     \}
+483     a = a - m\_minus.a;
+484     b = b - m\_minus.b;
+485     c = c - m\_minus.c;
+486     \textcolor{keywordflow}{return} *\textcolor{keyword}{this};
+487   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_a77da1de7d41e6da4e7b99dc5e571a3a3}\label{classLuna_1_1Tridiagonal_a77da1de7d41e6da4e7b99dc5e571a3a3}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{operator-\/=()}{operator-=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \& \hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::operator-\/= (\begin{DoxyParamCaption}\item[{const T \&}]{minus }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constant subtraction assignment. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em minus} & The constant to be subtracted from each element \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix after subtraction by a constant 
+\end{DoxyReturn}
+
+
+Definition at line 517 of file Tridiagonal.\+h.
+
+
+\begin{DoxyCode}
+518   \{
+519     a -= minus;
+520     b -= minus;
+521     c -= minus;
+522     \textcolor{keywordflow}{return} *\textcolor{keyword}{this};
+523   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_a3994e79c15f9848a1c1badb19247c1c7}\label{classLuna_1_1Tridiagonal_a3994e79c15f9848a1c1badb19247c1c7}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!operator/@{operator/}}
+\index{operator/@{operator/}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{operator/()}{operator/()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::operator/ (\begin{DoxyParamCaption}\item[{const T \&}]{divisor }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Scalar division. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em divisor} & The divisor to divide the \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix by \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix divided by the divisor 
+\end{DoxyReturn}
+
+
+Definition at line 451 of file Tridiagonal.\+h.
+
+
+\begin{DoxyCode}
+452   \{
+453     Tridiagonal<T> temp( *\textcolor{keyword}{this} );
+454     temp.a = a / divisor;
+455     temp.b = b / divisor;
+456     temp.c = c / divisor;
+457     \textcolor{keywordflow}{return} temp;
+458 
+459   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_a0508de0c1797db737adaff1a6ee63763}\label{classLuna_1_1Tridiagonal_a0508de0c1797db737adaff1a6ee63763}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!operator/=@{operator/=}}
+\index{operator/=@{operator/=}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{operator/=()}{operator/=()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \& \hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::operator/= (\begin{DoxyParamCaption}\item[{const T \&}]{divisor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Scalar division assigment. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em divisor} & The divisor to divide the \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix by \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix after division by a scalar 
+\end{DoxyReturn}
+
+
+Definition at line 499 of file Tridiagonal.\+h.
+
+
+\begin{DoxyCode}
+500   \{
+501     a /= divisor;
+502     b /= divisor;
+503     c /= divisor;
+504     \textcolor{keywordflow}{return} *\textcolor{keyword}{this};
+505   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_a0118c1de81c85bd371d166390a4e5d4b}\label{classLuna_1_1Tridiagonal_a0118c1de81c85bd371d166390a4e5d4b}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!operator=@{operator=}}
+\index{operator=@{operator=}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \& \hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \&}]{original }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Copy assignment. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em original} & \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix to be copied \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix to which the original matrix is assigned 
+\end{DoxyReturn}
+
+
+Definition at line 380 of file Tridiagonal.\+h.
+
+
+
+Referenced by Luna\+::\+Tridiagonal$<$ T $>$\+::$\sim$\+Tridiagonal().
+
+
+\begin{DoxyCode}
+382   \{
+383     \textcolor{keywordflow}{if} ( \textcolor{keyword}{this} == &original )
+384     \{
+385       \textcolor{keywordflow}{return} *\textcolor{keyword}{this};
+386     \}
+387     a = original.a;
+388     b = original.b;
+389     c = original.c;
+390     \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} = original.N;
+391     \textcolor{keywordflow}{return} *\textcolor{keyword}{this};
+392   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_aafeede93e34d8418725ae97c645e54cc}\label{classLuna_1_1Tridiagonal_aafeede93e34d8418725ae97c645e54cc}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!resize@{resize}}
+\index{resize@{resize}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{resize()}{resize()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::resize (\begin{DoxyParamCaption}\item[{const std\+::size\+\_\+t \&}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Resize the \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & The new size of the main diagonal of the matrix \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 664 of file Tridiagonal.\+h.
+
+
+
+References Luna\+::\+Tridiagonal$<$ T $>$\+::size().
+
+
+\begin{DoxyCode}
+665   \{
+666     \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} = \hyperlink{classLuna_1_1Tridiagonal_ae8586e82968a8c28f7c50008e1f75411}{size};
+667     a.resize( \hyperlink{classLuna_1_1Tridiagonal_ae8586e82968a8c28f7c50008e1f75411}{size} - 1 );
+668     b.resize( \hyperlink{classLuna_1_1Tridiagonal_ae8586e82968a8c28f7c50008e1f75411}{size} );
+669     c.resize( \hyperlink{classLuna_1_1Tridiagonal_ae8586e82968a8c28f7c50008e1f75411}{size} - 1 );
+670   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_a6594e3223659a5e9c7b911cda11ec5b3}\label{classLuna_1_1Tridiagonal_a6594e3223659a5e9c7b911cda11ec5b3}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!set\+\_\+main@{set\+\_\+main}}
+\index{set\+\_\+main@{set\+\_\+main}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{set\+\_\+main()}{set\_main()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::set\+\_\+main (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{main }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the main diagonal of the matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em main} & The main diagonal of the matrix as a \hyperlink{classLuna_1_1Vector}{Vector} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 563 of file Tridiagonal.\+h.
+
+
+
+References main(), and Luna\+::\+Vector$<$ T $>$\+::size().
+
+
+\begin{DoxyCode}
+564   \{
+565     \textcolor{keywordflow}{if} ( \hyperlink{Banded__test_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}.size() != \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} )
+566     \{
+567       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Tridiagonal error: main diagonal wrong size."} );
+568     \}
+569     b = \hyperlink{Banded__test_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main};
+570   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_a2c333c2bd6de2d9432a2325979240c93}\label{classLuna_1_1Tridiagonal_a2c333c2bd6de2d9432a2325979240c93}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!set\+\_\+main@{set\+\_\+main}}
+\index{set\+\_\+main@{set\+\_\+main}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{set\+\_\+main()}{set\_main()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::set\+\_\+main (\begin{DoxyParamCaption}\item[{const T \&}]{main\+\_\+elem }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the main diagonal of the matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em main} & The main diagonal element of the matrix \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 589 of file Tridiagonal.\+h.
+
+
+\begin{DoxyCode}
+590   \{
+591     b.assign( \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}, main\_elem );
+592   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_a6d131d4c600e591c49e7825b52a1021c}\label{classLuna_1_1Tridiagonal_a6d131d4c600e591c49e7825b52a1021c}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!set\+\_\+sub@{set\+\_\+sub}}
+\index{set\+\_\+sub@{set\+\_\+sub}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{set\+\_\+sub()}{set\_sub()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::set\+\_\+sub (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{sub }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the subdiagonal of the matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sub} & The subdiagonal of the matrix as a \hyperlink{classLuna_1_1Vector}{Vector} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 553 of file Tridiagonal.\+h.
+
+
+
+References Luna\+::\+Vector$<$ T $>$\+::size().
+
+
+\begin{DoxyCode}
+554   \{
+555     \textcolor{keywordflow}{if} ( sub.size() != \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} - 1 )
+556     \{
+557       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Tridiagonal error: subdiagonal wrong size."} );
+558     \}
+559     a = sub;
+560   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_a288b97194054318128a096aac12a7eef}\label{classLuna_1_1Tridiagonal_a288b97194054318128a096aac12a7eef}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!set\+\_\+sub@{set\+\_\+sub}}
+\index{set\+\_\+sub@{set\+\_\+sub}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{set\+\_\+sub()}{set\_sub()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::set\+\_\+sub (\begin{DoxyParamCaption}\item[{const T \&}]{sub\+\_\+elem }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the subdiagonal of the matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sub} & The subdiagonal element of the matrix \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 583 of file Tridiagonal.\+h.
+
+
+\begin{DoxyCode}
+584   \{
+585     a.assign( \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}, sub\_elem );
+586   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_a875d22427ef3a88accb530fe9806bfa4}\label{classLuna_1_1Tridiagonal_a875d22427ef3a88accb530fe9806bfa4}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!set\+\_\+super@{set\+\_\+super}}
+\index{set\+\_\+super@{set\+\_\+super}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{set\+\_\+super()}{set\_super()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::set\+\_\+super (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{super }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the superdiagonal of the matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em super} & The superdiagonal of the matrix as a \hyperlink{classLuna_1_1Vector}{Vector} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 573 of file Tridiagonal.\+h.
+
+
+
+References Luna\+::\+Vector$<$ T $>$\+::size().
+
+
+\begin{DoxyCode}
+574   \{
+575     \textcolor{keywordflow}{if} ( super.size() != \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} - 1 )
+576     \{
+577       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Tridiagonal error: superdiagonal wrong size."} );
+578     \}
+579     c = super;
+580   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_a956689dcbe76a4b23fa10192a7e1a8f9}\label{classLuna_1_1Tridiagonal_a956689dcbe76a4b23fa10192a7e1a8f9}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!set\+\_\+super@{set\+\_\+super}}
+\index{set\+\_\+super@{set\+\_\+super}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{set\+\_\+super()}{set\_super()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::set\+\_\+super (\begin{DoxyParamCaption}\item[{const T \&}]{super\+\_\+elem }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the superdiagonal of the matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em super} & The superdiagonal element of the matrix \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 595 of file Tridiagonal.\+h.
+
+
+\begin{DoxyCode}
+596   \{
+597     c.assign( \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}, super\_elem );
+598   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_ae8586e82968a8c28f7c50008e1f75411}\label{classLuna_1_1Tridiagonal_ae8586e82968a8c28f7c50008e1f75411}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!size@{size}}
+\index{size@{size}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::size\+\_\+t \hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Size of the main diagonal of the matrix. 
+
+\begin{DoxyReturn}{Returns}
+The number of elements in the main diagonal 
+\end{DoxyReturn}
+
+
+Definition at line 547 of file Tridiagonal.\+h.
+
+
+
+Referenced by Luna\+::\+Tridiagonal$<$ T $>$\+::resize(), and Luna\+::\+Tridiagonal$<$ T $>$\+::\+Tridiagonal().
+
+
+\begin{DoxyCode}
+548   \{
+549     \textcolor{keywordflow}{return} \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N};
+550   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_a760fdf1ceb44e2ff380770eefb13d023}\label{classLuna_1_1Tridiagonal_a760fdf1ceb44e2ff380770eefb13d023}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!solve@{solve}}
+\index{solve@{solve}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{solve()}{solve()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::solve (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ T $>$ \&}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Solve the \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} system of equations Tu=r where u and r are Vectors. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The right-\/side \hyperlink{classLuna_1_1Vector}{Vector} of the system of equations \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The solution \hyperlink{classLuna_1_1Vector}{Vector} u 
+\end{DoxyReturn}
+
+
+Definition at line 716 of file Tridiagonal.\+h.
+
+
+
+References Luna\+::beta(), Luna\+::gamma(), Luna\+::\+Vector$<$ T $>$\+::push\+\_\+back(), Luna\+::\+Vector$<$ T $>$\+::push\+\_\+front(), Luna\+::\+Vector$<$ T $>$\+::size(), and Heat\+\_\+plot\+::u.
+
+
+
+Referenced by main(), and Luna\+::\+Tridiagonal$<$ T $>$\+::solve().
+
+
+\begin{DoxyCode}
+717   \{
+718     \textcolor{keywordflow}{if} ( r.size() != \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} ) \{
+719       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Tridiagonal solve error: Vector incorrect size."} );
+720     \}
+721 
+722     Vector<T> \hyperlink{namespaceHeat__plot_ae622b86afa46daa3e9b887624ab1bf26}{u}( \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} );
+723     Vector<T> a\_temp( a );
+724     Vector<T> c\_temp( c );
+725     a\_temp.push\_front( 0.0 );
+726     c\_temp.push\_back( 0.0 );
+727 
+728     T \hyperlink{namespaceLuna_af542f1c7522ca96017105e160b54df80}{beta}( b[ 0 ] );
+729     Vector<T> \hyperlink{namespaceLuna_a4467788060a97debe131fa8f08a00de3}{gamma}( \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} );
+730 
+731     \textcolor{keywordflow}{if} ( b[ 0 ] == 0.0 ) \{
+732       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Tridiagonal solve error: zero on leading diagonal."} );
+733     \}
+734 
+735     \hyperlink{namespaceHeat__plot_ae622b86afa46daa3e9b887624ab1bf26}{u}[ 0 ] = r[ 0 ] / \hyperlink{namespaceLuna_af542f1c7522ca96017105e160b54df80}{beta};
+736     \textcolor{keywordflow}{for} ( \textcolor{keywordtype}{int} j = 1; j < \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}; j++ )
+737     \{
+738       \hyperlink{namespaceLuna_a4467788060a97debe131fa8f08a00de3}{gamma}[ j ] = c\_temp[ j - 1 ] / \hyperlink{namespaceLuna_af542f1c7522ca96017105e160b54df80}{beta};
+739       \hyperlink{namespaceLuna_af542f1c7522ca96017105e160b54df80}{beta} = b[ j ] - a\_temp[ j ] * \hyperlink{namespaceLuna_a4467788060a97debe131fa8f08a00de3}{gamma}[ j ];
+740       \textcolor{keywordflow}{if} ( \hyperlink{namespaceLuna_af542f1c7522ca96017105e160b54df80}{beta} == 0.0 ) \{
+741         \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Tridiagonal solve error: zero pivot."} );
+742       \}
+743       \hyperlink{namespaceHeat__plot_ae622b86afa46daa3e9b887624ab1bf26}{u}[ j ] = ( r[ j ] - a\_temp[ j ] * \hyperlink{namespaceHeat__plot_ae622b86afa46daa3e9b887624ab1bf26}{u}[ j - 1 ] ) / \hyperlink{namespaceLuna_af542f1c7522ca96017105e160b54df80}{beta};
+744     \}
+745 
+746     \textcolor{keywordflow}{for} ( \textcolor{keywordtype}{int} j = (N - 2); j >= 0; j-- )
+747     \{
+748       \hyperlink{namespaceHeat__plot_ae622b86afa46daa3e9b887624ab1bf26}{u}[ j ] -= gamma[ j + 1 ] * \hyperlink{namespaceHeat__plot_ae622b86afa46daa3e9b887624ab1bf26}{u}[ j + 1 ];
+749     \}
+750 
+751     \textcolor{keywordflow}{return} \hyperlink{namespaceHeat__plot_ae622b86afa46daa3e9b887624ab1bf26}{u};
+752   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_a17ca16d2ddd5dc94cf5bb928d0f32dbb}\label{classLuna_1_1Tridiagonal_a17ca16d2ddd5dc94cf5bb928d0f32dbb}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!solve@{solve}}
+\index{solve@{solve}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{solve()}{solve()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Matrix}{Matrix}$<$ T $>$ \hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::solve (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Matrix}{Matrix}$<$ T $>$ \&}]{R }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Solve the \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal} system TU=R where U and R are Matrices. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em R} & The right-\/side \hyperlink{classLuna_1_1Matrix}{Matrix} of the system of equations \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The solution \hyperlink{classLuna_1_1Matrix}{Matrix} U 
+\end{DoxyReturn}
+
+
+Definition at line 755 of file Tridiagonal.\+h.
+
+
+
+References Luna\+::\+Matrix$<$ T $>$\+::cols(), Luna\+::\+Matrix$<$ T $>$\+::get\+\_\+col(), Luna\+::\+Matrix$<$ T $>$\+::rows(), Luna\+::\+Matrix$<$ T $>$\+::set\+\_\+col(), Luna\+::\+Tridiagonal$<$ T $>$\+::solve(), and Heat\+\_\+plot\+::u.
+
+
+\begin{DoxyCode}
+756   \{
+757     \textcolor{keywordflow}{if} ( R.rows() != \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} ) \{
+758       \textcolor{keywordflow}{throw} Error( \textcolor{stringliteral}{"Tridiagonal solve error: Matrix rows incorrect size."} );
+759     \}
+760     Matrix<T> U( R );
+761     Vector<T> \hyperlink{namespaceHeat__plot_ae622b86afa46daa3e9b887624ab1bf26}{u}( \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} );
+762     \textcolor{keywordflow}{for} ( std::size\_t j = 0; j < R.cols(); ++j )
+763     \{
+764       \hyperlink{namespaceHeat__plot_ae622b86afa46daa3e9b887624ab1bf26}{u} = U.get\_col( j );
+765       \hyperlink{namespaceHeat__plot_ae622b86afa46daa3e9b887624ab1bf26}{u} = \hyperlink{classLuna_1_1Tridiagonal_a760fdf1ceb44e2ff380770eefb13d023}{solve}( \hyperlink{namespaceHeat__plot_ae622b86afa46daa3e9b887624ab1bf26}{u} );
+766       U.set\_col( j, \hyperlink{namespaceHeat__plot_ae622b86afa46daa3e9b887624ab1bf26}{u} );
+767     \}
+768     \textcolor{keywordflow}{return} U;
+769   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_ad4a4209b7a20a65fce5c66444af3249e}\label{classLuna_1_1Tridiagonal_ad4a4209b7a20a65fce5c66444af3249e}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!transpose@{transpose}}
+\index{transpose@{transpose}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{transpose()}{transpose()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::transpose (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the transpose of the \hyperlink{classLuna_1_1Matrix}{Matrix}. 
+
+\begin{DoxyReturn}{Returns}
+The transpose of the \hyperlink{classLuna_1_1Matrix}{Matrix} 
+\end{DoxyReturn}
+
+
+Definition at line 656 of file Tridiagonal.\+h.
+
+
+
+References Luna\+::\+Tridiagonal$<$ T $>$\+::transpose\+\_\+in\+\_\+place().
+
+
+\begin{DoxyCode}
+657   \{
+658     Tridiagonal<T> temp( *\textcolor{keyword}{this} );
+659     temp.transpose\_in\_place();
+660     \textcolor{keywordflow}{return} temp;
+661   \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_a97a6ebf42711983a047675211e2a277b}\label{classLuna_1_1Tridiagonal_a97a6ebf42711983a047675211e2a277b}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!transpose\+\_\+in\+\_\+place@{transpose\+\_\+in\+\_\+place}}
+\index{transpose\+\_\+in\+\_\+place@{transpose\+\_\+in\+\_\+place}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{transpose\+\_\+in\+\_\+place()}{transpose\_in\_place()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{classLuna_1_1Tridiagonal}{Luna\+::\+Tridiagonal}$<$ T $>$\+::transpose\+\_\+in\+\_\+place (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Replace the current \hyperlink{classLuna_1_1Matrix}{Matrix} with its transpose. 
+
+
+
+Definition at line 648 of file Tridiagonal.\+h.
+
+
+
+Referenced by Luna\+::\+Tridiagonal$<$ T $>$\+::transpose().
+
+
+\begin{DoxyCode}
+649   \{
+650     Vector<T> temp( a );
+651     a = c;
+652     c = temp;
+653   \}
+\end{DoxyCode}
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_abe10d406eb98ff667ab39c57ce8768be}\label{classLuna_1_1Tridiagonal_abe10d406eb98ff667ab39c57ce8768be}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{operator$\ast$}{operator*}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$T$>$ operator$\ast$ (\begin{DoxyParamCaption}\item[{const T \&}]{scalar,  }\item[{\hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ T $>$ \&}]{mat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line 102 of file Tridiagonal.\+h.
+
+
+\begin{DoxyCode}
+103     \{
+104       \textcolor{keywordflow}{return} mat * scalar;
+105     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1Tridiagonal_aa1c4dcdd1f5d0158cbe438b3e21ff84c}\label{classLuna_1_1Tridiagonal_aa1c4dcdd1f5d0158cbe438b3e21ff84c}} 
+\index{Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Luna\+::\+Tridiagonal@{Luna\+::\+Tridiagonal}}
+\subsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+template$<$class Type $>$ \\
+std\+::ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \hyperlink{classLuna_1_1Tridiagonal}{Tridiagonal}$<$ Type $>$ \&}]{m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Output operator $<$$<$. 
+
+
+
+Definition at line 277 of file Tridiagonal.\+h.
+
+
+
+Referenced by Luna\+::\+Tridiagonal$<$ T $>$\+::$\sim$\+Tridiagonal().
+
+
+\begin{DoxyCode}
+279   \{
+280     os << std::endl;
+281     \textcolor{keywordflow}{if} ( m.N == 0 ) \{ \textcolor{keywordflow}{return} os; \}
+282     \textcolor{keywordflow}{if} ( m.N > 0 )
+283     \{
+284       \textcolor{keywordflow}{for} (std::size\_t j = 0; j < m.N; ++j )
+285       \{
+286         std::string tabs;
+287         \textcolor{keywordflow}{for} ( std::size\_t i = 0; i < j; i++ )\{ tabs += \textcolor{stringliteral}{"\(\backslash\)t"}; \}
+288 
+289         \textcolor{keywordflow}{if} ( j == 0 )
+290         \{
+291           os << \textcolor{stringliteral}{"\(\backslash\)t"} << m.b[ 0 ] << \textcolor{stringliteral}{"\(\backslash\)t"} << m.c[ 0 ] << std::endl;
+292         \}
+293         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} ( j == m.N - 1 )
+294         \{
+295           os << tabs << m.a[ m.N - 2 ] << \textcolor{stringliteral}{"\(\backslash\)t"} << m.b[ m.N - 1 ] << std::endl;
+296         \}
+297         \textcolor{keywordflow}{else}
+298         \{
+299           os << tabs << m.a[ j - 1 ] << \textcolor{stringliteral}{"\(\backslash\)t"} << m.b[ j ]
+300              << \textcolor{stringliteral}{"\(\backslash\)t"} << m.c[ j ] << std::endl;
+301         \}
+302       \}
+303     \}
+304     \textcolor{keywordflow}{return} os;
+305   \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Luna/\hyperlink{Tridiagonal_8h}{Tridiagonal.\+h}\end{DoxyCompactItemize}

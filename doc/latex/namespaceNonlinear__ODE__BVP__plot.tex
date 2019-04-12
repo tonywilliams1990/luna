@@ -1,0 +1,260 @@
+\hypertarget{namespaceNonlinear__ODE__BVP__plot}{}\section{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot Namespace Reference}
+\label{namespaceNonlinear__ODE__BVP__plot}\index{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespaceNonlinear__ODE__BVP__plot_a8a4b03bd9076bc386fff3acd096abbf7}{data\+\_\+exact} = np.\+loadtxt( \char`\"{}./D\+A\+TA/O\+D\+E\+\_\+\+B\+V\+P\+\_\+exact\+\_\+solution.\+dat\char`\"{} )
+\item 
+\hyperlink{namespaceNonlinear__ODE__BVP__plot_ab0290e43d5713cc17b0d8faed42e013f}{data\+\_\+numerical} = np.\+loadtxt( \char`\"{}./D\+A\+TA/O\+D\+E\+\_\+\+B\+V\+P\+\_\+numerical\+\_\+solution.\+dat\char`\"{} )
+\item 
+\hyperlink{namespaceNonlinear__ODE__BVP__plot_a7f690daf7ecd16777e3901bb3b698134}{x} = \hyperlink{namespaceNonlinear__ODE__BVP__plot_a8a4b03bd9076bc386fff3acd096abbf7}{data\+\_\+exact}\mbox{[}\+:,0\mbox{]}
+\item 
+\hyperlink{namespaceNonlinear__ODE__BVP__plot_a846fb76e3260067ca8a8d9d79211e6fd}{f\+\_\+exact} = \hyperlink{namespaceNonlinear__ODE__BVP__plot_a8a4b03bd9076bc386fff3acd096abbf7}{data\+\_\+exact}\mbox{[}\+:,1\mbox{]}
+\item 
+\hyperlink{namespaceNonlinear__ODE__BVP__plot_a7812be90d09cb7b6be00e129f91acd36}{fdash\+\_\+exact} = \hyperlink{namespaceNonlinear__ODE__BVP__plot_a8a4b03bd9076bc386fff3acd096abbf7}{data\+\_\+exact}\mbox{[}\+:,2\mbox{]}
+\item 
+\hyperlink{namespaceNonlinear__ODE__BVP__plot_ab81728aecabb942c491c297826ebf71e}{f\+\_\+numerical} = \hyperlink{namespaceNonlinear__ODE__BVP__plot_ab0290e43d5713cc17b0d8faed42e013f}{data\+\_\+numerical}\mbox{[}\+:,1\mbox{]}
+\item 
+\hyperlink{namespaceNonlinear__ODE__BVP__plot_a6439d7324acb06f63f8c18c171103032}{fdash\+\_\+numerical} = \hyperlink{namespaceNonlinear__ODE__BVP__plot_ab0290e43d5713cc17b0d8faed42e013f}{data\+\_\+numerical}\mbox{[}\+:,2\mbox{]}
+\item 
+\hyperlink{namespaceNonlinear__ODE__BVP__plot_ac170b8ff53c4176fbe06ac0cc7b2f211}{f\+\_\+error} = np.\+abs( \hyperlink{namespaceNonlinear__ODE__BVP__plot_a846fb76e3260067ca8a8d9d79211e6fd}{f\+\_\+exact} -\/ \hyperlink{namespaceNonlinear__ODE__BVP__plot_ab81728aecabb942c491c297826ebf71e}{f\+\_\+numerical} )
+\item 
+\hyperlink{namespaceNonlinear__ODE__BVP__plot_a692d79c4c51e088bd93da3ba048a4e9d}{fdash\+\_\+error} = np.\+abs( \hyperlink{namespaceNonlinear__ODE__BVP__plot_a7812be90d09cb7b6be00e129f91acd36}{fdash\+\_\+exact} -\/ \hyperlink{namespaceNonlinear__ODE__BVP__plot_a6439d7324acb06f63f8c18c171103032}{fdash\+\_\+numerical} )
+\item 
+\hyperlink{namespaceNonlinear__ODE__BVP__plot_a8bbab15aae55f65abcc2f4af0d72fd31}{max\+\_\+f\+\_\+error} = np.\+max( \hyperlink{namespaceNonlinear__ODE__BVP__plot_ac170b8ff53c4176fbe06ac0cc7b2f211}{f\+\_\+error} )
+\item 
+\hyperlink{namespaceNonlinear__ODE__BVP__plot_a9ca20ba345ebe718b33e7a64f2d2e615}{max\+\_\+fdash\+\_\+error} = np.\+max( \hyperlink{namespaceNonlinear__ODE__BVP__plot_a692d79c4c51e088bd93da3ba048a4e9d}{fdash\+\_\+error} )
+\item 
+\hyperlink{namespaceNonlinear__ODE__BVP__plot_ae862a80437e752743596a018fc0de10e}{max\+\_\+error} = np.\+max( np.\+concatenate( ( \hyperlink{namespaceNonlinear__ODE__BVP__plot_ac170b8ff53c4176fbe06ac0cc7b2f211}{f\+\_\+error}, \hyperlink{namespaceNonlinear__ODE__BVP__plot_a692d79c4c51e088bd93da3ba048a4e9d}{fdash\+\_\+error} ) ) )
+\item 
+\hyperlink{namespaceNonlinear__ODE__BVP__plot_ab3a246629018cd1ea6b16f5b0504b6e6}{fig}
+\item 
+\hyperlink{namespaceNonlinear__ODE__BVP__plot_a229f79193f97241b4350ee9a861239d3}{axarr}
+\item 
+\hyperlink{namespaceNonlinear__ODE__BVP__plot_a730ee676ba4477a0b19e22a6c3f9eec7}{sharex}
+\item 
+\hyperlink{namespaceNonlinear__ODE__BVP__plot_a4bb495536c68560721007d6b84153254}{True}
+\item 
+\hyperlink{namespaceNonlinear__ODE__BVP__plot_af97d915da4212b8f6e2f6797c8df1e64}{figsize}
+\item 
+\hyperlink{namespaceNonlinear__ODE__BVP__plot_afcf13e24098d63ea34ff9f3c801248c8}{label}
+\item 
+\hyperlink{namespaceNonlinear__ODE__BVP__plot_a5ddc537c2f0bd93a57f2c12bea54675e}{axes} = plt.\+gca()
+\item 
+\hyperlink{namespaceNonlinear__ODE__BVP__plot_ae2778ff34d84d599493b00dc7ec51d5a}{loc}
+\item 
+\hyperlink{namespaceNonlinear__ODE__BVP__plot_a1bb6bec323b7d66eac55f5a6f51429e6}{borderaxespad}
+\end{DoxyCompactItemize}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespaceNonlinear__ODE__BVP__plot_a229f79193f97241b4350ee9a861239d3}\label{namespaceNonlinear__ODE__BVP__plot_a229f79193f97241b4350ee9a861239d3}} 
+\index{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!axarr@{axarr}}
+\index{axarr@{axarr}!Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{axarr}{axarr}}
+{\footnotesize\ttfamily Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+axarr}
+
+
+
+Definition at line 20 of file Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceNonlinear__ODE__BVP__plot_a5ddc537c2f0bd93a57f2c12bea54675e}\label{namespaceNonlinear__ODE__BVP__plot_a5ddc537c2f0bd93a57f2c12bea54675e}} 
+\index{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!axes@{axes}}
+\index{axes@{axes}!Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{axes}{axes}}
+{\footnotesize\ttfamily Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+axes = plt.\+gca()}
+
+
+
+Definition at line 28 of file Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceNonlinear__ODE__BVP__plot_a1bb6bec323b7d66eac55f5a6f51429e6}\label{namespaceNonlinear__ODE__BVP__plot_a1bb6bec323b7d66eac55f5a6f51429e6}} 
+\index{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!borderaxespad@{borderaxespad}}
+\index{borderaxespad@{borderaxespad}!Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{borderaxespad}{borderaxespad}}
+{\footnotesize\ttfamily Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+borderaxespad}
+
+
+
+Definition at line 31 of file Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceNonlinear__ODE__BVP__plot_a8a4b03bd9076bc386fff3acd096abbf7}\label{namespaceNonlinear__ODE__BVP__plot_a8a4b03bd9076bc386fff3acd096abbf7}} 
+\index{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!data\+\_\+exact@{data\+\_\+exact}}
+\index{data\+\_\+exact@{data\+\_\+exact}!Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{data\+\_\+exact}{data\_exact}}
+{\footnotesize\ttfamily Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+data\+\_\+exact = np.\+loadtxt( \char`\"{}./D\+A\+TA/O\+D\+E\+\_\+\+B\+V\+P\+\_\+exact\+\_\+solution.\+dat\char`\"{} )}
+
+
+
+Definition at line 4 of file Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceNonlinear__ODE__BVP__plot_ab0290e43d5713cc17b0d8faed42e013f}\label{namespaceNonlinear__ODE__BVP__plot_ab0290e43d5713cc17b0d8faed42e013f}} 
+\index{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!data\+\_\+numerical@{data\+\_\+numerical}}
+\index{data\+\_\+numerical@{data\+\_\+numerical}!Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{data\+\_\+numerical}{data\_numerical}}
+{\footnotesize\ttfamily Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+data\+\_\+numerical = np.\+loadtxt( \char`\"{}./D\+A\+TA/O\+D\+E\+\_\+\+B\+V\+P\+\_\+numerical\+\_\+solution.\+dat\char`\"{} )}
+
+
+
+Definition at line 5 of file Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceNonlinear__ODE__BVP__plot_ac170b8ff53c4176fbe06ac0cc7b2f211}\label{namespaceNonlinear__ODE__BVP__plot_ac170b8ff53c4176fbe06ac0cc7b2f211}} 
+\index{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!f\+\_\+error@{f\+\_\+error}}
+\index{f\+\_\+error@{f\+\_\+error}!Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{f\+\_\+error}{f\_error}}
+{\footnotesize\ttfamily Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+f\+\_\+error = np.\+abs( \hyperlink{namespaceNonlinear__ODE__BVP__plot_a846fb76e3260067ca8a8d9d79211e6fd}{f\+\_\+exact} -\/ \hyperlink{namespaceNonlinear__ODE__BVP__plot_ab81728aecabb942c491c297826ebf71e}{f\+\_\+numerical} )}
+
+
+
+Definition at line 12 of file Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceNonlinear__ODE__BVP__plot_a846fb76e3260067ca8a8d9d79211e6fd}\label{namespaceNonlinear__ODE__BVP__plot_a846fb76e3260067ca8a8d9d79211e6fd}} 
+\index{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!f\+\_\+exact@{f\+\_\+exact}}
+\index{f\+\_\+exact@{f\+\_\+exact}!Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{f\+\_\+exact}{f\_exact}}
+{\footnotesize\ttfamily Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+f\+\_\+exact = \hyperlink{namespaceNonlinear__ODE__BVP__plot_a8a4b03bd9076bc386fff3acd096abbf7}{data\+\_\+exact}\mbox{[}\+:,1\mbox{]}}
+
+
+
+Definition at line 8 of file Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceNonlinear__ODE__BVP__plot_ab81728aecabb942c491c297826ebf71e}\label{namespaceNonlinear__ODE__BVP__plot_ab81728aecabb942c491c297826ebf71e}} 
+\index{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!f\+\_\+numerical@{f\+\_\+numerical}}
+\index{f\+\_\+numerical@{f\+\_\+numerical}!Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{f\+\_\+numerical}{f\_numerical}}
+{\footnotesize\ttfamily Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+f\+\_\+numerical = \hyperlink{namespaceNonlinear__ODE__BVP__plot_ab0290e43d5713cc17b0d8faed42e013f}{data\+\_\+numerical}\mbox{[}\+:,1\mbox{]}}
+
+
+
+Definition at line 10 of file Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceNonlinear__ODE__BVP__plot_a692d79c4c51e088bd93da3ba048a4e9d}\label{namespaceNonlinear__ODE__BVP__plot_a692d79c4c51e088bd93da3ba048a4e9d}} 
+\index{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!fdash\+\_\+error@{fdash\+\_\+error}}
+\index{fdash\+\_\+error@{fdash\+\_\+error}!Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{fdash\+\_\+error}{fdash\_error}}
+{\footnotesize\ttfamily Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+fdash\+\_\+error = np.\+abs( \hyperlink{namespaceNonlinear__ODE__BVP__plot_a7812be90d09cb7b6be00e129f91acd36}{fdash\+\_\+exact} -\/ \hyperlink{namespaceNonlinear__ODE__BVP__plot_a6439d7324acb06f63f8c18c171103032}{fdash\+\_\+numerical} )}
+
+
+
+Definition at line 13 of file Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceNonlinear__ODE__BVP__plot_a7812be90d09cb7b6be00e129f91acd36}\label{namespaceNonlinear__ODE__BVP__plot_a7812be90d09cb7b6be00e129f91acd36}} 
+\index{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!fdash\+\_\+exact@{fdash\+\_\+exact}}
+\index{fdash\+\_\+exact@{fdash\+\_\+exact}!Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{fdash\+\_\+exact}{fdash\_exact}}
+{\footnotesize\ttfamily Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+fdash\+\_\+exact = \hyperlink{namespaceNonlinear__ODE__BVP__plot_a8a4b03bd9076bc386fff3acd096abbf7}{data\+\_\+exact}\mbox{[}\+:,2\mbox{]}}
+
+
+
+Definition at line 9 of file Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceNonlinear__ODE__BVP__plot_a6439d7324acb06f63f8c18c171103032}\label{namespaceNonlinear__ODE__BVP__plot_a6439d7324acb06f63f8c18c171103032}} 
+\index{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!fdash\+\_\+numerical@{fdash\+\_\+numerical}}
+\index{fdash\+\_\+numerical@{fdash\+\_\+numerical}!Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{fdash\+\_\+numerical}{fdash\_numerical}}
+{\footnotesize\ttfamily Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+fdash\+\_\+numerical = \hyperlink{namespaceNonlinear__ODE__BVP__plot_ab0290e43d5713cc17b0d8faed42e013f}{data\+\_\+numerical}\mbox{[}\+:,2\mbox{]}}
+
+
+
+Definition at line 11 of file Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceNonlinear__ODE__BVP__plot_ab3a246629018cd1ea6b16f5b0504b6e6}\label{namespaceNonlinear__ODE__BVP__plot_ab3a246629018cd1ea6b16f5b0504b6e6}} 
+\index{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!fig@{fig}}
+\index{fig@{fig}!Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{fig}{fig}}
+{\footnotesize\ttfamily Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+fig}
+
+
+
+Definition at line 20 of file Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceNonlinear__ODE__BVP__plot_af97d915da4212b8f6e2f6797c8df1e64}\label{namespaceNonlinear__ODE__BVP__plot_af97d915da4212b8f6e2f6797c8df1e64}} 
+\index{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!figsize@{figsize}}
+\index{figsize@{figsize}!Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{figsize}{figsize}}
+{\footnotesize\ttfamily Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+figsize}
+
+
+
+Definition at line 20 of file Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceNonlinear__ODE__BVP__plot_afcf13e24098d63ea34ff9f3c801248c8}\label{namespaceNonlinear__ODE__BVP__plot_afcf13e24098d63ea34ff9f3c801248c8}} 
+\index{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!label@{label}}
+\index{label@{label}!Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{label}{label}}
+{\footnotesize\ttfamily Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+label}
+
+
+
+Definition at line 22 of file Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceNonlinear__ODE__BVP__plot_ae2778ff34d84d599493b00dc7ec51d5a}\label{namespaceNonlinear__ODE__BVP__plot_ae2778ff34d84d599493b00dc7ec51d5a}} 
+\index{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!loc@{loc}}
+\index{loc@{loc}!Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{loc}{loc}}
+{\footnotesize\ttfamily Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+loc}
+
+
+
+Definition at line 31 of file Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceNonlinear__ODE__BVP__plot_ae862a80437e752743596a018fc0de10e}\label{namespaceNonlinear__ODE__BVP__plot_ae862a80437e752743596a018fc0de10e}} 
+\index{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!max\+\_\+error@{max\+\_\+error}}
+\index{max\+\_\+error@{max\+\_\+error}!Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{max\+\_\+error}{max\_error}}
+{\footnotesize\ttfamily Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+max\+\_\+error = np.\+max( np.\+concatenate( ( \hyperlink{namespaceNonlinear__ODE__BVP__plot_ac170b8ff53c4176fbe06ac0cc7b2f211}{f\+\_\+error}, \hyperlink{namespaceNonlinear__ODE__BVP__plot_a692d79c4c51e088bd93da3ba048a4e9d}{fdash\+\_\+error} ) ) )}
+
+
+
+Definition at line 16 of file Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceNonlinear__ODE__BVP__plot_a8bbab15aae55f65abcc2f4af0d72fd31}\label{namespaceNonlinear__ODE__BVP__plot_a8bbab15aae55f65abcc2f4af0d72fd31}} 
+\index{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!max\+\_\+f\+\_\+error@{max\+\_\+f\+\_\+error}}
+\index{max\+\_\+f\+\_\+error@{max\+\_\+f\+\_\+error}!Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{max\+\_\+f\+\_\+error}{max\_f\_error}}
+{\footnotesize\ttfamily Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+max\+\_\+f\+\_\+error = np.\+max( \hyperlink{namespaceNonlinear__ODE__BVP__plot_ac170b8ff53c4176fbe06ac0cc7b2f211}{f\+\_\+error} )}
+
+
+
+Definition at line 14 of file Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceNonlinear__ODE__BVP__plot_a9ca20ba345ebe718b33e7a64f2d2e615}\label{namespaceNonlinear__ODE__BVP__plot_a9ca20ba345ebe718b33e7a64f2d2e615}} 
+\index{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!max\+\_\+fdash\+\_\+error@{max\+\_\+fdash\+\_\+error}}
+\index{max\+\_\+fdash\+\_\+error@{max\+\_\+fdash\+\_\+error}!Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{max\+\_\+fdash\+\_\+error}{max\_fdash\_error}}
+{\footnotesize\ttfamily Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+max\+\_\+fdash\+\_\+error = np.\+max( \hyperlink{namespaceNonlinear__ODE__BVP__plot_a692d79c4c51e088bd93da3ba048a4e9d}{fdash\+\_\+error} )}
+
+
+
+Definition at line 15 of file Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceNonlinear__ODE__BVP__plot_a730ee676ba4477a0b19e22a6c3f9eec7}\label{namespaceNonlinear__ODE__BVP__plot_a730ee676ba4477a0b19e22a6c3f9eec7}} 
+\index{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!sharex@{sharex}}
+\index{sharex@{sharex}!Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{sharex}{sharex}}
+{\footnotesize\ttfamily Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+sharex}
+
+
+
+Definition at line 20 of file Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceNonlinear__ODE__BVP__plot_a4bb495536c68560721007d6b84153254}\label{namespaceNonlinear__ODE__BVP__plot_a4bb495536c68560721007d6b84153254}} 
+\index{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!True@{True}}
+\index{True@{True}!Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{True}{True}}
+{\footnotesize\ttfamily Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+True}
+
+
+
+Definition at line 20 of file Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceNonlinear__ODE__BVP__plot_a7f690daf7ecd16777e3901bb3b698134}\label{namespaceNonlinear__ODE__BVP__plot_a7f690daf7ecd16777e3901bb3b698134}} 
+\index{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}!x@{x}}
+\index{x@{x}!Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot@{Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot}}
+\subsubsection{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+x = \hyperlink{namespaceNonlinear__ODE__BVP__plot_a8a4b03bd9076bc386fff3acd096abbf7}{data\+\_\+exact}\mbox{[}\+:,0\mbox{]}}
+
+
+
+Definition at line 7 of file Nonlinear\+\_\+\+O\+D\+E\+\_\+\+B\+V\+P\+\_\+plot.\+py.
+

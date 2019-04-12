@@ -1,0 +1,134 @@
+\hypertarget{classLuna_1_1test__equation}{}\section{Luna\+:\+:test\+\_\+equation Class Reference}
+\label{classLuna_1_1test__equation}\index{Luna\+::test\+\_\+equation@{Luna\+::test\+\_\+equation}}
+
+
+Inheritance diagram for Luna\+:\+:test\+\_\+equation\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{classLuna_1_1test__equation__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Luna\+:\+:test\+\_\+equation\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classLuna_1_1test__equation__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classLuna_1_1test__equation_a76186f65e923b54c7e73faffbcefb30d}{test\+\_\+equation} ()
+\item 
+void \hyperlink{classLuna_1_1test__equation_a90a4576ce51729e49dbe67f36ab31f81}{residual\+\_\+fn} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ double $>$ \&u, \hyperlink{classLuna_1_1Vector}{Vector}$<$ double $>$ \&F) const
+\begin{DoxyCompactList}\small\item\em The residual function to be defined later. \end{DoxyCompactList}\item 
+void \hyperlink{classLuna_1_1test__equation_a955940cd7cc59fbaef213151075f1838}{matrix0} (const \hyperlink{classLuna_1_1Vector}{Vector}$<$ double $>$ \&x, \hyperlink{classLuna_1_1Matrix}{Matrix}$<$ double $>$ \&m) const
+\begin{DoxyCompactList}\small\item\em Define the matrix in terms of the current state vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 13 of file O\+D\+E\+\_\+\+B\+V\+P\+\_\+test.\+cpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classLuna_1_1test__equation_a76186f65e923b54c7e73faffbcefb30d}\label{classLuna_1_1test__equation_a76186f65e923b54c7e73faffbcefb30d}} 
+\index{Luna\+::test\+\_\+equation@{Luna\+::test\+\_\+equation}!test\+\_\+equation@{test\+\_\+equation}}
+\index{test\+\_\+equation@{test\+\_\+equation}!Luna\+::test\+\_\+equation@{Luna\+::test\+\_\+equation}}
+\subsubsection{\texorpdfstring{test\+\_\+equation()}{test\_equation()}}
+{\footnotesize\ttfamily Luna\+::test\+\_\+equation\+::test\+\_\+equation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 18 of file O\+D\+E\+\_\+\+B\+V\+P\+\_\+test.\+cpp.
+
+
+\begin{DoxyCode}
+18 : \hyperlink{classLuna_1_1Equation__1matrix}{Equation\_1matrix<double>} ( 2 ) \{\}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classLuna_1_1test__equation_a955940cd7cc59fbaef213151075f1838}\label{classLuna_1_1test__equation_a955940cd7cc59fbaef213151075f1838}} 
+\index{Luna\+::test\+\_\+equation@{Luna\+::test\+\_\+equation}!matrix0@{matrix0}}
+\index{matrix0@{matrix0}!Luna\+::test\+\_\+equation@{Luna\+::test\+\_\+equation}}
+\subsubsection{\texorpdfstring{matrix0()}{matrix0()}}
+{\footnotesize\ttfamily void Luna\+::test\+\_\+equation\+::matrix0 (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ double $>$ \&}]{x,  }\item[{\hyperlink{classLuna_1_1Matrix}{Matrix}$<$ double $>$ \&}]{m }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Define the matrix in terms of the current state vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The current state vector. \\
+\hline
+{\em m} & The matrix. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classLuna_1_1Equation__1matrix_a2501535a6e92abc491bc491b3f64dc06}{Luna\+::\+Equation\+\_\+1matrix$<$ double $>$}.
+
+
+
+Definition at line 28 of file O\+D\+E\+\_\+\+B\+V\+P\+\_\+test.\+cpp.
+
+
+
+References Luna\+::\+Matrix$<$ T $>$\+::eye().
+
+
+\begin{DoxyCode}
+29       \{
+30         m.\hyperlink{classLuna_1_1Matrix_a1b5fc5d3bfd1b03e04def5d314174be6}{eye}();
+31       \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classLuna_1_1test__equation_a90a4576ce51729e49dbe67f36ab31f81}\label{classLuna_1_1test__equation_a90a4576ce51729e49dbe67f36ab31f81}} 
+\index{Luna\+::test\+\_\+equation@{Luna\+::test\+\_\+equation}!residual\+\_\+fn@{residual\+\_\+fn}}
+\index{residual\+\_\+fn@{residual\+\_\+fn}!Luna\+::test\+\_\+equation@{Luna\+::test\+\_\+equation}}
+\subsubsection{\texorpdfstring{residual\+\_\+fn()}{residual\_fn()}}
+{\footnotesize\ttfamily void Luna\+::test\+\_\+equation\+::residual\+\_\+fn (\begin{DoxyParamCaption}\item[{const \hyperlink{classLuna_1_1Vector}{Vector}$<$ double $>$ \&}]{state,  }\item[{\hyperlink{classLuna_1_1Vector}{Vector}$<$ double $>$ \&}]{f }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The residual function to be defined later. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & The current state \hyperlink{classLuna_1_1Vector}{Vector} \\
+\hline
+{\em f} & The function \hyperlink{classLuna_1_1Vector}{Vector} to be updated \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classLuna_1_1Residual_ae1b1ebe3314c788b176bcac7b328de5c}{Luna\+::\+Residual$<$ double $>$}.
+
+
+
+Definition at line 21 of file O\+D\+E\+\_\+\+B\+V\+P\+\_\+test.\+cpp.
+
+
+
+References Luna\+::\+Residual\+\_\+with\+\_\+coords$<$ double, double $>$\+::coord(), Heat\+\_\+plot\+::x, y, and yd.
+
+
+\begin{DoxyCode}
+22             \{
+23         \textcolor{keywordtype}{double} \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x}( \hyperlink{classLuna_1_1Residual__with__coords_a3fa4c950a944743c0380e4c151728372}{coord}( 0 ) );
+24                 F[ \hyperlink{ODE__BVP__test_8cpp_adf764cbdea00d65edcd07bb9953ad2b7ae1f9fdb8b786c63efc4ce44eeacd17f2}{y} ]   = \hyperlink{namespaceHeat__plot_ae622b86afa46daa3e9b887624ab1bf26}{u}[ \hyperlink{ODE__BVP__test_8cpp_adf764cbdea00d65edcd07bb9953ad2b7ae006cbf64cf3ff4ee152bf490ae2e2a7}{yd} ];
+25                 F[ \hyperlink{ODE__BVP__test_8cpp_adf764cbdea00d65edcd07bb9953ad2b7ae006cbf64cf3ff4ee152bf490ae2e2a7}{yd} ]  = - 4 * \hyperlink{namespaceHeat__plot_ae622b86afa46daa3e9b887624ab1bf26}{u}[ \hyperlink{ODE__BVP__test_8cpp_adf764cbdea00d65edcd07bb9953ad2b7ae1f9fdb8b786c63efc4ce44eeacd17f2}{y} ];
+26             \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Examples/\hyperlink{ODE__BVP__test_8cpp}{O\+D\+E\+\_\+\+B\+V\+P\+\_\+test.\+cpp}\end{DoxyCompactItemize}

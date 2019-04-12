@@ -1,0 +1,42 @@
+\hypertarget{Residual_8h}{}\section{include/\+Luna/\+Residual.h File Reference}
+\label{Residual_8h}\index{include/\+Luna/\+Residual.\+h@{include/\+Luna/\+Residual.\+h}}
+
+
+A residual class for use with Newton for solving systems of non-\/linear equations of the form F(x) = 0 where x is a vector and F is vector valued function.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include \char`\"{}Matrix.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Vector.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Error.\+h\char`\"{}}\newline
+Include dependency graph for Residual.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{Residual_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{Residual_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classLuna_1_1Residual}{Luna\+::\+Residual$<$ T $>$}
+\begin{DoxyCompactList}\small\item\em A templated base class to be inherited by objects that define residuals. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceLuna}{Luna}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A residual class for use with Newton for solving systems of non-\/linear equations of the form F(x) = 0 where x is a vector and F is vector valued function. 
+
+Given a current approximation x\+\_\+k of x we can calculate the residual and approximate the Jacobian. 

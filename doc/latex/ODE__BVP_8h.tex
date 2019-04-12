@@ -1,0 +1,43 @@
+\hypertarget{ODE__BVP_8h}{}\section{include/\+Luna/\+O\+D\+E\+\_\+\+B\+VP.h File Reference}
+\label{ODE__BVP_8h}\index{include/\+Luna/\+O\+D\+E\+\_\+\+B\+V\+P.\+h@{include/\+Luna/\+O\+D\+E\+\_\+\+B\+V\+P.\+h}}
+
+
+A class for solving a system of $ n $ first-\/order ordinary differential equations subject to $ n $ boundary conditions defined at the ends of the domain $ x = x_{left} $ or $ x_{right} $.  
+
+
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include \char`\"{}Vector.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Error.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Matrix.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Banded\+Matrix.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Equation.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Mesh1\+D.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Arclength.\+h\char`\"{}}\newline
+Include dependency graph for O\+D\+E\+\_\+\+B\+V\+P.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ODE__BVP_8h__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classLuna_1_1ODE__BVP}{Luna\+::\+O\+D\+E\+\_\+\+B\+V\+P$<$ T, X $>$}
+\begin{DoxyCompactList}\small\item\em A templated object for boundary-\/value problems as systems of first-\/order ordinary differential equations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceLuna}{Luna}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A class for solving a system of $ n $ first-\/order ordinary differential equations subject to $ n $ boundary conditions defined at the ends of the domain $ x = x_{left} $ or $ x_{right} $. 
+
+The system is defined by \[ M_0 \frac{d \mathbf{f}}{dx} = \mathbf{R} \] where $ \mathbf{f}=\mathbf{f}(x) $ is the vector on unknowns, $ \mathbf{R} = \mathbf{R}(\mathbf{f}, x) $ is the vector of residuals and $ M_0 = M_0(\mathbf{f}, x) $ is a matrix.
+
+The system is solved via Newton iteration by splitting the solution into a known part $ \mathbf{f}^g $ and a correction $ \mathbf{f}^c $ such that $ \mathbf{f} =\mathbf{f}^g + \mathbf{f}^c $. The matrix $ M_0 $ and the residual $ \mathbf{R} $ are exapanded about the known solution such that \[ \mathbf{R}(\mathbf{f}, x) = \mathbf{R}(\mathbf{f}^g, x) + \frac{\partial \mathbf{R}}{\partial \mathbf{f}} \bigg\vert_{\mathbf{f}^g} \mathbf{f}^c + O((\mathbf{f}^c)^2), \hspace{0.5cm} M_0(\mathbf{f}, x) = M_0(\mathbf{f}^g, x) + \frac{\partial M_0}{\partial \mathbf{f}} \bigg\vert_{\mathbf{f}^g} \mathbf{f}^c + O((\mathbf{f}^c)^2).\] The system is linearised for the corrections such that \[ M_0(\mathbf{f}^g, x) \frac{d \mathbf{f}^c}{d x} + \left(\frac{\partial M_0}{\partial \mathbf{f}} \bigg\vert_{\mathbf{f}^g} - \frac{\partial \mathbf{R}}{\partial \mathbf{f}} \bigg\vert_{\mathbf{f}^g} \right) \mathbf{f}^c = \mathbf{R} - M_0(\mathbf{f}^g, x) \frac{d \mathbf{f}^g}{d x}. \] The system is then solved for the correction $ \mathbf{f}^c $ which is used to update the known solution $ \mathbf{f}^g $, this is repeated until convergence is achieved. 

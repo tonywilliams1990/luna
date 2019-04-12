@@ -1,0 +1,448 @@
+\hypertarget{namespaceHeat__plot}{}\section{Heat\+\_\+plot Namespace Reference}
+\label{namespaceHeat__plot}\index{Heat\+\_\+plot@{Heat\+\_\+plot}}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespaceHeat__plot_ab2e339067dfc8209cc8d2898d4207005}{parser} = Argument\+Parser()
+\item 
+\hyperlink{namespaceHeat__plot_aa83cfaa0b72d1fc27839aca50eaf9b68}{metavar}
+\item 
+\hyperlink{namespaceHeat__plot_ac6fe7a70a5ebe30ccb91e2255db50868}{type}
+\item 
+\hyperlink{namespaceHeat__plot_ac721620fed23609e47f849d804f29546}{int}
+\item 
+\hyperlink{namespaceHeat__plot_a2b3b44d5236c0a84aefd66e9fbd8f174}{nargs}
+\item 
+\hyperlink{namespaceHeat__plot_a01958ac77133cf99292b5a2cf0107f09}{help}
+\item 
+\hyperlink{namespaceHeat__plot_a91091fe60dbdb0842f9b23f99fab028b}{args} = parser.\+parse\+\_\+args()
+\item 
+\hyperlink{namespaceHeat__plot_a3cafcec38d886f33b35756791964bb58}{J} = args.\+integers\mbox{[}0\mbox{]}
+\item 
+\hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} = args.\+integers\mbox{[}1\mbox{]}
+\item 
+\hyperlink{namespaceHeat__plot_ac721620fed23609e47f849d804f29546}{int} \hyperlink{namespaceHeat__plot_a116214d215b6a0e66aefae82e2bbd4ef}{slowdown} = 5
+\item 
+\hyperlink{namespaceHeat__plot_a5f174ddffb3702db438b5922b832de2d}{data} = np.\+loadtxt( \char`\"{}./D\+A\+TA/Heat\+\_\+equation\+\_\+\+J\+\_\+\char`\"{}+ str(\hyperlink{namespaceHeat__plot_a3cafcec38d886f33b35756791964bb58}{J}) + \char`\"{}\+\_\+\+N\+\_\+\char`\"{} + str(\hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}) + \char`\"{}.dat\char`\"{} )
+\item 
+\hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x} = \hyperlink{namespaceHeat__plot_a5f174ddffb3702db438b5922b832de2d}{data}\mbox{[}\+:,0\mbox{]}
+\item 
+\hyperlink{namespaceHeat__plot_a25a93a2226128530145cc611f350163b}{t} = \hyperlink{namespaceHeat__plot_a5f174ddffb3702db438b5922b832de2d}{data}\mbox{[}\+:,1\mbox{]}
+\item 
+\hyperlink{namespaceHeat__plot_ae622b86afa46daa3e9b887624ab1bf26}{u} = \hyperlink{namespaceHeat__plot_a5f174ddffb3702db438b5922b832de2d}{data}\mbox{[}\+:,2\mbox{]}
+\item 
+\hyperlink{namespaceHeat__plot_a08bd2784d6b3bce18bb7f5edc54df897}{x\+\_\+axis} = \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x}\mbox{[}0\+:\hyperlink{namespaceHeat__plot_a3cafcec38d886f33b35756791964bb58}{J}+1\mbox{]}
+\item 
+\hyperlink{namespaceHeat__plot_a05e6ef830fa9da56c9ca594a34b644be}{time} = \hyperlink{namespaceHeat__plot_a25a93a2226128530145cc611f350163b}{t}\mbox{[}0\+:(\hyperlink{namespaceHeat__plot_a3cafcec38d886f33b35756791964bb58}{J}+1)$\ast$(\hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}+1)\+:\hyperlink{namespaceHeat__plot_a3cafcec38d886f33b35756791964bb58}{J}+1\mbox{]}
+\item 
+\hyperlink{namespaceHeat__plot_ab03c1902ecb064f92219fa9cd5f140d1}{dt} = \hyperlink{namespaceHeat__plot_a05e6ef830fa9da56c9ca594a34b644be}{time}\mbox{[}1\mbox{]} -\/ \hyperlink{namespaceHeat__plot_a05e6ef830fa9da56c9ca594a34b644be}{time}\mbox{[}0\mbox{]}
+\item 
+\hyperlink{namespaceHeat__plot_a4af99e02cb1eac65ec68fab8d5446c4a}{Tmax} = \hyperlink{namespaceHeat__plot_a05e6ef830fa9da56c9ca594a34b644be}{time}\mbox{[}-\/1\mbox{]}
+\item 
+\hyperlink{namespaceHeat__plot_ac64208169da71f343eff0b7f550ccdc0}{shape}
+\item 
+list \hyperlink{namespaceHeat__plot_a301b7278a9fd50c9e155fa008f74452f}{files} = \mbox{[}$\,$\mbox{]}
+\item 
+\hyperlink{namespaceHeat__plot_acaf53b467a0a1fb124babb16a64f4d1b}{axes} = plt.\+gca()
+\item 
+string \hyperlink{namespaceHeat__plot_a018d451c743d64974f5a36b0e031e02e}{title} = \textquotesingle{}Heat equation\textquotesingle{}
+\item 
+string \hyperlink{namespaceHeat__plot_aabc2a130604c7629b0aafa54317bbd73}{time\+\_\+str} = \textquotesingle{}\hyperlink{namespaceHeat__plot_a25a93a2226128530145cc611f350163b}{t}=\%1.\+2f\textquotesingle{} \%time\mbox{[}i\mbox{]}
+\item 
+\hyperlink{namespaceHeat__plot_ae47186a7b326f77755c609346bee51aa}{horizontalalignment}
+\item 
+\hyperlink{namespaceHeat__plot_aeaa6785bedcad63b4bd40e8cb1bad8a0}{transform}
+\item 
+\hyperlink{namespaceHeat__plot_abfde0ea5b1da0c081d5643f0bce5aa3c}{label}
+\item 
+\hyperlink{namespaceHeat__plot_aa109fec5bb7f2e730396a2cb623b2ad2}{loc}
+\item 
+string \hyperlink{namespaceHeat__plot_a276f032cea9a4b8cf77208d165379e83}{fname} = \textquotesingle{}\+\_\+tmp\%03d.\+png\textquotesingle{} \% i
+\item 
+\hyperlink{namespaceHeat__plot_a72be6747bea28a4edbd944d4f76fec68}{fps} = \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} / (\hyperlink{namespaceHeat__plot_a4af99e02cb1eac65ec68fab8d5446c4a}{Tmax} $\ast$ \hyperlink{namespaceHeat__plot_a116214d215b6a0e66aefae82e2bbd4ef}{slowdown})
+\item 
+\hyperlink{namespaceHeat__plot_aa171991dbe2271ffea72d0f8b97d2876}{F\+N\+U\+LL} = open(os.\+devnull, \textquotesingle{}w\textquotesingle{})
+\item 
+\hyperlink{namespaceHeat__plot_ae6ae986b39e93cfae8063da8f1ac65f7}{shell}
+\item 
+\hyperlink{namespaceHeat__plot_a05e302d2a0017c90ec20981f7474cc46}{True}
+\item 
+\hyperlink{namespaceHeat__plot_a234d0e0e9df8fdb1fb7d9f280b7949d1}{stdout}
+\item 
+\hyperlink{namespaceHeat__plot_a67f420128d52c92a8f2e47e60a49efcc}{stderr}
+\end{DoxyCompactItemize}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespaceHeat__plot_a91091fe60dbdb0842f9b23f99fab028b}\label{namespaceHeat__plot_a91091fe60dbdb0842f9b23f99fab028b}} 
+\index{Heat\+\_\+plot@{Heat\+\_\+plot}!args@{args}}
+\index{args@{args}!Heat\+\_\+plot@{Heat\+\_\+plot}}
+\subsubsection{\texorpdfstring{args}{args}}
+{\footnotesize\ttfamily Heat\+\_\+plot.\+args = parser.\+parse\+\_\+args()}
+
+
+
+Definition at line 13 of file Heat\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceHeat__plot_acaf53b467a0a1fb124babb16a64f4d1b}\label{namespaceHeat__plot_acaf53b467a0a1fb124babb16a64f4d1b}} 
+\index{Heat\+\_\+plot@{Heat\+\_\+plot}!axes@{axes}}
+\index{axes@{axes}!Heat\+\_\+plot@{Heat\+\_\+plot}}
+\subsubsection{\texorpdfstring{axes}{axes}}
+{\footnotesize\ttfamily Heat\+\_\+plot.\+axes = plt.\+gca()}
+
+
+
+Definition at line 41 of file Heat\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceHeat__plot_a5f174ddffb3702db438b5922b832de2d}\label{namespaceHeat__plot_a5f174ddffb3702db438b5922b832de2d}} 
+\index{Heat\+\_\+plot@{Heat\+\_\+plot}!data@{data}}
+\index{data@{data}!Heat\+\_\+plot@{Heat\+\_\+plot}}
+\subsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily Heat\+\_\+plot.\+data = np.\+loadtxt( \char`\"{}./D\+A\+TA/Heat\+\_\+equation\+\_\+\+J\+\_\+\char`\"{}+ str(\hyperlink{namespaceHeat__plot_a3cafcec38d886f33b35756791964bb58}{J}) + \char`\"{}\+\_\+\+N\+\_\+\char`\"{} + str(\hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}) + \char`\"{}.dat\char`\"{} )}
+
+
+
+Definition at line 23 of file Heat\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceHeat__plot_ab03c1902ecb064f92219fa9cd5f140d1}\label{namespaceHeat__plot_ab03c1902ecb064f92219fa9cd5f140d1}} 
+\index{Heat\+\_\+plot@{Heat\+\_\+plot}!dt@{dt}}
+\index{dt@{dt}!Heat\+\_\+plot@{Heat\+\_\+plot}}
+\subsubsection{\texorpdfstring{dt}{dt}}
+{\footnotesize\ttfamily Heat\+\_\+plot.\+dt = \hyperlink{namespaceHeat__plot_a05e6ef830fa9da56c9ca594a34b644be}{time}\mbox{[}1\mbox{]} -\/ \hyperlink{namespaceHeat__plot_a05e6ef830fa9da56c9ca594a34b644be}{time}\mbox{[}0\mbox{]}}
+
+
+
+Definition at line 31 of file Heat\+\_\+plot.\+py.
+
+
+
+Referenced by main().
+
+\mbox{\Hypertarget{namespaceHeat__plot_a301b7278a9fd50c9e155fa008f74452f}\label{namespaceHeat__plot_a301b7278a9fd50c9e155fa008f74452f}} 
+\index{Heat\+\_\+plot@{Heat\+\_\+plot}!files@{files}}
+\index{files@{files}!Heat\+\_\+plot@{Heat\+\_\+plot}}
+\subsubsection{\texorpdfstring{files}{files}}
+{\footnotesize\ttfamily list Heat\+\_\+plot.\+files = \mbox{[}$\,$\mbox{]}}
+
+
+
+Definition at line 36 of file Heat\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceHeat__plot_a276f032cea9a4b8cf77208d165379e83}\label{namespaceHeat__plot_a276f032cea9a4b8cf77208d165379e83}} 
+\index{Heat\+\_\+plot@{Heat\+\_\+plot}!fname@{fname}}
+\index{fname@{fname}!Heat\+\_\+plot@{Heat\+\_\+plot}}
+\subsubsection{\texorpdfstring{fname}{fname}}
+{\footnotesize\ttfamily string Heat\+\_\+plot.\+fname = \textquotesingle{}\+\_\+tmp\%03d.\+png\textquotesingle{} \% i}
+
+
+
+Definition at line 55 of file Heat\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceHeat__plot_aa171991dbe2271ffea72d0f8b97d2876}\label{namespaceHeat__plot_aa171991dbe2271ffea72d0f8b97d2876}} 
+\index{Heat\+\_\+plot@{Heat\+\_\+plot}!F\+N\+U\+LL@{F\+N\+U\+LL}}
+\index{F\+N\+U\+LL@{F\+N\+U\+LL}!Heat\+\_\+plot@{Heat\+\_\+plot}}
+\subsubsection{\texorpdfstring{F\+N\+U\+LL}{FNULL}}
+{\footnotesize\ttfamily Heat\+\_\+plot.\+F\+N\+U\+LL = open(os.\+devnull, \textquotesingle{}w\textquotesingle{})}
+
+
+
+Definition at line 62 of file Heat\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceHeat__plot_a72be6747bea28a4edbd944d4f76fec68}\label{namespaceHeat__plot_a72be6747bea28a4edbd944d4f76fec68}} 
+\index{Heat\+\_\+plot@{Heat\+\_\+plot}!fps@{fps}}
+\index{fps@{fps}!Heat\+\_\+plot@{Heat\+\_\+plot}}
+\subsubsection{\texorpdfstring{fps}{fps}}
+{\footnotesize\ttfamily Heat\+\_\+plot.\+fps = \hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N} / (\hyperlink{namespaceHeat__plot_a4af99e02cb1eac65ec68fab8d5446c4a}{Tmax} $\ast$ \hyperlink{namespaceHeat__plot_a116214d215b6a0e66aefae82e2bbd4ef}{slowdown})}
+
+
+
+Definition at line 61 of file Heat\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceHeat__plot_a01958ac77133cf99292b5a2cf0107f09}\label{namespaceHeat__plot_a01958ac77133cf99292b5a2cf0107f09}} 
+\index{Heat\+\_\+plot@{Heat\+\_\+plot}!help@{help}}
+\index{help@{help}!Heat\+\_\+plot@{Heat\+\_\+plot}}
+\subsubsection{\texorpdfstring{help}{help}}
+{\footnotesize\ttfamily Heat\+\_\+plot.\+help}
+
+
+
+Definition at line 11 of file Heat\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceHeat__plot_ae47186a7b326f77755c609346bee51aa}\label{namespaceHeat__plot_ae47186a7b326f77755c609346bee51aa}} 
+\index{Heat\+\_\+plot@{Heat\+\_\+plot}!horizontalalignment@{horizontalalignment}}
+\index{horizontalalignment@{horizontalalignment}!Heat\+\_\+plot@{Heat\+\_\+plot}}
+\subsubsection{\texorpdfstring{horizontalalignment}{horizontalalignment}}
+{\footnotesize\ttfamily Heat\+\_\+plot.\+horizontalalignment}
+
+
+
+Definition at line 50 of file Heat\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceHeat__plot_ac721620fed23609e47f849d804f29546}\label{namespaceHeat__plot_ac721620fed23609e47f849d804f29546}} 
+\index{Heat\+\_\+plot@{Heat\+\_\+plot}!int@{int}}
+\index{int@{int}!Heat\+\_\+plot@{Heat\+\_\+plot}}
+\subsubsection{\texorpdfstring{int}{int}}
+{\footnotesize\ttfamily Heat\+\_\+plot.\+int}
+
+
+
+Definition at line 10 of file Heat\+\_\+plot.\+py.
+
+
+
+Referenced by Luna\+::\+Bessel$<$ T $>$.\+Jn().
+
+\mbox{\Hypertarget{namespaceHeat__plot_a3cafcec38d886f33b35756791964bb58}\label{namespaceHeat__plot_a3cafcec38d886f33b35756791964bb58}} 
+\index{Heat\+\_\+plot@{Heat\+\_\+plot}!J@{J}}
+\index{J@{J}!Heat\+\_\+plot@{Heat\+\_\+plot}}
+\subsubsection{\texorpdfstring{J}{J}}
+{\footnotesize\ttfamily Heat\+\_\+plot.\+J = args.\+integers\mbox{[}0\mbox{]}}
+
+
+
+Definition at line 16 of file Heat\+\_\+plot.\+py.
+
+
+
+Referenced by Luna\+::\+Newton$<$ T $>$.\+arclength\+\_\+solve(), Luna\+::\+Newton$<$ T $>$.\+iterate(), and main().
+
+\mbox{\Hypertarget{namespaceHeat__plot_abfde0ea5b1da0c081d5643f0bce5aa3c}\label{namespaceHeat__plot_abfde0ea5b1da0c081d5643f0bce5aa3c}} 
+\index{Heat\+\_\+plot@{Heat\+\_\+plot}!label@{label}}
+\index{label@{label}!Heat\+\_\+plot@{Heat\+\_\+plot}}
+\subsubsection{\texorpdfstring{label}{label}}
+{\footnotesize\ttfamily Heat\+\_\+plot.\+label}
+
+
+
+Definition at line 52 of file Heat\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceHeat__plot_aa109fec5bb7f2e730396a2cb623b2ad2}\label{namespaceHeat__plot_aa109fec5bb7f2e730396a2cb623b2ad2}} 
+\index{Heat\+\_\+plot@{Heat\+\_\+plot}!loc@{loc}}
+\index{loc@{loc}!Heat\+\_\+plot@{Heat\+\_\+plot}}
+\subsubsection{\texorpdfstring{loc}{loc}}
+{\footnotesize\ttfamily Heat\+\_\+plot.\+loc}
+
+
+
+Definition at line 54 of file Heat\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceHeat__plot_aa83cfaa0b72d1fc27839aca50eaf9b68}\label{namespaceHeat__plot_aa83cfaa0b72d1fc27839aca50eaf9b68}} 
+\index{Heat\+\_\+plot@{Heat\+\_\+plot}!metavar@{metavar}}
+\index{metavar@{metavar}!Heat\+\_\+plot@{Heat\+\_\+plot}}
+\subsubsection{\texorpdfstring{metavar}{metavar}}
+{\footnotesize\ttfamily Heat\+\_\+plot.\+metavar}
+
+
+
+Definition at line 10 of file Heat\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceHeat__plot_a7d050092798e28458a263710837bda77}\label{namespaceHeat__plot_a7d050092798e28458a263710837bda77}} 
+\index{Heat\+\_\+plot@{Heat\+\_\+plot}!N@{N}}
+\index{N@{N}!Heat\+\_\+plot@{Heat\+\_\+plot}}
+\subsubsection{\texorpdfstring{N}{N}}
+{\footnotesize\ttfamily Heat\+\_\+plot.\+N = args.\+integers\mbox{[}1\mbox{]}}
+
+
+
+Definition at line 17 of file Heat\+\_\+plot.\+py.
+
+
+
+Referenced by Luna\+::\+O\+D\+E\+\_\+\+B\+V\+P$<$ T, X $>$.\+adapt(), Luna\+::\+Matrix$<$ double $>$.\+fill\+\_\+diag(), and main().
+
+\mbox{\Hypertarget{namespaceHeat__plot_a2b3b44d5236c0a84aefd66e9fbd8f174}\label{namespaceHeat__plot_a2b3b44d5236c0a84aefd66e9fbd8f174}} 
+\index{Heat\+\_\+plot@{Heat\+\_\+plot}!nargs@{nargs}}
+\index{nargs@{nargs}!Heat\+\_\+plot@{Heat\+\_\+plot}}
+\subsubsection{\texorpdfstring{nargs}{nargs}}
+{\footnotesize\ttfamily Heat\+\_\+plot.\+nargs}
+
+
+
+Definition at line 10 of file Heat\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceHeat__plot_ab2e339067dfc8209cc8d2898d4207005}\label{namespaceHeat__plot_ab2e339067dfc8209cc8d2898d4207005}} 
+\index{Heat\+\_\+plot@{Heat\+\_\+plot}!parser@{parser}}
+\index{parser@{parser}!Heat\+\_\+plot@{Heat\+\_\+plot}}
+\subsubsection{\texorpdfstring{parser}{parser}}
+{\footnotesize\ttfamily Heat\+\_\+plot.\+parser = Argument\+Parser()}
+
+
+
+Definition at line 9 of file Heat\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceHeat__plot_ac64208169da71f343eff0b7f550ccdc0}\label{namespaceHeat__plot_ac64208169da71f343eff0b7f550ccdc0}} 
+\index{Heat\+\_\+plot@{Heat\+\_\+plot}!shape@{shape}}
+\index{shape@{shape}!Heat\+\_\+plot@{Heat\+\_\+plot}}
+\subsubsection{\texorpdfstring{shape}{shape}}
+{\footnotesize\ttfamily Heat\+\_\+plot.\+shape}
+
+
+
+Definition at line 34 of file Heat\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceHeat__plot_ae6ae986b39e93cfae8063da8f1ac65f7}\label{namespaceHeat__plot_ae6ae986b39e93cfae8063da8f1ac65f7}} 
+\index{Heat\+\_\+plot@{Heat\+\_\+plot}!shell@{shell}}
+\index{shell@{shell}!Heat\+\_\+plot@{Heat\+\_\+plot}}
+\subsubsection{\texorpdfstring{shell}{shell}}
+{\footnotesize\ttfamily Heat\+\_\+plot.\+shell}
+
+
+
+Definition at line 65 of file Heat\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceHeat__plot_a116214d215b6a0e66aefae82e2bbd4ef}\label{namespaceHeat__plot_a116214d215b6a0e66aefae82e2bbd4ef}} 
+\index{Heat\+\_\+plot@{Heat\+\_\+plot}!slowdown@{slowdown}}
+\index{slowdown@{slowdown}!Heat\+\_\+plot@{Heat\+\_\+plot}}
+\subsubsection{\texorpdfstring{slowdown}{slowdown}}
+{\footnotesize\ttfamily \hyperlink{namespaceHeat__plot_ac721620fed23609e47f849d804f29546}{int} Heat\+\_\+plot.\+slowdown = 5}
+
+
+
+Definition at line 21 of file Heat\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceHeat__plot_a67f420128d52c92a8f2e47e60a49efcc}\label{namespaceHeat__plot_a67f420128d52c92a8f2e47e60a49efcc}} 
+\index{Heat\+\_\+plot@{Heat\+\_\+plot}!stderr@{stderr}}
+\index{stderr@{stderr}!Heat\+\_\+plot@{Heat\+\_\+plot}}
+\subsubsection{\texorpdfstring{stderr}{stderr}}
+{\footnotesize\ttfamily Heat\+\_\+plot.\+stderr}
+
+
+
+Definition at line 66 of file Heat\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceHeat__plot_a234d0e0e9df8fdb1fb7d9f280b7949d1}\label{namespaceHeat__plot_a234d0e0e9df8fdb1fb7d9f280b7949d1}} 
+\index{Heat\+\_\+plot@{Heat\+\_\+plot}!stdout@{stdout}}
+\index{stdout@{stdout}!Heat\+\_\+plot@{Heat\+\_\+plot}}
+\subsubsection{\texorpdfstring{stdout}{stdout}}
+{\footnotesize\ttfamily Heat\+\_\+plot.\+stdout}
+
+
+
+Definition at line 65 of file Heat\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceHeat__plot_a25a93a2226128530145cc611f350163b}\label{namespaceHeat__plot_a25a93a2226128530145cc611f350163b}} 
+\index{Heat\+\_\+plot@{Heat\+\_\+plot}!t@{t}}
+\index{t@{t}!Heat\+\_\+plot@{Heat\+\_\+plot}}
+\subsubsection{\texorpdfstring{t}{t}}
+{\footnotesize\ttfamily Heat\+\_\+plot.\+t = \hyperlink{namespaceHeat__plot_a5f174ddffb3702db438b5922b832de2d}{data}\mbox{[}\+:,1\mbox{]}}
+
+
+
+Definition at line 26 of file Heat\+\_\+plot.\+py.
+
+
+
+Referenced by Luna\+::\+Linear\+Eigensystem$<$ T $>$.\+eigenvectors(), Luna.\+erfccheb(), Luna\+::\+Sparse\+Matrix$<$ T $>$.\+solve\+\_\+\+Bi\+C\+G\+S\+T\+A\+B(), and Luna\+::\+Linear\+Eigensystem$<$ T $>$.$\sim$\+Linear\+Eigensystem().
+
+\mbox{\Hypertarget{namespaceHeat__plot_a05e6ef830fa9da56c9ca594a34b644be}\label{namespaceHeat__plot_a05e6ef830fa9da56c9ca594a34b644be}} 
+\index{Heat\+\_\+plot@{Heat\+\_\+plot}!time@{time}}
+\index{time@{time}!Heat\+\_\+plot@{Heat\+\_\+plot}}
+\subsubsection{\texorpdfstring{time}{time}}
+{\footnotesize\ttfamily Heat\+\_\+plot.\+time = \hyperlink{namespaceHeat__plot_a25a93a2226128530145cc611f350163b}{t}\mbox{[}0\+:(\hyperlink{namespaceHeat__plot_a3cafcec38d886f33b35756791964bb58}{J}+1)$\ast$(\hyperlink{namespaceHeat__plot_a7d050092798e28458a263710837bda77}{N}+1)\+:\hyperlink{namespaceHeat__plot_a3cafcec38d886f33b35756791964bb58}{J}+1\mbox{]}}
+
+
+
+Definition at line 30 of file Heat\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceHeat__plot_aabc2a130604c7629b0aafa54317bbd73}\label{namespaceHeat__plot_aabc2a130604c7629b0aafa54317bbd73}} 
+\index{Heat\+\_\+plot@{Heat\+\_\+plot}!time\+\_\+str@{time\+\_\+str}}
+\index{time\+\_\+str@{time\+\_\+str}!Heat\+\_\+plot@{Heat\+\_\+plot}}
+\subsubsection{\texorpdfstring{time\+\_\+str}{time\_str}}
+{\footnotesize\ttfamily string Heat\+\_\+plot.\+time\+\_\+str = \textquotesingle{}\hyperlink{namespaceHeat__plot_a25a93a2226128530145cc611f350163b}{t}=\%1.\+2f\textquotesingle{} \%time\mbox{[}i\mbox{]}}
+
+
+
+Definition at line 48 of file Heat\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceHeat__plot_a018d451c743d64974f5a36b0e031e02e}\label{namespaceHeat__plot_a018d451c743d64974f5a36b0e031e02e}} 
+\index{Heat\+\_\+plot@{Heat\+\_\+plot}!title@{title}}
+\index{title@{title}!Heat\+\_\+plot@{Heat\+\_\+plot}}
+\subsubsection{\texorpdfstring{title}{title}}
+{\footnotesize\ttfamily string Heat\+\_\+plot.\+title = \textquotesingle{}Heat equation\textquotesingle{}}
+
+
+
+Definition at line 46 of file Heat\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceHeat__plot_a4af99e02cb1eac65ec68fab8d5446c4a}\label{namespaceHeat__plot_a4af99e02cb1eac65ec68fab8d5446c4a}} 
+\index{Heat\+\_\+plot@{Heat\+\_\+plot}!Tmax@{Tmax}}
+\index{Tmax@{Tmax}!Heat\+\_\+plot@{Heat\+\_\+plot}}
+\subsubsection{\texorpdfstring{Tmax}{Tmax}}
+{\footnotesize\ttfamily Heat\+\_\+plot.\+Tmax = \hyperlink{namespaceHeat__plot_a05e6ef830fa9da56c9ca594a34b644be}{time}\mbox{[}-\/1\mbox{]}}
+
+
+
+Definition at line 32 of file Heat\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceHeat__plot_aeaa6785bedcad63b4bd40e8cb1bad8a0}\label{namespaceHeat__plot_aeaa6785bedcad63b4bd40e8cb1bad8a0}} 
+\index{Heat\+\_\+plot@{Heat\+\_\+plot}!transform@{transform}}
+\index{transform@{transform}!Heat\+\_\+plot@{Heat\+\_\+plot}}
+\subsubsection{\texorpdfstring{transform}{transform}}
+{\footnotesize\ttfamily Heat\+\_\+plot.\+transform}
+
+
+
+Definition at line 51 of file Heat\+\_\+plot.\+py.
+
+
+
+Referenced by Luna\+::\+Vector$<$ X $>$.\+operator$\ast$(), Luna\+::\+Matrix$<$ double $>$.\+operator$\ast$(), Luna\+::\+Vector$<$ X $>$.\+operator$\ast$=(), Luna\+::\+Matrix$<$ double $>$.\+operator$\ast$=(), Luna\+::\+Vector$<$ X $>$.\+operator+(), Luna\+::\+Matrix$<$ double $>$.\+operator+(), Luna\+::\+Vector$<$ X $>$.\+operator+=(), Luna\+::\+Matrix$<$ double $>$.\+operator+=(), Luna\+::\+Vector$<$ X $>$.\+operator-\/(), Luna\+::\+Matrix$<$ double $>$.\+operator-\/(), Luna\+::\+Vector$<$ X $>$.\+operator-\/=(), Luna\+::\+Matrix$<$ double $>$.\+operator-\/=(), Luna\+::\+Vector$<$ X $>$.\+operator/(), Luna\+::\+Matrix$<$ double $>$.\+operator/(), Luna\+::\+Vector$<$ X $>$.\+operator/=(), and Luna\+::\+Matrix$<$ double $>$.\+operator/=().
+
+\mbox{\Hypertarget{namespaceHeat__plot_a05e302d2a0017c90ec20981f7474cc46}\label{namespaceHeat__plot_a05e302d2a0017c90ec20981f7474cc46}} 
+\index{Heat\+\_\+plot@{Heat\+\_\+plot}!True@{True}}
+\index{True@{True}!Heat\+\_\+plot@{Heat\+\_\+plot}}
+\subsubsection{\texorpdfstring{True}{True}}
+{\footnotesize\ttfamily Heat\+\_\+plot.\+True}
+
+
+
+Definition at line 65 of file Heat\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceHeat__plot_ac6fe7a70a5ebe30ccb91e2255db50868}\label{namespaceHeat__plot_ac6fe7a70a5ebe30ccb91e2255db50868}} 
+\index{Heat\+\_\+plot@{Heat\+\_\+plot}!type@{type}}
+\index{type@{type}!Heat\+\_\+plot@{Heat\+\_\+plot}}
+\subsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily Heat\+\_\+plot.\+type}
+
+
+
+Definition at line 10 of file Heat\+\_\+plot.\+py.
+
+\mbox{\Hypertarget{namespaceHeat__plot_ae622b86afa46daa3e9b887624ab1bf26}\label{namespaceHeat__plot_ae622b86afa46daa3e9b887624ab1bf26}} 
+\index{Heat\+\_\+plot@{Heat\+\_\+plot}!u@{u}}
+\index{u@{u}!Heat\+\_\+plot@{Heat\+\_\+plot}}
+\subsubsection{\texorpdfstring{u}{u}}
+{\footnotesize\ttfamily Heat\+\_\+plot.\+u = \hyperlink{namespaceHeat__plot_a5f174ddffb3702db438b5922b832de2d}{data}\mbox{[}\+:,2\mbox{]}}
+
+
+
+Definition at line 27 of file Heat\+\_\+plot.\+py.
+
+
+
+Referenced by Luna\+::\+Linear\+Eigensystem$<$ T $>$.\+eigenvectors(), main(), Luna\+::\+Tridiagonal$<$ T $>$.\+solve(), and Luna\+::\+Linear\+Eigensystem$<$ T $>$.$\sim$\+Linear\+Eigensystem().
+
+\mbox{\Hypertarget{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}\label{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}} 
+\index{Heat\+\_\+plot@{Heat\+\_\+plot}!x@{x}}
+\index{x@{x}!Heat\+\_\+plot@{Heat\+\_\+plot}}
+\subsubsection{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily Heat\+\_\+plot.\+x = \hyperlink{namespaceHeat__plot_a5f174ddffb3702db438b5922b832de2d}{data}\mbox{[}\+:,0\mbox{]}}
+
+
+
+Definition at line 25 of file Heat\+\_\+plot.\+py.
+
+
+
+Referenced by Luna\+::\+Polynomial$<$ T $>$.\+derivatives(), Luna\+::\+Linear\+Eigensystem$<$ T $>$.\+eigenvectors(), Luna\+::\+Arclength$<$ T $>$.\+init\+\_\+arc(), Luna\+::\+Matrix$<$ double $>$.\+inverse(), Luna\+::\+Bessel$<$ T $>$.\+Jn(), Luna.\+lngamma(), main(), Luna\+::\+Bessel$<$ T $>$.\+rat(), Luna\+::\+Mesh1\+D$<$ T, X $>$.\+read(), Luna\+::\+Mesh2\+D$<$ T $>$.\+read(), Luna\+::test\+\_\+equation.\+residual\+\_\+fn(), Luna\+::nonlinear\+\_\+equation.\+residual\+\_\+fn(), Luna\+::\+Polynomial$<$ T $>$.\+roots(), Luna\+::\+Newton$<$ T $>$.\+solve(), Luna\+::\+Banded\+Matrix$<$ T $>$.\+solve(), Luna\+::\+Matrix$<$ double $>$.\+solve\+\_\+basic(), Luna\+::\+Matrix$<$ double $>$.\+solve\+\_\+\+L\+U(), Luna\+::\+Matrix$<$ double $>$.\+solve\+\_\+\+Q\+R(), Luna\+::\+Arclength$<$ T $>$.\+update(), Luna\+::\+Bessel$<$ T $>$.\+Y1(), Luna\+::\+Bessel$<$ T $>$.\+Yn(), Luna\+::\+Arclength$<$ T $>$.$\sim$\+Arclength(), Luna\+::\+Linear\+Eigensystem$<$ T $>$.$\sim$\+Linear\+Eigensystem(), Luna\+::\+Mesh2\+D$<$ T $>$.$\sim$\+Mesh2\+D(), and Luna\+::\+Sparse\+Matrix$<$ T $>$.$\sim$\+Sparse\+Matrix().
+
+\mbox{\Hypertarget{namespaceHeat__plot_a08bd2784d6b3bce18bb7f5edc54df897}\label{namespaceHeat__plot_a08bd2784d6b3bce18bb7f5edc54df897}} 
+\index{Heat\+\_\+plot@{Heat\+\_\+plot}!x\+\_\+axis@{x\+\_\+axis}}
+\index{x\+\_\+axis@{x\+\_\+axis}!Heat\+\_\+plot@{Heat\+\_\+plot}}
+\subsubsection{\texorpdfstring{x\+\_\+axis}{x\_axis}}
+{\footnotesize\ttfamily Heat\+\_\+plot.\+x\+\_\+axis = \hyperlink{namespaceHeat__plot_aa88370c16b85b784ccbde3ed88bc1991}{x}\mbox{[}0\+:\hyperlink{namespaceHeat__plot_a3cafcec38d886f33b35756791964bb58}{J}+1\mbox{]}}
+
+
+
+Definition at line 29 of file Heat\+\_\+plot.\+py.
+
