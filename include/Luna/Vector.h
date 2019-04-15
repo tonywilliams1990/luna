@@ -248,6 +248,16 @@ namespace Luna
     void powspace( const double& a, const double& b,
                    const std::size_t& n, const double& p);
 
+    /// Create a Vector of size n containing the Gauss-Chebyshev or Roots
+    /// collocation points between -1 and +1
+    /// \param n Number of elements
+    void chebyshev_grid( const std::size_t& n );
+
+    /// Create a Vector of size n containing the Gauss-Lobatto or
+    /// Extrema-plus-Endpoints collocation points between -1 and +1
+    /// \param n Number of elements
+    void lobatto_grid( const std::size_t& n );
+
     /// Product of the elements in the Vector (from index start to end)
     /// \param start Start index
     /// \param end End index
@@ -759,6 +769,26 @@ namespace Luna
     {
       VECTOR[ i ] = a + ( b - a ) * std::pow( ( double )i / ( n - 1 ), p );
     }
+  }
+
+  template <>
+  inline void Vector<double>::chebyshev_grid( const std::size_t& n )
+  {
+    VECTOR.resize( n );
+    for ( std::size_t i=1; i <= n; ++i )
+		{
+			VECTOR[ i - 1 ] = std::cos( M_PI * ( 2 * i - 1 ) / ( 2.0 * n ) );
+		}
+  }
+
+  template <>
+  inline void Vector<double>::lobatto_grid( const std::size_t& n )
+  {
+    VECTOR.resize( n );
+    for ( std::size_t i=0; i < n; ++i )
+		{
+			VECTOR[ i ] = std::cos( M_PI * i / ( n - 1.0 ) );
+		}
   }
 
   template <typename T>

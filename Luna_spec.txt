@@ -62,8 +62,8 @@ Luna aims to be a header-only library of numerical routines written in C++.
 1. Quaternion - a class defining quaternions				                          []
 
 --- Spectral ---
-1. Basis - a base class defining basis functions to be inherited              []
-2. Chebyshev - a class defining Chebyshev polynomials (inherit from basis)	  []
+1. Basis - a base class defining basis functions to be inherited             [x]
+2. Chebyshev - a class defining Chebyshev polynomials (inherit from basis)	 [x]
 3. Spectral - a class defining spectral solutions (basis + coefficients)      []
 4. solve method in ODE_BVP for solving using spectral methods                 []
 5. solve PDEs using spectral method                                           []
@@ -88,7 +88,8 @@ demonstrate how the code can be used.
 
 ***** General TODO *****
 1. Cholesky decomposition - Hermitian Matrices (or just real symmetric?)	
-2. Spectral methods? - Fourier, Chebyshev, collocation? 		
+2. Spectral methods? - Fourier, Chebyshev, collocation? 	
+
 
 ODE_IVP example - Lorenz equations with python plots, parameter variation and 
 sensitivity to initial conditions etc

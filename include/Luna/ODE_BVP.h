@@ -73,8 +73,6 @@ namespace Luna
     ODE_BVP( Equation_1matrix<T, X>* ptr_equation, const Vector<X>& nodes,
              Residual<T>* ptr_left_residual, Residual<T>* ptr_right_residual );
 
-    //TODO copy constructor
-
     /// Destructor
     virtual ~ODE_BVP();
 
@@ -112,9 +110,13 @@ namespace Luna
     void adapt_until( const double& adapt_tol );
 
 		/// Initialise so that we can perform arc-length continuation
+		/// \param ptr_param The pointer to the parameter
+		/// \param ds The initial arc length step
+		/// \param max_ds The maximum arc length step
 		void init_arc( T* ptr_param, const double& ds, const double& max_ds );
 
 		/// Arc-length solve the system (init_arc must be called first)
+		/// \param step The arc length step
 		double arclength_solve( const double& step );
 
   }; // End of class ODE_BVP

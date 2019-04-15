@@ -6,7 +6,7 @@
 /// solved as a set of first-order equations in the form \f[ \begin{pmatrix}
 /// 1 & 0 \\ 0 & f(x) - 1 \end{pmatrix} \begin{bmatrix} f(x) \\ f'(x)
 /// \end{bmatrix}' = \begin{bmatrix} f'(x) \\ 1 + \left(1 - \frac{2}{x^2}
-/// \right)f'(x)^2 \end{bmatrix}, \f] 
+/// \right)f'(x)^2 \end{bmatrix}, \f]
 /// The exact solution is given by \f$ f(x) = 1 + \sqrt{1-x^2}. \f$
 
 #include "Luna/Core"
@@ -17,56 +17,59 @@ enum{ f, fd };
 
 namespace Luna
 {
-  class nonlinear_equation : public Equation_1matrix<double>
-	{
-
-		public:
-			// The nonlinear equation is 2nd order
-			nonlinear_equation() : Equation_1matrix<double> ( 2 ) {}
-
-			// Define the equation
-			void residual_fn( const Vector<double>& u, Vector<double>& F  ) const
-			{
-        double x( coord( 0 ) );
-				F[ f ]   = u[ fd ];
-				F[ fd ]  = 1. + ( 1. - ( 2. / ( x * x ) ) ) * u[ fd ] * u[ fd ];
-			}
-
-      void matrix0( const Vector<double>&u, Matrix<double> &m ) const
-      {
-        m( 0, 0 ) = 1.0;
-        m( 1, 1 ) = u[ f ] - 1.0;
-      }
-	};
-
-  class left_BC : public Residual<double>
+  namespace Example
   {
-      public:
-        // f(0) = 2
-        left_BC() : Residual<double> ( 1, 2 ) {}
+    class nonlinear_equation : public Equation_1matrix<double>
+  	{
 
-        void residual_fn( const Vector<double> &z, Vector<double> &B ) const
+  		public:
+  			// The nonlinear equation is 2nd order
+  			nonlinear_equation() : Equation_1matrix<double> ( 2 ) {}
+
+  			// Define the equation
+  			void residual_fn( const Vector<double>& u, Vector<double>& F  ) const
+  			{
+          double x( coord( 0 ) );
+  				F[ f ]   = u[ fd ];
+  				F[ fd ]  = 1. + ( 1. - ( 2. / ( x * x ) ) ) * u[ fd ] * u[ fd ];
+  			}
+
+        void matrix0( const Vector<double>&u, Matrix<double> &m ) const
         {
-            B[ 0 ] = z[ f ] - 2.0;
+          m( 0, 0 ) = 1.0;
+          m( 1, 1 ) = u[ f ] - 1.0;
         }
-  };
+  	};
 
-  class right_BC : public Residual<double>
-  {
-      public:
-        // f(sqrt(3)/2) = 3/2
-        right_BC() : Residual<double> ( 1, 2 ) {}
+    class left_BC : public Residual<double>
+    {
+        public:
+          // f(0) = 2
+          left_BC() : Residual<double> ( 1, 2 ) {}
 
-        void residual_fn( const Vector<double> &z, Vector<double> &B ) const
-        {
-            B[ 0 ] = z[ f ] - 1.5;
-        }
-  };
+          void residual_fn( const Vector<double> &z, Vector<double> &B ) const
+          {
+              B[ 0 ] = z[ f ] - 2.0;
+          }
+    };
 
-}
+    class right_BC : public Residual<double>
+    {
+        public:
+          // f(sqrt(3)/2) = 3/2
+          right_BC() : Residual<double> ( 1, 2 ) {}
+
+          void residual_fn( const Vector<double> &z, Vector<double> &B ) const
+          {
+              B[ 0 ] = z[ f ] - 1.5;
+          }
+    };
+  } // End of namespace Example
+} // End of namespace Luna
 
 using namespace std;
 using namespace Luna;
+using namespace Example; 
 
 int main()
 {
