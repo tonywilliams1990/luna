@@ -67,6 +67,11 @@ namespace Luna
 			Vector<T> operator()( const Vector<T>& x, const std::size_t& n,
 														const std::size_t& d );
 
+			/// Copy assignment
+	    /// \param original Chebyshev polynomial to be copied
+	    /// \return The new Chebyshev polynomial
+	    Chebyshev<T>& operator=( const Chebyshev<T>& original );
+
       /* ----- Methods ----- */
 
 			/// Return the nth Chebyshev polynomial of the first kind at point x
@@ -94,7 +99,9 @@ namespace Luna
 
 	template <typename T>
 	Chebyshev<T>::Chebyshev()
-	{}
+	{
+		this->set_identifier( "Chebyshev" );
+	}
 
 	template <typename T>
 	Chebyshev<T>::~Chebyshev()
@@ -133,6 +140,14 @@ namespace Luna
 		}
 		return temp;
 	}
+
+	template <typename T>
+  inline Chebyshev<T>& Chebyshev<T>::operator=( const Chebyshev<T>& original )
+  {
+		if ( this == &original ){ return *this; }
+		this->set_identifier( "Chebyshev" );
+    return *this;
+  }
 
 	/* ----- Methods ----- */
 

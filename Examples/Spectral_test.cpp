@@ -38,5 +38,13 @@ int main()
   cout << " cheby( 1.0, 3, 1 ) = " << cheby( 1.0, 3, 1 ) << endl;
   cout << " cheby( x, 3, 1 ) = " << cheby( x, 3, 1 ) << endl;
 
+  Vector<double> coefficients( 3, 1.0 );
+
+  Spectral<double> spectral( coefficients, "Chebyshev" );
+
+  cout << "spectral.get_basis() = " << spectral.get_basis() << endl;
+  cout << "spectral( 0.2 ) = " << spectral( 0.2 ) << endl;
+  cout << "spectral( x ) = " << spectral( x ) << endl;
+
   cout << "--- FINISHED ---" << endl;
 }

@@ -21,6 +21,7 @@ namespace Luna
 	class Basis
 	{
 		private:
+			std::string IDENTIFIER;		 // String specifying the type of basis function
 
     public:
 
@@ -64,11 +65,33 @@ namespace Luna
 			virtual Vector<T> operator()( const Vector<T>& x, const std::size_t& n,
 																		const std::size_t& d );
 
+			/// Copy assignment
+	    /// \param original Basis function to be copied
+	    /// \return The new Basis function
+	    Basis<T>& operator=( const Basis<T>& original );
+
+			/* ----- Methods ----- */
+
+			/// Set the basis function identification string
+			/// \param identifier The identifier string specifying a type of basis
+			void set_identifier( std::string identifier )
+			{
+				IDENTIFIER = identifier;
+			}
+
+			/// Get the basis function identification string
+			std::string get_identifier()
+			{
+				return IDENTIFIER;
+			}
+
   }; // End of class Basis
 
 	template <typename T>
 	Basis<T>::Basis()
-	{}
+	{
+		IDENTIFIER = "Unspecified";
+	}
 
 	template <typename T>
 	Basis<T>::~Basis()
@@ -110,6 +133,14 @@ namespace Luna
 		problem += " The Basis function Vector derivative operator () has not \n";
 		problem += " been overloaded in the derived class. \n";
 		throw Error( problem );
+	}
+
+	template <typename T>
+	Basis<T>& Basis<T>::operator=( const Basis<T>& original )
+	{
+		if ( this == &original ){ return *this; }
+    IDENTIFIER = original.IDENTIFIER;
+    return *this;
 	}
 
 }  // End of namespace Luna
