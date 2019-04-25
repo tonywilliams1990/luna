@@ -46,5 +46,16 @@ int main()
   cout << "spectral( 0.2 ) = " << spectral( 0.2 ) << endl;
   cout << "spectral( x ) = " << spectral( x ) << endl;
 
+  cout << "spectral( 0.2, 1 ) = " << spectral( 0.2, 1 ) << endl;
+  cout << "spectral( x, 1 ) = " << spectral( x, 1 ) << endl;
+
+  coefficients[ 0 ] = 2.0;
+  spectral.set_coefficients( coefficients );
+  spectral[ 1 ] = 3.14;
+  spectral.push_front( 7.45 );
+
+  cout << "spectral.get_coefficients() = " << spectral.get_coefficients() << endl;
+  cout << "spectral[ 2 ] = " << spectral[ 2 ] << endl;
+
   cout << "--- FINISHED ---" << endl;
 }

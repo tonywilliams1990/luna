@@ -64,7 +64,7 @@ Luna aims to be a header-only library of numerical routines written in C++.
 --- Spectral ---
 1. Basis - a base class defining basis functions to be inherited             [x]
 2. Chebyshev - a class defining Chebyshev polynomials (inherit from basis)	 [x]
-3. Spectral - a class defining spectral solutions (basis + coefficients)      []
+3. Spectral - a class defining spectral solutions (basis + coefficients)     [x]
 4. solve method in ODE_BVP for solving using spectral methods                 []
 5. solve PDEs using spectral method                                           []
 6. Fourier - a class defining a Fourier basis (inherit from basis)            []
@@ -85,6 +85,10 @@ demonstrate how the code can be used.
 6. Laplace_equation - test SparseMatrix + Triplets			                     [x]
 7. Nonlinear_ODE_BVP - test ODE_BVP and BandedMatrix (inside ODE_BVP)	       [x]
 8. Arclength_Falkner - test arclength solving in ODE_BVP                      []
+9. Spectral_ODE_BVP - test Spectral and Chebyshev                             []
+10. Spectral_ODE_Periodic - test Fourier basis                                [] ??? Better name ???
+11. Spectral_ODE_Rational - test RationalChebyshev basis                      [] ??? Better name ???
+12. Spectral_Poisson - test PDE solution using spectral methods               [] 
 
 ***** General TODO *****
 1. Cholesky decomposition - Hermitian Matrices (or just real symmetric?)	

@@ -37,7 +37,7 @@ namespace Luna
 			/// \param x The point where the Chebyshev polynomial is evaluated
 			/// \param n The degree of the Chebyshev polynomial
 			/// \return The value of the nth degree Chebyshev polynomial at x
-			T operator()( const T& x, const std::size_t& n );
+			T operator()( const T& x, const int& n );
 
 			/// Evaluation operator for the nth Chebyshev polynomial at a Vector
 			/// of points
@@ -45,16 +45,16 @@ namespace Luna
 			/// evaluated
 			/// \param n The degree of the Chebyshev polynomial
 			/// \return A Vector of values of the nth degree Chebyshev polynomial
-			Vector<T> operator()( const Vector<T>& x, const std::size_t& n );
+			Vector<T> operator()( const Vector<T>& x, const int& n );
 
 			/// Evaluation operator for the dth derivative of the nth Chebyshev
-			///polynomial at point x
+			/// polynomial at point x
 			/// \param x The point where the Chebyshev polynomial is evaluated
 			/// \param n The degree of the Chebyshev polynomial
 			/// \param d The derivative to return
 			/// \return The dth derivative of the nth degree Chebyshev polynomial at
 			/// the point x
-			T operator()( const T& x, const std::size_t& n, const std::size_t& d );
+			T operator()( const T& x, const int& n, const int& d );
 
 			/// Evaluation operator for the dth derivative of the nth Chebyshev
 			/// polynomial at a Vector of points
@@ -64,8 +64,8 @@ namespace Luna
 			/// \param d The derivative to return
 			/// \return A Vector of the dth derivative of the nth degree Chebyshev
 			/// polynomial at the Vector of points
-			Vector<T> operator()( const Vector<T>& x, const std::size_t& n,
-														const std::size_t& d );
+			Vector<T> operator()( const Vector<T>& x, const int& n,
+														const int& d );
 
 			/// Copy assignment
 	    /// \param original Chebyshev polynomial to be copied
@@ -78,21 +78,21 @@ namespace Luna
 			/// \param x The point where the Chebyshev polynomial is evaluated
 			/// \param n The degree of the Chebyshev polynomial
 			/// \return The value of the nth degree Chebyshev polynomial at x
-			T first_kind( const T& x, const std::size_t& n );
+			T first_kind( const T& x, const int& n );
 
 			/// Return the nth Chebyshev polynomial at a Vector of points
 			/// \param x A Vector of points where the Chebyshev polynomial is
 			/// evaluated
 			/// \param n The degree of the Chebyshev polynomial
 			/// \return A Vector of values of the nth degree Chebyshev polynomial
-			Vector<T> first_kind( const Vector<T>& x, const std::size_t& n );
+			Vector<T> first_kind( const Vector<T>& x, const int& n );
 
 			/// Return the Gegenbauer or ultraspherical polynomial at a point x
 			/// \param x The point where the Gegenbauer polynomial is evaluated
 			/// \param n The degree of the Gegenbauer polynomial
 			/// \param m The m parameter in the Gegenbauer polynomial
 			/// \return The value of the Gegenbauer polynomial at x
-			T gegenbauer( const T& x, const std::size_t& n, const std::size_t& m );
+			T gegenbauer( const T& x, const int& n, const int& m );
 
 
   }; // End of class Chebyshev
@@ -108,30 +108,27 @@ namespace Luna
 	{}
 
 	template <typename T>
-	inline T Chebyshev<T>::operator()( const T& x, const std::size_t& n )
+	inline T Chebyshev<T>::operator()( const T& x, const int& n )
 	{
 		return first_kind( x, n );
 	}
 
 	template <typename T>
-	inline Vector<T> Chebyshev<T>::operator()( const Vector<T>& x,
-																						 const std::size_t& n )
+	inline Vector<T> Chebyshev<T>::operator()( const Vector<T>& x, const int& n )
 	{
 		return first_kind( x, n );
 	}
 
 	template <typename T>
-	inline T Chebyshev<T>::operator()( const T& x, const std::size_t& n,
-											 							 const std::size_t& d )
+	inline T Chebyshev<T>::operator()( const T& x, const int& n, const int& d )
 	{
 		return n * std::pow( 2.0, d - 1 ) * factorial( d - 1 )
 						 * gegenbauer( x, n - d, d );
 	}
 
 	template <typename T>
-	inline Vector<T> Chebyshev<T>::operator()( const Vector<T>& x,
-																						 const std::size_t& n,
-																						 const std::size_t& d )
+	inline Vector<T> Chebyshev<T>::operator()( const Vector<T>& x, const int& n,
+																						 const int& d )
 	{
 		Vector<T> temp( x.size() );
 		for ( std::size_t i = 0; i != x.size(); i++) {
@@ -152,7 +149,7 @@ namespace Luna
 	/* ----- Methods ----- */
 
 	template <typename T>
-	inline T Chebyshev<T>::first_kind( const T& x, const std::size_t& n )
+	inline T Chebyshev<T>::first_kind( const T& x, const int& n )
 	{
 		if ( n == 0 ){
 			return 1;
@@ -166,8 +163,7 @@ namespace Luna
 	}
 
 	template <typename T>
-	inline Vector<T> Chebyshev<T>::first_kind( const Vector<T>& x,
-																						 const std::size_t& n )
+	inline Vector<T> Chebyshev<T>::first_kind( const Vector<T>& x, const int& n )
 	{
 		Vector<T> temp( x.size() );
 		for ( std::size_t i = 0; i != x.size(); i++) {
@@ -177,10 +173,10 @@ namespace Luna
 	}
 
 	template <typename T>
-	inline T Chebyshev<T>::gegenbauer( const T& x, const std::size_t& n,
-																		 const std::size_t& m )
+	inline T Chebyshev<T>::gegenbauer( const T& x, const int& n,
+																		 const int& m )
 	{
-		if ( n == 0 ){
+		if ( n <= 0 ){
 			return 1;
 		}
 		if ( n == 1 ){
