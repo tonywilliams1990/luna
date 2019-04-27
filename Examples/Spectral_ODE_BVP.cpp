@@ -1,7 +1,13 @@
 /// \file  Spectral_ODE_BVP.cpp
 /// \ingroup Examples
-/// TODO full description including equations
-
+/// The equation \f[ u''(x) - (x^6 + 3x^2)u(x) = 0 \f] is solved subject to the
+/// boundary conditions \f$ u(-1) = u(1) = 0. \f$ The system is solved using a
+/// Chebyshev spectral method. The solution \f$ u(x) \f$ is symmetric so only
+/// even Chebyshev polynomials are needed to approximate the solution. The exact
+/// solution is given by \f[ u(x) = \exp \left[ \frac{x^4 - 1}{4} \right]. \f]
+/// The spectral solution is found on \f$ x \in [0,1] \f$ and then because the
+/// solution is symmetric this gives the solution in the entire domain
+/// \f$ x \in [-1,1]. \f$
 
 #include "Luna/Core"
 #include "Luna/ODE"
@@ -23,12 +29,14 @@ int main()
 {
   cout << "------------------- Spectral_ODE_BVP ------------------" << endl;
 
-  //TODO introduce the program - actually should only use even Chebyshev functions
-  // as the solution is symmetric
+  cout << " * The equation u'' + (x^6 + 3x^2)u = 0 is solved " << endl
+       << " * subject to the boundary conditions u(-1) = u(1) = 0." << endl
+       << " * Only symmetric even Chebyshev polynomials are used in" << endl
+       << " * the spectral solution. " << endl;
 
-  int n( 2 );         // Number of spectral coefficients
-  int N( 100 );        // Number of output points
-  int num_out( 4 );     // Number of different n values
+  int n( 1 );           // Number of spectral coefficients
+  int N( 100 );         // Number of output points
+  int num_out( 3 );     // Number of different n values
   int step( 2 );
 
   Vector<int> n_values;
@@ -51,57 +59,49 @@ int main()
   {
 
     Vector<double> x;
-    x.lobatto_grid( n );
+    x.half_lobatto_grid( n );
 
     Matrix<double> L( n, n, 0.0 );
     Vector<double> F( n ), a( n );
     Chebyshev<double> cheby;
 
-    // x = -1 boundary u(-1) = 1
+    // x = 1 boundary u(1) = 1
     for ( std::size_t j = 0; j < n; j++ )
     {
-      L( 0, j ) = cheby( - 1.0, j );
+      L( 0, j ) = cheby( 1.0, 2 * j );
     }
     F[ 0 ] = 1.0;
 
-    // Internal nodes
-    for ( std::size_t i = 1; i < n - 1; i++ )
+    // Internal nodes and x = 0 symmetric boundary
+    for ( std::size_t i = 1; i < n; i++ )
     {
       double xi = x[ i ];
       double xi2 = xi * xi;
       double xi6 = std::pow( xi, 6 );
       for ( std::size_t j = 0; j < n; j ++ )
       {
-        L( i, j ) = cheby( xi, j, 2 );                       // u_xx
-        L( i, j ) += - ( xi6 + 3 * xi2 ) * cheby( xi, j );   // (x^6 + 3x^2) * u
+        L( i, j ) = cheby( xi, 2 * j, 2 );                     // u_xx
+        L( i, j ) += - ( xi6 + 3 * xi2 ) * cheby( xi, 2 * j ); // (x^6 + 3x^2)u
       }
       F[ i ] = 0.0;
     }
 
-    // x = 1 boundary u(1) = 1
-    for ( std::size_t j = 0; j < n; j++ )
-    {
-      L( n - 1, j ) = cheby( 1.0, j );
-    }
-    F[ n - 1 ] = 1.0;
-
     // Solve the system for the spectral coefficients
     a = L.solve( F );
 
-    Spectral<double> spectral( a, "Chebyshev" );
+    Spectral<double> spectral( a, "EvenChebyshev" );
     numerical = spectral( grid );
 
     Vector<double> diff;
     diff = exact - numerical;
-    cout << " * ||u - u_spectral|| ( n = " << n << " ) = " << std::scientific
-         << diff.norm_2() << endl;
+    cout << " * ||u_exact - u_spectral|| ( n = " << n << " ) = "
+         << std::scientific << diff.norm_2() << endl;
 
     for ( std::size_t i = 0; i < N; i++ )
     {
       solution( i, 1 + counter ) = spectral( grid[ i ] );
     }
     n_values.push_back( n );
-
     n += step;
     counter++;
 
@@ -109,7 +109,7 @@ int main()
 
   solution.output( "./DATA/Spectral_ODE_BVP.dat" );
 
-  cout << " * For a comparison of the spectral solutions run: " << endl;
+  cout << " * For a comparison of the spectral/exact solutions run: " << endl;
   cout << "python Plotting/Spectral_ODE_BVP_plot.py --n";
   for ( std::size_t i = 0; i < n_values.size(); i++ )
   {

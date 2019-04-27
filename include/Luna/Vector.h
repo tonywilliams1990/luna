@@ -258,6 +258,11 @@ namespace Luna
     /// \param n Number of elements
     void lobatto_grid( const std::size_t& n );
 
+    /// Create a Vector of size n containing the Gauss-Lobatto or
+    /// Extrema-plus-Endpoints collocation points between 0 and 1
+    /// \param n Number of elements
+    void half_lobatto_grid( const std::size_t& n );
+
     /// Product of the elements in the Vector (from index start to end)
     /// \param start Start index
     /// \param end End index
@@ -788,6 +793,16 @@ namespace Luna
     for ( std::size_t i=0; i < n; ++i )
 		{
 			VECTOR[ i ] = std::cos( M_PI * i / ( n - 1.0 ) );
+		}
+  }
+
+  template <>
+  inline void Vector<double>::half_lobatto_grid( const std::size_t& n )
+  {
+    VECTOR.resize( n );
+    for ( std::size_t i=0; i < n; ++i )
+		{
+			VECTOR[ i ] = std::cos( 0.5 * M_PI * i / ( n - 1.0 ) );
 		}
   }
 
