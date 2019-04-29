@@ -10,7 +10,10 @@ namespace Luna
 {
   namespace Example
   {
-
+    double function( const double& x )
+    {
+      return std::sinh( x );
+    }
   } // End of namespace Example
 } // End of namespace Luna
 
@@ -24,38 +27,41 @@ int main()
 
   Basis<double> basis_function;
 
+  int N( 4 );
   Vector<double> x;
-  x.lobatto_grid( 7 );
-  cout << " x (Lobatto) = " << x << endl;
-  //x.chebyshev_grid( 7 );
-  //cout << " x (Chebyshev) = " << x << endl;
+  x.chebyshev_grid( N );
+  cout << " x (Chebyshev) = " << x << endl;
+
 
   Chebyshev<double> cheby;
 
-  cout << " cheby( 0.5, 3 ) = " << cheby( 0.5, 3 ) << endl;
+  /*cout << " cheby( 0.5, 3 ) = " << cheby( 0.5, 3 ) << endl;
   cout << " cheby( x, 3 ) = " << cheby( x, 3 ) << endl;
   cout << " gegenbauer( 0.0, 4, 2 ) = " << cheby.gegenbauer( 0.0, 4, 2 ) << endl;
   cout << " cheby( 1.0, 3, 1 ) = " << cheby( 1.0, 3, 1 ) << endl;
-  cout << " cheby( x, 3, 1 ) = " << cheby( x, 3, 1 ) << endl;
+  cout << " cheby( x, 3, 1 ) = " << cheby( x, 3, 1 ) << endl;*/
 
-  Vector<double> coefficients( 3, 1.0 );
+  Vector<double> c( N, 0.0 );
 
-  Spectral<double> spectral( coefficients, "Chebyshev" );
+  for ( std::size_t j = 0; j < N; j++ )
+  {
+    double sum( 0.0 );
+    for ( std::size_t k = 0; k < N; k++ )
+    {
+      sum += Example::function( x[ k ] ) * std::cos( ( j * M_PI * ( k + 0.5 ) ) / N );
+    }
+    c[ j ] = ( 2.0 / N ) * sum;
+  }
 
-  cout << "spectral.get_basis() = " << spectral.get_basis() << endl;
-  cout << "spectral( 0.2 ) = " << spectral( 0.2 ) << endl;
-  cout << "spectral( x ) = " << spectral( x ) << endl;
+  cout << " c = " << c << endl;
 
-  cout << "spectral( 0.2, 1 ) = " << spectral( 0.2, 1 ) << endl;
-  cout << "spectral( x, 1 ) = " << spectral( x, 1 ) << endl;
+  c = cheby.approximate_odd( Example::function, N / 2 );
 
-  coefficients[ 0 ] = 2.0;
-  spectral.set_coefficients( coefficients );
-  spectral[ 1 ] = 3.14;
-  spectral.push_front( 7.45 );
+  cout << " c = " << c << endl;
 
-  cout << "spectral.get_coefficients() = " << spectral.get_coefficients() << endl;
-  cout << "spectral[ 2 ] = " << spectral[ 2 ] << endl;
+  Spectral<double> spectral( c, "Chebyshev" );
+
+
 
   cout << "--- FINISHED ---" << endl;
 }

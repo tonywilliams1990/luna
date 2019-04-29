@@ -118,7 +118,8 @@ namespace Luna
 	Spectral<T>::Spectral( const Vector<T>& coefficients,
 												 const std::string& basis )
 	{
-		if ( basis != "Chebyshev" && basis != "EvenChebyshev" )//&& basis != "Fourier" )
+		if ( basis != "Chebyshev" && basis != "EvenChebyshev"
+		  && basis != "OddChebyshev" )//&& basis != "Fourier" )
 		{
 			std::string problem;
 			problem += "Spectral set_basis error: The basis function " + basis + "\n";
@@ -155,6 +156,15 @@ namespace Luna
 			}
 		}
 
+		if ( BASIS == "OddChebyshev" )
+		{
+			Chebyshev<T> basis;
+			for ( std::size_t n = 0; n < N; ++n )
+			{
+				temp += basis( x, 2 * n + 1 ) * COEFFICIENTS[ n ];
+			}
+		}
+
 		return temp;
 	}
 
@@ -179,6 +189,15 @@ namespace Luna
 			for ( std::size_t n = 0; n < N; ++n )
 			{
 				temp += basis( x, 2 * n ) * COEFFICIENTS[ n ];
+			}
+		}
+
+		if ( BASIS == "OddChebyshev" )
+		{
+			Chebyshev<T> basis;
+			for ( std::size_t n = 0; n < N; ++n )
+			{
+				temp += basis( x, 2 * n + 1 ) * COEFFICIENTS[ n ];
 			}
 		}
 
@@ -209,6 +228,15 @@ namespace Luna
 			}
 		}
 
+		if ( BASIS == "OddChebyshev" )
+		{
+			Chebyshev<T> basis;
+			for ( int n = 0; n < N; ++n )
+			{
+				temp += basis( x, 2 * n + 1, d ) * COEFFICIENTS[ n ];
+			}
+		}
+
 		return temp;
 	}
 
@@ -233,6 +261,15 @@ namespace Luna
 			for ( std::size_t n = 0; n < N; ++n )
 			{
 				temp += basis( x, 2 * n, d ) * COEFFICIENTS[ n ];
+			}
+		}
+
+		if ( BASIS == "OddChebyshev" )
+		{
+			Chebyshev<T> basis;
+			for ( std::size_t n = 0; n < N; ++n )
+			{
+				temp += basis( x, 2 * n + 1, d ) * COEFFICIENTS[ n ];
 			}
 		}
 
@@ -270,7 +307,8 @@ namespace Luna
 	template <typename T>
 	void Spectral<T>::set_basis( const std::string& basis )
 	{
-		if ( basis != "Chebyshev" )//&& basis != "Fourier" )
+		if ( basis != "Chebyshev" && basis != "EvenChebyshev"
+		  && basis != "OddChebyshev" )//&& basis != "Fourier" )
 		{
 			std::string problem;
 			problem += "Spectral set_basis error: The basis function " + basis + "\n";

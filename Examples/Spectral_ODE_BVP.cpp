@@ -3,7 +3,8 @@
 /// The equation \f[ u''(x) - (x^6 + 3x^2)u(x) = 0 \f] is solved subject to the
 /// boundary conditions \f$ u(-1) = u(1) = 0. \f$ The system is solved using a
 /// Chebyshev spectral method. The solution \f$ u(x) \f$ is symmetric so only
-/// even Chebyshev polynomials are needed to approximate the solution. The exact
+/// even Chebyshev polynomials are needed to approximate the solution such that
+/// \f[ u(x) \approx u_N(x) = \sum_{i=0}^N a_i T_{2i}(x) .\f] The exact
 /// solution is given by \f[ u(x) = \exp \left[ \frac{x^4 - 1}{4} \right]. \f]
 /// The spectral solution is found on \f$ x \in [0,1] \f$ and then because the
 /// solution is symmetric this gives the solution in the entire domain

@@ -94,6 +94,29 @@ namespace Luna
 			/// \return The value of the Gegenbauer polynomial at x
 			T gegenbauer( const T& x, const int& n, const int& m );
 
+			/// Approximate a given function by a Chebyshev polynomial in the
+			/// interval [-1, 1]
+			/// \param func The function to be approximated
+			/// \param N The number of Chebyshev coefficients to calculate
+			/// \return A Vector containing the Chebyshev coefficients
+			Vector<T> approximate( T func( const T& ), const int& N );
+
+			//TODO fast cosine transform to improve speed ???
+
+			/// Approximate a given function by an even Chebyshev polynomial in the
+			/// interval [-1, 1]
+			/// \param func The function to be approximated
+			/// \param N The number of even Chebyshev coefficients to calculate
+			/// \return A Vector containing the even Chebyshev coefficients
+			Vector<T> approximate_even( T func( const T& ), const int& N );
+
+			/// Approximate a given function by an odd Chebyshev polynomial in the
+			/// interval [-1, 1]
+			/// \param func The function to be approximated
+			/// \param N The number of odd Chebyshev coefficients to calculate
+			/// \return A Vector containing the odd Chebyshev coefficients
+			Vector<T> approximate_odd( T func( const T& ), const int& N );
+
 
   }; // End of class Chebyshev
 
@@ -187,6 +210,64 @@ namespace Luna
 							- ( n + 2 * m - 2 ) * gegenbauer( x, n - 2, m ) )
 							/ ( 1.0 * n );
 		}
+	}
+
+	template <typename T>
+	inline Vector<T> Chebyshev<T>::approximate( T func( const T& ), const int& N )
+	{
+		Vector<T> c( N );
+		Vector<double> x;
+		x.chebyshev_grid( N );
+		for ( std::size_t j = 0; j < N; j++ )
+		{
+			T sum( 0.0 );
+			for ( std::size_t k = 0; k < N; k++ )
+			{
+				sum += func( x[ k ] ) * std::cos( ( j * M_PI * ( k + 0.5 ) ) / N );
+			}
+			c[ j ] = ( 2.0 / N ) * sum;
+		}
+		return c;
+	}
+
+	template <typename T>
+	inline Vector<T> Chebyshev<T>::approximate_even( T func( const T& ),
+																									 const int& N )
+	{
+		Vector<T> c( N );
+		Vector<double> x;
+		x.chebyshev_grid( 2 * N );
+		for ( std::size_t j = 0; j < N; j++ )
+		{
+			T sum( 0.0 );
+			for ( std::size_t k = 0; k < 2 * N; k++ )
+			{
+				sum += func( x[ k ] ) * std::cos( ( 2 * j * M_PI * ( k + 0.5 ) )
+																				/ ( 2. * N ) );
+			}
+			c[ j ] = ( 2.0 / ( 2. * N ) ) * sum;
+		}
+		return c;
+	}
+
+	template <typename T>
+	inline Vector<T> Chebyshev<T>::approximate_odd( T func( const T& ),
+																									const int& N )
+	{
+		Vector<T> c( N );
+		Vector<double> x;
+		x.chebyshev_grid( 2 * N );
+		for ( std::size_t j = 0; j < N; j++ )
+		{
+			T sum( 0.0 );
+			for ( std::size_t k = 0; k < 2 * N; k++ )
+			{
+				sum += func( x[ k ] ) * std::cos( ( ( 2 * j + 1 ) * M_PI *
+																					( k + 0.5 ) ) / ( 2. * N ) );
+			}
+			c[ j ] = ( 2.0 / ( 2. * N ) ) * sum;
+		}
+		return c;
 	}
 
 

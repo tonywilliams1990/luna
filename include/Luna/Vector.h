@@ -253,6 +253,11 @@ namespace Luna
     /// \param n Number of elements
     void chebyshev_grid( const std::size_t& n );
 
+    /// Create a Vector of size n containing the Gauss-Chebyshev or Roots
+    /// collocation points between 0 and 1
+    /// \param n Number of elements
+    void half_chebyshev_grid( const std::size_t& n );
+
     /// Create a Vector of size n containing the Gauss-Lobatto or
     /// Extrema-plus-Endpoints collocation points between -1 and +1
     /// \param n Number of elements
@@ -783,6 +788,16 @@ namespace Luna
     for ( std::size_t i=1; i <= n; ++i )
 		{
 			VECTOR[ i - 1 ] = std::cos( M_PI * ( 2 * i - 1 ) / ( 2.0 * n ) );
+		}
+  }
+
+  template <>
+  inline void Vector<double>::half_chebyshev_grid( const std::size_t& n )
+  {
+    VECTOR.resize( n );
+    for ( std::size_t i=1; i <= n; ++i )
+		{
+			VECTOR[ i - 1 ] = std::cos( 0.5 * M_PI * ( 2 * i - 1 ) / ( 2.0 * n ) );
 		}
   }
 
