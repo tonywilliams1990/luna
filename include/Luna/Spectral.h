@@ -96,6 +96,15 @@ namespace Luna
 			/// \param coeffs The Vector of coefficients
 			void set_coefficients( const Vector<T>& coeffs );
 
+			/// Update the spectral coefficients (add a Vector to the Vector of
+			/// coefficients)
+			/// \param update The Vector to be added to the Vector of coefficients
+			void update_coefficients( const Vector<T>& update )
+			{
+				//TODO check the size
+				COEFFICIENTS += update;
+			}
+
 			/// Add a new coefficient to the back of the Vector of coefficients
 			/// \param new_elem New element to be appended to the end of the Vector
 			/// of coefficients

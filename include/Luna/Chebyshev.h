@@ -101,7 +101,7 @@ namespace Luna
 			/// \return A Vector containing the Chebyshev coefficients
 			Vector<T> approximate( T func( const T& ), const int& N );
 
-			//TODO fast cosine transform to improve speed ???
+			//TODO fast cosine transform to improve speed ??? NR
 
 			/// Approximate a given function by an even Chebyshev polynomial in the
 			/// interval [-1, 1]
@@ -145,20 +145,28 @@ namespace Luna
 	template <typename T>
 	inline T Chebyshev<T>::operator()( const T& x, const int& n, const int& d )
 	{
-		return n * std::pow( 2.0, d - 1 ) * factorial( d - 1 )
-						 * gegenbauer( x, n - d, d );
+		if ( n < d ){
+			return 0;
+		} else {
+			return n * std::pow( 2.0, d - 1 ) * factorial( d - 1 )
+						 	 * gegenbauer( x, n - d, d );
+		}
 	}
 
 	template <typename T>
 	inline Vector<T> Chebyshev<T>::operator()( const Vector<T>& x, const int& n,
 																						 const int& d )
 	{
-		Vector<T> temp( x.size() );
-		for ( std::size_t i = 0; i != x.size(); i++) {
-			temp[ i ] = n * std::pow( 2.0, d - 1 ) * factorial( d - 1 )
-										* gegenbauer( x[ i ], n - d, d );
+		Vector<T> temp( x.size(), 0 );
+		if ( n < d ){
+			return temp;
+		} else {
+			for ( std::size_t i = 0; i != x.size(); i++) {
+				temp[ i ] = n * std::pow( 2.0, d - 1 ) * factorial( d - 1 )
+											* gegenbauer( x[ i ], n - d, d );
+			}
+			return temp;
 		}
-		return temp;
 	}
 
 	template <typename T>

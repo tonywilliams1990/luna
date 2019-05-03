@@ -1,7 +1,7 @@
 /// \file  Spectral_ODE_BVP.cpp
 /// \ingroup Examples
 /// The equation \f[ u''(x) - (x^6 + 3x^2)u(x) = 0 \f] is solved subject to the
-/// boundary conditions \f$ u(-1) = u(1) = 0. \f$ The system is solved using a
+/// boundary conditions \f$ u(-1) = u(1) = 1. \f$ The system is solved using a
 /// Chebyshev spectral method. The solution \f$ u(x) \f$ is symmetric so only
 /// even Chebyshev polynomials are needed to approximate the solution such that
 /// \f[ u(x) \approx u_N(x) = \sum_{i=0}^N a_i T_{2i}(x) .\f] The exact

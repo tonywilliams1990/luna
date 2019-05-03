@@ -86,7 +86,7 @@ demonstrate how the code can be used.
 7. Nonlinear_ODE_BVP - test ODE_BVP and BandedMatrix (inside ODE_BVP)	       [x]
 8. Arclength_Falkner - test arclength solving in ODE_BVP                      []
 9. Spectral_ODE_BVP - test Spectral and Chebyshev (Even)                     [x]
-10. Spectral_Odd - test Spectral and Chebyshev (Odd)                          []
+10. Spectral_ODE_Nonlinear - test Spectral and Chebyshev (Odd)                []
 11. Spectral_ODE_Periodic - test Fourier basis                                [] ??? Better name ???
 12. Spectral_ODE_Rational - test RationalChebyshev basis                      [] ??? Better name ???
 13. Spectral_Poisson - test PDE solution using spectral methods               [] 

@@ -27,7 +27,7 @@ int main()
 
   Basis<double> basis_function;
 
-  int N( 4 );
+  int N( 6 );
   Vector<double> x;
   x.chebyshev_grid( N );
   cout << " x (Chebyshev) = " << x << endl;
@@ -35,13 +35,13 @@ int main()
 
   Chebyshev<double> cheby;
 
-  /*cout << " cheby( 0.5, 3 ) = " << cheby( 0.5, 3 ) << endl;
+  cout << " cheby( 0.5, 3 ) = " << cheby( 0.5, 3 ) << endl;
   cout << " cheby( x, 3 ) = " << cheby( x, 3 ) << endl;
   cout << " gegenbauer( 0.0, 4, 2 ) = " << cheby.gegenbauer( 0.0, 4, 2 ) << endl;
-  cout << " cheby( 1.0, 3, 1 ) = " << cheby( 1.0, 3, 1 ) << endl;
-  cout << " cheby( x, 3, 1 ) = " << cheby( x, 3, 1 ) << endl;*/
+  cout << " cheby( 1.0, 3, 1 ) = " << cheby( 0.1, 1, 2 ) << endl;
+  cout << " cheby( x, 3, 1 ) = " << cheby( x, 3, 1 ) << endl;
 
-  Vector<double> c( N, 0.0 );
+  /*Vector<double> c( N, 0.0 );
 
   for ( std::size_t j = 0; j < N; j++ )
   {
@@ -57,9 +57,9 @@ int main()
 
   c = cheby.approximate_odd( Example::function, N / 2 );
 
-  cout << " c = " << c << endl;
+  cout << " c = " << std::scientific << c << endl;
 
-  Spectral<double> spectral( c, "Chebyshev" );
+  Spectral<double> spectral( c, "OddChebyshev" );*/
 
 
 
