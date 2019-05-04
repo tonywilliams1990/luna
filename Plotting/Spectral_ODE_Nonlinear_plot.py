@@ -1,10 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from itertools import cycle
-import argparse
-
-lines = ["-","--","-.",":"]
-linecycler = cycle(lines)
 
 data = np.loadtxt( "./DATA/Spectral_ODE_Nonlinear.dat" )
 x = data[:,0]
@@ -17,8 +12,7 @@ print "max_error = ", max_error
 
 plt.figure()
 plt.plot( x, u_exact, 'r', label="exact" )
-line = next(linecycler)
-plt.plot( x, u_spectral, c='k', linestyle=line, label="spectral" )
+plt.plot( x, u_spectral, 'k', label="spectral" )
 plt.legend()
 
 plt.figure()
