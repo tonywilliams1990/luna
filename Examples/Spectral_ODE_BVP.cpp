@@ -89,6 +89,8 @@ int main()
       F[ i ] = 0.0;
     }
 
+    cout << " L = " << L << endl;
+
     // Solve the system for the spectral coefficients
     a = L.solve( F );
 

@@ -38,32 +38,97 @@ int main()
 
   Matrix<double> L( size, size, 0.0 );
   Vector<double> F( size ), a( size );
+  Chebyshev<double> cheby;
 
   double xi, yj;
-
-  // x = -1 boundary u = y^2 (left)
-  xi = x[ I - 1 ];
-  cout << xi << endl;
+  int f, g, i, j;
 
 
-  //loop over internal nodes
+  for ( int M = 0; M < size; M++ )
+  {
+    i = M / J;
+    j = M % J;
+    //cout << " i, j = " << i << ", " << j;
 
+    xi = x[ I - ( i + 1 ) ];
+    yj = y[ J - ( j + 1 ) ];
 
-  // y = -1 boundary u = x^2 (bottom)
+    //cout << "\t x, y = " << xi << ", " << yj << endl;
 
-  // Internal nodes
+    // x = -1 boundary u = y^2 (left)
+    if ( i == 0 )
+    {
+      for ( int N = 0; N < size; N++ )
+      {
+        f = N / J;
+        g = N % J;
+        L( M, N ) = cheby( -1.0, f ) * cheby( yj, g );
+      }
+      F[ M ] = yj * yj;
+    }
 
-  // y = 1 boundary u = x^2 (top)
+    // y = -1 boundary u = x^2 (bottom)
+    if ( j == 0 && i != 0 && i != I - 1 )
+    {
+      for ( int N = 0; N < size; N++ )
+      {
+        f = N / J;
+        g = N % J;
+        L( M, N ) = cheby( xi, f ) * cheby( -1.0, g );
+      }
+      F[ M ] = xi * xi;
+    }
 
+    // Internal nodes
+    if ( i != 0 && i != I - 1 && j != 0 && j != J - 1 )
+    {
+      for ( int N = 0; N < size; N++ )
+      {
+        f = N / J;
+        g = N % J;
+        L( M, N )  = cheby( xi, f, 2 ) * cheby( yj, g ); // u_xx
+        L( M, N ) += cheby( xi, f ) * cheby( yj, g, 2 ); // u_yy
+      }
+      F[ M ] = 2 * ( xi * xi + yj * yj );
+    }
 
-  // x = 1 boundary u = y^2 (right)
+    // y = 1 boundary u = x^2 (top)
+    if ( j == J - 1 && i != 0 && i != I - 1 )
+    {
+      for ( int N = 0; N < size; N++ )
+      {
+        f = N / J;
+        g = N % J;
+        L( M, N ) = cheby( xi, f ) * cheby( 1.0, g );
+      }
+      F[ M ] = xi * xi;
+    }
 
+    // x = 1 boundary u = y^2 (right)
+    if ( i == I - 1 )
+    {
+      for ( int N = 0; N < size; N++ )
+      {
+        f = N / J;
+        g = N % J;
+        L( M, N ) = cheby( 1.0, f ) * cheby( yj, g );
+      }
+      F[ M ] = yj * yj;
+    }
+
+  }
+
+  //TODO 1 inner N loop with if statements
 
   // Solve the system for the spectral coefficients
+  a = L.solve( F );
 
   cout << " L = " << L << endl;
   cout << " F = " << F << endl;
   cout << " a = " << a << endl;
+
+  // TODO output to a 2D mesh + compare with exact u = x^2 * y^2
+  // Solution is very symmetrical = lots of 0 coefficients 
 
   cout << "--- FINISHED ---" << endl;
 }
