@@ -61,7 +61,5 @@ int main()
 
   Spectral<double> spectral( c, "OddChebyshev" );*/
 
-
-
   cout << "--- FINISHED ---" << endl;
 }
