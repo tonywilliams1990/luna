@@ -163,7 +163,7 @@ int main()
 
   solution.output( "./DATA/Spectral_Poisson.dat" );
   cout << " * For a comparison of the spectral/exact solutions run: " << endl;
-  cout << "python Plotting/Spectral_Poisson_plot.py" << endl;
+  cout << "python Plotting/Spectral_Poisson_plot.py" << endl; 
 
   cout << "--- FINISHED ---" << endl;
 }
