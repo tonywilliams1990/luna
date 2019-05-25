@@ -88,7 +88,7 @@ demonstrate how the code can be used.
 9. Spectral_ODE_BVP - test Spectral and Chebyshev (Even)                     [x]
 10. Spectral_ODE_Nonlinear - test Spectral and Chebyshev (Odd)               [x]
 12. Spectral_ODE_Rational - test RationalChebyshev basis                      [] ??? Better name ???
-13. Spectral_Poisson - test PDE solution using spectral methods               [] 
+13. Spectral_Poisson - test PDE solution using spectral methods              [x] 
 
 ***** General TODO *****
 1. Cholesky decomposition - Hermitian Matrices (or just real symmetric?)	
