@@ -27,7 +27,7 @@ int main()
 
   Basis<double> basis_function;
 
-  int N( 6 );
+  int N( 5 );
   Vector<double> x;
   x.chebyshev_grid( N );
   cout << " x (Chebyshev) = " << x << endl;
@@ -60,6 +60,19 @@ int main()
   cout << " c = " << std::scientific << c << endl;
 
   Spectral<double> spectral( c, "OddChebyshev" );*/
+
+  double L( 3.0 );
+  RationalSemi<double> rationalsemi( L );
+  Vector<double> y;
+  y.rational_semi_grid( N, L );
+  cout << " y (Rational Chebyshev Semi) = " << y << endl;
+  y.push_back( 0.0 );
+  cout << " y (Rational Chebyshev Semi) = " << y << endl;
+
+  cout << " rationalsemi( 0.5, 1 ) = " << rationalsemi( 0.5, 1 ) << endl;
+  cout << " rationalsemi( y, 1 ) = " << rationalsemi( y, 1 ) << endl;
+  cout << " rationalsemi( 0.5, 2, 2 ) = " << rationalsemi( 0.5, 2, 2 ) << endl;
+  cout << " rationalsemi( y, 2, 2 ) = " << rationalsemi( y, 2, 2 ) << endl;
 
   cout << "--- FINISHED ---" << endl;
 }

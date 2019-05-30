@@ -2,3 +2,4 @@
 #include "Basis.h"
 #include "Chebyshev.h"
 #include "Spectral.h"
+#include "RationalSemi.h"
