@@ -65,7 +65,7 @@ Luna aims to be a header-only library of numerical routines written in C++.
 1. Basis - a base class defining basis functions to be inherited             [x]
 2. Chebyshev - a class defining Chebyshev polynomials (inherit from basis)	 [x]
 3. Spectral - a class defining spectral solutions (basis + coefficients)     [x]
-4. solve method in ODE_BVP for solving using spectral methods                 []
+4. RationalSemi - a class for semi-infinite rational Chebyshev polynomials   [x]
 5. solve PDEs using spectral method                                           []
 6. Fourier - a class defining a Fourier basis (inherit from basis)            []
 7. method in Vector to create collocation points                              []

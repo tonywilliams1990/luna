@@ -81,7 +81,7 @@ int main()
       double xi = x[ i ];
       double xi2 = xi * xi;
       double xi6 = std::pow( xi, 6 );
-      for ( std::size_t j = 0; j < n; j ++ )
+      for ( std::size_t j = 0; j < n; j++ )
       {
         L( i, j ) = cheby( xi, 2 * j, 2 );                     // u_xx
         L( i, j ) += - ( xi6 + 3 * xi2 ) * cheby( xi, 2 * j ); // (x^6 + 3x^2)u
