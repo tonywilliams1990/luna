@@ -184,67 +184,63 @@ namespace Luna
 	template <typename T>
 	inline T RationalSemi<T>::derivative( const T& y, const int& n, const int& d )
 	{
-		if ( n < d ){
-			return 0;
-		} else {
-			if ( d == 1 )
-			{
-				Chebyshev<T> cheby;
-				T x( ( y - L ) / ( y + L ) );
-				T dxdy( 2 * L / std::pow( y + L, 2 ) );
-				return dxdy * cheby( x, n, 1 );
+		if ( d == 1 )
+		{
+			Chebyshev<T> cheby;
+			T x( ( y - L ) / ( y + L ) );
+			T dxdy( 2 * L / std::pow( y + L, 2 ) );
+			return dxdy * cheby( x, n, 1 );
 
-				/*T t, s, c;
-				t = 2 * std::atan( std::sqrt( L / y ) );
-				s = std::sin( t / 2 );
-				c = std::cos( t / 2 );
-				return n * s * s * s * std::sin( n * t ) / ( L * c );*/
-			}
-			if ( d == 2 )
-			{
-				Chebyshev<T> cheby;
-				T x( ( y - L ) / ( y + L ) );
-				T dxdy( 2 * L / std::pow( y + L, 2 ) );
-				T d2xdy2( - 4 * L / std::pow( y + L, 3 ) );
-				return dxdy * dxdy * cheby( x, n, 2 ) + d2xdy2 * cheby( x, n, 1 );
+			/*T t, s, c;
+			t = 2 * std::atan( std::sqrt( L / y ) );
+			s = std::sin( t / 2 );
+			c = std::cos( t / 2 );
+			return n * s * s * s * std::sin( n * t ) / ( L * c );*/
+		}
+		if ( d == 2 )
+		{
+			Chebyshev<T> cheby;
+			T x( ( y - L ) / ( y + L ) );
+			T dxdy( 2 * L / std::pow( y + L, 2 ) );
+			T d2xdy2( - 4 * L / std::pow( y + L, 3 ) );
+			return dxdy * dxdy * cheby( x, n, 2 ) + d2xdy2 * cheby( x, n, 1 );
 
-				/*T t, s, c;
-			 	t = 2 * std::atan( std::sqrt( L / y ) );
-			 	s = std::sin( t / 2 );
-			 	c = std::cos( t / 2 );
-				return std::pow( s, 5 ) * ( 2 * c * s * ( - n * n * std::cos( n * t ) )
-							 + ( 3 - 2 * s * s ) * ( - n * std::sin( n * t ) ) )
-							 / ( 2 * L * L * std::pow( c, 3 ) );*/
-			}
-			if ( d == 3 )
-			{
-				Chebyshev<T> cheby;
-				T x( ( y - L ) / ( y + L ) );
-				T dxdy( 2 * L / std::pow( y + L, 2 ) );
-				T d2xdy2( - 4 * L / std::pow( y + L, 3 ) );
-				T d3xdy3( 12 * L / std::pow( y + L, 4 ) );
-				return std::pow( dxdy, 3 ) * cheby( x, n, 3 ) +
-							 3 * dxdy * d2xdy2 * cheby( x, n, 2 ) + d3xdy3 * cheby( x, n, 1 );
-			}
-			if ( d == 4 )
-			{
-				Chebyshev<T> cheby;
-				T x( ( y - L ) / ( y + L ) );
-				T dxdy( 2 * L / std::pow( y + L, 2 ) );
-				T d2xdy2( - 4 * L / std::pow( y + L, 3 ) );
-				T d3xdy3( 12 * L / std::pow( y + L, 4 ) );
-				T d4xdy4( - 48 * L / std::pow( y + L, 5 ) );
-				return std::pow( dxdy, 4 ) * cheby( x, n, 4 ) +
-							 6 * dxdy * dxdy * d2xdy2 * cheby( x, n, 3 ) +
-							 ( 4 * dxdy * d3xdy3 + 3 * d2xdy2 * d2xdy2 ) * cheby( x, n, 2 ) +
-							 d4xdy4 * cheby( x, n, 1 );
-			}
-			else {
-				std::string problem;
-				problem += "RationalSemi: Only upto the 4th derivative has been";
-				problem += "implemented so far.";
-				throw Error( problem );
-			}
+			/*T t, s, c;
+		 	t = 2 * std::atan( std::sqrt( L / y ) );
+		 	s = std::sin( t / 2 );
+		 	c = std::cos( t / 2 );
+			return std::pow( s, 5 ) * ( 2 * c * s * ( - n * n * std::cos( n * t ) )
+						 + ( 3 - 2 * s * s ) * ( - n * std::sin( n * t ) ) )
+						 / ( 2 * L * L * std::pow( c, 3 ) );*/
+		}
+		if ( d == 3 )
+		{
+			Chebyshev<T> cheby;
+			T x( ( y - L ) / ( y + L ) );
+			T dxdy( 2 * L / std::pow( y + L, 2 ) );
+			T d2xdy2( - 4 * L / std::pow( y + L, 3 ) );
+			T d3xdy3( 12 * L / std::pow( y + L, 4 ) );
+			return std::pow( dxdy, 3 ) * cheby( x, n, 3 ) +
+						 3 * dxdy * d2xdy2 * cheby( x, n, 2 ) + d3xdy3 * cheby( x, n, 1 );
+		}
+		if ( d == 4 )
+		{
+			Chebyshev<T> cheby;
+			T x( ( y - L ) / ( y + L ) );
+			T dxdy( 2 * L / std::pow( y + L, 2 ) );
+			T d2xdy2( - 4 * L / std::pow( y + L, 3 ) );
+			T d3xdy3( 12 * L / std::pow( y + L, 4 ) );
+			T d4xdy4( - 48 * L / std::pow( y + L, 5 ) );
+			return std::pow( dxdy, 4 ) * cheby( x, n, 4 ) +
+						 6 * dxdy * dxdy * d2xdy2 * cheby( x, n, 3 ) +
+						 ( 4 * dxdy * d3xdy3 + 3 * d2xdy2 * d2xdy2 ) * cheby( x, n, 2 ) +
+						 d4xdy4 * cheby( x, n, 1 );
+		}
+		else {
+			std::string problem;
+			problem += "RationalSemi: Only upto the 4th derivative has been";
+			problem += "implemented so far.";
+			throw Error( problem );
 		}
 	}
 
