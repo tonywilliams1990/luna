@@ -29,6 +29,9 @@ namespace Luna
 
     public:
 
+			/// Empty constructor ( L = 1.0 )
+			RationalSemi();
+
       /// Constructor
 			/// \param l The map parameter
 			RationalSemi( const double& l );
@@ -115,6 +118,13 @@ namespace Luna
 
 
   }; // End of class Chebyshev
+
+	template <typename T>
+	RationalSemi<T>::RationalSemi()
+	{
+		L = 1.0;
+		this->set_identifier( "RationalSemi" );
+	}
 
 	template <typename T>
 	RationalSemi<T>::RationalSemi( const double& l )

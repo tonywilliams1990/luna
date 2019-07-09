@@ -13,7 +13,7 @@ f_max = 2
 plt.figure()
 plt.plot( eta, f, 'k-', label="f" )
 plt.plot( eta, f_d, 'k--', label="f'" )
-plt.plot( eta, f_dd, 'k:', label="f''")
+plt.plot( eta, f_dd, 'k:', label="f''" )
 plt.legend()
 
 axes = plt.gca()

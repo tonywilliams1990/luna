@@ -145,6 +145,7 @@ namespace Luna
 	template <typename T>
 	inline T Chebyshev<T>::operator()( const T& x, const int& n, const int& d )
 	{
+		/// \todo TODO specialise the differential operator for lower derivatives
 		if ( n < d ){
 			return 0;
 		} else {
@@ -188,8 +189,25 @@ namespace Luna
 		if ( n == 1 ){
 			return x;
 		}
+		if ( n == 2 ){
+			return 2 * x * x - 1.0;
+		}
 		else {
-			return 2 * x * first_kind( x, n - 1 ) - first_kind( x, n - 2 );
+			/* Could use the recursuve definition
+				return 2 * x * first_kind( x, n - 1 ) - first_kind( x, n - 2 );
+			but this is a bit slow.
+			*/
+			T tnm1( 2 * x * x - 1.0 );
+			T tnm2( x );
+			T tn( tnm1 );
+
+			for ( unsigned l = 3; l <= n; l++ )
+			{
+				tn = 2. * x * tnm1 - tnm2;
+				tnm2 = tnm1;
+				tnm1 = tn;
+			}
+			return tn;
 		}
 	}
 

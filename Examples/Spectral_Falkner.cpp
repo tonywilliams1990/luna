@@ -1,9 +1,17 @@
 /// \file  Spectral_Falkner.cpp
 /// \ingroup Examples
-
-/// \todo TODO Problems with f' -> 1 at infinity as rationsl chebyshev functions
-/// all tend to zero at infinity.
-
+/// The Falkner-Skan equation \f[ f'''(\eta) + f(\eta)f''(\eta) + \beta \left[1
+/// - \left(f'(\eta) \right)^2 \right] = 0 \f] is solved on \f$ \eta \in
+/// [0,\infty) \f$ subject to the boundary conditions \f$ f(0) = f'(0) =  0\f$
+/// and \f$ f'(\eta) \to 1 \f$ as \f$ \eta \to \infty\f$.
+/// The system is solved using rational Chebyshev functions on a semi-infinite
+/// interval \f$ TL_i(\eta; L) \f$. The rational chebyshev functions all have zero
+/// derivative as \f$ \eta \to \infty \f$ so it is necessary to use the change
+/// of variables \f$ u(\eta) = f(\eta) - \eta \f$. The Falkner-Skan system is
+/// transformed to \f[ u''' + (\eta + u)u'' - \beta u'\left(2 + u' \right) = 0
+/// \f] subject to the boundary conditions \f$ u(0) = 0\f$, \f$ u'(0) = -1 \f$
+/// and \f$ u' \to 0 \f$ as \f$ \eta \to \infty \f$. This nonlinear equation is
+/// solver using Newton iteration on the spectral coefficients.
 
 #include "Luna/Core"
 #include "Luna/ODE"
@@ -15,8 +23,6 @@ namespace Luna
   {
     double initial_guess( const double& y )
     {
-      //return y * ( 1.0 - exp( - y ) );
-      //return ( y + 1.0 ) * exp( 1.0 - y );
       return - y * exp( - y );
     }
   } // End of namespace Example
@@ -30,9 +36,12 @@ int main()
 {
   cout << "--------------------- Spectral_Falkner --------------------" << endl;
 
+  cout << " * The Falkner-Skan equation, for a boundary layer on flat " << endl
+       << " * plate, is solved using a rational Chebyshev spectral " << endl
+       << " * method." << endl;
+
   double beta( 0.0 );               // Hartree parameter
-  int n( 25 );                      // Number of spectral coefficients
-  int bcs( 2 );                     // Number of boundary conditions
+  int n( 20 );                      // Number of spectral coefficients
   double L( 5.0 );                  // Map parameter
   double tol( 1e-10 );              // Tolerance correction coefficients norm
   Vector<double> y;                 // Vector for collocation grid
@@ -50,7 +59,7 @@ int main()
 
   // Approximate the guess as a semi-infinite rational Chebyshev polynomial
   c = rationalsemi.approximate( Example::initial_guess, n  );
-  for ( std::size_t i = 0; i < bcs; i++ )
+  for ( std::size_t i = 0; i < 2; i++ )
   {
     c.push_back( 0.0 );
   }
@@ -66,9 +75,9 @@ int main()
 
   do
   {
-    // Setup the system of equations to find the correction u_c
-    Matrix<double> M( n + bcs, n + bcs, 0.0 );
-    Vector<double> F( n + bcs ), a_c( n + bcs );
+    // Setup the system of equations to find the correction 
+    Matrix<double> M( n + 2, n + 2, 0.0 );
+    Vector<double> F( n + 2 ), a_c( n + 2 );
 
     // Don't need the BC at infinity as this is a "natural" BC
 
@@ -76,7 +85,7 @@ int main()
     for ( std::size_t i = 0; i < n; i++ )
     {
       double yi = y[ i ];
-      for ( std::size_t j = 0; j < n + bcs; j++ )
+      for ( std::size_t j = 0; j < n + 2; j++ )
       {
         // u_c'''
         M( i, j )  = rationalsemi( yi, j, 3 );
@@ -93,7 +102,7 @@ int main()
     }
 
     // y = 0 boundary f = 0
-    for ( std::size_t j = 0; j < n + bcs; j++ )
+    for ( std::size_t j = 0; j < n + 2; j++ )
     {
       double yi = 0.0;
       M( n, j ) = rationalsemi( yi, j );
@@ -101,7 +110,7 @@ int main()
     F[ n ] = - u_g( 0.0 );
 
     // y = 0 boundary f' = -1
-    for ( std::size_t j = 0; j < n + bcs; j++ )
+    for ( std::size_t j = 0; j < n + 2; j++ )
     {
       double yi = 0.0;
       M( n + 1, j ) = rationalsemi( yi, j, 1 );
@@ -112,17 +121,12 @@ int main()
     a_c = M.solve( F );
     u_g.update_coefficients( a_c );
     norm = a_c.norm_2();
-
-    cout << " * norm = " << std::scientific << norm << endl;
-    timer.print();
-
     ++iter;
 
   }while( norm > tol && iter < max_iter );
 
   cout << " * The final spectral coefficient for n = " << n << " is: "
        << u_g.get_coefficients()[ n-1 ] << endl;
-
   cout << " * f''(0) = " << u_g( 0.0, 2 ) << endl;
 
   // Put spectral solution into output mesh
@@ -138,6 +142,9 @@ int main()
 
   timer.print();
   timer.stop();
+
+  cout << " * To see the spectral solution and its derivatives run: " << endl;
+  cout << "python Plotting/Spectral_Falkner_plot.py" << endl;
 
   cout << "--- FINISHED ---" << endl;
 }
