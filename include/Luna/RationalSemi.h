@@ -106,7 +106,12 @@ namespace Luna
 			/// \return The dth derivative of the nth degree polynomial at the point y
 			Vector<T> derivative( const Vector<T>& y, const int& n, const int& d );
 
-			//TODO \todo approximate function
+			/// Approximate a given function by a Semi-infinite  Rational Chebyshev
+			/// polynomial in the interval [0, infinity)
+			/// \param func The function to be approximated
+			/// \param N The number of coefficients to calculate
+			/// \return A Vector containing the coefficients
+			Vector<T> approximate( T func( const T& ), const int& N );
 
 
   }; // End of class Chebyshev
@@ -253,6 +258,26 @@ namespace Luna
 			temp[ i ] = derivative( y[ i ], n, d );
 		}
 		return temp;
+	}
+
+	template <typename T>
+	inline Vector<T> RationalSemi<T>::approximate( T func( const T& ),
+																								 const int& N )
+	{
+		Vector<T> c( N );
+		Vector<double> y;
+		y.rational_semi_grid( N, L );
+		for ( std::size_t j = 0; j < N; j++ )
+		{
+			T sum( 0.0 );
+			for ( std::size_t k = 0; k < N; k++ )
+			{
+				sum += func( y[ k ] ) * std::cos( ( j * M_PI * ( k + 0.5 ) ) / N );
+			}
+			c[ j ] = ( 2.0 / N ) * sum;
+		}
+		c[ 0 ] /= 2;    // - 0.5 * c_0
+		return c;
 	}
 
 }  // End of namespace Luna

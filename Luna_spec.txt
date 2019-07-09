@@ -41,6 +41,7 @@ Luna aims to be a header-only library of numerical routines written in C++.
 --- Eigenvalue ---
 1. Eigensystem - a class for solving linear eigensystems                     [?]
 2. SparseEigensystem - a class for solving sparse linear eigensystems         []
+3. ODE_EVP - solve ODE eigenvalue problems                                    [] ??? 
 
 --- ODE ---
 1. ODE_BVP - ODE boundary value problem solver class                         [x]
@@ -66,8 +67,8 @@ Luna aims to be a header-only library of numerical routines written in C++.
 2. Chebyshev - a class defining Chebyshev polynomials (inherit from basis)	 [x]
 3. Spectral - a class defining spectral solutions (basis + coefficients)     [x]
 4. RationalSemi - a class for semi-infinite rational Chebyshev polynomials   [x]
-5. solve PDEs using spectral method                                           []
-6. Fourier - a class defining a Fourier basis (inherit from basis)            []
+5. RationalCheby - a class for doubly infinite rational Chebyshev functions   []
+6. RationalSemi and RationalCheby options in Spectral.h                       []
 7. method in Vector to create collocation points                              []
 8. solve eigenvalue problems using spectral method                            []
 
@@ -87,14 +88,19 @@ demonstrate how the code can be used.
 8. Arclength_Falkner - test arclength solving in ODE_BVP                      []
 9. Spectral_ODE_BVP - test Spectral and Chebyshev (Even)                     [x]
 10. Spectral_ODE_Nonlinear - test Spectral and Chebyshev (Odd)               [x]
-12. Spectral_ODE_Rational - test RationalChebyshev basis (Falkner-Skan ?)     [] ??? Better name ???
-13. Spectral_Poisson - test PDE solution using spectral methods              [x] 
-14. Nonlinear 2D problem (perhaps with multiple variables)                    []
+12. Spectral_ODE_Rational - test RationalSemi basis                          [x] Is this needed?
+13. Spectral_Falkner - test RationalSemi basis on a nonlinear problem         []
+14. Spectral_Poisson - test PDE solution using spectral methods              [x] 
+15. Nonlinear 2D problem (perhaps with multiple variables)                    []
+16. Eigenvalue problem - test Eigensystem (real matrix)                       [] 
+17. Troesch equation could be a good test for spectral methods ???
+
+Maybe I should make a Spectral sub-folder in Examples???
 
 ***** General TODO *****
 1. Cholesky decomposition - Hermitian Matrices (or just real symmetric?)	
-2. Spectral methods? - Fourier, Chebyshev, collocation? 	
-
+2. Spectral methods? - Fourier, Chebyshev, collocation? 
+3. Initial value problems (with examples	
 
 ODE_IVP example - Lorenz equations with python plots, parameter variation and 
 sensitivity to initial conditions etc

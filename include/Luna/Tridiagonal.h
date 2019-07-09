@@ -356,7 +356,7 @@ namespace Luna
       }
     }
     // Last row
-    if ( i == N - 1 )
+    else if ( i == N - 1 )
     {
       if ( j == N - 1 ) { return b[ N - 1 ]; }
       if ( j == N - 2 ) { return a[ N - 2 ]; }
@@ -365,7 +365,7 @@ namespace Luna
       }
     }
     // Middle rows
-    if ( i > 0 && i < N - 1 )
+    else //if ( i > 0 && i < N - 1 )
     {
       if ( i == j ) { return b[ j ]; }
       if ( i == j + 1 ) { return a[ j ]; }

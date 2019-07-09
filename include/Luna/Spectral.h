@@ -15,6 +15,7 @@
 #include "Error.h"
 #include "Chebyshev.h"
 #include "Special.h"
+#include "RationalSemi.h"
 
 namespace Luna
 {
@@ -26,6 +27,7 @@ namespace Luna
 		private:
 			Vector<T> COEFFICIENTS; 	// Coefficients multiplying the basis functions
 			std::string BASIS;				// Basis function specifier string
+			double PARAM;							// Parameter for rational Chebyshev basis
 
     public:
 
@@ -36,6 +38,13 @@ namespace Luna
 			/// \param coefficients The Vector of coefficients
 			/// \param basis The basis specifier string (i.e. Chebyshev)
 			Spectral( const Vector<T>& coefficients, const std::string& basis );
+
+			/// Constructor with specified basis, coefficients and extra parameter
+			/// \param coefficients The Vector of coefficients
+			/// \param basis The basis specifier string (i.e. Chebyshev)
+			/// \param param An extra parameter for use with rational Chebyshev basis
+			Spectral( const Vector<T>& coefficients, const std::string& basis,
+			 					const double& param );
 
 			/// Destructor
 			~Spectral(){}
@@ -101,7 +110,10 @@ namespace Luna
 			/// \param update The Vector to be added to the Vector of coefficients
 			void update_coefficients( const Vector<T>& update )
 			{
-				//TODO check the size
+				if ( update.size() != COEFFICIENTS.size() )
+				{
+					throw Error( "Spectral: update_coefficients vector size incorrect." );
+				}
 				COEFFICIENTS += update;
 			}
 
@@ -114,6 +126,10 @@ namespace Luna
 			/// \param new_elem New element to be added to the front of the Vector
 			/// of coefficients
 			void push_front( const T& new_elem );
+
+			/// Return a pointer to the extra parameter
+			/// \return A handle to the parameter
+			double& parameter();
 
   }; // End of class Spectral
 
@@ -128,7 +144,8 @@ namespace Luna
 												 const std::string& basis )
 	{
 		if ( basis != "Chebyshev" && basis != "EvenChebyshev"
-		  && basis != "OddChebyshev" )//&& basis != "Fourier" )
+		  && basis != "OddChebyshev" && basis != "RationalSemi" )
+			//&& basis != "Fourier" )
 		{
 			std::string problem;
 			problem += "Spectral set_basis error: The basis function " + basis + "\n";
@@ -137,6 +154,25 @@ namespace Luna
 		}
 		COEFFICIENTS = coefficients;
 		BASIS = basis;
+		PARAM = 1.0;
+	}
+
+	template <typename T>
+	Spectral<T>::Spectral( const Vector<T>& coefficients,
+												 const std::string& basis, const double& param )
+	{
+		if ( basis != "Chebyshev" && basis != "EvenChebyshev"
+		  && basis != "OddChebyshev" && basis != "RationalSemi" )
+			//&& basis != "Fourier" )
+		{
+			std::string problem;
+			problem += "Spectral set_basis error: The basis function " + basis + "\n";
+			problem += "is not supported.";
+			throw Error( problem );
+		}
+		COEFFICIENTS = coefficients;
+		BASIS = basis;
+		PARAM = param;
 	}
 
 	/* ----- Operator overloading ----- */
@@ -171,6 +207,15 @@ namespace Luna
 			for ( std::size_t n = 0; n < N; ++n )
 			{
 				temp += basis( x, 2 * n + 1 ) * COEFFICIENTS[ n ];
+			}
+		}
+
+		if ( BASIS == "RationalSemi" )
+		{
+			RationalSemi<T> basis( PARAM );
+			for ( std::size_t n = 0; n < N; ++n )
+			{
+				temp += basis( x, n ) * COEFFICIENTS[ n ];
 			}
 		}
 
@@ -210,6 +255,15 @@ namespace Luna
 			}
 		}
 
+		if ( BASIS == "RationalSemi" )
+		{
+			RationalSemi<T> basis( PARAM );
+			for ( std::size_t n = 0; n < N; ++n )
+			{
+				temp += basis( x, n ) * COEFFICIENTS[ n ];
+			}
+		}
+
 		return temp;
 	}
 
@@ -243,6 +297,15 @@ namespace Luna
 			for ( int n = 0; n < N; ++n )
 			{
 				temp += basis( x, 2 * n + 1, d ) * COEFFICIENTS[ n ];
+			}
+		}
+
+		if ( BASIS == "RationalSemi" )
+		{
+			RationalSemi<T> basis( PARAM );
+			for ( int n = 0; n < N; ++n )
+			{
+				temp += basis( x, n, d ) * COEFFICIENTS[ n ];
 			}
 		}
 
@@ -282,6 +345,15 @@ namespace Luna
 			}
 		}
 
+		if ( BASIS == "RationalSemi" )
+		{
+			RationalSemi<T> basis( PARAM );
+			for ( std::size_t n = 0; n < N; ++n )
+			{
+				temp += basis( x, n, d ) * COEFFICIENTS[ n ];
+			}
+		}
+
 		return temp;
 	}
 
@@ -317,7 +389,8 @@ namespace Luna
 	void Spectral<T>::set_basis( const std::string& basis )
 	{
 		if ( basis != "Chebyshev" && basis != "EvenChebyshev"
-		  && basis != "OddChebyshev" )//&& basis != "Fourier" )
+		  && basis != "OddChebyshev" && basis != "RationalSemi" )
+			//&& basis != "Fourier" )
 		{
 			std::string problem;
 			problem += "Spectral set_basis error: The basis function " + basis + "\n";
@@ -349,6 +422,12 @@ namespace Luna
 	void Spectral<T>::push_front( const T& new_elem )
 	{
 		COEFFICIENTS.push_front( new_elem );
+	}
+
+	template <typename T>
+	double& Spectral<T>::parameter()
+	{
+		return PARAM;
 	}
 
 }  // End of namespace Luna

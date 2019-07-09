@@ -185,6 +185,9 @@ namespace Luna
     /// Remove the last element in the Vector
     void pop_back();
 
+    /// Remove the first element in the Vector
+    void pop_front();
+
     /// Find the first element in the Vector that is equal to a given value
     /// \param val The value to find
     /// \return The index of the value in the Vector (if not found returns last)
@@ -658,7 +661,21 @@ namespace Luna
   template <typename T>
   inline void Vector<T>::pop_back()
   {
+    if( VECTOR.empty() )
+    {
+      throw Error( "Vector pop_back: vector is empty.");
+    }
     VECTOR.pop_back();
+  }
+
+  template <typename T>
+  inline void Vector<T>::pop_front()
+  {
+    if( VECTOR.empty() )
+    {
+      throw Error( "Vector pop_front: vector is empty.");
+    }
+    VECTOR.erase( VECTOR.begin() );
   }
 
   template <typename T>
@@ -892,6 +909,7 @@ namespace Luna
       throw Error( "Vector dot product: size error" );
     }
     T init( 0.0 );
+    // \todo this can be parallelised using transform_reduce ???
     return std::inner_product ( VECTOR.cbegin(), VECTOR.cend(),
                      w.VECTOR.begin(), init );
   }

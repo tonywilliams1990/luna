@@ -50,7 +50,6 @@ int main()
   Vector<double> x;                 // Vector for collocation grid
   x.half_lobatto_grid( n );
 
-
   int N( 100 );                         // Number of output points
   Vector<double> grid;                  // Output grid
   grid.linspace( -1.0, 1.0, N );
@@ -107,7 +106,7 @@ int main()
     u_g.update_coefficients( a_c );
     norm = a_c.norm_2();
 
-  }while( norm > 1e-10 );
+  }while( norm > tol );
 
   cout << " * The spectral coefficients for n = " << n << " are: " << endl;
 
