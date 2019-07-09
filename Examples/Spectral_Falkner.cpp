@@ -41,7 +41,7 @@ int main()
        << " * method." << endl;
 
   double beta( 0.0 );               // Hartree parameter
-  int n( 20 );                      // Number of spectral coefficients
+  int n( 25 );                      // Number of spectral coefficients
   double L( 5.0 );                  // Map parameter
   double tol( 1e-10 );              // Tolerance correction coefficients norm
   Vector<double> y;                 // Vector for collocation grid
@@ -75,7 +75,7 @@ int main()
 
   do
   {
-    // Setup the system of equations to find the correction 
+    // Setup the system of equations to find the correction
     Matrix<double> M( n + 2, n + 2, 0.0 );
     Vector<double> F( n + 2 ), a_c( n + 2 );
 
@@ -127,7 +127,10 @@ int main()
 
   cout << " * The final spectral coefficient for n = " << n << " is: "
        << u_g.get_coefficients()[ n-1 ] << endl;
+  cout << " * f'(0) = " << u_g( 0.0, 1 ) << endl;
   cout << " * f''(0) = " << u_g( 0.0, 2 ) << endl;
+  cout << " * f'''(0) = " << u_g( 0.0, 3 ) << endl;
+  cout << " * f''''(0) = " << u_g( 0.0, 4 ) << endl;
 
   // Put spectral solution into output mesh
   for ( std::size_t i = 0; i < N; i++ )

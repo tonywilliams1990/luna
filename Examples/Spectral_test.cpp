@@ -39,7 +39,10 @@ int main()
   cout << " cheby( x, 3 ) = " << cheby( x, 3 ) << endl;
   cout << " gegenbauer( 0.0, 4, 2 ) = " << cheby.gegenbauer( 0.0, 4, 2 ) << endl;
   cout << " cheby( 1.0, 3, 1 ) = " << cheby( 0.1, 1, 2 ) << endl;
-  cout << " cheby( x, 3, 1 ) = " << cheby( x, 3, 1 ) << endl;
+  cout << " cheby( x, 3, 2 ) = " << cheby( x, 3, 2 ) << endl;
+
+  cout << " cheby.second_kind( 0.5, 6 ) = " << cheby.second_kind( 0.5, 6 ) << endl;
+  cout << " cheby.second_kind( x, 1 ) = " << cheby.second_kind( x, 1 ) << endl;
 
   /*Vector<double> c( N, 0.0 );
 
@@ -61,7 +64,7 @@ int main()
 
   Spectral<double> spectral( c, "OddChebyshev" );*/
 
-  double L( 3.0 );
+  /*double L( 3.0 );
   RationalSemi<double> rationalsemi( L );
   Vector<double> y;
   y.rational_semi_grid( N, L );
@@ -72,7 +75,7 @@ int main()
   cout << " rationalsemi( 0.5, 1 ) = " << rationalsemi( 0.5, 1 ) << endl;
   cout << " rationalsemi( y, 1 ) = " << rationalsemi( y, 1 ) << endl;
   cout << " rationalsemi( 0.5, 2, 2 ) = " << rationalsemi( 0.5, 2, 2 ) << endl;
-  cout << " rationalsemi( y, 2, 2 ) = " << rationalsemi( y, 2, 2 ) << endl;
+  cout << " rationalsemi( y, 2, 2 ) = " << rationalsemi( y, 2, 2 ) << endl;*/
 
   cout << "--- FINISHED ---" << endl;
 }
