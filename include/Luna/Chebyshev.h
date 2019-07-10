@@ -1,7 +1,6 @@
 /// \file Chebyshev.h
 /// A class specifying Chebyshev basis functions to be used in spectral methods.
 
-
 #ifndef CHEBYSHEV_H
 #define CHEBYSHEV_H
 
@@ -22,6 +21,10 @@ namespace Luna
 	class Chebyshev : public Basis<T>
 	{
 		private:
+			// Derivatives of the Chebyshev polynomials of the first kind
+			T first_kind_derivative( const T& x, const int& n );
+			T first_kind_second_derivative( const T& x, const int& n );
+			T first_kind_third_derivative( const T& x, const int& n );
 
     public:
 
@@ -163,9 +166,9 @@ namespace Luna
 		if ( n < d ){
 			return 0;
 		} if ( d == 1 ) {
-			return second_kind( x, n - 1 ) * n;
+			return first_kind_derivative( x, n );
 		} if ( d == 2 ) {
-				if ( x == 1.0 ) {
+				/*if ( x == 1.0 ) {
 					return 1. * n * n * ( n * n - 1 ) / 3.0;
 				}
 				if ( x == -1.0 ) {
@@ -175,11 +178,14 @@ namespace Luna
 				} else {
 					return 1. * n * ( ( n + 1 ) * first_kind( x, n )
 																			- second_kind( x, n ) ) / ( x * x - 1. );
-				}
-		/// \todo TODO d = 3,4,... (really speeds things up)
+				}*/
+				return first_kind_second_derivative( x, n );
+		} if ( d == 3 ) {
+			return first_kind_third_derivative( x, n );
+			/// \todo TODO d = 4,... (really speeds things up)
 		} else {
-			return n * std::pow( 2.0, d - 1 ) * factorial( d - 1 )
-						 	 * gegenbauer( x, n - d, d );
+				return n * std::pow( 2.0, d - 1 ) * factorial( d - 1 )
+							 	 * gegenbauer( x, n - d, d );
 		}
 	}
 
@@ -192,29 +198,24 @@ namespace Luna
 			return temp;
 		} if ( d == 1 ) {
 			for ( std::size_t i = 0; i != x.size(); i++) {
-				temp[ i ] = second_kind( x[ i ], n - 1 ) * n;;
+				temp[ i ] = first_kind_derivative( x[ i ], n );
 			}
 			return temp;
 		} if ( d == 2 ) {
 			for ( std::size_t i = 0; i != x.size(); i++) {
-				if ( x[ i ] == 1.0 ) {
-					temp[ i ] = 1. * n * n * ( n * n - 1 ) / 3.0;
-				}
-				if ( x[ i ] == -1.0 ) {
-					int p;
-					p = n % 2 ? -1 : 1;
-					temp[ i ] = 1. * p * n * n * ( n * n - 1 ) / 3.0;
-				} else {
-					temp[ i ] = 1. * n * ( ( n + 1 ) * first_kind( x[ i ], n )
-											- second_kind( x[ i ], n ) ) / ( x[ i ] * x[ i ] - 1. );
-				}
+				temp[ i ] = first_kind_second_derivative( x[ i ], n );
 			}
 			return temp;
-		/// \todo TODO d = 3,4,... (really speeds things up)
-		} else {
+		} if ( d == 3 ) {
 			for ( std::size_t i = 0; i != x.size(); i++) {
-				temp[ i ] = n * std::pow( 2.0, d - 1 ) * factorial( d - 1 )
-											* gegenbauer( x[ i ], n - d, d );
+				temp[ i ] = first_kind_third_derivative( x[ i ], n );
+			}
+			return temp;
+		/// \todo TODO d = 4,... (really speeds things up)
+		} else {
+				for ( std::size_t i = 0; i != x.size(); i++) {
+					temp[ i ] = n * std::pow( 2.0, d - 1 ) * factorial( d - 1 )
+												* gegenbauer( x[ i ], n - d, d );
 			}
 			return temp;
 		}
@@ -381,6 +382,85 @@ namespace Luna
 			c[ j ] = ( 2.0 / ( 2. * N ) ) * sum;
 		}
 		return c;
+	}
+
+	/* ----- Private ----- */
+
+	template <typename T>
+	inline T Chebyshev<T>::first_kind_derivative( const T& x, const int& n )
+	{
+		return second_kind( x, n - 1 ) * n;
+	}
+
+	template <typename T>
+	inline T Chebyshev<T>::first_kind_second_derivative( const T& x,
+																											 const int& n )
+	{
+		if ( n == 0 ){
+			return 0;
+		}
+		if ( n == 1 ){
+			return 0;
+		}
+		if ( n == 2 ){
+			return 4.;
+		}
+		if ( n == 3 ){
+			return 24 * x;
+		}
+		if ( n == 4 ){
+			return 96 * x * x - 16. ;
+		}
+		else {
+			T tnm1( 96 * x * x - 16. );
+			T tnm2( 24 * x );
+			T tn( tnm1 );
+
+			for ( unsigned l = 5; l <= n; l++ )
+			{
+				tn = 2. * x * tnm1 + 4 * first_kind_derivative( x, l - 1 ) - tnm2;
+				tnm2 = tnm1;
+				tnm1 = tn;
+			}
+			return tn;
+		}
+	}
+
+	template <typename T>
+	inline T Chebyshev<T>::first_kind_third_derivative( const T& x, const int& n )
+	{
+		if ( n == 0 ){
+			return 0;
+		}
+		if ( n == 1 ){
+			return 0;
+		}
+		if ( n == 2 ){
+			return 0;
+		}
+		if ( n == 3 ){
+			return 24.;
+		}
+		if ( n == 4 ){
+			return 192 * x;
+		}
+		if ( n == 5 ){
+			return 960 * x * x - 120.;
+		}
+		else {
+			T tnm1( 960 * x * x - 120. );
+			T tnm2( 192 * x );
+			T tn( tnm1 );
+
+			for ( unsigned l = 6; l <= n; l++ )
+			{
+				tn = 2. * x * tnm1 + 6 * first_kind_second_derivative( x, l - 1 )
+						 - tnm2;
+				tnm2 = tnm1;
+				tnm1 = tn;
+			}
+			return tn;
+		}
 	}
 
 

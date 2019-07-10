@@ -89,7 +89,7 @@ demonstrate how the code can be used.
 9. Spectral_ODE_BVP - test Spectral and Chebyshev (Even)                     [x]
 10. Spectral_ODE_Nonlinear - test Spectral and Chebyshev (Odd)               [x]
 12. Spectral_ODE_Rational - test RationalSemi basis                          [x] Is this needed?
-13. Spectral_Falkner - test RationalSemi basis on a nonlinear problem         []
+13. Spectral_Falkner - test RationalSemi basis on a nonlinear problem        [x]
 14. Spectral_Poisson - test PDE solution using spectral methods              [x] 
 15. Nonlinear 2D problem (perhaps with multiple variables)                    []
 16. Eigenvalue problem - test Eigensystem (real matrix)                       [] 
