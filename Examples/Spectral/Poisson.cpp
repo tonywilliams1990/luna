@@ -1,5 +1,6 @@
-/// \file  Spectral_Poisson.cpp
+/// \file Poisson.cpp
 /// \ingroup Examples
+/// \ingroup Spectral
 /// The equation \f[ \nabla^2 u(x,y) = 2(x^2 + y^2) \f] is solved on the domain
 /// \f$ (x,y) \in [-1,1] \times [-1,1] \f$ subject to the boundary conditions
 /// \f$ u(-1,y) = e^{-1} \sin(y) + y^2 \f$, \f$ u(1,y) = e \sin(y) + y^2 \f$,
@@ -163,7 +164,7 @@ int main()
 
   solution.output( "./DATA/Spectral_Poisson.dat" );
   cout << " * For a comparison of the spectral/exact solutions run: " << endl;
-  cout << "python Plotting/Spectral_Poisson_plot.py" << endl; 
+  cout << "python Plotting/Spectral_Poisson_plot.py" << endl;
 
   cout << "--- FINISHED ---" << endl;
 }

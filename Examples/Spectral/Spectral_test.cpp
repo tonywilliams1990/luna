@@ -1,6 +1,6 @@
-/// \file  Spectral_test.cpp
+/// \file Spectral_test.cpp
 /// \ingroup Examples
-
+/// \ingroup Spectral
 
 #include "Luna/Core"
 #include "Luna/ODE"

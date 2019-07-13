@@ -91,16 +91,18 @@ demonstrate how the code can be used.
 12. Spectral_ODE_Rational - test RationalSemi basis                          [x] Is this needed?
 13. Spectral_Falkner - test RationalSemi basis on a nonlinear problem        [x]
 14. Spectral_Poisson - test PDE solution using spectral methods              [x] 
-15. Nonlinear 2D problem (perhaps with multiple variables)                    []
-16. Eigenvalue problem - test Eigensystem (real matrix)                       [] 
-17. Troesch equation could be a good test for spectral methods ???
+15. Falkner_3D_alternative - test multiple variable nonlinear ODE system      []
+16. Nonlinear 2D problem (perhaps with multiple variables)                    []
+17. Eigenvalue problem - test Eigensystem (real matrix)                       [] 
+18. Troesch equation could be a good test for spectral methods ???
 
 Maybe I should make a Spectral sub-folder in Examples???
 
 ***** General TODO *****
 1. Cholesky decomposition - Hermitian Matrices (or just real symmetric?)	
 2. Spectral methods? - Fourier, Chebyshev, collocation? 
-3. Initial value problems (with examples	
+3. Initial value problems (with examples)
+4. Maybe create a Sparse folder in Examples + Basics etc 
 
 ODE_IVP example - Lorenz equations with python plots, parameter variation and 
 sensitivity to initial conditions etc

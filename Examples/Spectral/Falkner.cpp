@@ -1,5 +1,6 @@
-/// \file  Spectral_Falkner.cpp
+/// \file Falkner.cpp
 /// \ingroup Examples
+/// \ingroup Spectral
 /// The Falkner-Skan equation \f[ f'''(\eta) + f(\eta)f''(\eta) + \beta \left[1
 /// - \left(f'(\eta) \right)^2 \right] = 0 \f] is solved on \f$ \eta \in
 /// [0,\infty) \f$ subject to the boundary conditions \f$ f(0) = f'(0) =  0\f$
@@ -41,7 +42,7 @@ int main()
        << " * method." << endl;
 
   double beta( 0.0 );               // Hartree parameter
-  int n( 25 );                      // Number of spectral coefficients
+  int n( 35 );                      // Number of spectral coefficients
   double L( 5.0 );                  // Map parameter
   double tol( 1e-10 );              // Tolerance correction coefficients norm
   Vector<double> y;                 // Vector for collocation grid
@@ -127,10 +128,8 @@ int main()
 
   cout << " * The final spectral coefficient for n = " << n << " is: "
        << u_g.get_coefficients()[ n-1 ] << endl;
-  cout << " * f'(0) = " << u_g( 0.0, 1 ) << endl;
   cout << " * f''(0) = " << u_g( 0.0, 2 ) << endl;
-  cout << " * f'''(0) = " << u_g( 0.0, 3 ) << endl;
-  cout << " * f''''(0) = " << u_g( 0.0, 4 ) << endl;
+
 
   // Put spectral solution into output mesh
   for ( std::size_t i = 0; i < N; i++ )

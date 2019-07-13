@@ -1,5 +1,6 @@
-/// \file  Spectral_ODE_Nonlinear.cpp
+/// \file  ODE_BVP_Nonlinear.cpp
 /// \ingroup Examples
+/// \ingroup Spectral
 /// The equation \f[ u(x) u''(x) - \left( u'(x) \right)^2 = -1 \f] is solved
 /// subject to the boundary conditions \f$ u(1) = \frac{1}{2} \left(e - e^{-1}
 /// \right) = - u(-1). \f$ The system is solved using a Chebyshev spectral

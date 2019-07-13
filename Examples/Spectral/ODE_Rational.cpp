@@ -1,5 +1,6 @@
-/// \file  Spectral_ODE_Rational.cpp
+/// \file ODE_Rational.cpp
 /// \ingroup Examples
+/// \ingroup Spectral
 /// The equation \f[ u''(y) - u(y) = -2e^{1-y} \f] is solved on
 /// \f$ y \in [0,\infty)\f$ subject to the boundary conditions \f$ u(0) = e\f$
 /// and \f$ u(y) \to 0 \f$ as \f$ y \to \infty\f$. The system is solved using
