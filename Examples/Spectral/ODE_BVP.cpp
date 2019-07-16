@@ -31,7 +31,7 @@ using namespace Example;
 
 int main()
 {
-  cout << "------------------- Spectral_ODE_BVP ------------------" << endl;
+  cout << "------------------------- ODE_BVP ------------------------" << endl;
 
   cout << " * The equation u'' + (x^6 + 3x^2)u = 0 is solved " << endl
        << " * subject to the boundary conditions u(-1) = u(1) = 0." << endl

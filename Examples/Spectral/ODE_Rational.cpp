@@ -36,7 +36,7 @@ using namespace Example;
 
 int main()
 {
-  cout << "------------------- Spectral_ODE_Rational ------------------" << endl;
+  cout << "----------------------- ODE_Rational ----------------------" << endl;
 
   cout << " * The equation u'' - u = - 2 * e^(1-y) is solved " << endl
        << " * subject to the boundary conditions u(0) = e and " << endl

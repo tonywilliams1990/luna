@@ -39,7 +39,7 @@ using namespace Example;
 
 int main()
 {
-  cout << "------------------ Spectral_ODE_Nonlinear -----------------" << endl;
+  cout << "--------------------- ODE_BVP_Nonlinear -------------------" << endl;
 
   cout << " * The equation u * u'' + (u')^2 = -1 is solved subject to" << endl
        << " * the boundary conditions u(1) = (e - e^(-1)) / 2 = -u(-1)." << endl

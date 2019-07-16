@@ -32,7 +32,7 @@ using namespace Example;
 
 int main()
 {
-  cout << "------------------- Spectral_Poisson ------------------" << endl;
+  cout << "------------------------- Poisson -------------------------" << endl;
 
   cout << " * The equation u_xx + u_yy = 2(x^2 + y^2) is solved " << endl
        << " * subject to the boundary conditions" << endl

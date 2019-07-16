@@ -35,7 +35,7 @@ using namespace Example;
 
 int main()
 {
-  cout << "--------------------- Spectral_Falkner --------------------" << endl;
+  cout << "------------------------- Falkner -------------------------" << endl;
 
   cout << " * The Falkner-Skan equation, for a boundary layer on flat " << endl
        << " * plate, is solved using a rational Chebyshev spectral " << endl
@@ -56,10 +56,10 @@ int main()
 
 
   RationalSemi<double> rationalsemi( L );
-  Vector<double> c( n , 0.0 );                 // Vector of coefficients
+  Vector<double> c( n, 0.0 );                 // Vector of coefficients
 
   // Approximate the guess as a semi-infinite rational Chebyshev polynomial
-  c = rationalsemi.approximate( Example::initial_guess, n  );
+  c = rationalsemi.approximate( Example::initial_guess, n );
   for ( std::size_t i = 0; i < 2; i++ )
   {
     c.push_back( 0.0 );
@@ -90,19 +90,19 @@ int main()
       {
         // u_c'''
         M( i, j )  = rationalsemi( yi, j, 3 );
-        // (y + u_g) * u_c''
+        // ( y + u_g ) * u_c''
         M( i, j ) += ( yi + u_g( yi ) ) * rationalsemi( yi, j, 2 );
-        // - 2 * beta * (1 + u_g') * u_c'
+        // - 2 * beta * ( 1 + u_g' ) * u_c'
         M( i, j ) -= 2 * beta * ( 1 + u_g( yi, 1 ) ) * rationalsemi( yi, j, 1 );
         // u_g'' * u_c
         M( i, j ) += u_g( yi, 2 ) * rationalsemi( yi, j );
       }
-      // - u_g''' - (y + u_g) * u_g'' + beta * u_g' ( 2 + u_g' )
+      // - u_g''' - ( y + u_g ) * u_g'' + beta * u_g' ( 2 + u_g' )
       F[ i ]  = - u_g( yi, 3 ) - ( yi + u_g( yi ) ) * u_g( yi, 2 );
       F[ i ] += beta * u_g( yi, 1 ) * ( 2 + u_g( yi, 1 ) );
     }
 
-    // y = 0 boundary f = 0
+    // y = 0 boundary u_c = - u_g
     for ( std::size_t j = 0; j < n + 2; j++ )
     {
       double yi = 0.0;
@@ -110,7 +110,7 @@ int main()
     }
     F[ n ] = - u_g( 0.0 );
 
-    // y = 0 boundary f' = -1
+    // y = 0 boundary u_c' = -1 - u_g'
     for ( std::size_t j = 0; j < n + 2; j++ )
     {
       double yi = 0.0;
