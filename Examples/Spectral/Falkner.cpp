@@ -42,8 +42,8 @@ int main()
        << " * method." << endl;
 
   double beta( 0.0 );               // Hartree parameter
-  int n( 35 );                      // Number of spectral coefficients
-  double L( 5.0 );                  // Map parameter
+  int n( 40 );                      // Number of spectral coefficients
+  double L( 6.0 );                  // Map parameter
   double tol( 1e-10 );              // Tolerance correction coefficients norm
   Vector<double> y;                 // Vector for collocation grid
   y.rational_semi_grid( n, L );

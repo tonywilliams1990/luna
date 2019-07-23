@@ -68,8 +68,6 @@ int main()
     H_g_coeffs.push_back( 0.0 );
     G_g_coeffs.push_back( 0.0 );
   }
-  //TODO cout << " H_g_coeffs = " << H_g_coeffs << endl;
-  //TODO cout << " G_g_coeffs = " << G_g_coeffs << endl;
   // Make this into a spectral solution
   Spectral<double> H_g( H_g_coeffs, "RationalSemi", L );
   Spectral<double> G_g( G_g_coeffs, "RationalSemi", L );

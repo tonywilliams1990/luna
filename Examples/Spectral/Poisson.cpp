@@ -13,7 +13,6 @@
 /// collocation points in the \f$ x \f$ and \f$ y \f$ direction respectively.
 /// The exact solution is given by \f[ u(x,y) = e^x \sin(y) + x^2 y^2. \f]
 
-
 #include "Luna/Core"
 #include "Luna/ODE"
 #include "Luna/Spectral"

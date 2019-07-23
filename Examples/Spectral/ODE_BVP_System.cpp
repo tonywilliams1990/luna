@@ -55,6 +55,8 @@ int main()
   // Setup the system of equations
   Matrix<double> M( 2 * n + 2, 2 * n + 2, 0.0 );
   Vector<double> F( 2 * n + 2 ), a( 2 * n + 2 );
+  int row( 0 );
+  int v_offset( n + 1 );    // n coefficients + 1 bc
 
   // Don't need the BCs at infinity as these are "natural" BC
 
@@ -65,23 +67,25 @@ int main()
     for ( std::size_t j = 0; j < n + 1; j++ )
     {
       // u''
-      M( i, j )  = rationalsemi( xi, j, 2 );
+      M( row, j )  = rationalsemi( xi, j, 2 );
       // - u
-      M( i, j ) -= rationalsemi( xi, j );
+      M( row, j ) -= rationalsemi( xi, j );
       // + 2v
-      M( i, n + 1 + j ) = 2 * rationalsemi( xi, j );
+      M( row, v_offset + j ) = 2 * rationalsemi( xi, j );
     }
     // = 2( 1 - 2 x e^(-x) )
-    F[ i ] = 2 * ( 1. - 2 * xi * exp( - xi ) );
+    F[ row ] = 2 * ( 1. - 2 * xi * exp( - xi ) );
+    ++row;
   }
 
   // x = 0 boundary u = 0
   for ( std::size_t j = 0; j < n + 1; j++ )
   {
     double xi = 0.0;
-    M( n, j ) = rationalsemi( xi, j );
+    M( row, j ) = rationalsemi( xi, j );
   }
-  F[ n ] = 0.0;
+  F[ row ] = 0.0;
+  ++row;
 
   // v equation
   for ( std::size_t i = 0; i < n; i++ )
@@ -90,23 +94,25 @@ int main()
     for ( std::size_t j = 0; j < n + 1; j++ )
     {
       // v''
-      M( n + 1 + i, n + 1 + j )  = rationalsemi( xi, j, 2 );
+      M( row, v_offset + j )  = rationalsemi( xi, j, 2 );
       // + x^2 v
-      M( n + 1 + i, n + 1 + j ) += xi * xi * rationalsemi( xi, j );
+      M( row, v_offset + j ) += xi * xi * rationalsemi( xi, j );
       // + u
-      M( n + 1 + i, j ) = rationalsemi( xi, j );
+      M( row, j ) = rationalsemi( xi, j );
     }
     // = x^2 - e^(-x)
-    F[ n + 1 + i ]  = xi * xi - exp( -xi );
+    F[ row ]  = xi * xi - exp( -xi );
+    ++row;
   }
 
   // x = 0 boundary v = 0
   for ( std::size_t j = 0; j < n + 1; j++ )
   {
     double xi = 0.0;
-    M( 2 * n + 1, n + 1 + j ) = rationalsemi( xi, j );
+    M( row, v_offset + j ) = rationalsemi( xi, j );
   }
-  F[ 2 * n + 1 ] = 0.0;
+  F[ row ] = 0.0;
+  ++row;
 
   // Solve the system for the correction spectral coefficients
   a = M.solve( F );

@@ -108,14 +108,7 @@ namespace Luna
 			/// Update the spectral coefficients (add a Vector to the Vector of
 			/// coefficients)
 			/// \param update The Vector to be added to the Vector of coefficients
-			void update_coefficients( const Vector<T>& update )
-			{
-				if ( update.size() != COEFFICIENTS.size() )
-				{
-					throw Error( "Spectral: update_coefficients vector size incorrect." );
-				}
-				COEFFICIENTS += update;
-			}
+			void update_coefficients( const Vector<T>& update );
 
 			/// Add a new coefficient to the back of the Vector of coefficients
 			/// \param new_elem New element to be appended to the end of the Vector
@@ -410,6 +403,16 @@ namespace Luna
 	void Spectral<T>::set_coefficients( const Vector<T>& coeffs )
 	{
 		COEFFICIENTS = coeffs;
+	}
+
+	template <typename T>
+	void Spectral<T>::update_coefficients( const Vector<T>& update )
+	{
+		if ( update.size() != COEFFICIENTS.size() )
+		{
+			throw Error( "Spectral: update_coefficients vector size incorrect." );
+		}
+		COEFFICIENTS += update;
 	}
 
 	template <typename T>

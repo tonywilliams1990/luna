@@ -1,0 +1,63 @@
+/// \file Overview.h
+/// A brief overview of the Luna library.
+
+/*! \mainpage Overview
+ * \image html https://www.anthonywilliams.xyz/images/Luna_logo_180.png
+ *
+ * \section intro0 Introduction
+ *
+ * Luna is a numerical software library written in C++. It contains a
+ * selection of mathematical classes and routines for solving a variety of
+ * problems. The code aims to be as self-contained as possible in order to
+ * reduce the number of external dependencies. The code is not optimal by any
+ * stretch of the imagination but it is useful for understanding how the
+ * numerical routines work in practice.
+ *
+ * \todo links to examples / description of classes
+ *
+ * \section start0 Getting started
+ *
+ * First and foremost the user will need a recent C++ compiler, preferably one
+ * which adheres to the C++17 standard. The user will also need <a href="https:
+ * //www.python.org" target="_blank" style="text-decoration: underline">Python
+ * </a> and the construction tool <a href="https://scons.org" target="_blank"
+ * style="text-decoration: underline">SCons</a> installed.
+ *
+ * \subsection start1 Downloading Luna
+ *
+ * As Luna is still in development the code changes fairly regularly. In order
+ * to get the most up to date version it is best to download the repository from
+ * <a href="https://github.com/tonywilliams1990/luna" target="_blank"
+ * style="text-decoration: underline">GitHub</a> or if you already have git
+ * installed then the repository can be cloned using the command
+ *
+ *        git clone https://github.com/tonywilliams1990/luna
+ *
+ * \subsection start2 Using Luna
+ *
+ * Once Luna is downloaded or cloned it is simply a case of opening the luna
+ * directory in the command line and typing the command
+ *
+ *        scons
+ *
+ * into the terminal. The initial compilation may take a bit of time whilst the
+ * Luna library is constructed but this only needs to be done once. If you have
+ * <a href="https://www.gnu.org/software/make/" target="_blank"
+ * style="text-decoration: underline">GNU Make</a> installed on your machine
+ * then you can use the usual make commands with Luna. For example the user
+ * could type
+ *
+ *        make && ./Examples/Vector_algebra.out
+ *
+ * in order to run the Vector_algebra example. In order to clean the compilation
+ * and remove the Luna library the user should run
+ *
+ *        make clean
+ *
+ * \subsection start3 Making improvements
+ *
+ * It is simple to add your own examples to Luna, you just need to put your code
+ * in the Examples directory and recompile Luna. If you would like to contribute
+ * new classes or functions then feel free to modify the code and make a pull
+ * request on GitHub.
+ */
