@@ -3,3 +3,4 @@
 #include "Chebyshev.h"
 #include "Spectral.h"
 #include "RationalSemi.h"
+#include "Spectral2D.h"

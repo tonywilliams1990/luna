@@ -145,21 +145,19 @@ int main()
   // Solve the system for the spectral coefficients
   a = L.solve( F );
 
+  Spectral2D<double> u( a, I, J, "Chebyshev" );
+
   // Output the spectral solution to the 2D mesh
   for ( std::size_t i = 0; i < n; i++ )
   {
-    double x( x_grid[ i ] );
+    double x( solution.xnodes()[ i ] );
     for ( std::size_t j = 0; j < n; j++ )
     {
-      double y( y_grid[ j ] );
-      for ( std::size_t N = 0; N < size; N++ )
-      {
-        f = N / J;
-        g = N % J;
-        solution( i, j, 1 ) += a[ N ] * cheby( x, f ) * cheby( y, g );
-      }
+      double y( solution.ynodes()[ j ] );
+      solution( i, j, 1 ) = u( x, y );
     }
   }
+  /// \todo TODO just pass a mesh object to Spectral2D to output the solution to the mesh
 
   solution.output( "./DATA/Spectral_Poisson.dat" );
   cout << " * For a comparison of the spectral/exact solutions run: " << endl;
