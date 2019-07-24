@@ -116,7 +116,7 @@ namespace Luna
 			/// \param func The function to be approximated
 			/// \param N The number of Chebyshev coefficients to calculate
 			/// \return A Vector containing the Chebyshev coefficients
-			Vector<T> approximate( T func( const T& ), const int& N );
+			Vector<T> approximate( T func ( const T& ), const int& N );
 
 			//TODO \todo fast cosine transform to improve speed ??? NR
 
@@ -165,7 +165,9 @@ namespace Luna
 
 		if ( n < d ){
 			return 0;
-		} if ( d == 1 ) {
+		} if ( d == 0 ) {
+			return first_kind( x, n );
+		}	if ( d == 1 ) {
 			return first_kind_derivative( x, n );
 		} if ( d == 2 ) {
 				/*if ( x == 1.0 ) {
@@ -196,6 +198,8 @@ namespace Luna
 		Vector<T> temp( x.size(), 0 );
 		if ( n < d ){
 			return temp;
+		} if ( d == 0 ) {
+			return first_kind( x, n );
 		} if ( d == 1 ) {
 			for ( std::size_t i = 0; i != x.size(); i++) {
 				temp[ i ] = first_kind_derivative( x[ i ], n );

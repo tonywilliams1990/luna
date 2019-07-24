@@ -5,6 +5,8 @@
 /// \f[ u_N(x) = \sum_{n=0}^{N} a_n \phi_n(x),  \f] where \f$ a_n \f$ are
 /// coefficients and \f$ \phi_n(x) \f$ are known basis functions.
 
+/// \todo TODO OddChebyshev, EvenChebyshev and RationalSemi operator overloading
+
 #ifndef SPECTRAL2D_H
 #define SPECTRAL2D_H
 
@@ -64,28 +66,28 @@ namespace Luna
 			/// \return The value of the spectral function at (x,y)
 			T operator()( const T& x, const T& y );
 
-			/// Evaluation operator at a Vector of points
-			/// \param x A Vector of points where the spectral function is evaluated
-			/// \return A Vector of values of the spectral function
-			Vector<T> operator()( const Vector<T>& x );
-			/// \todo TODO change this to passing a Mesh2D object and a variable number
+			/// Evaluation operator on a 2D mesh
+			/// \param mesh The Mesh2D object to be evaluated
+			/// \param var The variable in the mesh to be filled
+			void operator()( Mesh2D<T>& mesh, const int& var );
 
-			/// Evaluation operator for the dth derivative of the spectral function
-			/// at point x
-			/// \param x The point where the spectral function is evaluated
-			/// \param d The derivative to return
+			/// Evaluation operator for the derivatives of the spectral function
+			/// at a point (x,y)
+			/// \param x The x-coordinate
+			/// \param y The y-coordinate
+			/// \param dx The x-derivative to return
+			/// \param dy The y-derivative to return
 			/// \return The dth derivative of the spectral function at the point x
-			T operator()( const T& x, const int& d );
-			/// \todo TODO modify this for x and y derivatives
+			T operator()( const T& x, const T& y, const int& dx, const int& dy );
 
-			/// Evaluation operator for the dth derivative of the spectral function
-			/// at a Vector of points
-			/// \param x A Vector of points where the spectral function is evaluated
-			/// \param d The derivative to return
-			/// \return A Vector of the dth derivative of the spectral function
-			/// at the Vector of points
-			Vector<T> operator()( const Vector<T>& x, const int& d );
-			/// \todo TODO pass Mesh2D object and modify for x and y derivatives
+			/// Evaluation operator on a 2D mesh for the derivatives of the spectral
+			/// function
+			/// \param mesh The Mesh2D object to be evaluated
+			/// \param var The variable in the mesh to be filled
+			/// \param dx The x-derivative to return
+			/// \param dy The y-derivative to return
+			void operator()( Mesh2D<T>& mesh, const int& var, const int& dx,
+				               const int& dy );
 
 			/// Indexing operator ( read only )
 	    /// \param i Index
@@ -220,44 +222,54 @@ namespace Luna
 	}
 
 	template <typename T>
-	inline Vector<T> Spectral2D<T>::operator()( const Vector<T>& x )
+	inline void Spectral2D<T>::operator()( Mesh2D<T>& mesh, const int& var )
 	{
-		Vector<T> temp( x.size() );
-		std::size_t N( COEFFICIENTS.size() );
+		if ( var >= mesh.get_nvars() )
+		{
+			throw Error( "Spectral2D error: Incorrect variable number." );
+		}
+		int nx( mesh.xnodes().size() );
+		int ny( mesh.ynodes().size() );
+		int f, g;
+		int size( I * J );
 
 		if ( BASIS == "Chebyshev" )
 		{
 			Chebyshev<T> basis;
-			for ( std::size_t n = 0; n < N; ++n )
+			for ( std::size_t i = 0; i < nx; i++ )
 			{
-				temp += basis( x, n ) * COEFFICIENTS[ n ];
+				double x( mesh.xnodes()[ i ] );
+				for ( std::size_t j = 0; j < ny; j++ )
+				{
+					double y( mesh.ynodes()[ j ] );
+					for ( std::size_t n = 0; n < size; n++ )
+					{
+						f = n / J;
+						g = n % J;
+						mesh( i, j, var ) += COEFFICIENTS[ n ] * basis( x, f )
+																									 * basis( y, g );
+					}
+				}
 			}
 		}
+	}
 
-		if ( BASIS == "EvenChebyshev" )
+	template <typename T>
+	inline T Spectral2D<T>::operator()( const T& x, const T& y, const int& dx,
+																			const int& dy )
+	{
+		T temp( 0 );
+		int size( I * J );
+		int f, g;
+
+		if ( BASIS == "Chebyshev" )
 		{
 			Chebyshev<T> basis;
-			for ( std::size_t n = 0; n < N; ++n )
+			for ( std::size_t n = 0; n < size; n++ )
 			{
-				temp += basis( x, 2 * n ) * COEFFICIENTS[ n ];
-			}
-		}
-
-		if ( BASIS == "OddChebyshev" )
-		{
-			Chebyshev<T> basis;
-			for ( std::size_t n = 0; n < N; ++n )
-			{
-				temp += basis( x, 2 * n + 1 ) * COEFFICIENTS[ n ];
-			}
-		}
-
-		if ( BASIS == "RationalSemi" )
-		{
-			RationalSemi<T> basis( PARAM );
-			for ( std::size_t n = 0; n < N; ++n )
-			{
-				temp += basis( x, n ) * COEFFICIENTS[ n ];
+				f = n / J;
+				g = n % J;
+				temp += COEFFICIENTS[ n ] * basis( x, f, dx ) * basis( y, g, dy );
 			}
 		}
 
@@ -265,93 +277,37 @@ namespace Luna
 	}
 
 	template <typename T>
-	inline T Spectral2D<T>::operator()( const T& x, const int& d )
+	inline void Spectral2D<T>::operator()( Mesh2D<T>& mesh, const int& var,
+																				 const int& dx, const int& dy )
 	{
-		T temp( 0.0 );
-		std::size_t N( COEFFICIENTS.size() );
+		if ( var >= mesh.get_nvars() )
+		{
+			throw Error( "Spectral2D error: Incorrect variable number." );
+		}
+		int nx( mesh.xnodes().size() );
+		int ny( mesh.ynodes().size() );
+		int f, g;
+		int size( I * J );
 
 		if ( BASIS == "Chebyshev" )
 		{
 			Chebyshev<T> basis;
-			for ( int n = 0; n < N; ++n )
+			for ( std::size_t i = 0; i < nx; i++ )
 			{
-				temp += basis( x, n, d ) * COEFFICIENTS[ n ];
+				double x( mesh.xnodes()[ i ] );
+				for ( std::size_t j = 0; j < ny; j++ )
+				{
+					double y( mesh.ynodes()[ j ] );
+					for ( std::size_t n = 0; n < size; n++ )
+					{
+						f = n / J;
+						g = n % J;
+						mesh( i, j, var ) += COEFFICIENTS[ n ] * basis( x, f, dx )
+																									 * basis( y, g, dy );
+					}
+				}
 			}
 		}
-
-		if ( BASIS == "EvenChebyshev" )
-		{
-			Chebyshev<T> basis;
-			for ( int n = 0; n < N; ++n )
-			{
-				temp += basis( x, 2 * n, d ) * COEFFICIENTS[ n ];
-			}
-		}
-
-		if ( BASIS == "OddChebyshev" )
-		{
-			Chebyshev<T> basis;
-			for ( int n = 0; n < N; ++n )
-			{
-				temp += basis( x, 2 * n + 1, d ) * COEFFICIENTS[ n ];
-			}
-		}
-
-		if ( BASIS == "RationalSemi" )
-		{
-			RationalSemi<T> basis( PARAM );
-			for ( int n = 0; n < N; ++n )
-			{
-				temp += basis( x, n, d ) * COEFFICIENTS[ n ];
-			}
-		}
-
-		return temp;
-	}
-
-	template <typename T>
-	inline Vector<T> Spectral2D<T>::operator()( const Vector<T>& x, const int& d )
-	{
-		Vector<T> temp( x.size() );
-		std::size_t N( COEFFICIENTS.size() );
-
-		if ( BASIS == "Chebyshev" )
-		{
-			Chebyshev<T> basis;
-			for ( std::size_t n = 0; n < N; ++n )
-			{
-				temp += basis( x, n, d ) * COEFFICIENTS[ n ];
-			}
-		}
-
-		if ( BASIS == "EvenChebyshev" )
-		{
-			Chebyshev<T> basis;
-			for ( std::size_t n = 0; n < N; ++n )
-			{
-				temp += basis( x, 2 * n, d ) * COEFFICIENTS[ n ];
-			}
-		}
-
-		if ( BASIS == "OddChebyshev" )
-		{
-			Chebyshev<T> basis;
-			for ( std::size_t n = 0; n < N; ++n )
-			{
-				temp += basis( x, 2 * n + 1, d ) * COEFFICIENTS[ n ];
-			}
-		}
-
-		if ( BASIS == "RationalSemi" )
-		{
-			RationalSemi<T> basis( PARAM );
-			for ( std::size_t n = 0; n < N; ++n )
-			{
-				temp += basis( x, n, d ) * COEFFICIENTS[ n ];
-			}
-		}
-
-		return temp;
 	}
 
 	template <typename T>

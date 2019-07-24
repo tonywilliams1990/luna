@@ -180,6 +180,11 @@ namespace Luna
     /// \return A copy of the Vector of variables
     Vector<T> get_vars();
 
+    /// Fill the mesh points with values determined by a given function
+    /// \param func The 2 variable function used to assign values
+    /// \param var The variable to assign the values to
+    void apply( T func ( const T&, const T& ), const int& var );
+
   };	// End of class Mesh2D
 
   template <typename T>
@@ -924,11 +929,25 @@ namespace Luna
   }
 
   template <typename T>
-  Vector<T> Mesh2D<T>::get_vars()
+  inline Vector<T> Mesh2D<T>::get_vars()
   {
     Vector<T> temp;
     temp = VARS;
     return temp;
+  }
+
+  template <typename T>
+  inline void Mesh2D<T>::apply( T func ( const T&, const T& ), const int& var )
+  {
+    for ( std::size_t i = 0; i < NX; i++ )
+    {
+      double x( X_NODES[ i ] );
+      for ( std::size_t j = 0; j < NY; j++ )
+      {
+        double y( Y_NODES[ j ] );
+        VARS[ ( i * NY + j ) * NV + var ] = func( x, y );
+      }
+    }
   }
 
 }  // End of namespace Luna

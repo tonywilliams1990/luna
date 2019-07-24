@@ -21,7 +21,10 @@ namespace Luna
 {
   namespace Example
   {
-
+    double exact( const double& x, const double& y )
+    {
+      return exp( x ) * sin( y ) + x * x * y * y;
+    }
   } // End of namespace Example
 } // End of namespace Luna
 
@@ -53,16 +56,8 @@ int main()
 
   Mesh2D<double> solution( x_grid, y_grid, 2 );
 
-  // Fill in the exact solution
-  for ( std::size_t i = 0; i < n; i++ )
-  {
-    double x( x_grid[ i ] );
-    for ( std::size_t j = 0; j < n; j++ )
-    {
-      double y( y_grid[ j ] );
-      solution( i, j, 0 ) = exp( x ) * sin( y ) + x * x * y * y;
-    }
-  }
+  // Fill in the exact solution (store in first variable)
+  solution.apply( Example::exact, 0 );
 
   Matrix<double> L( size, size, 0.0 );
   Vector<double> F( size ), a( size );
@@ -145,20 +140,13 @@ int main()
   // Solve the system for the spectral coefficients
   a = L.solve( F );
 
+  // Create the 2D spectral solution
   Spectral2D<double> u( a, I, J, "Chebyshev" );
 
   // Output the spectral solution to the 2D mesh
-  for ( std::size_t i = 0; i < n; i++ )
-  {
-    double x( solution.xnodes()[ i ] );
-    for ( std::size_t j = 0; j < n; j++ )
-    {
-      double y( solution.ynodes()[ j ] );
-      solution( i, j, 1 ) = u( x, y );
-    }
-  }
-  /// \todo TODO just pass a mesh object to Spectral2D to output the solution to the mesh
+  u( solution, 1 );
 
+  // Output the mesh to a file
   solution.output( "./DATA/Spectral_Poisson.dat" );
   cout << " * For a comparison of the spectral/exact solutions run: " << endl;
   cout << "python Plotting/Spectral_Poisson_plot.py" << endl;
