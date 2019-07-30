@@ -1,5 +1,5 @@
 /// \file SparseMatrix.h
-/// A templated sparse matrix class for solving sparse linear systems. 
+/// A SparseMatrix class for use with double and std::complex<double>
 
 #ifndef SPARSEMATRIX_H
 #define SPARSEMATRIX_H
@@ -23,7 +23,7 @@ namespace Luna
   // Templated sparse matrix class
   template <class T>
 
-  /// A SparseMatrix class for use with double and std::complex<double>
+  /// A templated sparse matrix class for solving sparse linear systems.
   class SparseMatrix
   {
   private:

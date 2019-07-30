@@ -42,7 +42,7 @@ int main()
        << " * subject to the boundary conditions u(0) = e and " << endl
        << " * u(y) -> 0 as y -> infinity." << endl;
 
-  int n( 3 );                       // Number of spectral coefficients
+  int n( 10 );                       // Number of spectral coefficients
   double L( 5.0 );                   // Map parameter
   Vector<double> y;                  // Vector for collocation grid
   y.rational_semi_grid( n, L );

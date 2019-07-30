@@ -1,8 +1,6 @@
 /// \file Spectral.h
 /// A class for defining Spectral solutions using specified basis functions and
-/// coefficients. The spectral function \f$ u_N(x) \f$ is defined by
-/// \f[ u_N(x) = \sum_{n=0}^{N} a_n \phi_n(x),  \f] where \f$ a_n \f$ are
-/// coefficients and \f$ \phi_n(x) \f$ are known basis functions.
+/// coefficients.
 
 #ifndef SPECTRAL_H
 #define SPECTRAL_H
@@ -19,9 +17,13 @@
 
 namespace Luna
 {
-  /// A templated class for spectral solutions
+  // A templated class for spectral solutions
 	template <class T>
 
+	/// A class for defining spectral solutions using specified basis functions
+	/// and coefficients. The spectral function \f$ u_N(x) \f$ is defined by
+	/// \f[ u_N(x) = \sum_{n=0}^{N} a_n \phi_n(x),  \f] where \f$ a_n \f$ are
+	/// coefficients and \f$ \phi_n(x) \f$ are known basis functions.
 	class Spectral
 	{
 		private:

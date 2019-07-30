@@ -118,7 +118,7 @@ namespace Luna
 			/// \return A Vector containing the Chebyshev coefficients
 			Vector<T> approximate( T func ( const T& ), const int& N );
 
-			//TODO \todo fast cosine transform to improve speed ??? NR
+			/// \todo TODO fast cosine transform to improve speed ??? NR
 
 			/// Approximate a given function by an even Chebyshev polynomial in the
 			/// interval [-1, 1]

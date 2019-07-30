@@ -1,11 +1,5 @@
 /// \file Spectral2D.h
-/// \todo TODO fix description for 2D
-/// A class for defining Spectral solutions using specified basis functions and
-/// coefficients. The spectral function \f$ u_N(x) \f$ is defined by
-/// \f[ u_N(x) = \sum_{n=0}^{N} a_n \phi_n(x),  \f] where \f$ a_n \f$ are
-/// coefficients and \f$ \phi_n(x) \f$ are known basis functions.
-
-/// \todo TODO OddChebyshev, EvenChebyshev and RationalSemi operator overloading
+/// A templated class for 2D spectral solutions
 
 #ifndef SPECTRAL2D_H
 #define SPECTRAL2D_H
@@ -22,9 +16,13 @@
 
 namespace Luna
 {
-  /// A templated class for spectral solutions
 	template <class T>
 
+	/// A class for defining 2D spectral solutions using specified basis functions
+	/// and  coefficients. The spectral function \f$ u_{IJ}(x,y) \f$ is defined by
+	/// \f[ u_{IJ}(x,y) = \sum_{N=0}^{IJ-1} a_N \Phi_N(x,y),  \f] where \f$ a_n
+	/// \f$ are coefficients and \f$ \Phi_N(x,y) = \phi_{f(N)}(x) \phi_{g(N)}(y)
+	/// \f$ are known 2D product basis functions.
 	class Spectral2D
 	{
 		private:
@@ -49,10 +47,12 @@ namespace Luna
 
 			/// Constructor with specified basis, coefficients and extra parameter
 			/// \param coefficients The Vector of coefficients
+			/// \param i The number of collocation points in the x-direction
+			/// \param j The number of collocation points in the y-direction
 			/// \param basis The basis specifier string (i.e. Chebyshev)
 			/// \param param An extra parameter for use with rational Chebyshev basis
-			Spectral2D( const Vector<T>& coefficients, const std::string& basis,
-			 						const double& param );
+			Spectral2D( const Vector<T>& coefficients, const int& i, const int& j,
+									const std::string& basis, const double& param );
 			/// \todo TODO modify this constructor to include number of collocation points
 
 			/// Destructor
@@ -181,8 +181,8 @@ namespace Luna
 	}
 
 	template <typename T>
-	Spectral2D<T>::Spectral2D( const Vector<T>& coefficients,
-												 const std::string& basis, const double& param )
+	Spectral2D<T>::Spectral2D( const Vector<T>& coefficients, const int& i,
+							 const int& j, const std::string& basis, const double& param )
 	{
 		if ( basis != "Chebyshev" && basis != "EvenChebyshev"
 		  && basis != "OddChebyshev" && basis != "RationalSemi" )
@@ -196,6 +196,8 @@ namespace Luna
 		COEFFICIENTS = coefficients;
 		BASIS = basis;
 		PARAM = param;
+		I = i;
+		J = j;
 	}
 
 	/* ----- Operator overloading ----- */
@@ -210,6 +212,40 @@ namespace Luna
 		if ( BASIS == "Chebyshev" )
 		{
 			Chebyshev<T> basis;
+			for ( std::size_t n = 0; n < size; n++ )
+      {
+        f = n / J;
+        g = n % J;
+        temp += COEFFICIENTS[ n ] * basis( x, f ) * basis( y, g );
+      }
+		}
+
+		if ( BASIS == "EvenChebyshev" )
+		{
+			Chebyshev<T> basis;
+			for ( std::size_t n = 0; n < size; n++ )
+      {
+        f = n / J;
+        g = n % J;
+        temp += COEFFICIENTS[ n ] * basis( x, 2 * f ) * basis( y, 2 * g );
+      }
+		}
+
+		if ( BASIS == "OddChebyshev" )
+		{
+			Chebyshev<T> basis;
+			for ( std::size_t n = 0; n < size; n++ )
+      {
+        f = n / J;
+        g = n % J;
+        temp += COEFFICIENTS[ n ] * basis( x, 2 * f + 1 )
+																	* basis( y, 2 * g + 1 );
+      }
+		}
+
+		if ( BASIS == "RationalSemi" )
+		{
+			RationalSemi<T> basis( PARAM );
 			for ( std::size_t n = 0; n < size; n++ )
       {
         f = n / J;
@@ -252,6 +288,67 @@ namespace Luna
 				}
 			}
 		}
+
+		if ( BASIS == "EvenChebyshev" )
+		{
+			Chebyshev<T> basis;
+			for ( std::size_t i = 0; i < nx; i++ )
+			{
+				double x( mesh.xnodes()[ i ] );
+				for ( std::size_t j = 0; j < ny; j++ )
+				{
+					double y( mesh.ynodes()[ j ] );
+					for ( std::size_t n = 0; n < size; n++ )
+					{
+						f = n / J;
+						g = n % J;
+						mesh( i, j, var ) += COEFFICIENTS[ n ] * basis( x, 2 * f )
+																									 * basis( y, 2 * g );
+					}
+				}
+			}
+		}
+
+		if ( BASIS == "OddChebyshev" )
+		{
+			Chebyshev<T> basis;
+			for ( std::size_t i = 0; i < nx; i++ )
+			{
+				double x( mesh.xnodes()[ i ] );
+				for ( std::size_t j = 0; j < ny; j++ )
+				{
+					double y( mesh.ynodes()[ j ] );
+					for ( std::size_t n = 0; n < size; n++ )
+					{
+						f = n / J;
+						g = n % J;
+						mesh( i, j, var ) += COEFFICIENTS[ n ] * basis( x, 2 * f + 1 )
+																									 * basis( y, 2 * g + 1 );
+					}
+				}
+			}
+		}
+
+		if ( BASIS == "RationalSemi" )
+		{
+			RationalSemi<T> basis( PARAM );
+			for ( std::size_t i = 0; i < nx; i++ )
+			{
+				double x( mesh.xnodes()[ i ] );
+				for ( std::size_t j = 0; j < ny; j++ )
+				{
+					double y( mesh.ynodes()[ j ] );
+					for ( std::size_t n = 0; n < size; n++ )
+					{
+						f = n / J;
+						g = n % J;
+						mesh( i, j, var ) += COEFFICIENTS[ n ] * basis( x, f )
+																									 * basis( y, g );
+					}
+				}
+			}
+		}
+
 	}
 
 	template <typename T>
@@ -265,6 +362,41 @@ namespace Luna
 		if ( BASIS == "Chebyshev" )
 		{
 			Chebyshev<T> basis;
+			for ( std::size_t n = 0; n < size; n++ )
+			{
+				f = n / J;
+				g = n % J;
+				temp += COEFFICIENTS[ n ] * basis( x, f, dx ) * basis( y, g, dy );
+			}
+		}
+
+		if ( BASIS == "EvenChebyshev" )
+		{
+			Chebyshev<T> basis;
+			for ( std::size_t n = 0; n < size; n++ )
+			{
+				f = n / J;
+				g = n % J;
+				temp += COEFFICIENTS[ n ] * basis( x, 2 * f, dx )
+																	* basis( y, 2 * g, dy );
+			}
+		}
+
+		if ( BASIS == "OddChebyshev" )
+		{
+			Chebyshev<T> basis;
+			for ( std::size_t n = 0; n < size; n++ )
+			{
+				f = n / J;
+				g = n % J;
+				temp += COEFFICIENTS[ n ] * basis( x, 2 * f + 1, dx )
+																	* basis( y, 2 * g + 1, dy );
+			}
+		}
+
+		if ( BASIS == "RationalSemi" )
+		{
+			RationalSemi<T> basis( PARAM );
 			for ( std::size_t n = 0; n < size; n++ )
 			{
 				f = n / J;
@@ -308,6 +440,67 @@ namespace Luna
 				}
 			}
 		}
+
+		if ( BASIS == "EvenChebyshev" )
+		{
+			Chebyshev<T> basis;
+			for ( std::size_t i = 0; i < nx; i++ )
+			{
+				double x( mesh.xnodes()[ i ] );
+				for ( std::size_t j = 0; j < ny; j++ )
+				{
+					double y( mesh.ynodes()[ j ] );
+					for ( std::size_t n = 0; n < size; n++ )
+					{
+						f = n / J;
+						g = n % J;
+						mesh( i, j, var ) += COEFFICIENTS[ n ] * basis( x, 2 * f, dx )
+																									 * basis( y, 2 * g, dy );
+					}
+				}
+			}
+		}
+
+		if ( BASIS == "OddChebyshev" )
+		{
+			Chebyshev<T> basis;
+			for ( std::size_t i = 0; i < nx; i++ )
+			{
+				double x( mesh.xnodes()[ i ] );
+				for ( std::size_t j = 0; j < ny; j++ )
+				{
+					double y( mesh.ynodes()[ j ] );
+					for ( std::size_t n = 0; n < size; n++ )
+					{
+						f = n / J;
+						g = n % J;
+						mesh( i, j, var ) += COEFFICIENTS[ n ] * basis( x, 2 * f + 1, dx )
+																									 * basis( y, 2 * g + 1, dy );
+					}
+				}
+			}
+		}
+
+		if ( BASIS == "RationalSemi" )
+		{
+			RationalSemi<T> basis( PARAM );
+			for ( std::size_t i = 0; i < nx; i++ )
+			{
+				double x( mesh.xnodes()[ i ] );
+				for ( std::size_t j = 0; j < ny; j++ )
+				{
+					double y( mesh.ynodes()[ j ] );
+					for ( std::size_t n = 0; n < size; n++ )
+					{
+						f = n / J;
+						g = n % J;
+						mesh( i, j, var ) += COEFFICIENTS[ n ] * basis( x, f, dx )
+																									 * basis( y, g, dy );
+					}
+				}
+			}
+		}
+
 	}
 
 	template <typename T>

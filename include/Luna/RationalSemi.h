@@ -109,12 +109,21 @@ namespace Luna
 			/// \return The dth derivative of the nth degree polynomial at the point y
 			Vector<T> derivative( const Vector<T>& y, const int& n, const int& d );
 
-			/// Approximate a given function by a Semi-infinite  Rational Chebyshev
+			/// Approximate a given function by a Semi-infinite Rational Chebyshev
 			/// polynomial in the interval [0, infinity)
 			/// \param func The function to be approximated
 			/// \param N The number of coefficients to calculate
 			/// \return A Vector containing the coefficients
 			Vector<T> approximate( T func( const T& ), const int& N );
+
+			/// Approximate a given 2D function by a product of Rational Chebyshev
+			/// polynomials in the domain [0,infinity) x [0,infinity)
+			/// \param func The function to be approximated
+			/// \param I The number of collocation points in the x-direction
+			/// \param J The number of collocation points in the y-direction
+			/// \return A Vector containing the coefficients
+			Vector<T> approximate2D( T func( const T&, const T& ), const int& I,
+															 const int& J );
 
 
   }; // End of class Chebyshev
@@ -199,6 +208,10 @@ namespace Luna
 	template <typename T>
 	inline T RationalSemi<T>::derivative( const T& y, const int& n, const int& d )
 	{
+		if ( d == 0 )
+		{
+			return evaluate( y, n );
+		}
 		if ( d == 1 )
 		{
 			Chebyshev<T> cheby;
@@ -287,6 +300,36 @@ namespace Luna
 			c[ j ] = ( 2.0 / N ) * sum;
 		}
 		c[ 0 ] /= 2;    // - 0.5 * c_0
+		return c;
+	}
+
+	template <typename T>
+	inline Vector<T> RationalSemi<T>::approximate2D( T func( const T&, const T& ),
+																									 const int& I, const int& J )
+	{
+		int size( I * J );
+		Vector<T> c( size );
+		/*Vector<double> x, y;
+		x.rational_semi_grid( I, L );
+		y.rational_semi_grid( J, L );
+		double xf, yg, phif, phig;
+		int f, g;
+		for ( std::size_t j = 0; j < size; j++ )
+		{
+			T sum( 0.0 );
+			for ( std::size_t k = 0; k < size; k++ )
+			{
+				f = k / J;
+				g = k % J;
+				xf = x[ I - ( f + 1 ) ];
+				yg = y[ J - ( g + 1 ) ];
+				phif = std::cos( f * std::acos( xf ) );
+				phig = std::cos( g * std::acos( yg ) );
+				sum += func( xf, yg ) * phif * phig;
+			}
+			c[ j ] = ( 2.0 / size ) * sum;
+		}
+		c[ 0 ] /= 2;    // - 0.5 * c_0 */
 		return c;
 	}
 
