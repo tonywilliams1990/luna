@@ -62,7 +62,7 @@ int main()
   c = rationalsemi.approximate( Example::initial_guess, n );
   for ( std::size_t i = 0; i < 2; i++ )
   {
-    c.push_back( 0.0 );
+    c.push_back( 0.0 ); // Extra coefficients for BCs
   }
   // Make this into a spectral solution
   Spectral<double> u_g( c, "RationalSemi", L );

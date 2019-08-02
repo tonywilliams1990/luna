@@ -29,3 +29,4 @@
 #include "Arclength.h"
 #include "Polynomial.h"
 #include "Utility.h"
+#include "SVD.h"
