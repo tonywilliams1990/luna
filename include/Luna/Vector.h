@@ -277,6 +277,12 @@ namespace Luna
     /// \param L The mapping parameter
     void rational_semi_grid( const std::size_t& n, const double& L );
 
+    /// Create a Vector of size n containing the semi-infinite rational
+    /// Chebyshev collocation points between 0 and infinity (half points)
+    /// \param n Number of elements
+    /// \param L The mapping parameter
+    void half_rational_semi_grid( const std::size_t& n, const double& L );
+
     /// Product of the elements in the Vector (from index start to end)
     /// \param start Start index
     /// \param end End index
@@ -853,6 +859,19 @@ namespace Luna
     for ( std::size_t i=0; i < n; ++i )
 		{
       t = ( 2 * ( i + 1 ) - 1 ) * M_PI / ( 2 * n );
+			VECTOR[ i ] = L * std::pow( 1 / std::tan( t / 2 ) , 2 );
+		}
+  }
+
+  template<>
+  inline void Vector<double>::half_rational_semi_grid( const std::size_t& n,
+                                                  const double& L )
+  {
+    VECTOR.resize( n );
+    double t;
+    for ( std::size_t i=0; i < n; ++i )
+		{
+      t = ( 2 * ( i + 1 ) - 1 ) * 0.5 * M_PI / ( 2 * n );
 			VECTOR[ i ] = L * std::pow( 1 / std::tan( t / 2 ) , 2 );
 		}
   }

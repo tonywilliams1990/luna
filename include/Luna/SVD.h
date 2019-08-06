@@ -46,7 +46,7 @@ namespace Luna
 		{
 			eps = std::numeric_limits<double>::epsilon();
 			decompose();
-			reorder();
+			//reorder();
 			tsh = 0.5 * std::sqrt( m + n + 1. ) * w[ 0 ] * eps;
 		}
 

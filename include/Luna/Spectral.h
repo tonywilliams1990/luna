@@ -139,7 +139,8 @@ namespace Luna
 												 const std::string& basis )
 	{
 		if ( basis != "Chebyshev" && basis != "EvenChebyshev"
-		  && basis != "OddChebyshev" && basis != "RationalSemi" )
+		  && basis != "OddChebyshev" && basis != "RationalSemi"
+			&& basis != "EvenRationalSemi" && basis != "OddRationalSemi" )
 			//&& basis != "Fourier" )
 		{
 			std::string problem;
@@ -157,7 +158,8 @@ namespace Luna
 												 const std::string& basis, const double& param )
 	{
 		if ( basis != "Chebyshev" && basis != "EvenChebyshev"
-		  && basis != "OddChebyshev" && basis != "RationalSemi" )
+		  && basis != "OddChebyshev" && basis != "RationalSemi"
+			&& basis != "EvenRationalSemi" && basis != "OddRationalSemi" )
 			//&& basis != "Fourier" )
 		{
 			std::string problem;
@@ -214,6 +216,24 @@ namespace Luna
 			}
 		}
 
+		if ( BASIS == "EvenRationalSemi" )
+		{
+			RationalSemi<T> basis( PARAM );
+			for ( std::size_t n = 0; n < N; ++n )
+			{
+				temp += basis( x, 2 * n ) * COEFFICIENTS[ n ];
+			}
+		}
+
+		if ( BASIS == "OddRationalSemi" )
+		{
+			RationalSemi<T> basis( PARAM );
+			for ( std::size_t n = 0; n < N; ++n )
+			{
+				temp += basis( x, 2 * n + 1 ) * COEFFICIENTS[ n ];
+			}
+		}
+
 		return temp;
 	}
 
@@ -256,6 +276,24 @@ namespace Luna
 			for ( std::size_t n = 0; n < N; ++n )
 			{
 				temp += basis( x, n ) * COEFFICIENTS[ n ];
+			}
+		}
+
+		if ( BASIS == "EvenRationalSemi" )
+		{
+			RationalSemi<T> basis( PARAM );
+			for ( std::size_t n = 0; n < N; ++n )
+			{
+				temp += basis( x, 2 * n ) * COEFFICIENTS[ n ];
+			}
+		}
+
+		if ( BASIS == "OddRationalSemi" )
+		{
+			RationalSemi<T> basis( PARAM );
+			for ( std::size_t n = 0; n < N; ++n )
+			{
+				temp += basis( x, 2 * n + 1 ) * COEFFICIENTS[ n ];
 			}
 		}
 
@@ -304,6 +342,24 @@ namespace Luna
 			}
 		}
 
+		if ( BASIS == "EvenRationalSemi" )
+		{
+			RationalSemi<T> basis( PARAM );
+			for ( int n = 0; n < N; ++n )
+			{
+				temp += basis( x, 2 * n, d ) * COEFFICIENTS[ n ];
+			}
+		}
+
+		if ( BASIS == "OddRationalSemi" )
+		{
+			RationalSemi<T> basis( PARAM );
+			for ( int n = 0; n < N; ++n )
+			{
+				temp += basis( x, 2 * n + 1, d ) * COEFFICIENTS[ n ];
+			}
+		}
+
 		return temp;
 	}
 
@@ -349,6 +405,24 @@ namespace Luna
 			}
 		}
 
+		if ( BASIS == "EvenRationalSemi" )
+		{
+			RationalSemi<T> basis( PARAM );
+			for ( std::size_t n = 0; n < N; ++n )
+			{
+				temp += basis( x, 2 * n, d ) * COEFFICIENTS[ n ];
+			}
+		}
+
+		if ( BASIS == "OddRationalSemi" )
+		{
+			RationalSemi<T> basis( PARAM );
+			for ( std::size_t n = 0; n < N; ++n )
+			{
+				temp += basis( x, 2 * n + 1, d ) * COEFFICIENTS[ n ];
+			}
+		}
+
 		return temp;
 	}
 
@@ -384,7 +458,8 @@ namespace Luna
 	void Spectral<T>::set_basis( const std::string& basis )
 	{
 		if ( basis != "Chebyshev" && basis != "EvenChebyshev"
-		  && basis != "OddChebyshev" && basis != "RationalSemi" )
+		  && basis != "OddChebyshev" && basis != "RationalSemi"
+			&& basis != "EvenRationalSemi" && basis != "OddRationalSemi" )
 			//&& basis != "Fourier" )
 		{
 			std::string problem;

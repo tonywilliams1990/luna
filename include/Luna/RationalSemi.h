@@ -16,6 +16,8 @@
 #include "Basis.h"
 #include "Special.h"
 #include "Chebyshev.h"
+#include "SVD.h"
+
 
 namespace Luna
 {
@@ -116,15 +118,19 @@ namespace Luna
 			/// \return A Vector containing the coefficients
 			Vector<T> approximate( T func( const T& ), const int& N );
 
-			/// Approximate a given 2D function by a product of Rational Chebyshev
-			/// polynomials in the domain [0,infinity) x [0,infinity)
+			/// Approximate a given function by an even Semi-infinite Rational
+			/// Chebyshev polynomial in the interval [0, infinity)
 			/// \param func The function to be approximated
-			/// \param I The number of collocation points in the x-direction
-			/// \param J The number of collocation points in the y-direction
+			/// \param N The number of coefficients to calculate
 			/// \return A Vector containing the coefficients
-			Vector<T> approximate2D( T func( const T&, const T& ), const int& I,
-															 const int& J );
+			Vector<T> approximate_even( T func( const T& ), const int& N );
 
+			/// Approximate a given function by an odd Semi-infinite Rational
+			/// Chebyshev polynomial in the interval [0, infinity)
+			/// \param func The function to be approximated
+			/// \param N The number of coefficients to calculate
+			/// \return A Vector containing the coefficients
+			Vector<T> approximate_odd( T func( const T& ), const int& N );
 
   }; // End of class Chebyshev
 
@@ -304,32 +310,44 @@ namespace Luna
 	}
 
 	template <typename T>
-	inline Vector<T> RationalSemi<T>::approximate2D( T func( const T&, const T& ),
-																									 const int& I, const int& J )
+	inline Vector<T> RationalSemi<T>::approximate_even( T func( const T& ),
+																								 			const int& N )
 	{
-		int size( I * J );
-		Vector<T> c( size );
-		/*Vector<double> x, y;
-		x.rational_semi_grid( I, L );
-		y.rational_semi_grid( J, L );
-		double xf, yg, phif, phig;
-		int f, g;
-		for ( std::size_t j = 0; j < size; j++ )
+		Vector<T> c( N );
+		Vector<double> y;
+		y.rational_semi_grid( 2 * N, L );
+		for ( std::size_t j = 0; j < N; j++ )
 		{
 			T sum( 0.0 );
-			for ( std::size_t k = 0; k < size; k++ )
+			for ( std::size_t k = 0; k < 2 * N; k++ )
 			{
-				f = k / J;
-				g = k % J;
-				xf = x[ I - ( f + 1 ) ];
-				yg = y[ J - ( g + 1 ) ];
-				phif = std::cos( f * std::acos( xf ) );
-				phig = std::cos( g * std::acos( yg ) );
-				sum += func( xf, yg ) * phif * phig;
+				sum += func( y[ k ] ) * std::cos( ( 2 * j * M_PI * ( k + 0.5 ) )
+																				/ ( 2. * N) );
 			}
-			c[ j ] = ( 2.0 / size ) * sum;
+			c[ j ] = ( 2.0 / ( 2. * N ) ) * sum;
 		}
-		c[ 0 ] /= 2;    // - 0.5 * c_0 */
+		c[ 0 ] /= 2;    // - 0.5 * c_0
+		return c;
+	}
+
+	template <typename T>
+	inline Vector<T> RationalSemi<T>::approximate_odd( T func( const T& ),
+																								 		 const int& N )
+	{
+		Vector<T> c( N );
+		Vector<double> y;
+		y.rational_semi_grid( 2 * N, L );
+		for ( std::size_t j = 0; j < N; j++ )
+		{
+			T sum( 0.0 );
+			for ( std::size_t k = 0; k < 2 * N; k++ )
+			{
+				sum += func( y[ k ] ) * std::cos( ( ( 2 * j + 1 ) * M_PI * ( k + 0.5 ) )
+																				/ ( 2. * N) );
+			}
+			c[ j ] = ( 2.0 / ( 2. * N ) ) * sum;
+		}
+		c[ 0 ] /= 2;    // - 0.5 * c_0
 		return c;
 	}
 

@@ -158,7 +158,8 @@ namespace Luna
 														 const int& j, const std::string& basis )
 	{
 		if ( basis != "Chebyshev" && basis != "EvenChebyshev"
-		  && basis != "OddChebyshev" && basis != "RationalSemi" )
+		  && basis != "OddChebyshev" && basis != "RationalSemi"
+		  && basis != "EvenRationalSemi" && basis != "OddRationalSemi" )
 			//&& basis != "Fourier" )
 		{
 			std::string problem;
@@ -185,7 +186,8 @@ namespace Luna
 							 const int& j, const std::string& basis, const double& param )
 	{
 		if ( basis != "Chebyshev" && basis != "EvenChebyshev"
-		  && basis != "OddChebyshev" && basis != "RationalSemi" )
+		  && basis != "OddChebyshev" && basis != "RationalSemi"
+			&& basis != "EvenRationalSemi" && basis != "OddRationalSemi" )
 			//&& basis != "Fourier" )
 		{
 			std::string problem;
@@ -251,6 +253,29 @@ namespace Luna
         f = n / J;
         g = n % J;
         temp += COEFFICIENTS[ n ] * basis( x, f ) * basis( y, g );
+      }
+		}
+
+		if ( BASIS == "EvenRationalSemi" )
+		{
+			RationalSemi<T> basis( PARAM );
+			for ( std::size_t n = 0; n < size; n++ )
+      {
+        f = n / J;
+        g = n % J;
+        temp += COEFFICIENTS[ n ] * basis( x, 2 * f ) * basis( y, 2 * g );
+      }
+		}
+
+		if ( BASIS == "OddRationalSemi" )
+		{
+			RationalSemi<T> basis( PARAM );
+			for ( std::size_t n = 0; n < size; n++ )
+      {
+        f = n / J;
+        g = n % J;
+        temp += COEFFICIENTS[ n ] * basis( x, 2 * f + 1 )
+																	* basis( y, 2 * g + 1 );
       }
 		}
 
@@ -349,6 +374,46 @@ namespace Luna
 			}
 		}
 
+		if ( BASIS == "EvenRationalSemi" )
+		{
+			RationalSemi<T> basis( PARAM );
+			for ( std::size_t i = 0; i < nx; i++ )
+			{
+				double x( mesh.xnodes()[ i ] );
+				for ( std::size_t j = 0; j < ny; j++ )
+				{
+					double y( mesh.ynodes()[ j ] );
+					for ( std::size_t n = 0; n < size; n++ )
+					{
+						f = n / J;
+						g = n % J;
+						mesh( i, j, var ) += COEFFICIENTS[ n ] * basis( x, 2 * f )
+																									 * basis( y, 2 * g );
+					}
+				}
+			}
+		}
+
+		if ( BASIS == "OddRationalSemi" )
+		{
+			RationalSemi<T> basis( PARAM );
+			for ( std::size_t i = 0; i < nx; i++ )
+			{
+				double x( mesh.xnodes()[ i ] );
+				for ( std::size_t j = 0; j < ny; j++ )
+				{
+					double y( mesh.ynodes()[ j ] );
+					for ( std::size_t n = 0; n < size; n++ )
+					{
+						f = n / J;
+						g = n % J;
+						mesh( i, j, var ) += COEFFICIENTS[ n ] * basis( x, 2 * f + 1 )
+																									 * basis( y, 2 * g + 1 );
+					}
+				}
+			}
+		}
+
 	}
 
 	template <typename T>
@@ -402,6 +467,30 @@ namespace Luna
 				f = n / J;
 				g = n % J;
 				temp += COEFFICIENTS[ n ] * basis( x, f, dx ) * basis( y, g, dy );
+			}
+		}
+
+		if ( BASIS == "EvenRationalSemi" )
+		{
+			RationalSemi<T> basis( PARAM );
+			for ( std::size_t n = 0; n < size; n++ )
+			{
+				f = n / J;
+				g = n % J;
+				temp += COEFFICIENTS[ n ] * basis( x, 2 * f, dx )
+																	* basis( y, 2 * g, dy );
+			}
+		}
+
+		if ( BASIS == "OddRationalSemi" )
+		{
+			RationalSemi<T> basis( PARAM );
+			for ( std::size_t n = 0; n < size; n++ )
+			{
+				f = n / J;
+				g = n % J;
+				temp += COEFFICIENTS[ n ] * basis( x, 2 * f + 1, dx )
+																	* basis( y, 2 * g + 1, dy );
 			}
 		}
 
@@ -501,6 +590,46 @@ namespace Luna
 			}
 		}
 
+		if ( BASIS == "EvenRationalSemi" )
+		{
+			RationalSemi<T> basis( PARAM );
+			for ( std::size_t i = 0; i < nx; i++ )
+			{
+				double x( mesh.xnodes()[ i ] );
+				for ( std::size_t j = 0; j < ny; j++ )
+				{
+					double y( mesh.ynodes()[ j ] );
+					for ( std::size_t n = 0; n < size; n++ )
+					{
+						f = n / J;
+						g = n % J;
+						mesh( i, j, var ) += COEFFICIENTS[ n ] * basis( x, 2 * f, dx )
+																									 * basis( y, 2 * g, dy );
+					}
+				}
+			}
+		}
+
+		if ( BASIS == "OddRationalSemi" )
+		{
+			RationalSemi<T> basis( PARAM );
+			for ( std::size_t i = 0; i < nx; i++ )
+			{
+				double x( mesh.xnodes()[ i ] );
+				for ( std::size_t j = 0; j < ny; j++ )
+				{
+					double y( mesh.ynodes()[ j ] );
+					for ( std::size_t n = 0; n < size; n++ )
+					{
+						f = n / J;
+						g = n % J;
+						mesh( i, j, var ) += COEFFICIENTS[ n ] * basis( x, 2 * f + 1, dx )
+																									 * basis( y, 2 * g + 1, dy );
+					}
+				}
+			}
+		}
+
 	}
 
 	template <typename T>
@@ -535,7 +664,8 @@ namespace Luna
 	void Spectral2D<T>::set_basis( const std::string& basis )
 	{
 		if ( basis != "Chebyshev" && basis != "EvenChebyshev"
-		  && basis != "OddChebyshev" && basis != "RationalSemi" )
+		  && basis != "OddChebyshev" && basis != "RationalSemi"
+			&& basis != "EvenRationalSemi" && basis != "OddRationalSemi" )
 			//&& basis != "Fourier" )
 		{
 			std::string problem;
