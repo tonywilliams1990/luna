@@ -60,16 +60,16 @@ namespace Luna
     /// \param nodey Node index ( y-axis )
     /// \param var Variable index
     /// \return A reference to the variable stored at the given node
-    T& operator()( const std::size_t nodex, const std::size_t nodey,
-                   const std::size_t var );
+    T& operator()( const std::size_t& nodex, const std::size_t& nodey,
+                   const std::size_t& var );
 
     /// Const access operator for a nodal point/variable in the mesh
     /// \param nodex Node index ( x-axis )
     /// \param nodey Node index ( y-axis )
     /// \param var Variable index
     /// \return A constant reference to the variable stored at the given node
-    const T& operator()( const std::size_t nodex, const std::size_t nodey,
-                         const std::size_t var ) const;
+    const T& operator()( const std::size_t& nodex, const std::size_t& nodey,
+                         const std::size_t& var ) const;
 
     /// Copy assignment
     /// \param original 2D mesh to be copied
@@ -122,11 +122,11 @@ namespace Luna
     std::size_t get_nvars() const;
 
     /// Return A vector of the x-nodal positions for this mesh
-    /// \return A the mesh x nodes Vector
+    /// \return The mesh x nodes Vector
     const Vector<double>& xnodes() const;
 
     /// Return A vector of the y-nodal positions for this mesh
-    /// \return A the mesh y nodes Vector
+    /// \return The mesh y nodes Vector
     const Vector<double>& ynodes() const;
 
     /// Return a Matrix corresponding to each nodal point in the mesh
@@ -188,9 +188,9 @@ namespace Luna
   };	// End of class Mesh2D
 
   template <typename T>
-  inline T& Mesh2D<T>::operator()( const std::size_t nodex,
-                                   const std::size_t nodey,
-                                   const std::size_t var )
+  inline T& Mesh2D<T>::operator()( const std::size_t& nodex,
+                                   const std::size_t& nodey,
+                                   const std::size_t& var )
   {
     if ( nodex > NX - 1 || nodey > NY - 1 )
     {
@@ -211,9 +211,9 @@ namespace Luna
   }
 
   template <typename T>
-  inline const T& Mesh2D<T>::operator()( const std::size_t nodex,
-                                         const std::size_t nodey,
-                                         const std::size_t var ) const
+  inline const T& Mesh2D<T>::operator()( const std::size_t& nodex,
+                                         const std::size_t& nodey,
+                                         const std::size_t& var ) const
   {
     if ( nodex > NX - 1 || nodey > NY - 1 )
     {

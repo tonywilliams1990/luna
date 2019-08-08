@@ -13,16 +13,6 @@ namespace Luna
   {
     double EPS( 0.1 );
 
-    double a( const double& x, const double& y )
-    {
-      return x * x + y * y;
-    }
-
-    double b( const double& x, const double& y )
-    {
-      return x * y;
-    }
-
     double initial_guess_x( const double& x )
     {
       return exp( - EPS * x );
@@ -54,10 +44,10 @@ int main()
        << " * epsilon is a given small parameter. The exact solution" << endl
        << " * is u(x,y) = e^(-eps*x*y)." << endl;
 
-  int I( 15 );                       // Number of x collocation points
+  int I( 90 );                       // Number of x collocation points
   int J( I );                       // Number of y collocation points ( J = I )
   double L( 7.0 );                  // Map parameter
-  double eps( Example::EPS );
+  double eps2( Example::EPS * Example::EPS );
   double tol( 1e-10 );              // Tolerance correction coefficients norm
   int size( I * J );
   int n( 250 );                     // Number of output points (x and y)
@@ -65,7 +55,7 @@ int main()
 
   cout << " * I = J = " << I << endl;
   cout << " * L = " << L << endl;
-  cout << " * epsilon = " << eps << endl;
+  cout << " * epsilon = " << Example::EPS << endl;
 
   Vector<double> x, y, x_grid, y_grid;
   x.rational_semi_grid( I - 1, L );
@@ -105,97 +95,122 @@ int main()
   u_g( solution, 2 ); // output initial guess to mesh
 
   double xi, yj;
-  int f, g;
+  int f, g, ix, jy;
 
   double norm;
   int max_iter( 100 );
   int iter( 0 );
 
+  Vector<double> phix, phiy;
+
   Timer timer;
 
   do{
 
+    cout << "---------------------------------------------------------" << endl;
     timer.start();
+
+    // Make mesh for storing u_g, u_g_x, u_g_y, u_g_xx, u_g_yy, u_g_xy
+    Mesh2D<double> u_g_mesh = u_g.mesh_derivatives( x, y );
+    timer.print( "Solution mesh construction time" );
+
     for ( int M = 0; M < size; M++ )
     {
       i = M / J;
       j = M % J;
 
-      xi = x[ I - ( i + 1 ) ];
-      yj = y[ J - ( j + 1 ) ];
+      ix = I - ( i + 1 );
+      jy = J - ( j + 1 );
 
+      xi = x[ ix ];
+      yj = y[ jy ];
+
+      // Matrix
+      for ( int N = 0; N < size; N++ )
+      {
+        f = N / J;
+        g = N % J;
+
+        phix = rationalsemi.eval_2( xi, f );  // phix, phix' and phix''
+        phiy = rationalsemi.eval_2( yj, g );  // phiy, phiy' and phiy''
+
+        // x = 0 boundary u_c = 1 - u_g (left)
+        if ( i == 0 )
+        {
+          mat( M, N ) = rationalsemi( 0.0, f ) * phiy[ 0 ];
+        }
+        // y = 0 boundary u_c = 1 - u_g (bottom)
+        if ( j == 0 && i != 0 )
+        {
+          mat( M, N ) = phix[ 0 ] * rationalsemi( 0.0, g );
+        }
+        // Internal nodes
+        if ( i != 0 && j != 0 )
+        {
+          // u_c_xx
+          mat( M, N )  = phix[ 2 ] * phiy[ 0 ];
+          // u_c_yy
+          mat( M, N ) += phix[ 0 ] * phiy[ 2 ];
+          // u_g_y * u_c_x
+          /*mat( M, N ) += u_g( xi, yj, 0, 1 ) * rationalsemi( xi, f, 1 )
+                                             * rationalsemi( yj, g );*/
+          mat( M, N ) += u_g_mesh( ix, jy, 2 )
+                         * phix[ 1 ] * phiy[ 0 ];
+          // u_g_x * u_c_y
+          /*mat( M, N ) += u_g( xi, yj, 1, 0 ) * rationalsemi( xi, f )
+                                             * rationalsemi( yj, g, 1 );*/
+          mat( M, N ) += u_g_mesh( ix, jy, 1 )
+                         * phix[ 0 ] * phiy[ 1 ];
+          // - eps^2 * a * u_c
+          mat( M, N ) += - eps2 * ( xi * xi + yj * yj )
+                         * phix[ 0 ] * phiy[ 0 ];
+          // - 2 * eps^2 * b * u_g * u_c
+          /*mat( M, N ) += - 2 * eps * eps * Example::b( xi, yj ) * u_g( xi, yj )
+                         * rationalsemi( xi, f ) * rationalsemi( yj, g );*/
+          mat( M, N ) += - 2 * eps2 * xi * yj * u_g_mesh( ix, jy, 0 )
+                         * phix[ 0 ] * phiy[ 0 ];
+        }
+      }
+
+      // Residuals
       // x = 0 boundary u_c = 1 - u_g (left)
       if ( i == 0 )
       {
-        for ( int N = 0; N < size; N++ )
-        {
-          f = N / J;
-          g = N % J;
-          mat( M, N ) = rationalsemi( 0.0, f ) * rationalsemi( yj, g );
-        }
-        F[ M ] = 1.0 - u_g( 0.0, yj );
+        F[ M ] = 1.0 - u_g_mesh( I - 1, jy, 0 );
       }
-
       // y = 0 boundary u_c = 1 - u_g (bottom)
       if ( j == 0 && i != 0 )
       {
-        for ( int N = 0; N < size; N++ )
-        {
-          f = N / J;
-          g = N % J;
-          mat( M, N ) = rationalsemi( xi, f ) * rationalsemi( 0.0, g );
-        }
-        F[ M ] = 1.0 - u_g( xi, 0.0 );
+        F[ M ] = 1.0 - u_g_mesh( ix, J - 1, 0 );
       }
-
       // Internal nodes
       if ( i != 0 && j != 0 )
       {
-        for ( int N = 0; N < size; N++ )
-        {
-          f = N / J;
-          g = N % J;
-          // u_c_xx
-          mat( M, N )  = rationalsemi( xi, f, 2 ) * rationalsemi( yj, g );
-          // u_c_yy
-          mat( M, N ) += rationalsemi( xi, f ) * rationalsemi( yj, g, 2 );
-          // u_g_y * u_c_x
-          mat( M, N ) += u_g( xi, yj, 0, 1 ) * rationalsemi( xi, f, 1 )
-                                             * rationalsemi( yj, g );
-          // u_g_x * u_c_y
-          mat( M, N ) += u_g( xi, yj, 1, 0 ) * rationalsemi( xi, f )
-                                             * rationalsemi( yj, g, 1 );
-          // - eps^2 * a * u_c
-          mat( M, N ) += - eps * eps * Example::a( xi, yj )
-                         * rationalsemi( xi, f ) * rationalsemi( yj, g );
-          // - 2 * eps^2 * b * u_g * u_c
-          mat( M, N ) += - 2 * eps * eps * Example::b( xi, yj ) * u_g( xi, yj )
-                         * rationalsemi( xi, f ) * rationalsemi( yj, g );
-        }
-        // - u_g_xx - u_g_yy - u_g_x * u_g_y + eps^2 * u_g * [ a +  b * u_g ]
-        F[ M ]  = - u_g( xi, yj, 2, 0 ) - u_g( xi, yj, 0, 2 )
-            - u_g( xi, yj, 1, 0 ) * u_g( xi, yj, 0, 1 )
-            + eps * eps * u_g( xi, yj ) * ( Example::a( xi, yj )
-            + Example::b( xi, yj ) * u_g( xi, yj ) );
-
+        // - u_g_xx - u_g_yy - u_g_x * u_g_y
+        // + eps^2 * u_g * ( x^2 + y^2 + x * y * u_g )
+        F[ M ] = - u_g_mesh( ix, jy, 3 ) - u_g_mesh( ix, jy, 4 )
+                 - u_g_mesh( ix, jy, 1 ) * u_g_mesh( ix, jy, 2 )
+                 + eps2 * u_g_mesh( ix, jy, 0 ) * ( xi * xi + yj * yj
+                 + xi * yj * u_g_mesh( ix, jy, 0 ) );
       }
 
       // BCs at infinity are natural boundary conditions
 
     }
-
+    timer.print( "Matrix construction time" );
     // Solve the system for the spectral coefficients
     a_c = mat.solve( F );
     u_g.update_coefficients( a_c );
     norm = a_c.norm_2();
-    cout << " * iter = " << iter << ", norm = " << std::scientific << norm
-         << endl;
+    cout << "  * iter = " << iter << ", norm = " << std::scientific << norm
+         << std::fixed << endl;
     ++iter;
-    timer.print();
+    timer.print( "Total time" );
     timer.stop();
 
   }while( norm > tol && iter < max_iter );
 
+  cout << "---------------------------------------------------------" << endl;
   // Output the spectral solution to the 2D mesh ( store in 2nd variable )
   u_g( solution, 1 );
 

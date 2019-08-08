@@ -6,6 +6,7 @@
 
 #include <ctime>
 #include <iostream>
+#include <string>
 
 namespace Luna
 {
@@ -66,6 +67,10 @@ namespace Luna
 
 	  /// Output the time to the screen
 		void print() const;
+
+		/// Output the time to the screen with a specified message
+		/// \param message The message to be printed before the time
+		void print( const std::string& message ) const;
 
 		/// Return the time in milliseconds
 		/// \return The time in ms
@@ -147,13 +152,31 @@ namespace Luna
 		Timer temp( *this );
 		const double elapsed_time_in_ms( temp.get_time() );
 		if ( elapsed_time_in_ms > 1000 )
-        {
-          std::cout << "  * TOTAL CPU time taken = " << elapsed_time_in_ms / 1000. << " s\n";
-        }
-        else
-        {
-         std::cout << "  * TOTAL CPU time taken = " << elapsed_time_in_ms << " ms\n";
-        }
+    {
+    	std::cout << "  * TOTAL CPU time taken = " << elapsed_time_in_ms / 1000.
+								<< " s\n";
+    }
+    else
+    {
+    	std::cout << "  * TOTAL CPU time taken = " << elapsed_time_in_ms
+								<< " ms\n";
+    }
+	}
+
+	inline void Timer::print( const std::string& message ) const
+	{
+		std::cout.precision(4);
+		Timer temp( *this );
+		const double elapsed_time_in_ms( temp.get_time() );
+		if ( elapsed_time_in_ms > 1000 )
+    {
+    	std::cout << "  * " << message << " = " << elapsed_time_in_ms / 1000.
+								<< " s\n";
+    }
+    else
+    {
+    	std::cout << "  * " << message << " = " << elapsed_time_in_ms << " ms\n";
+    }
 	}
 
 	inline double Timer::get_time() const

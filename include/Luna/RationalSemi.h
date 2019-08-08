@@ -132,6 +132,14 @@ namespace Luna
 			/// \return A Vector containing the coefficients
 			Vector<T> approximate_odd( T func( const T& ), const int& N );
 
+			/// Return a Vector containing the the nth Semi-infinite Rational
+			/// Chebyshev polynomial at point y and its first two derivatives
+			/// \param y The point where the polynomial is evaluated
+			/// \param n The degree of the polynomial
+			/// \return A Vector containing the nth degree polynomial at y, the first
+			/// derivative and the second derivative.
+			Vector<T> eval_2( const T& y, const int& n );
+
   }; // End of class Chebyshev
 
 	template <typename T>
@@ -193,8 +201,8 @@ namespace Luna
 	inline T RationalSemi<T>::evaluate( const T& y, const int& n )
 	{
 		Chebyshev<T> cheby;
-		T x( ( y - L ) / ( y + L ) );
-		return cheby( x, n );
+		//T x( ( y - L ) / ( y + L ) );
+		return cheby( ( y - L ) / ( y + L ), n );
 
 		/*T t;
 		t = 2 * std::atan( std::sqrt( L / y ) );
@@ -214,6 +222,7 @@ namespace Luna
 	template <typename T>
 	inline T RationalSemi<T>::derivative( const T& y, const int& n, const int& d )
 	{
+		/// \todo TODO could derivative terms be optimised
 		if ( d == 0 )
 		{
 			return evaluate( y, n );
@@ -221,9 +230,9 @@ namespace Luna
 		if ( d == 1 )
 		{
 			Chebyshev<T> cheby;
-			T x( ( y - L ) / ( y + L ) );
+			//T x( ( y - L ) / ( y + L ) );
 			T dxdy( 2 * L / std::pow( y + L, 2 ) );
-			return dxdy * cheby( x, n, 1 );
+			return dxdy * cheby( ( y - L ) / ( y + L ), n, 1 );
 
 			/*T t, s, c;
 			t = 2 * std::atan( std::sqrt( L / y ) );
@@ -234,10 +243,11 @@ namespace Luna
 		if ( d == 2 )
 		{
 			Chebyshev<T> cheby;
-			T x( ( y - L ) / ( y + L ) );
+			//T x( ( y - L ) / ( y + L ) );
 			T dxdy( 2 * L / std::pow( y + L, 2 ) );
 			T d2xdy2( - 4 * L / std::pow( y + L, 3 ) );
-			return dxdy * dxdy * cheby( x, n, 2 ) + d2xdy2 * cheby( x, n, 1 );
+			return dxdy * dxdy * cheby( ( y - L ) / ( y + L ), n, 2 ) + d2xdy2
+						 * cheby( ( y - L ) / ( y + L ), n, 1 );
 
 			/*T t, s, c;
 		 	t = 2 * std::atan( std::sqrt( L / y ) );
@@ -349,6 +359,51 @@ namespace Luna
 		}
 		c[ 0 ] /= 2;    // - 0.5 * c_0
 		return c;
+	}
+
+	template <typename T>
+	inline Vector<T> RationalSemi<T>::eval_2( const T& y, const int& n )
+	{
+		/*Vector<T> temp( 3 ), cheb_eval_2;
+
+		Chebyshev<T> cheby;
+		T x( ( y - L ) / ( y + L ) );
+		cheb_eval_2 = cheby.eval_2( x, n );
+
+		// Value of the nth degree polynomial
+		//temp[ 0 ] = cheby( x, n );
+		temp[ 0 ] = cheb_eval_2[ 0 ];
+
+		// The first derivative
+		T dxdy( 2 * L / std::pow( y + L, 2 ) );
+		//temp[ 1 ] = dxdy * cheby( x, n, 1 );
+		temp[ 1 ] = dxdy * cheb_eval_2[ 1 ];
+
+		// The second derivative
+		//T d2xdy2( - 4 * L / std::pow( y + L, 3 ) );
+		//temp[ 2 ] = dxdy * dxdy * cheby( x, n, 2 ) + d2xdy2 * cheby( x, n, 1 );
+		temp[ 2 ] = dxdy * ( dxdy * cheb_eval_2[ 2 ]
+												 - ( 2 * cheb_eval_2[ 1 ] / ( y + L ) ) );
+
+		return temp;*/
+
+		T temp;
+		Vector<T> cheb_eval_2;
+		Chebyshev<T> cheby;
+		T x( ( y - L ) / ( y + L ) );
+		cheb_eval_2 = cheby.eval_2( x, n );
+
+		// The first derivative
+		T dxdy( 2 * L / std::pow( y + L, 2 ) );
+		temp = cheb_eval_2[ 1 ];
+		cheb_eval_2[ 1 ] *= dxdy;
+
+		// The second derivative d2xdy2 = - 2 * dxdy / ( y + L )
+		cheb_eval_2[ 2 ] *= dxdy;
+		cheb_eval_2[ 2 ] -= 2 * temp / ( y + L );
+		cheb_eval_2[ 2 ] *= dxdy;
+
+		return cheb_eval_2;
 	}
 
 }  // End of namespace Luna

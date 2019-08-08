@@ -31,6 +31,7 @@ namespace Luna
 			double PARAM;							// Parameter for rational Chebyshev basis
 			int I;										// Number of x collocation points
 			int J;										// Number of y collocation points
+			int CASE;
 
     public:
 
@@ -145,12 +146,22 @@ namespace Luna
 			/// \return A handle to the number of y collocation points
 			int& y_points();
 
+			/// Return a mesh containing the function on a given grid and its 1st and
+			/// 2nd derivatives
+			/// \param xnodes The mesh x nodes
+			/// \param ynodes The mesh y nodes
+			/// \return The spectral solution on a grid and its derivatives: u = 0,
+			/// u_x = 1, u_y = 2, u_xx = 3, u_yy = 4, u_xy = 5
+			Mesh2D<T> mesh_derivatives( const Vector<double>& xnodes,
+																	const Vector<double>& ynodes );
+
   }; // End of class Spectral2D
 
 	template <typename T>
 	Spectral2D<T>::Spectral2D()
 	{
 		BASIS = "Chebyshev";
+		CASE = 1;
 	}
 
 	template <typename T>
@@ -179,6 +190,12 @@ namespace Luna
 		PARAM = 1.0;
 		I = i;
 		J = j;
+		if ( BASIS == "Chebyshev" ){ CASE = 1; }
+		if ( BASIS == "EvenChebyshev" ){ CASE = 2; }
+		if ( BASIS == "OddChebyshev" ){ CASE = 3; }
+		if ( BASIS == "RationalSemi" ){ CASE = 4; }
+		if ( BASIS == "EvenRationalSemi" ){ CASE = 5; }
+		if ( BASIS == "OddRationalSemi" ){ CASE = 6; }
 	}
 
 	template <typename T>
@@ -200,6 +217,12 @@ namespace Luna
 		PARAM = param;
 		I = i;
 		J = j;
+		if ( BASIS == "Chebyshev" ){ CASE = 1; }
+		if ( BASIS == "EvenChebyshev" ){ CASE = 2; }
+		if ( BASIS == "OddChebyshev" ){ CASE = 3; }
+		if ( BASIS == "RationalSemi" ){ CASE = 4; }
+		if ( BASIS == "EvenRationalSemi" ){ CASE = 5; }
+		if ( BASIS == "OddRationalSemi" ){ CASE = 6; }
 	}
 
 	/* ----- Operator overloading ----- */
@@ -211,7 +234,8 @@ namespace Luna
 		int size( I * J );
 		int f, g;
 
-		if ( BASIS == "Chebyshev" )
+		// Chebyshev
+		if ( CASE == 1 )
 		{
 			Chebyshev<T> basis;
 			for ( std::size_t n = 0; n < size; n++ )
@@ -222,7 +246,8 @@ namespace Luna
       }
 		}
 
-		if ( BASIS == "EvenChebyshev" )
+		// EvenChebyshev
+		if ( CASE == 2 )
 		{
 			Chebyshev<T> basis;
 			for ( std::size_t n = 0; n < size; n++ )
@@ -233,7 +258,8 @@ namespace Luna
       }
 		}
 
-		if ( BASIS == "OddChebyshev" )
+		// OddChebyshev
+		if ( CASE == 3 )
 		{
 			Chebyshev<T> basis;
 			for ( std::size_t n = 0; n < size; n++ )
@@ -245,18 +271,20 @@ namespace Luna
       }
 		}
 
-		if ( BASIS == "RationalSemi" )
+		// RationalSemi
+		if ( CASE == 4 )
 		{
 			RationalSemi<T> basis( PARAM );
 			for ( std::size_t n = 0; n < size; n++ )
       {
         f = n / J;
         g = n % J;
-        temp += COEFFICIENTS[ n ] * basis( x, f ) * basis( y, g );
+        temp += COEFFICIENTS[ n ] * basis( x, f )	* basis( y, g );
       }
 		}
 
-		if ( BASIS == "EvenRationalSemi" )
+		// EvenRationalSemi
+		if ( CASE == 5 )
 		{
 			RationalSemi<T> basis( PARAM );
 			for ( std::size_t n = 0; n < size; n++ )
@@ -267,7 +295,8 @@ namespace Luna
       }
 		}
 
-		if ( BASIS == "OddRationalSemi" )
+		// OddRationalSemi
+		if ( CASE == 6 )
 		{
 			RationalSemi<T> basis( PARAM );
 			for ( std::size_t n = 0; n < size; n++ )
@@ -294,7 +323,7 @@ namespace Luna
 		int f, g;
 		int size( I * J );
 
-		if ( BASIS == "Chebyshev" )
+		if ( CASE == 1 )
 		{
 			Chebyshev<T> basis;
 			for ( std::size_t i = 0; i < nx; i++ )
@@ -314,7 +343,7 @@ namespace Luna
 			}
 		}
 
-		if ( BASIS == "EvenChebyshev" )
+		if ( CASE == 2 )
 		{
 			Chebyshev<T> basis;
 			for ( std::size_t i = 0; i < nx; i++ )
@@ -334,7 +363,7 @@ namespace Luna
 			}
 		}
 
-		if ( BASIS == "OddChebyshev" )
+		if ( CASE == 3 )
 		{
 			Chebyshev<T> basis;
 			for ( std::size_t i = 0; i < nx; i++ )
@@ -354,7 +383,7 @@ namespace Luna
 			}
 		}
 
-		if ( BASIS == "RationalSemi" )
+		if ( CASE == 4 )
 		{
 			RationalSemi<T> basis( PARAM );
 			for ( std::size_t i = 0; i < nx; i++ )
@@ -374,7 +403,7 @@ namespace Luna
 			}
 		}
 
-		if ( BASIS == "EvenRationalSemi" )
+		if ( CASE == 5 )
 		{
 			RationalSemi<T> basis( PARAM );
 			for ( std::size_t i = 0; i < nx; i++ )
@@ -394,7 +423,7 @@ namespace Luna
 			}
 		}
 
-		if ( BASIS == "OddRationalSemi" )
+		if ( CASE == 6 )
 		{
 			RationalSemi<T> basis( PARAM );
 			for ( std::size_t i = 0; i < nx; i++ )
@@ -424,7 +453,7 @@ namespace Luna
 		int size( I * J );
 		int f, g;
 
-		if ( BASIS == "Chebyshev" )
+		if ( CASE == 1 )
 		{
 			Chebyshev<T> basis;
 			for ( std::size_t n = 0; n < size; n++ )
@@ -435,7 +464,7 @@ namespace Luna
 			}
 		}
 
-		if ( BASIS == "EvenChebyshev" )
+		if ( CASE == 2 )
 		{
 			Chebyshev<T> basis;
 			for ( std::size_t n = 0; n < size; n++ )
@@ -447,7 +476,7 @@ namespace Luna
 			}
 		}
 
-		if ( BASIS == "OddChebyshev" )
+		if ( CASE == 3 )
 		{
 			Chebyshev<T> basis;
 			for ( std::size_t n = 0; n < size; n++ )
@@ -459,7 +488,7 @@ namespace Luna
 			}
 		}
 
-		if ( BASIS == "RationalSemi" )
+		if ( CASE == 4 )
 		{
 			RationalSemi<T> basis( PARAM );
 			for ( std::size_t n = 0; n < size; n++ )
@@ -470,7 +499,7 @@ namespace Luna
 			}
 		}
 
-		if ( BASIS == "EvenRationalSemi" )
+		if ( CASE == 5 )
 		{
 			RationalSemi<T> basis( PARAM );
 			for ( std::size_t n = 0; n < size; n++ )
@@ -482,7 +511,7 @@ namespace Luna
 			}
 		}
 
-		if ( BASIS == "OddRationalSemi" )
+		if ( CASE == 6 )
 		{
 			RationalSemi<T> basis( PARAM );
 			for ( std::size_t n = 0; n < size; n++ )
@@ -510,7 +539,7 @@ namespace Luna
 		int f, g;
 		int size( I * J );
 
-		if ( BASIS == "Chebyshev" )
+		if ( CASE == 1 )
 		{
 			Chebyshev<T> basis;
 			for ( std::size_t i = 0; i < nx; i++ )
@@ -530,7 +559,7 @@ namespace Luna
 			}
 		}
 
-		if ( BASIS == "EvenChebyshev" )
+		if ( CASE == 2 )
 		{
 			Chebyshev<T> basis;
 			for ( std::size_t i = 0; i < nx; i++ )
@@ -550,7 +579,7 @@ namespace Luna
 			}
 		}
 
-		if ( BASIS == "OddChebyshev" )
+		if ( CASE == 3 )
 		{
 			Chebyshev<T> basis;
 			for ( std::size_t i = 0; i < nx; i++ )
@@ -570,7 +599,7 @@ namespace Luna
 			}
 		}
 
-		if ( BASIS == "RationalSemi" )
+		if ( CASE == 4 )
 		{
 			RationalSemi<T> basis( PARAM );
 			for ( std::size_t i = 0; i < nx; i++ )
@@ -590,7 +619,7 @@ namespace Luna
 			}
 		}
 
-		if ( BASIS == "EvenRationalSemi" )
+		if ( CASE == 5 )
 		{
 			RationalSemi<T> basis( PARAM );
 			for ( std::size_t i = 0; i < nx; i++ )
@@ -610,7 +639,7 @@ namespace Luna
 			}
 		}
 
-		if ( BASIS == "OddRationalSemi" )
+		if ( CASE == 6 )
 		{
 			RationalSemi<T> basis( PARAM );
 			for ( std::size_t i = 0; i < nx; i++ )
@@ -726,6 +755,230 @@ namespace Luna
 	int& Spectral2D<T>::y_points()
 	{
 		return J;
+	}
+
+	template <typename T>
+	Mesh2D<T> Spectral2D<T>::mesh_derivatives( const Vector<double>& xnodes,
+																						 const Vector<double>& ynodes )
+	{
+		Mesh2D<double> mesh( xnodes, ynodes, 6 );
+
+		int nx( xnodes.size() );
+		int ny( ynodes.size() );
+		int f, g;
+		int size( I * J );
+
+		if ( CASE == 1 )
+		{
+			Chebyshev<T> basis;
+			Vector<double> phix, phiy;
+			for ( std::size_t i = 0; i < nx; i++ )
+			{
+				double x( xnodes[ i ] );
+				for ( std::size_t j = 0; j < ny; j++ )
+				{
+					double y( ynodes[ j ] );
+					for ( std::size_t n = 0; n < size; n++ )
+					{
+						f = n / J;
+						g = n % J;
+						phix = basis.eval_2( x, f );  // phix, phix' and phix''
+		        phiy = basis.eval_2( y, g );  // phiy, phiy' and phiy''
+						mesh( i, j, 0 ) += COEFFICIENTS[ n ] * phix[ 0 ]
+																								 * phiy[ 0 ];	// u
+						mesh( i, j, 1 ) += COEFFICIENTS[ n ] * phix[ 1 ]
+																								 * phiy[ 0 ];	// u_x
+						mesh( i, j, 2 ) += COEFFICIENTS[ n ] * phix[ 0 ]
+																								 * phiy[ 1 ]; // u_y
+						mesh( i, j, 3 ) += COEFFICIENTS[ n ] * phix[ 2 ]
+																								 * phiy[ 0 ]; // u_xx
+						mesh( i, j, 4 ) += COEFFICIENTS[ n ] * phix[ 0 ]
+																								 * phiy[ 2 ]; // u_yy
+						mesh( i, j, 5 ) += COEFFICIENTS[ n ] * phix[ 1 ]
+																								 * phiy[ 1 ]; // u_xy
+						/*mesh( i, j, 0 ) += COEFFICIENTS[ n ] * basis( x, f )
+																								 * basis( y, g );	   // u
+						mesh( i, j, 1 ) += COEFFICIENTS[ n ] * basis( x, f, 1 )
+																								 * basis( y, g );	   // u_x
+						mesh( i, j, 2 ) += COEFFICIENTS[ n ] * basis( x, f )
+																								 * basis( y, g, 1 ); // u_y
+						mesh( i, j, 3 ) += COEFFICIENTS[ n ] * basis( x, f, 2 )
+																								 * basis( y, g );		 // u_xx
+						mesh( i, j, 4 ) += COEFFICIENTS[ n ] * basis( x, f )
+																								 * basis( y, g, 2 ); // u_yy
+						mesh( i, j, 5 ) += COEFFICIENTS[ n ] * basis( x, f, 1 )
+																								 * basis( y, g, 1 ); // u_xy*/
+					}
+				}
+			}
+		}
+
+		if ( CASE == 2 )
+		{
+			Chebyshev<T> basis;
+			Vector<double> phix, phiy;
+			for ( std::size_t i = 0; i < nx; i++ )
+			{
+				double x( xnodes[ i ] );
+				for ( std::size_t j = 0; j < ny; j++ )
+				{
+					double y( ynodes[ j ] );
+					for ( std::size_t n = 0; n < size; n++ )
+					{
+						f = n / J;
+						g = n % J;
+						phix = basis.eval_2( x, 2 * f );  // phix, phix' and phix''
+		        phiy = basis.eval_2( y, 2 * g );  // phiy, phiy' and phiy''
+						mesh( i, j, 0 ) += COEFFICIENTS[ n ] * phix[ 0 ]
+																								 * phiy[ 0 ];	// u
+						mesh( i, j, 1 ) += COEFFICIENTS[ n ] * phix[ 1 ]
+																								 * phiy[ 0 ];	// u_x
+						mesh( i, j, 2 ) += COEFFICIENTS[ n ] * phix[ 0 ]
+																								 * phiy[ 1 ]; // u_y
+						mesh( i, j, 3 ) += COEFFICIENTS[ n ] * phix[ 2 ]
+																								 * phiy[ 0 ]; // u_xx
+						mesh( i, j, 4 ) += COEFFICIENTS[ n ] * phix[ 0 ]
+																								 * phiy[ 2 ]; // u_yy
+						mesh( i, j, 5 ) += COEFFICIENTS[ n ] * phix[ 1 ]
+																								 * phiy[ 1 ]; // u_xy
+					}
+				}
+			}
+		}
+
+		if ( CASE == 3 )
+		{
+			Chebyshev<T> basis;
+			Vector<double> phix, phiy;
+			for ( std::size_t i = 0; i < nx; i++ )
+			{
+				double x( xnodes[ i ] );
+				for ( std::size_t j = 0; j < ny; j++ )
+				{
+					double y( ynodes[ j ] );
+					for ( std::size_t n = 0; n < size; n++ )
+					{
+						f = n / J;
+						g = n % J;
+						phix = basis.eval_2( x, 2 * f + 1 );  // phix, phix' and phix''
+		        phiy = basis.eval_2( y, 2 * g + 1 );  // phiy, phiy' and phiy''
+						mesh( i, j, 0 ) += COEFFICIENTS[ n ] * phix[ 0 ]
+																								 * phiy[ 0 ];	// u
+						mesh( i, j, 1 ) += COEFFICIENTS[ n ] * phix[ 1 ]
+																								 * phiy[ 0 ];	// u_x
+						mesh( i, j, 2 ) += COEFFICIENTS[ n ] * phix[ 0 ]
+																								 * phiy[ 1 ]; // u_y
+						mesh( i, j, 3 ) += COEFFICIENTS[ n ] * phix[ 2 ]
+																								 * phiy[ 0 ]; // u_xx
+						mesh( i, j, 4 ) += COEFFICIENTS[ n ] * phix[ 0 ]
+																								 * phiy[ 2 ]; // u_yy
+						mesh( i, j, 5 ) += COEFFICIENTS[ n ] * phix[ 1 ]
+																								 * phiy[ 1 ]; // u_xy
+					}
+				}
+			}
+		}
+
+		if ( CASE == 4 )
+		{
+			RationalSemi<T> basis( PARAM );
+			Vector<double> phix, phiy;
+			for ( std::size_t i = 0; i < nx; i++ )
+			{
+				double x( xnodes[ i ] );
+				for ( std::size_t j = 0; j < ny; j++ )
+				{
+					double y( ynodes[ j ] );
+					for ( std::size_t n = 0; n < size; n++ )
+					{
+						f = n / J;
+						g = n % J;
+						phix = basis.eval_2( x, f );  // phix, phix' and phix''
+		        phiy = basis.eval_2( y, g );  // phiy, phiy' and phiy''
+						mesh( i, j, 0 ) += COEFFICIENTS[ n ] * phix[ 0 ]
+																								 * phiy[ 0 ];	// u
+						mesh( i, j, 1 ) += COEFFICIENTS[ n ] * phix[ 1 ]
+																								 * phiy[ 0 ];	// u_x
+						mesh( i, j, 2 ) += COEFFICIENTS[ n ] * phix[ 0 ]
+																								 * phiy[ 1 ]; // u_y
+						mesh( i, j, 3 ) += COEFFICIENTS[ n ] * phix[ 2 ]
+																								 * phiy[ 0 ]; // u_xx
+						mesh( i, j, 4 ) += COEFFICIENTS[ n ] * phix[ 0 ]
+																								 * phiy[ 2 ]; // u_yy
+						mesh( i, j, 5 ) += COEFFICIENTS[ n ] * phix[ 1 ]
+																								 * phiy[ 1 ]; // u_xy
+					}
+				}
+			}
+		}
+
+		if ( CASE == 5 )
+		{
+			RationalSemi<T> basis( PARAM );
+			Vector<double> phix, phiy;
+			for ( std::size_t i = 0; i < nx; i++ )
+			{
+				double x( xnodes[ i ] );
+				for ( std::size_t j = 0; j < ny; j++ )
+				{
+					double y( ynodes[ j ] );
+					for ( std::size_t n = 0; n < size; n++ )
+					{
+						f = n / J;
+						g = n % J;
+						phix = basis.eval_2( x, 2 * f );  // phix, phix' and phix''
+		        phiy = basis.eval_2( y, 2 * g );  // phiy, phiy' and phiy''
+						mesh( i, j, 0 ) += COEFFICIENTS[ n ] * phix[ 0 ]
+																								 * phiy[ 0 ];	// u
+						mesh( i, j, 1 ) += COEFFICIENTS[ n ] * phix[ 1 ]
+																								 * phiy[ 0 ];	// u_x
+						mesh( i, j, 2 ) += COEFFICIENTS[ n ] * phix[ 0 ]
+																								 * phiy[ 1 ]; // u_y
+						mesh( i, j, 3 ) += COEFFICIENTS[ n ] * phix[ 2 ]
+																								 * phiy[ 0 ]; // u_xx
+						mesh( i, j, 4 ) += COEFFICIENTS[ n ] * phix[ 0 ]
+																								 * phiy[ 2 ]; // u_yy
+						mesh( i, j, 5 ) += COEFFICIENTS[ n ] * phix[ 1 ]
+																								 * phiy[ 1 ]; // u_xy
+					}
+				}
+			}
+		}
+
+		if ( CASE == 6 )
+		{
+			RationalSemi<T> basis( PARAM );
+			Vector<double> phix, phiy;
+			for ( std::size_t i = 0; i < nx; i++ )
+			{
+				double x( xnodes[ i ] );
+				for ( std::size_t j = 0; j < ny; j++ )
+				{
+					double y( ynodes[ j ] );
+					for ( std::size_t n = 0; n < size; n++ )
+					{
+						f = n / J;
+						g = n % J;
+						phix = basis.eval_2( x, 2 * f + 1 );  // phix, phix' and phix''
+		        phiy = basis.eval_2( y, 2 * g + 1 );  // phiy, phiy' and phiy''
+						mesh( i, j, 0 ) += COEFFICIENTS[ n ] * phix[ 0 ]
+																								 * phiy[ 0 ];	// u
+						mesh( i, j, 1 ) += COEFFICIENTS[ n ] * phix[ 1 ]
+																								 * phiy[ 0 ];	// u_x
+						mesh( i, j, 2 ) += COEFFICIENTS[ n ] * phix[ 0 ]
+																								 * phiy[ 1 ]; // u_y
+						mesh( i, j, 3 ) += COEFFICIENTS[ n ] * phix[ 2 ]
+																								 * phiy[ 0 ]; // u_xx
+						mesh( i, j, 4 ) += COEFFICIENTS[ n ] * phix[ 0 ]
+																								 * phiy[ 2 ]; // u_yy
+						mesh( i, j, 5 ) += COEFFICIENTS[ n ] * phix[ 1 ]
+																								 * phiy[ 1 ]; // u_xy
+					}
+				}
+			}
+		}
+
+		return mesh;
 	}
 
 }  // End of namespace Luna

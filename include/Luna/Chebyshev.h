@@ -134,6 +134,14 @@ namespace Luna
 			/// \return A Vector containing the odd Chebyshev coefficients
 			Vector<T> approximate_odd( T func( const T& ), const int& N );
 
+			/// Return a Vector containing the the nth Chebyshev polynomial at point x
+			/// and its first two derivatives
+			/// \param x The point where the polynomial is evaluated
+			/// \param n The degree of the polynomial
+			/// \return A Vector containing the nth degree polynomial at x, the first
+			/// derivative and the second derivative.
+			Vector<T> eval_2( const T& x, const int& n );
+
 
   }; // End of class Chebyshev
 
@@ -248,10 +256,10 @@ namespace Luna
 			return 2 * x * x - 1.0;
 		}
 		else {
-			/* Could use the recursuve definition
-				return 2 * x * first_kind( x, n - 1 ) - first_kind( x, n - 2 );
-			but this is a bit slow.
-			*/
+			// Could use the recursuve definition
+			// return 2 * x * first_kind( x, n - 1 ) - first_kind( x, n - 2 );
+			// but this is a bit slow.
+
 			T tnm1( 2 * x * x - 1.0 );
 			T tnm2( x );
 			T tn( tnm1 );
@@ -264,6 +272,7 @@ namespace Luna
 			}
 			return tn;
 		}
+
 	}
 
 	template <typename T>
@@ -386,6 +395,46 @@ namespace Luna
 			c[ j ] = ( 2.0 / ( 2. * N ) ) * sum;
 		}
 		return c;
+	}
+
+	template <typename T>
+	inline Vector<T> Chebyshev<T>::eval_2( const T& x, const int& n )
+	{
+		Vector<T> temp( 3 );
+
+		if ( std::abs( x ) < 1. )
+		{
+			T t( std::acos( x ) );
+			T c( std::cos( t ) );
+			T s( std::sin( t ) );
+			//T tn( std::cos( n * t ) );
+			//T tnt( - n * std::sin( n * t ) );
+			//T tntt( - n * n * tn );
+
+			//T tnx( - tnt / s );
+			//T tnxx( ( tntt / ( s * s ) ) + ( c * tnx / ( s * s ) ) );
+
+			temp[ 0 ] = std::cos( n * t );
+
+			//temp[ 1 ] = - tnt / s;
+			temp[ 1 ]  = std::sin( n * t );
+			temp[ 1 ] *= n;
+			temp[ 1 ] /= s;
+
+			//temp[ 2 ] = ( tntt / ( s * s ) ) - ( c * tnt / ( s * s * s ) );
+			temp[ 2 ]  = - temp[ 0 ];
+			temp[ 2 ] *= n * n;
+			temp[ 2 ] += c * temp[ 1 ];
+			temp[ 2 ] /= s * s;
+
+		} else {
+			/// \todo TODO could this be done more efficiently x = +/- 1?
+			temp[ 0 ] = std::pow( x, n );
+			temp[ 1 ] = std::pow( x, n + 1 ) * n * n;
+			temp[ 2 ] = std::pow( x, n ) * n * n * ( n * n - 1. ) / 3.;
+		}
+
+		return temp;
 	}
 
 	/* ----- Private ----- */
