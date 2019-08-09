@@ -21,7 +21,7 @@ def message( col, text ):
     print col + " * " + text + off
 
 # Output message to user
-message( blue, " -----  Building -----")
+message( blue, " -----  Building ----- ")
 
 # set the build dir
 topdir     = os.getcwd()
@@ -32,7 +32,7 @@ preproc    = ''
 #opts = ' -O2 -std=c++17 -Wall -Wextra '
 #opts = ' -O2 -std=c++17 -fopenmp '
 #opts = ' -Ofast -std=c++17 -fopenmp '
-opts = ' -O3 -std=c++17 -funroll-loops '
+opts = ' -O3 -std=c++17 -funroll-loops -fopenmp '
 #opts = ' -O3 -std=c++11'# -fopenmp'
 link_flags = ' -fopenmp '
 

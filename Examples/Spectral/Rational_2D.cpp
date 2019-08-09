@@ -44,7 +44,7 @@ int main()
        << " * epsilon is a given small parameter. The exact solution" << endl
        << " * is u(x,y) = e^(-eps*x*y)." << endl;
 
-  int I( 90 );                       // Number of x collocation points
+  int I( 60 );                       // Number of x collocation points
   int J( I );                       // Number of y collocation points ( J = I )
   double L( 7.0 );                  // Map parameter
   double eps2( Example::EPS * Example::EPS );
@@ -52,6 +52,9 @@ int main()
   int size( I * J );
   int n( 250 );                     // Number of output points (x and y)
   double out_max( 2.0 );
+
+  Timer total_timer;
+  total_timer.start();
 
   cout << " * I = J = " << I << endl;
   cout << " * L = " << L << endl;
@@ -199,7 +202,8 @@ int main()
     }
     timer.print( "Matrix construction time" );
     // Solve the system for the spectral coefficients
-    a_c = mat.solve( F );
+    //a_c = mat.solve( F );
+    a_c = mat.solve_parallel( F );
     u_g.update_coefficients( a_c );
     norm = a_c.norm_2();
     cout << "  * iter = " << iter << ", norm = " << std::scientific << norm
@@ -216,6 +220,10 @@ int main()
 
   // Output the mesh to a file
   solution.output( "./DATA/Rational_2D.dat" );
+
+  total_timer.print();
+  total_timer.stop();
+
   cout << " * For a comparison of the spectral/exact solutions run: " << endl;
   cout << "python Plotting/Rational_2D_plot.py" << endl;
 

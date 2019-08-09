@@ -1,4 +1,4 @@
-/// \file  Banded_test.cpp
+/// \file Matrix_test.cpp
 /// \ingroup Examples
 /// TODO description / rename file
 

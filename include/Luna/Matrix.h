@@ -14,6 +14,7 @@
 
 #include "Error.h"
 #include "Vector.h"
+#include "Eigen/Dense"
 
 namespace Luna
 {
@@ -108,6 +109,18 @@ namespace Luna
     std::size_t LU_decomp_in_place( Matrix<T>& P );
 
     void rsolve( Vector<T>& b, Vector<T>& x, Matrix<T>& R );
+
+    void removeRow(Eigen::MatrixXd& matrix, unsigned int rowToRemove)
+    {
+      unsigned int numRows = matrix.rows()-1;
+      unsigned int numCols = matrix.cols();
+
+      if( rowToRemove < numRows )
+          matrix.block(rowToRemove,0,numRows-rowToRemove,numCols)
+          = matrix.block(rowToRemove+1,0,numRows-rowToRemove,numCols);
+
+      matrix.conservativeResize(numRows,numCols);
+    }
 
   public:
 
@@ -279,6 +292,10 @@ namespace Luna
     /// \return A Vector of the column of the Matrix
     Vector<T> get_col( const std::size_t& col );
 
+    /// Delete a row from the matrix
+    /// \param row The row index
+    void delete_row( const std::size_t& row );
+
     /// Return the transpose of the Matrix
     /// \return The transpose of the Matrix
     Matrix<T> transpose() const;
@@ -421,7 +438,74 @@ namespace Luna
 
     //TODO Matrix version of solve_QR
 
+    /// \todo TODO solve_parallel use Eigen partialPivLu as in Eigen_linsys_test
+    /// to solve linear systems on multiple cores
 
+    /// Solve the system of equations Ax=b where x and b are Vectors using Eigen
+    /// parallel algorithm.
+    /// \param b The right-hand side Vector of the system of equations
+    /// \return The solution Vector
+    Vector<T> solve_parallel( const Vector<T>& b )
+    {
+      if ( ROWS != b.size() )
+      {
+        throw Error( "solve_parallel error: ROWS != b.size() " );
+      }
+      if ( ROWS != COLS )
+      {
+        throw Error( "solve_parallel error: Matrix is not square.");
+      }
+
+      Eigen::Matrix<T, -1, 1> X, B;
+      X.resize( b.size(), 1 );
+      B.resize( b.size(), 1 );
+      std::size_t rows( ROWS );
+      std::size_t cols( COLS );
+
+      // Create the Eigen matrix (whilst deleting the current Matrix)
+      Eigen::Matrix<T, -1, -1> eigen_matrix;
+      eigen_matrix.resize( rows, cols );
+
+      for ( std::size_t i = 0; i < rows; ++i )
+      {
+        B( i, 0 ) = b[ i ];
+        for ( std::size_t j = 0; j < cols; ++j )
+        {
+          //eigen_matrix( i, j ) = MATRIX[ 0 ][ j ];
+          eigen_matrix( i, j ) = MATRIX[ i ][ j ];
+        }
+        //this -> delete_row( 0 );
+      }
+
+      // Solve the system of equations
+      X = eigen_matrix.partialPivLu().solve( B );
+
+      // Put solution into output Vector
+      Vector<T> x( b.size() );
+      for ( std::size_t i = 0; i < rows; ++i )
+      {
+        x[ i ] = X( i, 0 );
+      }
+
+      // Reconstruct the Matrix (whilst deleting the Eigen matrix)
+      /*COLS = cols;
+      ROWS = rows;
+      MATRIX.reserve( ROWS );
+
+      Vector<T> row( COLS );
+
+      for ( std::size_t i = 0; i < ROWS; ++i )
+      {
+        for ( std::size_t j = 0; j < COLS; ++j )
+        {
+          row[ j ] = eigen_matrix( 0, j );
+        }
+        MATRIX.push_back( row );
+        removeRow( eigen_matrix, 0 );
+      }*/
+
+      return x;
+    }
 
     /* ----- Determinant ----- */
 
@@ -708,10 +792,10 @@ namespace Luna
   inline void Matrix<T>::set_row( const std::size_t& row, Vector<T>& vec )
   {
     if ( vec.size() != COLS ){
-      throw Error( "Size error in set_row method." );
+      throw Error( "Matrix: Size error in set_row method." );
     }
     if ( row < 0 || ROWS <= row ){
-      throw Error( "Range error in set_row method." );
+      throw Error( "Matrix: Range error in set_row method." );
     }
     MATRIX[ row ] = vec;
   }
@@ -729,7 +813,7 @@ namespace Luna
   inline Vector<T> Matrix<T>::get_row( const std::size_t& row )
   {
     if ( row < 0 || ROWS <= row ){
-      throw Error( "Range error in get_row method." );
+      throw Error( "Matrix: Range error in get_row method." );
     }
     Vector<T> temp;
     temp = MATRIX[ row ];
@@ -748,6 +832,16 @@ namespace Luna
       temp[ row ] = MATRIX[ row ][ col ];
     }
     return temp;
+  }
+
+  template <typename T>
+  inline void Matrix<T>::delete_row( const std::size_t& row )
+  {
+    if ( row < 0 || ROWS <= row ){
+      throw Error( "Matrix: Range error in delete_row method." );
+    }
+    MATRIX.erase( MATRIX.begin() + row );
+    --ROWS;
   }
 
   template <typename T>

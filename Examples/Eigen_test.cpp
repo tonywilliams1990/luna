@@ -3,7 +3,7 @@
 /// TODO description / rename file
 
 #include "Luna/Core"
-#include "Luna/Eigen"
+#include "Luna/Eigenvalue"
 #include "Luna/Sparse"
 
 using namespace std;

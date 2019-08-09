@@ -4,28 +4,28 @@
 #ifndef TIMER_H
 #define TIMER_H
 
-#include <ctime>
 #include <iostream>
-#include <string>
+#include <chrono>
+#include <ctime>
+#include <cmath>
 
 namespace Luna
 {
-	/// A simple timer class for timing methods
-	class Timer
-	{
+  /// A simple timer class for timing methods
+  class Timer
+  {
 
-	private:
-		clock_t START_TIME;						// Start time
-		clock_t PAUSED_TIME;					// Time that the clock was paused
-		bool STARTED;									// Boolean stating if the clock has been started
-		bool PAUSED;									// Boolean stating if the clock has been paused
+  private:
+    std::chrono::time_point<std::chrono::system_clock> START_TIME;
+    std::chrono::time_point<std::chrono::system_clock> END_TIME;
+    bool                                               RUNNING = false;
 
-	public:
+  public:
 
-		/* ----- Constructors and Destructor ----- */
+    /* ----- Constructors and Destructor ----- */
 
 		/// Constructor
-		Timer() : START_TIME( 0 ), PAUSED_TIME( 0 ), STARTED( false ), PAUSED( false )
+		Timer()
 		{}
 
 		/// Destructor
@@ -34,119 +34,51 @@ namespace Luna
 
 		/* ----- Methods ----- */
 
-		/// Check if the timer has started
-		/// \return true if the time has been started and false otherwise
-		bool is_started();
+    /// Start the timer
+    void start();
 
-		/// Check if the timer is stopped
-		/// \return true if the timer is stopped and false otherwise
-		bool is_stopped();
+    /// Stop the timer
+    void stop();
 
-		/// Check if the timer is paused
-		/// \return true if the timer is paused and false otherwise
-		bool is_paused();
-
-		/// Check if the timer is active
-		/// \return true if the timer is still active and false otherwise
-		bool is_active();
-
-		/// Pause the timer
-		void pause();
-
-		/// Resume the timer
-		void resume();
-
-		/// Start the timer
-		void start();
-
-		/// Stop the timer
-		void stop();
-
-		/// Reset the timer
+    /// Reset the timer
 		void reset();
 
-	  /// Output the time to the screen
+    /// Output the time to the screen
 		void print() const;
 
-		/// Output the time to the screen with a specified message
+    /// Output the time to the screen with a specified message
 		/// \param message The message to be printed before the time
 		void print( const std::string& message ) const;
 
-		/// Return the time in milliseconds
+    /// Return the time in milliseconds
 		/// \return The time in ms
-		double get_time() const;
+    double get_time();
 
-		/// Return the number of clock ticks
-		/// \return The number of clock ticks
-		clock_t get_ticks();
+    /// Return the time in seconds
+    /// \return The time in s
+    double get_time_in_seconds();
 
-	}; // End of Timer class
+  }; // End of Timer class
 
-	/* ----- Inline definitions ----- */
+  inline void Timer::start()
+  {
+      START_TIME = std::chrono::system_clock::now();
+      RUNNING = true;
+  }
 
-	inline bool Timer::is_started()
+  inline void Timer::stop()
+  {
+      END_TIME = std::chrono::system_clock::now();
+      RUNNING = false;
+  }
+
+  inline void Timer::reset()
 	{
-		return STARTED;
+		RUNNING = true;
+		START_TIME = std::chrono::system_clock::now();
 	}
 
-	inline bool Timer::is_stopped()
-	{
-		return !STARTED;
-	}
-
-	inline bool Timer::is_paused()
-	{
-		return PAUSED;
-	}
-
-	inline bool Timer::is_active()
-	{
-		return !PAUSED & STARTED;
-	}
-
-	inline void Timer::pause()
-	{
-		if( PAUSED || !STARTED )
-		{
-			return;
-		}
-		PAUSED = true;
-		PAUSED_TIME = clock();
-	}
-
-	inline void Timer::resume()
-	{
-		if( !PAUSED )
-		{
-			return;
-		}
-		PAUSED = false;
-		START_TIME += clock() - PAUSED_TIME;
-	}
-
-	inline void Timer::start()
-	{
-		if( STARTED )
-		{
-			return;
-		}
-		STARTED = true;
-		PAUSED = false;
-		START_TIME = clock();
-	}
-
-	inline void Timer::stop()
-	{
-		STARTED = false;
-	}
-
-	inline void Timer::reset()
-	{
-		PAUSED = false;
-		START_TIME = clock();
-	}
-
-	inline void Timer::print() const
+  inline void Timer::print() const
 	{
 		std::cout.precision(4);
 		Timer temp( *this );
@@ -163,7 +95,7 @@ namespace Luna
     }
 	}
 
-	inline void Timer::print( const std::string& message ) const
+  inline void Timer::print( const std::string& message ) const
 	{
 		std::cout.precision(4);
 		Timer temp( *this );
@@ -179,28 +111,28 @@ namespace Luna
     }
 	}
 
-	inline double Timer::get_time() const
-	{
-		Timer temp( *this );
-		return 1.e3 * temp.get_ticks() / CLOCKS_PER_SEC;
-	}
+  inline double Timer::get_time()
+  {
+      std::chrono::time_point<std::chrono::system_clock> endTime;
 
-	inline clock_t Timer::get_ticks()
-	{
-		if( !STARTED )
-		{
-			return 0;
-		}
+      if( RUNNING )
+      {
+          endTime = std::chrono::system_clock::now();
+      }
+      else
+      {
+          endTime = END_TIME;
+      }
 
-		if( PAUSED )
-		{
-			return PAUSED_TIME - START_TIME;
-		}
+      return std::chrono::duration_cast<std::chrono::milliseconds>(endTime -
+             START_TIME).count();
+  }
 
-		return clock() - START_TIME;
-	}
+  inline double Timer::get_time_in_seconds()
+  {
+      return get_time() / 1000.0;
+  }
 
-
-}	// End of namespace Luna
+} // End of namespace Luna
 
 #endif
