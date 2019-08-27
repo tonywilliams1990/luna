@@ -17,6 +17,7 @@
 #include "Luna/Core"
 #include "Luna/ODE"
 #include "Luna/Spectral"
+#include "Luna/Falkner.h"
 
 namespace Luna
 {
@@ -45,91 +46,26 @@ int main()
   int n( 40 );                      // Number of spectral coefficients
   double L( 6.0 );                  // Map parameter
   double tol( 1e-10 );              // Tolerance correction coefficients norm
-  Vector<double> y;                 // Vector for collocation grid
-  y.rational_semi_grid( n, L );
-  y.push_back( 0.0 );
+  int max_iter( 100 );              // Maximum number of iterations when solving
 
   int N( 1000 );                        // Number of output points
+  double eta_max( 20.0 );               // Maximum eta value to output
   Vector<double> grid;                  // Output grid
-  grid.powspace( 0.0, y[ 0 ], N, 2 );   // Squash nodes near to the boundary
+  grid.linspace( 0.0, eta_max, N );
   Mesh1D<double> solution( grid, 3 );   // Output mesh
 
-
-  RationalSemi<double> rationalsemi( L );
-  Vector<double> c( n, 0.0 );                 // Vector of coefficients
-
-  // Approximate the guess as a semi-infinite rational Chebyshev polynomial
-  c = rationalsemi.approximate( Example::initial_guess, n );
-  for ( std::size_t i = 0; i < 2; i++ )
-  {
-    c.push_back( 0.0 ); // Extra coefficients for BCs
-  }
-  // Make this into a spectral solution
-  Spectral<double> u_g( c, "RationalSemi", L );
-
-  double norm;
-  int max_iter( 100 );
-  int iter( 0 );
+  Falkner<double> falkner( beta );
+  Spectral<double> u_g;
 
   Timer timer;
   timer.start();
 
-  do
-  {
-    // Setup the system of equations to find the correction
-    Matrix<double> M( n + 2, n + 2, 0.0 );
-    Vector<double> F( n + 2 ), a_c( n + 2 );
-
-    // Don't need the BC at infinity as this is a "natural" BC
-
-    // Internal nodes
-    for ( std::size_t i = 0; i < n; i++ )
-    {
-      double yi = y[ i ];
-      for ( std::size_t j = 0; j < n + 2; j++ )
-      {
-        // u_c'''
-        M( i, j )  = rationalsemi( yi, j, 3 );
-        // ( y + u_g ) * u_c''
-        M( i, j ) += ( yi + u_g( yi ) ) * rationalsemi( yi, j, 2 );
-        // - 2 * beta * ( 1 + u_g' ) * u_c'
-        M( i, j ) -= 2 * beta * ( 1 + u_g( yi, 1 ) ) * rationalsemi( yi, j, 1 );
-        // u_g'' * u_c
-        M( i, j ) += u_g( yi, 2 ) * rationalsemi( yi, j );
-      }
-      // - u_g''' - ( y + u_g ) * u_g'' + beta * u_g' ( 2 + u_g' )
-      F[ i ]  = - u_g( yi, 3 ) - ( yi + u_g( yi ) ) * u_g( yi, 2 );
-      F[ i ] += beta * u_g( yi, 1 ) * ( 2 + u_g( yi, 1 ) );
-    }
-
-    // y = 0 boundary u_c = - u_g
-    for ( std::size_t j = 0; j < n + 2; j++ )
-    {
-      double yi = 0.0;
-      M( n, j ) = rationalsemi( yi, j );
-    }
-    F[ n ] = - u_g( 0.0 );
-
-    // y = 0 boundary u_c' = -1 - u_g'
-    for ( std::size_t j = 0; j < n + 2; j++ )
-    {
-      double yi = 0.0;
-      M( n + 1, j ) = rationalsemi( yi, j, 1 );
-    }
-    F[ n + 1 ] = - 1.0 - u_g( 0.0, 1 );
-
-    // Solve the system for the correction spectral coefficients
-    a_c = M.solve( F );
-    u_g.update_coefficients( a_c );
-    norm = a_c.norm_2();
-    ++iter;
-
-  }while( norm > tol && iter < max_iter );
+  // Solve for the spectral solution
+  u_g = falkner.solve( n, L, tol, Example::initial_guess, max_iter );
 
   cout << " * The final spectral coefficient for n = " << n << " is: "
        << u_g.get_coefficients()[ n-1 ] << endl;
   cout << " * f''(0) = " << u_g( 0.0, 2 ) << endl;
-
 
   // Put spectral solution into output mesh
   for ( std::size_t i = 0; i < N; i++ )

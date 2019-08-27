@@ -14,7 +14,7 @@ int main()
 {
   cout << "----------------- Eigen linear system test ----------------" << endl;
 
-  int n = 5000;
+  int n = 512;
   Timer timer;
   /*MatrixXd A = MatrixXd::Random(n,n);
   //cout << " A = " << endl << A << endl;
@@ -36,7 +36,8 @@ int main()
   double b_norm( b_vec.norm_2() );
 
   timer.start();
-  x_vec = mat.solve_parallel( b_vec );
+  //x_vec = mat.solve_parallel( b_vec );
+  x_vec = mat.solve( b_vec );
   timer.print();
   timer.stop();
 

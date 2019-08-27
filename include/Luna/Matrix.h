@@ -418,7 +418,13 @@ namespace Luna
     /// Solve the system of equations Ax=b where x and b are Vectors
     /// \param b The right-hand side Vector of the system of equations
     /// \return The solution Vector
-    Vector<T> solve( const Vector<T>& b ){ return solve_LU( b ); }
+    Vector<T> solve( const Vector<T>& b ){
+      if ( ROWS < 256 ){
+        return solve_LU( b );
+      } else {
+        return solve_parallel( b );
+      }
+    }
 
     /// Solve the system of equations AX=B where X and B are Matrices
     /// \param B The right-hand side Matrix of the system of equations
@@ -439,7 +445,8 @@ namespace Luna
     //TODO Matrix version of solve_QR
 
     /// \todo TODO solve_parallel use Eigen partialPivLu as in Eigen_linsys_test
-    /// to solve linear systems on multiple cores
+    /// to solve linear systems on multiple cores -> is a bit inefficient in
+    /// terms of matrix storage as a copy is made for Eigen - need to rework this.
 
     /// Solve the system of equations Ax=b where x and b are Vectors using Eigen
     /// parallel algorithm.
