@@ -26,26 +26,29 @@ namespace Luna
 
     double Phi_w_func( const double& hzeta ){
       // Top-hat injection
-      return - K * 0.5 * ( tanh( GAMMA * ( hzeta - 1. ) )
-             - tanh( GAMMA * ( hzeta - 2. ) ) );
+      //return - K * 0.5 * ( tanh( GAMMA * ( hzeta - 1. ) )
+      //       - tanh( GAMMA * ( hzeta - 2. ) ) );
       // Gaussian
-      //return - K * exp( - hzeta * hzeta );
+      return - K * exp( - hzeta * hzeta );
+    }
+
+    double Phi_w_hzeta_func( const double& hzeta ){
+      // Gaussian
+      return 2. * K * hzeta * exp( - hzeta * hzeta );
     }
 
     double initial_guess_x( const double& x )
     {
-      return exp( - EPS * x );
+      //return exp( - EPS * x );
+      return x * x * exp( - x );
     }
 
     double initial_guess_y( const double& y )
     {
-      return exp( - EPS * y );
+      //return exp( - EPS * y );
+      return y * exp( - y );
     }
 
-    double exact( const double& x, const double& y )
-    {
-      return exp( - EPS * x * y );
-    }
   } // End of namespace Example
 } // End of namespace Luna
 
@@ -60,12 +63,13 @@ int main()
   double beta( 0.0 );             // Hartree parameter
   double zeta0( 1.0 );            // Slot width
   double K( Example::K );         // Injection rate
-  int I( 10 );                    // Number of x collocation points
+  int I( 25 );                    // Number of x collocation points
   int J( I );                     // Number of y collocation points ( J = I )
   int N_BASE( 60 );               // Number of coefficients in the base solution
-  double L( 6.0 );                  // Map parameter
+  double L( 6.0 );                // Map parameter
+  double L_BASE( 6.0 );           // Map parameter for Falkner-Skan
   double eps2( Example::EPS * Example::EPS );
-  double tol( 1e-10 );              // Tolerance correction coefficients norm
+  double tol( 1e-10 );            // Tolerance correction coefficients norm
   int max_iter( 20 );             // Maximum number of iterations
   int size( I * J );
   int n( 250 );                     // Number of output points (x and y)
@@ -108,10 +112,13 @@ int main()
   }
 
   // Set the spectral solution guess
+  Vector<double> guess( size, 0.0 );
   Spectral2D<double> Phi_g( c, I, J, "RationalSemi", L );
   Spectral2D<double> Psi_g( c, I, J, "RationalSemi", L );
   Spectral2D<double> U_g( c, I, J, "RationalSemi", L );
   Spectral2D<double> Theta_g( c, I, J, "RationalSemi", L );
+
+  //Theta_g( solution, 0 );
 
   // Solve the Falkner-Skan equation for the base flow
   cout << " * Solving the Falkner-Skan equation using " << N_BASE << endl
@@ -119,7 +126,7 @@ int main()
   //TODO should this be timed too?
   Spectral<double> u_base;
   Falkner<double> falkner( beta );
-  u_base = falkner.solve( N_BASE, L, tol, Example::base_guess, max_iter );
+  u_base = falkner.solve( N_BASE, L_BASE, tol, Example::base_guess, max_iter );
   cout << " * f''(0) = " << u_base( 0.0, 2 ) << endl;
 
   // Put base solution into a mesh at the collocation points for later use
@@ -151,8 +158,11 @@ int main()
     cout << "---------------------------------------------------------" << endl;
     timer.start();
 
-    // Make mesh for storing U_g, U_g_x, U_g_y, U_g_xx, U_g_yy, U_g_xy
+    // Make mesh for storing Var, Var_x, Var_y, Var_xx, Var_yy, Var_xy
+    Mesh2D<double> Phi_g_mesh = Phi_g.mesh_derivatives( x, y );
+    Mesh2D<double> Psi_g_mesh = Psi_g.mesh_derivatives( x, y );
     Mesh2D<double> U_g_mesh = U_g.mesh_derivatives( x, y );
+    Mesh2D<double> Theta_g_mesh = Theta_g.mesh_derivatives( x, y );
     timer.print( "Solution mesh construction time" );
 
     for ( int M = 0; M < size; M++ )
@@ -175,113 +185,262 @@ int main()
         TLx = rationalsemi.eval_2( xi, f );  // TLx, TLx' and TLx''
         TLy = rationalsemi.eval_2( yj, g );  // TLy, TLy' and TLy''
 
-        // x = 0 boundary u_c = 1 - U_g (left)
+        // hzeta = 0 boundary
         if ( i == 0 )
         {
-          mat( Phi * size + M, Phi * size + N ) = rationalsemi( 0.0, f ) * TLy[ 0 ];
-          mat( Psi * size + M, Psi * size + N ) = rationalsemi( 0.0, f ) * TLy[ 0 ];
-          mat( U * size + M, U * size + N ) = rationalsemi( 0.0, f ) * TLy[ 0 ];
-          mat( Theta * size + M, Theta * size + N ) = rationalsemi( 0.0, f ) * TLy[ 0 ];
+          // Phi_hzeta = 0
+          mat( Phi * size + M, Phi * size + N ) = TLx[ 1 ] * TLy[ 0 ];
+          // Psi = 0
+          mat( Psi * size + M, Psi * size + N ) = TLx[ 0 ] * TLy[ 0 ];
+          // U_hzeta = 0
+          //mat( U * size + M, U * size + N ) = rationalsemi( 0.0, f ) * TLy[ 0 ];
+          mat( U * size + M, U * size + N ) = TLx[ 1 ] * TLy[ 0 ];
+          // Theta = 0
+          mat( Theta * size + M, Theta * size + N ) = TLx[ 0 ] * TLy[ 0 ];
         }
-        // y = 0 boundary u_c = 1 - U_g (bottom)
+        // eta = 0 boundary
         if ( j == 0 && i != 0 )
         {
-          mat( Phi * size + M, Phi * size + N ) = TLx[ 0 ] * rationalsemi( 0.0, g );
-          mat( Psi * size + M, Psi * size + N ) = TLx[ 0 ] * rationalsemi( 0.0, g );
-          mat( U * size + M, U * size + N ) = TLx[ 0 ] * rationalsemi( 0.0, g );
-          mat( Theta * size + M, Theta * size + N ) = TLx[ 0 ] * rationalsemi( 0.0, g );
+          // Phi = Phiw
+          mat( Phi * size + M, Phi * size + N ) = TLx[ 0 ] * TLy[ 0 ];
+          // Psi = 0
+          mat( Psi * size + M, Psi * size + N ) = TLx[ 0 ] * TLy[ 0 ];
+          // U = 0
+          //mat( U * size + M, U * size + N ) = TLx[ 0 ] * rationalsemi( 0.0, g );
+          mat( U * size + M, U * size + N ) = TLx[ 0 ] * TLy[ 0 ];
+          // Theta = Psi_hzeta - ( 1 / zeta0^2 ) * Phiw_hzeta TODO
+          /*mat( Theta * size + M, Theta * size + N ) = TLx[ 0 ] * TLy[ 0 ];
+          mat( Theta * size + M, Psi * size + N ) = - TLx[ 0 ] * TLy[ 1 ];*/
+          // Theta = 0 (temporary)
+          mat( Theta * size + M, Theta * size + N ) = TLx[ 0 ] * TLy[ 0 ];
         }
         // Internal nodes
         if ( i != 0 && j != 0 )
         {
-          // u_c_xx
-          mat( Phi * size + M, Phi * size + N )  = TLx[ 2 ] * TLy[ 0 ];
-          mat( Psi * size + M, Psi * size + N )  = TLx[ 2 ] * TLy[ 0 ];
-          mat( U * size + M, U * size + N )  = TLx[ 2 ] * TLy[ 0 ];
-          mat( Theta * size + M, Theta * size + N )  = TLx[ 2 ] * TLy[ 0 ];
-          // u_c_yy
-          mat( Phi * size + M, Phi * size + N ) += TLx[ 0 ] * TLy[ 2 ];
-          mat( Psi * size + M, Psi * size + N ) += TLx[ 0 ] * TLy[ 2 ];
-          mat( U * size + M, U * size + N ) += TLx[ 0 ] * TLy[ 2 ];
-          mat( Theta * size + M, Theta * size + N ) += TLx[ 0 ] * TLy[ 2 ];
-          // U_g_y * u_c_x
-          mat( Phi * size + M, Phi * size + N )     += U_g_mesh( ix, jy, 2 )
-                                                    * TLx[ 1 ] * TLy[ 0 ];
-          mat( Psi * size + M, Psi * size + N )     += U_g_mesh( ix, jy, 2 )
-                                                    * TLx[ 1 ] * TLy[ 0 ];
-          mat( U * size + M, U * size + N )         += U_g_mesh( ix, jy, 2 )
-                                                    * TLx[ 1 ] * TLy[ 0 ];
-          mat( Theta * size + M, Theta * size + N ) += U_g_mesh( ix, jy, 2 )
-                                                    * TLx[ 1 ] * TLy[ 0 ];
+          // Phi equation
+          // Phi_c_yy
+          mat( Phi * size + M, Phi * size + N )  = TLx[ 0 ] * TLy[ 2 ];
+          // + Phi_c_xx / zeta0^2
+          mat( Phi * size + M, Phi * size + N ) += TLx[ 2 ] * TLy[ 0 ]
+                                                   / ( zeta0 * zeta0 );
+          // - ( 2 - beta ) * U_c_y
+          mat( Phi * size + M, U * size + N ) += - ( 2. - beta )
+                                                 * TLx[ 0 ] * TLy[ 1 ];
+          // + Theta_c_x
+          mat( Phi * size + M, Theta * size + N ) += TLx[ 1 ] * TLy[ 0 ];
 
-          // U_g_x * u_c_y
-          mat( Phi * size + M, Phi * size + N ) += U_g_mesh( ix, jy, 1 )
-                         * TLx[ 0 ] * TLy[ 1 ];
-          mat( Psi * size + M, Psi * size + N ) += U_g_mesh( ix, jy, 1 )
-                         * TLx[ 0 ] * TLy[ 1 ];
-          mat( U * size + M, U * size + N )         += U_g_mesh( ix, jy, 1 )
-                         * TLx[ 0 ] * TLy[ 1 ];
-          mat( Theta * size + M, Theta * size + N ) += U_g_mesh( ix, jy, 1 )
-                         * TLx[ 0 ] * TLy[ 1 ];
-          // - eps^2 * a * u_c
-          mat( Phi * size + M, Phi * size + N ) += - eps2 * ( xi * xi + yj * yj )
-                         * TLx[ 0 ] * TLy[ 0 ];
-          mat( Psi * size + M, Psi * size + N ) += - eps2 * ( xi * xi + yj * yj )
-                         * TLx[ 0 ] * TLy[ 0 ];
-          mat( U * size + M, U * size + N ) += - eps2 * ( xi * xi + yj * yj )
-                         * TLx[ 0 ] * TLy[ 0 ];
-          mat( Theta * size + M, Theta * size + N ) += - eps2 * ( xi * xi + yj * yj )
-                         * TLx[ 0 ] * TLy[ 0 ];
-          // - 2 * eps^2 * b * U_g * u_c
-          mat( Phi * size + M, Phi * size + N ) += - 2 * eps2 * xi * yj * U_g_mesh( ix, jy, 0 )
-                         * TLx[ 0 ] * TLy[ 0 ];
-          mat( Psi * size + M, Psi * size + N ) += - 2 * eps2 * xi * yj * U_g_mesh( ix, jy, 0 )
-                         * TLx[ 0 ] * TLy[ 0 ];
-          mat( U * size + M, U * size + N ) += - 2 * eps2 * xi * yj * U_g_mesh( ix, jy, 0 )
-                         * TLx[ 0 ] * TLy[ 0 ];
-          mat( Theta * size + M, Theta * size + N ) += - 2 * eps2 * xi * yj * U_g_mesh( ix, jy, 0 )
-                         * TLx[ 0 ] * TLy[ 0 ];
+          // Psi equation
+          // Psi_c_yy
+          mat( Psi * size + M, Psi * size + N )  = TLx[ 0 ] * TLy[ 2 ];
+          // + Psi_c_xx / zeta0^2
+          mat( Psi * size + M, Psi * size + N ) += TLx[ 2 ] * TLy[ 0 ]
+                                                   / ( zeta0 * zeta0 );
+          // - ( 2 - beta ) * U_c_x / zeta0^2
+          mat( Psi * size + M, U * size + N ) += - ( 2. - beta )
+                                                 * TLx[ 1 ] * TLy[ 0 ]
+                                                 / ( zeta0 * zeta0 );
+          // - Theta_c_y
+          mat( Psi * size + M, Theta * size + N ) += TLx[ 0 ] * TLy[ 1 ];
+
+          // U equation
+          // U_c_yy
+          mat( U * size + M, U * size + N )  = TLx[ 0 ] * TLy[ 2 ];
+          // + U_c_xx / zeta0^2
+          mat( U * size + M, U * size + N ) += TLx[ 2 ] * TLy[ 0 ]
+                                               / ( zeta0 * zeta0 );
+          // - 2 * beta * ( UB + U_g ) * U_c
+          mat( U * size + M, U * size + N ) -= 2 * beta * ( base( jy, UB )
+                                               + U_g_mesh( ix, jy, 0 ) )
+                                               * TLx[ 0 ] * TLy[ 0 ];
+          // + ( hzeta * PsiB + Psi_g ) * U_c_x
+          //mat( U * size + M, U * size + N ) += ( xi * base( jy, PsiB )
+          //                                    + Psi_g_mesh( ix, jy, 0 ) )
+          //                                    * TLx[ 1 ] * TLy[ 0 ];
+          // + hzeta * PsiB * U_c_x
+          mat( U * size + M, U * size + N ) += xi * base( jy, PsiB )
+                                              * TLx[ 1 ] * TLy[ 0 ];
+          // + Psi_g * U_c_x TODO
+          //mat( U * size + M, U * size + N ) += Psi_g_mesh( ix, jy, 0 )
+          //                                    * TLx[ 1 ] * TLy[ 0 ];
+          // + U_g_x * Psi_c TODO
+          //mat( U * size + M, Psi * size + N ) += U_g_mesh( ix, jy, 1 )
+          //                                     * TLx[ 0 ] * TLy[ 0 ];
+          // + PhiB * U_c_y
+          mat( U * size + M, U * size + N ) += base( jy, PhiB )
+                                               * TLx[ 0 ] * TLy[ 1 ];
+          // + Phi_g * U_c_y TODO
+          //mat( U * size + M, U * size + N ) += Phi_g_mesh( ix, jy, 0 )
+          //                                    * TLx[ 0 ] * TLy[ 1 ];
+          // + ( PhiB + Phi_g ) * U_c_y
+          /*mat( U * size + M, U * size + N ) += ( base( jy, PhiB )
+                                               + Phi_g_mesh( ix, jy, 0 ) )
+                                               * TLx[ 0 ] * TLy[ 1 ];*/
+          // + U_g_x * Psi_c
+          //mat( U * size + M, Psi * size + N ) += U_g_mesh( ix, jy, 1 )
+          //                                     * TLx[ 0 ] * TLy[ 0 ];
+          // + UBd  * Phi_c
+          mat( U * size + M, Phi * size + N ) += base( jy, UBd )
+                                               * TLx[ 0 ] * TLy[ 0 ];
+          // + U_g_y * Phi_c TODO
+          //mat( U * size + M, Phi * size + N ) += U_g_mesh( ix, jy, 2 )
+          //                                     * TLx[ 0 ] * TLy[ 0 ];
+          // + ( UBd + U_g_y ) * Phi_c
+          /*mat( U * size + M, Phi * size + N ) += ( base( jy, UBd )
+                                               + U_g_mesh( ix, jy, 2 ) )
+                                               * TLx[ 0 ] * TLy[ 0 ];
+          // + Phi_g * U_c_y
+          mat( U * size + M, U * size + N ) += Phi_g_mesh( ix, jy, 0 )
+                                               * TLx[ 0 ] * TLy[ 1 ];*/
+
+          // Theta equation
+          // Theta_c_yy
+          mat( Theta * size + M, Theta * size + N )  = TLx[ 0 ] * TLy[ 2 ];
+          // + Theta_c_xx / zeta0^2
+          mat( Theta * size + M, Theta * size + N ) += TLx[ 2 ] * TLy[ 0 ]
+                                                       / ( zeta0 * zeta0 );
+          /*// - 2 * ( 1 - beta ) * hzeta * ( UB + U_g ) * U_c_y
+          mat( Theta * size + M, U * size + N ) -= 2 * ( 1. - beta ) * xi
+                                                  * ( base( jy, UB )
+                                                    + U_g_mesh( ix, jy, 0 ) )
+                                                  * TLx[ 0 ] * TLy[ 1 ];
+          // + 2 * ( 1 - beta ) * eta * ( UB + U_g ) * U_c_x / zeta0^2
+          mat( Theta * size + M, U * size + N ) += 2 * ( 1. - beta ) * yj
+                                                  * ( base( jy, UB )
+                                                    + U_g_mesh( ix, jy, 0 ) )
+                                                  * TLx[ 1 ] * TLy[ 0 ]
+                                                  / ( zeta0 * zeta0 );
+          // - 2 * ( 1 - beta ) * hzeta * ( UBd + U_g_y ) * U_c
+          mat( Theta * size + M, U * size + N ) -= 2 * ( 1. - beta ) * xi
+                                                  * ( base( jy, UBd )
+                                                    + U_g_mesh( ix, jy, 2 ) )
+                                                  * TLx[ 0 ] * TLy[ 0 ];
+          // + 2 * ( 1 - beta ) * eta * U_g_x * U_c / zeta0^2
+          mat( Theta * size + M, U * size + N ) += 2 * ( 1. - beta ) * yj
+                                                  * U_g_mesh( ix, jy, 1 )
+                                                  * TLx[ 0 ] * TLy[ 0 ]
+                                                  / ( zeta0 * zeta0 );
+          // + ( PhiB + Phi_g ) * Theta_c_y
+          mat( Theta * size + M, Theta * size + N ) += ( base( jy, PhiB )
+                                                    + Phi_g_mesh( ix, jy, 0 ) )
+                                                    * TLx[ 0 ] * TLy[ 1 ];
+          // + ( hzeta * ThetaBd + Theta_g_y ) * Phi_c
+          mat( Theta * size + M, Phi * size + N ) += ( xi * base( jy, ThetaBd )
+                                                  + Theta_g_mesh( ix, jy, 2 ) )
+                                                  * TLx[ 0 ] * TLy[ 0 ];
+          // + ( hzeta * PsiB + Psi_g ) * Theta_c_x
+          mat( Theta * size + M, Theta * size + N ) += ( xi * base( jy, PsiB )
+                                                    + Psi_g_mesh( ix, jy, 0 ) )
+                                                    * TLx[ 1 ] * TLy[ 0 ];
+          // + ( ThetaB + Theta_g_x ) * Psi_c
+          mat( Theta * size + M, Psi * size + N ) += ( base( jy, ThetaB )
+                                                  + Theta_g_mesh( ix, jy, 1 ) )
+                                                  * TLx[ 0 ] * TLy[ 0 ];
+          // + ( 2 - beta ) * ( UB + U_g ) * Theta_c
+          mat( Theta * size + M, Theta * size + N ) += ( 2. - beta )
+                                                    * ( base( jy, UB )
+                                                    + U_g_mesh( ix, jy, 0 ) )
+                                                    * TLx[ 0 ] * TLy[ 0 ];
+          // + ( 2 - beta ) * ( hzeta * ThetaB + Theta_g ) * U_c
+          mat( Theta * size + M, U * size + N ) += ( 2. - beta )
+                                                * ( xi * base( jy, ThetaB )
+                                                + Theta_g_mesh( ix, jy, 0 ) )
+                                                * TLx[ 0 ] * TLy[ 0 ];*/
         }
       }
 
       // Residuals
-      // x = 0 boundary u_c = 1 - U_g (left)
+      // hzeta = 0 boundary
       if ( i == 0 )
       {
-        F[ Phi * size + M ] = 1.0 - U_g_mesh( I - 1, jy, 0 );
-        F[ Psi * size + M ] = 1.0 - U_g_mesh( I - 1, jy, 0 );
-        F[ U * size + M ] = 1.0 - U_g_mesh( I - 1, jy, 0 );
-        F[ Theta * size + M ] = 1.0 - U_g_mesh( I - 1, jy, 0 );
+        // Phi_hzeta = 0
+        F[ Phi * size + M ]   = - Phi_g_mesh( I - 1, jy, 1 );
+        // Psi = 0
+        F[ Psi * size + M ]   = - Psi_g_mesh( I - 1, jy, 0 );
+        // U_hzeta = 0
+        F[ U * size + M ]     = - U_g_mesh( I - 1, jy, 1 );
+        // Theta = 0
+        F[ Theta * size + M ] = - Theta_g_mesh( I - 1, jy, 0 );
       }
-      // y = 0 boundary u_c = 1 - U_g (bottom)
+      // eta = 0 boundary
       if ( j == 0 && i != 0 )
       {
-        F[ Phi * size + M ] = 1.0 - U_g_mesh( ix, J - 1, 0 );
-        F[ Psi * size + M ] = 1.0 - U_g_mesh( ix, J - 1, 0 );
-        F[ U * size + M ] = 1.0 - U_g_mesh( ix, J - 1, 0 );
-        F[ Theta * size + M ] = 1.0 - U_g_mesh( ix, J - 1, 0 );
+        // Phi = Phiw
+        /*F[ Phi * size + M ]   =   Example::Phi_w_func( xi )
+                                - Phi_g_mesh( ix, J - 1, 0 );*/
+        F[ Phi * size + M ]   = - Phi_g_mesh( ix, J - 1, 0 ); // temporary TODO
+
+        // Psi = 0
+        F[ Psi * size + M ]   = - Psi_g_mesh( ix, J - 1, 0 );
+        // U = 0
+        F[ U * size + M ]     = - U_g_mesh( ix, J - 1, 0 );
+
+        // Theta = Psi_hzeta - ( 1 / zeta0^2 ) * Phiw_hzeta
+        /*F[ Theta * size + M ] =   Psi_g_mesh( ix, J - 1, 1 )
+                                - Theta_g_mesh( ix, J - 1, 0 )
+                                - ( Example::Phi_w_hzeta_func( xi )
+                                / ( zeta0 * zeta0 ) );*/
+        F[ Theta * size + M ] = - Theta_g_mesh( ix, J - 1, 0 ); // temporary TODO
       }
       // Internal nodes
       if ( i != 0 && j != 0 )
       {
-        // - U_g_xx - U_g_yy - U_g_x * U_g_y
-        // + eps^2 * U_g * ( x^2 + y^2 + x * y * U_g )
-        F[ Phi * size + M ] = - U_g_mesh( ix, jy, 3 ) - U_g_mesh( ix, jy, 4 )
-                              - U_g_mesh( ix, jy, 1 ) * U_g_mesh( ix, jy, 2 )
-                              + eps2 * U_g_mesh( ix, jy, 0 ) * ( xi * xi + yj
-                              * yj + xi * yj * U_g_mesh( ix, jy, 0 ) );
-        F[ Psi * size + M ] = - U_g_mesh( ix, jy, 3 ) - U_g_mesh( ix, jy, 4 )
-                              - U_g_mesh( ix, jy, 1 ) * U_g_mesh( ix, jy, 2 )
-                              + eps2 * U_g_mesh( ix, jy, 0 ) * ( xi * xi + yj
-                              * yj + xi * yj * U_g_mesh( ix, jy, 0 ) );
-        F[ U * size + M ] = - U_g_mesh( ix, jy, 3 ) - U_g_mesh( ix, jy, 4 )
-                              - U_g_mesh( ix, jy, 1 ) * U_g_mesh( ix, jy, 2 )
-                              + eps2 * U_g_mesh( ix, jy, 0 ) * ( xi * xi + yj
-                              * yj + xi * yj * U_g_mesh( ix, jy, 0 ) );
-        F[ Theta * size + M ] = - U_g_mesh( ix, jy, 3 ) - U_g_mesh( ix, jy, 4 )
-                              - U_g_mesh( ix, jy, 1 ) * U_g_mesh( ix, jy, 2 )
-                              + eps2 * U_g_mesh( ix, jy, 0 ) * ( xi * xi + yj
-                              * yj + xi * yj * U_g_mesh( ix, jy, 0 ) );
+        // Phi equation
+        F[ Phi * size + M ] = - Phi_g_mesh( ix, jy, 4 )
+                              - ( Phi_g_mesh( ix, jy, 3 ) / ( zeta0 * zeta0 ) )
+                              + ( 2. - beta ) * U_g_mesh( ix, jy, 2 )
+                              - Theta_g_mesh( ix, jy, 1 )
+        + ( xi * yj * ( xi - 2. ) + 2 * yj + 2 * xi * xi * ( yj - 2. ) ) * exp( - xi - yj ) ;
+
+        // Psi equation
+        F[ Psi * size + M ] = - Psi_g_mesh( ix, jy, 4 )
+                              - ( Psi_g_mesh( ix, jy, 3 ) / ( zeta0 * zeta0 ) )
+                              + ( ( 2. - beta ) * U_g_mesh( ix, jy, 1 )
+                              / ( zeta0 * zeta0 ) )
+                              + Theta_g_mesh( ix, jy, 2 )
+        + ( 2 * ( xi * yj * ( xi - 2. ) + yj - xi * xi + ( xi - 2. ) * xi * yj ) + xi * xi * ( yj - 1. ) ) * exp( - xi - yj );
+
+        // U equation
+        F[ U * size + M ] = - U_g_mesh( ix, jy, 4 )
+                            - ( U_g_mesh( ix, jy, 3 ) / ( zeta0 * zeta0 ) )
+                            + beta * ( 2 * base( jy, UB )
+                            + U_g_mesh( ix, jy, 0 ) ) * U_g_mesh( ix, jy, 0 )
+                            - xi * base( jy, PsiB ) * U_g_mesh( ix, jy, 1 )
+                            //  - Psi_g_mesh( ix, jy, 0 ) * U_g_mesh( ix, jy, 1 )
+                            - base( jy, PhiB ) * U_g_mesh( ix, jy, 2 )
+                            - base( jy, UBd ) * Phi_g_mesh( ix, jy, 0 )
+                            //  - U_g_mesh( ix, jy, 2 ) * Phi_g_mesh( ix, jy, 0 )
+
+        + 2 * ( xi * yj * ( xi - 2. ) + yj - xi * xi ) * exp( - xi - yj )
+        - beta * ( 2 * base( jy, UB ) + xi * xi * yj * exp( - xi - yj ) ) * xi * xi * yj * exp( - xi - yj )
+        + base( jy, PsiB ) * ( 2. - xi ) * xi * xi * yj * exp( - xi - yj )
+        // TODO psi * u_x
+        //+ xi * xi * yj * exp( - xi - yj ) * ( 2. - xi ) * xi * yj * exp( - xi - yj )
+        + base( jy, PhiB ) * xi * xi * ( 1. - yj ) * exp( - xi - yj )
+        + base( jy, UBd ) * xi * xi * yj * exp( - xi - yj );
+        // TODO u_y * phi
+        //+ xi * xi * ( 1. - yj ) * exp( - xi - yj ) * xi * xi * yj * exp( - xi - yj );
+
+
+        // Theta equation
+        F[ Theta * size + M ] = - Theta_g_mesh( ix, jy, 4 )
+                              - ( Theta_g_mesh( ix, jy, 3 ) / ( zeta0 * zeta0 ) )
+
+                            /*+ 2 * ( 1. - beta ) * (
+        xi * ( base( jy, UB ) + U_g_mesh( ix, jy, 0 ) ) * U_g_mesh( ix, jy, 2 )
+        + xi * base( jy, UBd ) * U_g_mesh( ix, jy, 0 )
+        - ( yj * ( base( jy, UB ) + U_g_mesh( ix, jy, 0 ) )
+        * U_g_mesh( ix, jy, 1 ) / ( zeta0 * zeta0 ) ) )
+        - ( base( jy, PhiB ) + Phi_g_mesh( ix, jy, 0 ) )
+        * Theta_g_mesh( ix, jy, 2 )
+        - xi * base( jy, ThetaBd ) * Phi_g_mesh( ix, jy, 0 )
+        - xi * base( jy, PsiB ) * Theta_g_mesh( ix, jy, 1 )
+        - Psi_g_mesh( ix, jy, 0 ) * ( base( jy, ThetaB )
+        + Theta_g_mesh( ix, jy, 1 ) )
+        - ( 2. - beta ) * ( ( base( jy, UB ) + U_g_mesh( ix, jy, 0 ) )
+        * Theta_g_mesh( ix, jy, 0 )
+        + xi * base( jy, ThetaB ) * U_g_mesh( ix, jy, 0 ) );*/
+
+        + 2 * ( xi * yj * ( xi - 2. ) + yj - xi * xi ) * exp( - xi - yj ) ;
       }
 
       // BCs at infinity are natural boundary conditions
@@ -299,7 +458,15 @@ int main()
       a_u.push_back( a_c[ U * size + i ] );
       a_theta.push_back( a_c[ Theta * size + i ] );
     }
+    Phi_g.update_coefficients( a_phi );
+    Psi_g.update_coefficients( a_psi );
     U_g.update_coefficients( a_u );
+    Theta_g.update_coefficients( a_theta );
+
+    //Vector<double> a_diff;
+    //a_diff = a_psi - a_theta;
+    //cout << " a_diff.norm_2() = " << std::scientific << a_diff.norm_2() << endl;
+
     norm = a_c.norm_2();
     cout << "  * iter = " << iter << ", norm = " << std::scientific << norm
          << std::fixed << endl;
@@ -332,8 +499,25 @@ int main()
   base_solution.output( "./DATA/Boundary_region_base.dat" );
 
   // Output the spectral solution to a 2D mesh
-  U_g( solution, 0 );
-
+  Theta_g( solution, 0 );
+  /*for ( std::size_t i = 0; i < x_grid.size(); i++ )
+  {
+    double x( x_grid[ i ] );
+    for ( std::size_t j = 0; j < y_grid.size(); j++ )
+    {
+      double y( y_grid[ j ] );
+      for ( std::size_t n = 0; n < size; n++ )
+      {
+        f = n / J;
+        g = n % J;
+        //solution( i, j, 0 ) += U_g.get_coefficients()[ n ]
+        //                      * rationalsemi( x, f ) * rationalsemi( y, g );
+        solution( i, j, 0 ) = //base_solution( j, UB ) +
+                              U_g.get_coefficients()[ n ]
+                              * rationalsemi( x, f ) * rationalsemi( y, g );
+      }
+    }
+  }*/
 
   // Output the mesh to a file
   solution.output( "./DATA/Boundary_region.dat" );

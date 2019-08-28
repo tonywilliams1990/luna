@@ -51,7 +51,7 @@ axes.set_xlim([min_x,max_x])
 axes.set_ylim([min_y,max_y])
 
 # Base solution (Falkner-Skan)
-
+'''
 data    = np.loadtxt( "./DATA/Boundary_region_base.dat" )
 eta     = data[:,0]
 UB      = data[:,1]
@@ -76,5 +76,6 @@ plt.legend()
 axes = plt.gca()
 axes.set_xlim([0,eta_max])
 axes.set_ylim([0,f_max])
+'''
 
 plt.show()
